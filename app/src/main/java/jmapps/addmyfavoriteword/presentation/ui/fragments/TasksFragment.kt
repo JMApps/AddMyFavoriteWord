@@ -35,6 +35,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.initView()
         otherFragmentsPresenter.defaultState()
+        otherFragmentsPresenter.updateState(listOf(tasksViewModel.allTaskCategories))
 
         binding.fabAddTaskCategory.setOnClickListener(this)
 
@@ -53,7 +54,6 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
                 binding.rvTaskCategories.adapter = taskCategoriesAdapter
-                otherFragmentsPresenter.updateState(taskCategoriesList)
             }
         })
     }

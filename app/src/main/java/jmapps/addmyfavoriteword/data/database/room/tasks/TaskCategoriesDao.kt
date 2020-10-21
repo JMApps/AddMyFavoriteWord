@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface TaskCategoriesDao {
-    @Query("SELECT * FROM Table_of_task_categories ORDER BY _id DESC")
+    @Query("SELECT * FROM Table_of_task_categories ORDER BY _id ASC")
     fun getTaskCategoriesList(): LiveData<MutableList<TaskCategories>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
