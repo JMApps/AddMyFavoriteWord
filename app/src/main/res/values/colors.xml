@@ -5,4 +5,7 @@
     <color name="color_accent">#2196F3</color>
 
     <color name="color_id_numbers">#2196F3</color>
+
+    <color name="color_edit_button">#2196F3</color>
+    <color name="color_delete_button">#F44336</color>
 </resources>
