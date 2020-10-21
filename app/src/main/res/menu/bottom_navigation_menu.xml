@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_tasks"
+        android:icon="@drawable/ic_task"
+        android:title="@string/bottom_navigation_title_tasks" />
+
+    <item
+        android:id="@+id/navigation_dictionary"
+        android:icon="@drawable/ic_dictionary"
+        android:title="@string/bottom_navigation_title_dictionary" />
+
+    <item
+        android:id="@+id/navigation_notes"
+        android:icon="@drawable/ic_note"
+        android:title="@string/bottom_navigation_title_notes" />
+</menu>

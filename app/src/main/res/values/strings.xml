@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name_title">Мой словарик</string>
+
+    <string name="bottom_navigation_title_dictionary">Словарь</string>
+    <string name="bottom_navigation_title_tasks">Задачи</string>
+    <string name="bottom_navigation_title_notes">Заметки</string>
+
+    <string name="dictionary_main_add_first_task_category">Добавьте первую категорию <b>задач</b></string>
+    <string name="dictionary_main_add_first_dictionary_category">Добавьте первую категорию <b>словаря</b></string>
+    <string name="dictionary_main_add_first_note_category">Добавьте первую категорию <b>заметок</b></string>
+</resources>

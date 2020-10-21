@@ -1,0 +1,14 @@
+<resources>
+    <dimen name="main_margin">20dp</dimen>
+    <dimen name="main_padding">20dp</dimen>
+
+    <dimen name="main_margin_mini">12dp</dimen>
+    <dimen name="main_padding_mini">12dp</dimen>
+
+    <dimen name="main_icon_size">30dp</dimen>
+    <dimen name="main_view_icon_size">216dp</dimen>
+
+    <dimen name="main_view_description_text_size">35sp</dimen>
+
+    <dimen name="main_app_text_size">25sp</dimen>
+</resources>

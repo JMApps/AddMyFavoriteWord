@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_dictionary">
+
+    <fragment
+        android:id="@+id/navigation_tasks"
+        android:name="jmapps.addmyfavoriteword.presentation.ui.tasks.TasksFragment"
+        android:label="@string/bottom_navigation_title_tasks"
+        tools:layout="@layout/fragment_tasks" />
+
+    <fragment
+        android:id="@+id/navigation_dictionary"
+        android:name="jmapps.addmyfavoriteword.presentation.ui.dictionary.DictionaryFragment"
+        android:label="@string/bottom_navigation_title_dictionary"
+        tools:layout="@layout/fragment_dictionary" />
+
+    <fragment
+        android:id="@+id/navigation_notes"
+        android:name="jmapps.addmyfavoriteword.presentation.ui.notes.NotesFragment"
+        android:label="@string/bottom_navigation_title_notes"
+        tools:layout="@layout/fragment_notes" />
+</navigation>
