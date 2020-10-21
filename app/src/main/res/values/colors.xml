@@ -4,6 +4,5 @@
     <color name="color_primary_dark">#F44336</color>
     <color name="color_accent">#2196F3</color>
 
-    <color name="bottom_navigation_item_selected_color">#218CF3</color>
-    <color name="bottom_navigation_item_unselected_color">#757575</color>
+    <color name="color_id_numbers">#2196F3</color>
 </resources>
