@@ -5,14 +5,14 @@
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
     android:elevation="2dp"
-    android:minHeight="100dp">
+    android:minHeight="@dimen/item_min_heights">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
-        android:minHeight="100dp"
+        android:minHeight="@dimen/item_min_heights"
         android:orientation="horizontal"
         android:padding="@dimen/main_padding_mini">
 

@@ -4,12 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
-    android:elevation="2dp">
+    android:elevation="2dp"
+    android:minHeight="@dimen/item_min_heights">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
+        android:minHeight="@dimen/item_min_heights"
         android:orientation="horizontal"
         android:padding="@dimen/main_padding_mini">
 
@@ -30,5 +33,20 @@
             android:layout_weight="1"
             android:textSize="@dimen/main_app_text_size"
             tools:text="На сегодня" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/button_edit_note_category_title"
+            android:layout_width="@dimen/main_view_size"
+            android:layout_height="@dimen/main_view_size"
+            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_edit" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/button_delete_note_category_title"
+            android:layout_width="@dimen/main_view_size"
+            android:layout_height="@dimen/main_view_size"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_delete" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

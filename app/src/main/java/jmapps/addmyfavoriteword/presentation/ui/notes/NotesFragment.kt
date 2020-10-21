@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.FragmentNotesBinding
@@ -28,10 +27,11 @@ class NotesFragment : Fragment(), ContractInterface.OtherView {
         otherFragmentsPresenter.defaultState()
         //otherPresenter.updateState(testList)
 
-        notesViewModel.text.observe(viewLifecycleOwner, Observer {
-        })
-
         return binding.root
+    }
+
+    override fun initView() {
+
     }
 
     override fun defaultState() {
