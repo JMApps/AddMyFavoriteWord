@@ -15,7 +15,7 @@ class OtherFragmentsModel : ContractInterface.Model {
         return description
     }
 
-    override fun updateState(list: MutableList<Any>) {
+    override fun updateState(list: List<Any>) {
         if (list.isNotEmpty()) {
             recycler = View.VISIBLE
             description = View.GONE
