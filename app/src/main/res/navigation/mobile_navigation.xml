@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_tasks"
-        android:name="jmapps.addmyfavoriteword.presentation.ui.tasks.TasksFragment"
+        android:name="jmapps.addmyfavoriteword.presentation.ui.fragments.TasksFragment"
         android:label="@string/bottom_navigation_title_tasks"
         tools:layout="@layout/fragment_tasks" />
 

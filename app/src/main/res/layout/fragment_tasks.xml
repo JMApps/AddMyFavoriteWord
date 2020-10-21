@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.tasks.TasksFragment">
+        tools:context=".presentation.ui.fragments.TasksFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_task_categories"
