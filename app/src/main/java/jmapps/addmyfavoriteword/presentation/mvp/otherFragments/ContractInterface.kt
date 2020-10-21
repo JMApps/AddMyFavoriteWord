@@ -1,4 +1,4 @@
-package jmapps.addmyfavoriteword.presentation.mvp.other
+package jmapps.addmyfavoriteword.presentation.mvp.otherFragments
 
 interface ContractInterface {
 

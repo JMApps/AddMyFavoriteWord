@@ -1,8 +1,8 @@
-package jmapps.addmyfavoriteword.presentation.mvp.other
+package jmapps.addmyfavoriteword.presentation.mvp.otherFragments
 
 import android.view.View
 
-class OtherModel : ContractInterface.Model {
+class OtherFragmentsModel : ContractInterface.Model {
 
     private var recycler = View.GONE
     private var description = View.VISIBLE
