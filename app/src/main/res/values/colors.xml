@@ -6,6 +6,13 @@
 
     <color name="color_id_numbers">#2196F3</color>
 
+    <color name="color_main_one">#F44336</color>
+    <color name="color_main_two">#2196F3</color>
+
     <color name="color_edit_button">#2196F3</color>
     <color name="color_delete_button">#F44336</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="grey">#7C7C7C</color>
 </resources>
