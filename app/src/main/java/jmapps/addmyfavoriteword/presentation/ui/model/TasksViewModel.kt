@@ -23,11 +23,11 @@ class TasksViewModel(application: Application) : AndroidViewModel(application) {
         taskCategoryRepository.insertTaskCategory(taskCategories)
     }
 
-    fun updateTaskCategory(newTitle: String) = viewModelScope.launch {
-        taskCategoryRepository.updateTaskCategory(newTitle)
+    fun updateTaskCategory(newTitle: String, newDateTime: String) = viewModelScope.launch {
+        taskCategoryRepository.updateTaskCategory(newTitle, newDateTime)
     }
 
-    fun deleteTaskCategory(_id: Long) = viewModelScope.launch {
-        taskCategoryRepository.deleteTaskCategory(_id)
+    fun deleteTaskCategory(id: Long) = viewModelScope.launch {
+        taskCategoryRepository.deleteTaskCategory(id)
     }
 }

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="3dp"
-    android:elevation="2dp"
-    android:minHeight="@dimen/item_min_heights">
+    android:layout_margin="5dp"
+    android:elevation="3dp"
+    android:minHeight="@dimen/item_min_heights"
+    app:cardCornerRadius="25dp">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackgroundBorderless"
@@ -20,7 +22,8 @@
             android:id="@+id/text_id_task_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
             android:textColor="@color/color_id_numbers"
             android:textSize="@dimen/main_app_text_size"
             tools:text="9" />
@@ -29,24 +32,9 @@
             android:id="@+id/text_title_task_category"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:layout_marginEnd="@dimen/main_margin"
             android:layout_weight="1"
             android:textSize="@dimen/main_app_text_size"
             tools:text="На сегодня" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/button_edit_task_category_title"
-            android:layout_width="@dimen/main_view_size"
-            android:layout_height="@dimen/main_view_size"
-            android:layout_marginEnd="@dimen/main_margin_mini"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_edit" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/button_delete_task_category_title"
-            android:layout_width="@dimen/main_view_size"
-            android:layout_height="@dimen/main_view_size"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_delete" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>

@@ -14,8 +14,8 @@ interface TaskCategoriesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTaskCategory(taskCategories: TaskCategories?)
 
-    @Query("UPDATE Table_of_task_categories SET title = :newTitle")
-    suspend fun updateTaskCategoryTitle(newTitle: String)
+    @Query("UPDATE Table_of_task_categories SET title = :newTitle, changeDateTime = :newDateTime")
+    suspend fun updateTaskCategoryTitle(newTitle: String, newDateTime: String)
 
     @Query("DELETE FROM Table_of_task_categories WHERE _id = :id")
     suspend fun deleteTaskCategory(id: Long)

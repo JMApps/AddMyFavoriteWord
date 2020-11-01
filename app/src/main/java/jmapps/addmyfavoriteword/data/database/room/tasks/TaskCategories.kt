@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class TaskCategories(
     @PrimaryKey(autoGenerate = true) val _id: Long = 1,
     val title: String,
-    val category: String,
+    val categoryColor: String,
     val addDateTime: String,
     val changeDateTime: String,
 )

@@ -11,8 +11,8 @@ class TaskCategoriesRepository(private val taskCategoriesDao: TaskCategoriesDao)
         taskCategoriesDao.insertTaskCategory(taskCategories)
     }
 
-    suspend fun updateTaskCategory(newTitle: String) {
-        taskCategoriesDao.updateTaskCategoryTitle(newTitle)
+    suspend fun updateTaskCategory(newTitle: String, newDateTime: String) {
+        taskCategoriesDao.updateTaskCategoryTitle(newTitle, newDateTime)
     }
 
     suspend fun deleteTaskCategory(id: Long) {
