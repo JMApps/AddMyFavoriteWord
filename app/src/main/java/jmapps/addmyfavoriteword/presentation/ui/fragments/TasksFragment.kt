@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.FragmentTasksBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
@@ -36,6 +37,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         otherFragmentsPresenter.initView()
         otherFragmentsPresenter.defaultState()
 
+        binding.rvTaskCategories.addOnScrollListener(onAddScroll)
         binding.fabAddTaskCategory.setOnClickListener(this)
 
         return binding.root
@@ -74,5 +76,16 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onItemClickTaskCategory(_id: Long) {
         Toast.makeText(requireContext(), "Id = $_id", Toast.LENGTH_SHORT).show()
+    }
+
+    private val onAddScroll = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            if (dy > 0) {
+                binding.fabAddTaskCategory.hide()
+            } else {
+                binding.fabAddTaskCategory.show()
+            }
+        }
     }
 }
