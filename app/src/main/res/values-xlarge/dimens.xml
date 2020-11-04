@@ -1,6 +1,9 @@
 <resources>
-    <dimen name="main_margin">20dp</dimen>
-    <dimen name="main_padding">20dp</dimen>
+    <dimen name="main_margin_big">36dp</dimen>
+    <dimen name="main_padding_big">36dp</dimen>
+
+    <dimen name="main_margin">24dp</dimen>
+    <dimen name="main_padding">24dp</dimen>
 
     <dimen name="main_margin_mini">12dp</dimen>
     <dimen name="main_padding_mini">12dp</dimen>
@@ -8,10 +11,12 @@
     <dimen name="main_view_size">30dp</dimen>
     <dimen name="main_icon_size">30dp</dimen>
 
-    <dimen name="main_view_icon_size">216dp</dimen>
-    <dimen name="main_view_description_text_size">35sp</dimen>
+    <dimen name="main_view_icon_size">150dp</dimen>
+    <dimen name="main_view_description_text_size">30sp</dimen>
 
-    <dimen name="main_app_text_size">25sp</dimen>
+    <dimen name="main_app_text_size">23sp</dimen>
 
     <dimen name="item_min_heights">100dp</dimen>
+
+    <dimen name="main_corners">30</dimen>
 </resources>

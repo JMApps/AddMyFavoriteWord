@@ -7,7 +7,7 @@
     android:layout_margin="5dp"
     android:elevation="3dp"
     android:minHeight="@dimen/item_min_heights"
-    app:cardCornerRadius="25dp">
+    app:cardCornerRadius="16dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -15,25 +15,25 @@
         android:background="?selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
         android:minHeight="@dimen/item_min_heights"
-        android:orientation="horizontal"
-        android:padding="@dimen/main_padding_mini">
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_id_task_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:textColor="@color/color_id_numbers"
-            android:textSize="@dimen/main_app_text_size"
-            tools:text="9" />
+            android:id="@+id/text_current_category_color"
+            android:layout_width="@dimen/main_padding_big"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:gravity="center"
+            android:minWidth="@dimen/main_padding_big"
+            android:minHeight="@dimen/item_min_heights"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_app_text_size" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_title_task_category"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/main_margin"
             android:layout_weight="1"
+            android:padding="@dimen/main_padding_mini"
             android:textSize="@dimen/main_app_text_size"
             tools:text="На сегодня" />
     </androidx.appcompat.widget.LinearLayoutCompat>

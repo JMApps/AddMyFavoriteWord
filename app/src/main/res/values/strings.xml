@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name_title">Мой словарик</string>
 
+    <!--    Main screen-->
     <string name="bottom_navigation_title_dictionary">Словарь</string>
     <string name="bottom_navigation_title_tasks">Задачи</string>
     <string name="bottom_navigation_title_notes">Заметки</string>
@@ -8,4 +9,10 @@
     <string name="dictionary_main_add_first_task_category">Добавьте первую категорию <b>задач</b></string>
     <string name="dictionary_main_add_first_dictionary_category">Добавьте первую категорию <b>словаря</b></string>
     <string name="dictionary_main_add_first_note_category">Добавьте первую категорию <b>заметок</b></string>
+
+    <!--    Categories-->
+    <string name="action_add_category_task">Добавить категорию</string>
+    <string name="action_enter_category_name">Введите название категории</string>
+    <string name="action_choose_color">Выберите цвет категории</string>
+    <string name="action_add_category">Добавить</string>
 </resources>

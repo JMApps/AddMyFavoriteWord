@@ -10,42 +10,70 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/edit_add_task_category"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_add_task_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:hint="Name"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton_current_category_color"
+            android:background="@color/color_main_two"
+            android:drawableStart="@drawable/ic_task_solid"
+            android:drawablePadding="@dimen/main_padding"
+            android:gravity="center_vertical"
+            android:padding="@dimen/main_padding"
+            android:text="@string/action_add_category_task"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_add_task_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:background="@drawable/edging_input_edit_text"
+            android:ellipsize="end"
+            android:hint="@string/action_enter_category_name"
+            android:inputType="textCapSentences"
+            android:maxLength="100"
+            android:padding="@dimen/main_padding"
+            android:singleLine="true"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/text_current_category_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_add_task_description">
+
+            <requestFocus />
+        </androidx.appcompat.widget.AppCompatEditText>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_current_category_color"
+            android:layout_width="@dimen/main_view_size"
+            android:layout_height="@dimen/main_view_size"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:background="@drawable/circular_color_view"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_add_task_category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edit_add_task_category" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_add_task_category"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
             android:layout_marginBottom="32dp"
-            android:text="Close"
+            android:background="@drawable/main_button_ripple"
+            android:text="@string/action_add_category"
+            android:textColor="@color/color_main_one"
+            android:textSize="@dimen/main_app_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton_current_category_color" />
-
-        <ImageButton
-            android:id="@+id/imageButton_current_category_color"
-            android:layout_width="@dimen/main_view_size"
-            android:layout_height="@dimen/main_view_size"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_add_task_category"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edit_add_task_category" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_add_task_category" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
