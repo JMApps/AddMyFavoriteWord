@@ -5,14 +5,16 @@ import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
 import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategoriesDao
 
 class TaskCategoriesRepository(private val taskCategoriesDao: TaskCategoriesDao) {
-    val allTaskCategories: LiveData<MutableList<TaskCategories>> = taskCategoriesDao.getTaskCategoriesList()
+    fun allTaskCategories(): LiveData<MutableList<TaskCategories>> {
+        return taskCategoriesDao.getTaskCategoriesList()
+    }
 
     suspend fun insertTaskCategory(taskCategories: TaskCategories) {
         taskCategoriesDao.insertTaskCategory(taskCategories)
     }
 
-    suspend fun updateTaskCategory(newTitle: String, newDateTime: String) {
-        taskCategoriesDao.updateTaskCategoryTitle(newTitle, newDateTime)
+    suspend fun updateTaskCategory(newTitle: String, newCategoryColor: String, newDateTime: String) {
+        taskCategoriesDao.updateTaskCategoryTitle(newTitle, newCategoryColor, newDateTime)
     }
 
     suspend fun deleteTaskCategory(id: Long) {

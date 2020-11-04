@@ -2,6 +2,7 @@ package jmapps.addmyfavoriteword.presentation.ui.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -14,8 +15,7 @@ import jmapps.addmyfavoriteword.presentation.ui.holder.TaskCategoriesHolder
 class TaskCategoriesAdapter(
     context: Context,
     private var taskCategoryList: MutableList<TaskCategories>,
-    private val onItemClickTaskCategory: OnItemClickTaskCategory
-) : RecyclerView.Adapter<TaskCategoriesHolder>(), Filterable {
+    private val onItemClickTaskCategory: OnItemClickTaskCategory) : RecyclerView.Adapter<TaskCategoriesHolder>(), Filterable {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var firstTaskCategoryList: MutableList<TaskCategories>? = null
@@ -36,7 +36,8 @@ class TaskCategoriesAdapter(
     override fun onBindViewHolder(holder: TaskCategoriesHolder, position: Int) {
         val current = taskCategoryList[position]
 
-        holder.taskCategoryId.text = current._id.toString()
+        holder.taskCategoryColor.setBackgroundColor(Color.parseColor(current.categoryColor))
+        holder.taskCategoryColor.text = (position + 1).toString()
         holder.taskCategoryTitle.text = current.title
 
         holder.findItemClick(onItemClickTaskCategory, current._id)

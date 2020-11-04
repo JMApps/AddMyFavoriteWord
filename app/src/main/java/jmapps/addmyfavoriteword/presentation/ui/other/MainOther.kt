@@ -12,7 +12,3 @@ private fun Date.toString(format: String, locale: Locale = Locale.getDefault()):
     val formatter = SimpleDateFormat(format, locale)
     return formatter.format(this)
 }
-
-enum class Categories {
-
-}

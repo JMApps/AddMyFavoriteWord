@@ -16,15 +16,15 @@ class TasksViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val taskCategoriesDao = TaskDatabaseHelper.getDatabase(application, viewModelScope).taskCategoriesDao()
         taskCategoryRepository = TaskCategoriesRepository(taskCategoriesDao)
-        allTaskCategories = taskCategoryRepository.allTaskCategories
+        allTaskCategories = taskCategoryRepository.allTaskCategories()
     }
 
     fun insertTaskCategory(taskCategories: TaskCategories) = viewModelScope.launch {
         taskCategoryRepository.insertTaskCategory(taskCategories)
     }
 
-    fun updateTaskCategory(newTitle: String, newDateTime: String) = viewModelScope.launch {
-        taskCategoryRepository.updateTaskCategory(newTitle, newDateTime)
+    fun updateTaskCategory(newTitle: String, newCategoryColor: String, newDateTime: String) = viewModelScope.launch {
+        taskCategoryRepository.updateTaskCategory(newTitle, newCategoryColor, newDateTime)
     }
 
     fun deleteTaskCategory(id: Long) = viewModelScope.launch {

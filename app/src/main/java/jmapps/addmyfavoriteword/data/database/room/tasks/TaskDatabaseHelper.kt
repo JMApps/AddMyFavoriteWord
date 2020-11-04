@@ -1,6 +1,7 @@
 package jmapps.addmyfavoriteword.data.database.room.tasks
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -37,7 +38,9 @@ abstract class TaskDatabaseHelper : RoomDatabase() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 INSTANCE.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        database?.taskCategoriesDao()?.let { populateCategories(it) }
+                        database?.taskCategoriesDao()?.let { taskCategories ->
+                            populateCategories(taskCategories)
+                        }
                     }
                 }
             }

@@ -15,13 +15,14 @@ import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
 import jmapps.addmyfavoriteword.databinding.BottomsheetAddTaskCategoryBinding
 import jmapps.addmyfavoriteword.presentation.ui.model.TasksViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
-import kotlinx.android.synthetic.main.bottomsheet_add_task_category.*
 
-class AddTaskCategory : BottomSheetDialogFragment() {
+class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
 
     private lateinit var tasksViewModel: TasksViewModel
     private lateinit var binding: BottomsheetAddTaskCategoryBinding
+
     private var standardColor: String = "#9E9E9E"
+    private var standardIntermediate: String = "ci_day"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,30 +32,50 @@ class AddTaskCategory : BottomSheetDialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_task_category, container, false)
 
-        binding.imageButtonCurrentCategoryColor.setBackgroundColor(Color.parseColor(standardColor))
-        binding.imageButtonCurrentCategoryColor.setOnClickListener {
-            MaterialColorPickerDialog
-                .Builder(requireContext())
-                .setColorRes(resources.getIntArray(R.array.themeColors).toList())
-                .setColorListener { color, colorHex ->
-                    Toast.makeText(requireContext(), "Color = $colorHex", Toast.LENGTH_SHORT).show()
-                    standardColor = colorHex
-                    binding.imageButtonCurrentCategoryColor.setBackgroundColor(Color.parseColor(standardColor))
-                }
-                .show()
-        }
-
-        binding.buttonAddTaskCategory.setOnClickListener {
-            val addTaskCategories = TaskCategories(
-                0,
-                edit_add_task_category.text.toString(),
-                standardColor,
-                MainOther().currentTime,
-                MainOther().currentTime)
-            tasksViewModel.insertTaskCategory(addTaskCategories)
-            dialog?.dismiss()
-        }
+        binding.textCurrentCategoryColor.setBackgroundColor(Color.parseColor(standardColor))
+        binding.textCurrentCategoryColor.setOnClickListener(this)
+        binding.buttonAddTaskCategory.setOnClickListener(this)
 
         return binding.root
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.text_current_category_color -> {
+                MaterialColorPickerDialog
+                    .Builder(requireContext())
+                    .setTitle(getString(R.string.action_choose_color))
+                    .setColorRes(resources.getIntArray(R.array.themeColors).toList())
+                    .setColorListener { _, colorHex ->
+                        binding.textCurrentCategoryColor.setBackgroundColor(Color.parseColor(colorHex))
+                        standardColor = colorHex
+                    }
+                    .show()
+            }
+
+            R.id.button_add_task_category -> {
+               checkEditText()
+            }
+        }
+    }
+
+    private fun checkEditText() {
+        if (binding.editAddTaskCategory.text.toString().isNotEmpty()) {
+            addTaskCategory()
+        } else {
+            binding.editAddTaskCategory.error = getString(R.string.action_enter_category_name)
+        }
+    }
+
+    private fun addTaskCategory() {
+        val addTaskCategories = TaskCategories(
+            0,
+            binding.editAddTaskCategory.text.toString(),
+            standardColor,
+            standardIntermediate,
+            MainOther().currentTime,
+            MainOther().currentTime)
+        tasksViewModel.insertTaskCategory(addTaskCategories)
+        dialog?.dismiss()
     }
 }
