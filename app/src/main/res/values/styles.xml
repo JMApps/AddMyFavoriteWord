@@ -7,7 +7,26 @@
         <item name="fontFamily">@font/gilroy_medium</item>
     </style>
 
+    <!--    Splash screen theme-->
+    <style name="ThemeSplash" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="colorPrimaryDark">@color/color_primary</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--    Bottom Sheet dialog styles-->
+    <style name="BottomSheetStyleFull" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/bottom_sheet_background</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="behavior_peekHeight">1000dp</item>
+    </style>
+
 </resources>
