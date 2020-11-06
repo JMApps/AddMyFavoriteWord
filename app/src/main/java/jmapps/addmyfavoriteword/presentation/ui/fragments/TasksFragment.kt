@@ -1,11 +1,13 @@
 package jmapps.addmyfavoriteword.presentation.ui.fragments
 
+import android.app.SearchManager
+import android.content.Context.SEARCH_SERVICE
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.text.TextUtils
+import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,7 +23,8 @@ import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategory
 import jmapps.addmyfavoriteword.presentation.ui.model.TasksViewModel
 
 class TasksFragment : Fragment(), ContractInterface.OtherView,
-    TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener {
+    TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener,
+    SearchView.OnQueryTextListener {
 
     private lateinit var tasksViewModel: TasksViewModel
     private lateinit var binding: FragmentTasksBinding
@@ -29,9 +32,14 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
 
     private lateinit var taskCategoriesAdapter: TaskCategoriesAdapter
 
+    private lateinit var searchView: SearchView
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         tasksViewModel = ViewModelProvider(this).get(TasksViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks, container, false)
+
+        retainInstance = true
+        setHasOptionsMenu(true)
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.initView()
@@ -43,9 +51,33 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_task, menu)
+        val searchManager = requireContext().getSystemService(SEARCH_SERVICE) as SearchManager
+        searchView = menu.findItem(R.id.action_search_categories).actionView as SearchView
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        searchView.maxWidth = Integer.MAX_VALUE
+        searchView.setOnQueryTextListener(this)
+
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (TextUtils.isEmpty(newText)) {
+            taskCategoriesAdapter.filter.filter("")
+        } else {
+            taskCategoriesAdapter.filter.filter(newText)
+        }
+        return true
+    }
+
     override fun onClick(v: View?) {
         val addTaskCategory = AddTaskCategory()
-        addTaskCategory.show(childFragmentManager, "tagg")
+        addTaskCategory.show(childFragmentManager, AddTaskCategory.ARG_TASK_FRAGMENT)
     }
 
     override fun initView() {

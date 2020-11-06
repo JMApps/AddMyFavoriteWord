@@ -11,6 +11,7 @@
     <string name="dictionary_main_add_first_note_category">Добавьте первую категорию <b>заметок</b></string>
 
     <!--    Categories-->
+    <string name="action_search_by_categories">Поиск категорий</string>
     <string name="action_add_category_task">Добавить категорию</string>
     <string name="action_enter_category_name">Введите название категории</string>
     <string name="action_choose_color">Выберите цвет категории</string>

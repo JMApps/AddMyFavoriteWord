@@ -19,4 +19,6 @@
     <color name="grey">#7C7C7C</color>
 
     <color name="solid">#EAEAEA</color>
+
+    <color name="bottom_sheet_background">#FFFFFF</color>
 </resources>

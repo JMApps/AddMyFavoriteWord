@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
@@ -18,11 +17,17 @@ import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
 class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
 
+    override fun getTheme() = R.style.BottomSheetStyleFull
+
     private lateinit var tasksViewModel: TasksViewModel
     private lateinit var binding: BottomsheetAddTaskCategoryBinding
 
     private var standardColor: String = "#9E9E9E"
     private var standardIntermediate: String = "ci_day"
+
+    companion object {
+        const val ARG_TASK_FRAGMENT = "arg_task_fragment"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
