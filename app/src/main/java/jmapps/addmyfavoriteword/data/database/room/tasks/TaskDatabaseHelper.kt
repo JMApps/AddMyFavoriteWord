@@ -47,7 +47,7 @@ abstract class TaskDatabaseHelper : RoomDatabase() {
         }
 
         fun populateCategories(taskCategoriesDao: TaskCategoriesDao) {
-            taskCategoriesDao.getTaskCategoriesList()
+            taskCategoriesDao.getTaskCategoriesList("addDateTime")
         }
     }
 }

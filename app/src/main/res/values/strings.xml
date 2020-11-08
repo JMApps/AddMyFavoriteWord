@@ -16,4 +16,10 @@
     <string name="action_enter_category_name">Введите название категории</string>
     <string name="action_choose_color">Выберите цвет категории</string>
     <string name="action_add_category">Добавить</string>
+
+    <string name="action_order_categories">Сортировать категории по</string>
+    <string name="action_order_by_add_time">По дате добавления</string>
+    <string name="action_order_by_change_time">По дате изменения</string>
+    <string name="action_order_by_color">По цвету</string>
+    <string name="action_order_by_alphabet">По алфавиту</string>
 </resources>

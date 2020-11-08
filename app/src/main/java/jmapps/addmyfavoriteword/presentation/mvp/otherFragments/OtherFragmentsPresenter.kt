@@ -6,8 +6,8 @@ class OtherFragmentsPresenter(_otherView: ContractInterface.OtherView) :
     private var otherView: ContractInterface.OtherView = _otherView
     private var model: ContractInterface.Model = OtherFragmentsModel()
 
-    override fun initView() {
-        otherView.initView()
+    override fun initView(orderIndex: Int) {
+        otherView.initView(getOrderBy(orderIndex))
     }
 
     override fun defaultState() {
@@ -22,4 +22,6 @@ class OtherFragmentsPresenter(_otherView: ContractInterface.OtherView) :
         model.updateState(list)
         otherView.updateState()
     }
+
+    override fun getOrderBy(orderIndex: Int) = model.orderBy(orderIndex)
 }

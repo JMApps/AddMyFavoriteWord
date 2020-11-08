@@ -42,7 +42,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         setHasOptionsMenu(true)
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
-        otherFragmentsPresenter.initView()
+        otherFragmentsPresenter.initView(0)
         otherFragmentsPresenter.defaultState()
 
         binding.rvTaskCategories.addOnScrollListener(onAddScroll)
@@ -54,12 +54,24 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_task, menu)
         val searchManager = requireContext().getSystemService(SEARCH_SERVICE) as SearchManager
+
         searchView = menu.findItem(R.id.action_search_categories).actionView as SearchView
+
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(this)
 
         return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_order_by_add_time -> otherFragmentsPresenter.initView(0)
+            R.id.item_order_by_change_time -> otherFragmentsPresenter.initView(1)
+            R.id.item_order_by_color -> otherFragmentsPresenter.initView(2)
+            R.id.item_order_by_alphabet -> otherFragmentsPresenter.initView(3)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -80,10 +92,14 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         addTaskCategory.show(childFragmentManager, AddTaskCategory.ARG_TASK_FRAGMENT)
     }
 
-    override fun initView() {
-        tasksViewModel.allTaskCategories.observe(this, Observer { taskCategoriesList ->
+    override fun initView(sortedBy: String) {
+        tasksViewModel.allTaskCategories(sortedBy).observe(this, Observer { taskCategoriesList ->
             taskCategoriesList.let {
-                taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), taskCategoriesList, this)
+                taskCategoriesAdapter = TaskCategoriesAdapter(
+                    requireContext(),
+                    taskCategoriesList,
+                    this
+                )
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
                 binding.rvTaskCategories.adapter = taskCategoriesAdapter

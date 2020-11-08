@@ -11,21 +11,22 @@ import kotlinx.coroutines.launch
 
 class TasksViewModel(application: Application) : AndroidViewModel(application) {
     private val taskCategoryRepository: TaskCategoriesRepository
-    val allTaskCategories: LiveData<MutableList<TaskCategories>>
 
     init {
         val taskCategoriesDao = TaskDatabaseHelper.getDatabase(application, viewModelScope).taskCategoriesDao()
         taskCategoryRepository = TaskCategoriesRepository(taskCategoriesDao)
-        allTaskCategories = taskCategoryRepository.allTaskCategories()
     }
+
+    fun allTaskCategories(order: String): LiveData<MutableList<TaskCategories>> = taskCategoryRepository.allTaskCategories(order)
 
     fun insertTaskCategory(taskCategories: TaskCategories) = viewModelScope.launch {
         taskCategoryRepository.insertTaskCategory(taskCategories)
     }
 
-    fun updateTaskCategory(newTitle: String, newCategoryColor: String, newDateTime: String) = viewModelScope.launch {
-        taskCategoryRepository.updateTaskCategory(newTitle, newCategoryColor, newDateTime)
-    }
+    fun updateTaskCategory(newTitle: String, newCategoryColor: String, newDateTime: String) =
+        viewModelScope.launch {
+            taskCategoryRepository.updateTaskCategory(newTitle, newCategoryColor, newDateTime)
+        }
 
     fun deleteTaskCategory(id: Long) = viewModelScope.launch {
         taskCategoryRepository.deleteTaskCategory(id)

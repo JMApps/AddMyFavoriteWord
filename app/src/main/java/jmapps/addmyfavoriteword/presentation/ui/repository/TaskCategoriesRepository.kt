@@ -5,8 +5,8 @@ import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
 import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategoriesDao
 
 class TaskCategoriesRepository(private val taskCategoriesDao: TaskCategoriesDao) {
-    fun allTaskCategories(): LiveData<MutableList<TaskCategories>> {
-        return taskCategoriesDao.getTaskCategoriesList()
+    fun allTaskCategories(order: String): LiveData<MutableList<TaskCategories>> {
+        return taskCategoriesDao.getTaskCategoriesList(order)
     }
 
     suspend fun insertTaskCategory(taskCategories: TaskCategories) {

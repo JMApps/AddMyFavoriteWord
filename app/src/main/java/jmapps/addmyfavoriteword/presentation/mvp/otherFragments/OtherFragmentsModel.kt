@@ -7,13 +7,16 @@ class OtherFragmentsModel : ContractInterface.Model {
     private var recycler = View.GONE
     private var description = View.VISIBLE
 
-    override fun recyclerCategory(): Int {
-        return recycler
-    }
+    private val listOrderCategories = listOf(
+        "addDateTime",
+        "changeDateTime",
+        "categoryColor",
+        "alphabet"
+    )
 
-    override fun descriptionMain(): Int {
-        return description
-    }
+    override fun recyclerCategory() = recycler
+
+    override fun descriptionMain() = description
 
     override fun updateState(list: List<Any>) {
         if (list.isNotEmpty()) {
@@ -23,5 +26,9 @@ class OtherFragmentsModel : ContractInterface.Model {
             recycler = View.GONE
             description = View.VISIBLE
         }
+    }
+
+    override fun orderBy(orderIndex: Int) : String {
+        return listOrderCategories[orderIndex]
     }
 }

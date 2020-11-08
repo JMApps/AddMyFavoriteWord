@@ -30,7 +30,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView {
         return binding.root
     }
 
-    override fun initView() {
+    override fun initView(sortedBy: String) {
 
     }
 

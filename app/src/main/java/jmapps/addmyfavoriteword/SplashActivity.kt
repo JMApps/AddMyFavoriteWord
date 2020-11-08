@@ -10,5 +10,6 @@ class SplashActivity : Activity() {
 
         val toMainActivity = Intent(this, MainActivity::class.java)
         startActivity(toMainActivity)
+        finish()
     }
 }

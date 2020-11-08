@@ -4,8 +4,38 @@
     <item
         android:id="@+id/action_search_categories"
         android:icon="@drawable/ic_search"
-        android:orderInCategory="1"
+        android:orderInCategory="10"
         android:title="@string/action_search_by_categories"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/action_order_categories"
+        android:icon="@drawable/ic_sort"
+        android:orderInCategory="20"
+        android:title="@string/action_order_categories"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/item_order_by_add_time"
+                android:icon="@drawable/ic_by_add_time"
+                android:orderInCategory="10"
+                android:title="@string/action_order_by_add_time" />
+            <item
+                android:id="@+id/item_order_by_change_time"
+                android:icon="@drawable/ic_by_change_time"
+                android:orderInCategory="20"
+                android:title="@string/action_order_by_change_time" />
+            <item
+                android:id="@+id/item_order_by_color"
+                android:icon="@drawable/ic_by_color"
+                android:orderInCategory="30"
+                android:title="@string/action_order_by_color" />
+            <item
+                android:id="@+id/item_order_by_alphabet"
+                android:icon="@drawable/ic_by_alphabet"
+                android:orderInCategory="40"
+                android:title="@string/action_order_by_alphabet" />
+        </menu>
+    </item>
 </menu>
