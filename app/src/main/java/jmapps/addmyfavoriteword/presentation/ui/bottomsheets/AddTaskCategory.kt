@@ -22,7 +22,7 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
     private lateinit var tasksViewModel: TasksViewModel
     private lateinit var binding: BottomsheetAddTaskCategoryBinding
 
-    private var standardColor: String = "#9E9E9E"
+    private var standardColor: String = "#E57373"
     private var standardIntermediate: String = "ci_day"
 
     companion object {

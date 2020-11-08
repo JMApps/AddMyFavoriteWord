@@ -30,9 +30,8 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     private lateinit var binding: FragmentTasksBinding
     private lateinit var otherFragmentsPresenter: OtherFragmentsPresenter
 
-    private lateinit var taskCategoriesAdapter: TaskCategoriesAdapter
-
     private lateinit var searchView: SearchView
+    private lateinit var taskCategoriesAdapter: TaskCategoriesAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         tasksViewModel = ViewModelProvider(this).get(TasksViewModel::class.java)
@@ -54,9 +53,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_task, menu)
         val searchManager = requireContext().getSystemService(SEARCH_SERVICE) as SearchManager
-
         searchView = menu.findItem(R.id.action_search_categories).actionView as SearchView
-
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(this)
