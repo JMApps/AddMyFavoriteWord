@@ -2,6 +2,7 @@ package jmapps.addmyfavoriteword.presentation.ui.fragments
 
 import android.app.SearchManager
 import android.content.Context.SEARCH_SERVICE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
@@ -12,15 +13,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.FragmentTasksBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
-import jmapps.addmyfavoriteword.presentation.ui.adapter.TaskCategoriesAdapter
+import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskCategoriesAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategory
-import jmapps.addmyfavoriteword.presentation.ui.model.TasksViewModel
+import jmapps.addmyfavoriteword.presentation.ui.models.TasksViewModel
+import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class TasksFragment : Fragment(), ContractInterface.OtherView,
     TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener,
@@ -28,20 +31,30 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
 
     private lateinit var tasksViewModel: TasksViewModel
     private lateinit var binding: FragmentTasksBinding
+
+    private lateinit var preferences: SharedPreferences
+    private lateinit var sharedLocalPreferences: SharedLocalProperties
     private lateinit var otherFragmentsPresenter: OtherFragmentsPresenter
 
     private lateinit var searchView: SearchView
     private lateinit var taskCategoriesAdapter: TaskCategoriesAdapter
 
+    private var defaultOrderIndex = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         tasksViewModel = ViewModelProvider(this).get(TasksViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks, container, false)
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        sharedLocalPreferences = SharedLocalProperties(preferences)
+
         retainInstance = true
         setHasOptionsMenu(true)
 
+        defaultOrderIndex = sharedLocalPreferences.getIntValue("order_index", 0)!!
+
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
-        otherFragmentsPresenter.initView(0)
+        otherFragmentsPresenter.initView(defaultOrderIndex)
         otherFragmentsPresenter.defaultState()
 
         binding.rvTaskCategories.addOnScrollListener(onAddScroll)
@@ -63,11 +76,21 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_order_by_add_time -> otherFragmentsPresenter.initView(0)
-            R.id.item_order_by_change_time -> otherFragmentsPresenter.initView(1)
-            R.id.item_order_by_color -> otherFragmentsPresenter.initView(2)
-            R.id.item_order_by_alphabet -> otherFragmentsPresenter.initView(3)
+            R.id.item_order_by_add_time -> {
+                defaultOrderIndex = 0
+            }
+            R.id.item_order_by_change_time -> {
+                defaultOrderIndex = 1
+            }
+            R.id.item_order_by_color -> {
+                defaultOrderIndex = 2
+            }
+            R.id.item_order_by_alphabet -> {
+                defaultOrderIndex = 3
+            }
         }
+        otherFragmentsPresenter.initView(defaultOrderIndex)
+        sharedLocalPreferences.saveIntValue("order_index", defaultOrderIndex)
         return super.onOptionsItemSelected(item)
     }
 

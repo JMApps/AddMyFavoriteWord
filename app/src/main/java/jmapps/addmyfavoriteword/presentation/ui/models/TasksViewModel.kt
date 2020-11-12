@@ -1,4 +1,4 @@
-package jmapps.addmyfavoriteword.presentation.ui.model
+package jmapps.addmyfavoriteword.presentation.ui.models
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
 import jmapps.addmyfavoriteword.data.database.room.tasks.TaskDatabaseHelper
-import jmapps.addmyfavoriteword.presentation.ui.repository.TaskCategoriesRepository
+import jmapps.addmyfavoriteword.presentation.ui.repositories.TaskCategoriesRepository
 import kotlinx.coroutines.launch
 
 class TasksViewModel(application: Application) : AndroidViewModel(application) {

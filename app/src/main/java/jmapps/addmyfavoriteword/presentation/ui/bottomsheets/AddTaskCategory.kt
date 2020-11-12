@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
 import jmapps.addmyfavoriteword.databinding.BottomsheetAddTaskCategoryBinding
-import jmapps.addmyfavoriteword.presentation.ui.model.TasksViewModel
+import jmapps.addmyfavoriteword.presentation.ui.models.TasksViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
 class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
@@ -74,7 +74,7 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
 
     private fun addTaskCategory() {
         val addTaskCategories = TaskCategories(
-            0,
+            1,
             binding.editAddTaskCategory.text.toString(),
             standardColor,
             standardIntermediate,

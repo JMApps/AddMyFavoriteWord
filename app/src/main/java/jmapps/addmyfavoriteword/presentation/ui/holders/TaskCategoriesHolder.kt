@@ -1,11 +1,10 @@
-package jmapps.addmyfavoriteword.presentation.ui.holder
+package jmapps.addmyfavoriteword.presentation.ui.holders
 
 import android.view.View
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
-import jmapps.addmyfavoriteword.presentation.ui.adapter.TaskCategoriesAdapter
+import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskCategoriesAdapter
 
 class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCategory) {
 

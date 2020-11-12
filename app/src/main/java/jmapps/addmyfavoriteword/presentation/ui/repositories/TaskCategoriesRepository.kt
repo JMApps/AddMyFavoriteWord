@@ -1,4 +1,4 @@
-package jmapps.addmyfavoriteword.presentation.ui.repository
+package jmapps.addmyfavoriteword.presentation.ui.repositories
 
 import androidx.lifecycle.LiveData
 import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories

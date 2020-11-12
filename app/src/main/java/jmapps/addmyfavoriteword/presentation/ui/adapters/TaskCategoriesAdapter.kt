@@ -1,4 +1,4 @@
-package jmapps.addmyfavoriteword.presentation.ui.adapter
+package jmapps.addmyfavoriteword.presentation.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,7 +10,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
-import jmapps.addmyfavoriteword.presentation.ui.holder.TaskCategoriesHolder
+import jmapps.addmyfavoriteword.presentation.ui.holders.TaskCategoriesHolder
 
 class TaskCategoriesAdapter(
     context: Context,
