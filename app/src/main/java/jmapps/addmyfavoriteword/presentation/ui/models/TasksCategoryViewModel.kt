@@ -4,12 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
 import jmapps.addmyfavoriteword.data.database.room.tasks.TaskDatabaseHelper
+import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategories
 import jmapps.addmyfavoriteword.presentation.ui.repositories.TaskCategoriesRepository
 import kotlinx.coroutines.launch
 
-class TasksViewModel(application: Application) : AndroidViewModel(application) {
+class TasksCategoryViewModel(application: Application) : AndroidViewModel(application) {
     private val taskCategoryRepository: TaskCategoriesRepository
 
     init {

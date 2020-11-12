@@ -23,14 +23,14 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPr
 import jmapps.addmyfavoriteword.presentation.ui.activities.TasksActivity
 import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskCategoriesAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategory
-import jmapps.addmyfavoriteword.presentation.ui.models.TasksViewModel
+import jmapps.addmyfavoriteword.presentation.ui.models.TasksCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class TasksFragment : Fragment(), ContractInterface.OtherView,
     TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener,
     SearchView.OnQueryTextListener {
 
-    private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
     private lateinit var binding: FragmentTasksBinding
 
     private lateinit var preferences: SharedPreferences
@@ -43,7 +43,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     private var defaultOrderIndex = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        tasksViewModel = ViewModelProvider(this).get(TasksViewModel::class.java)
+        tasksCategoryViewModel = ViewModelProvider(this).get(TasksCategoryViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -116,7 +116,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun initView(sortedBy: String) {
-        tasksViewModel.allTaskCategories(sortedBy).observe(this, Observer { taskCategoriesList ->
+        tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer { taskCategoriesList ->
             taskCategoriesList.let {
                 taskCategoriesAdapter = TaskCategoriesAdapter(
                     requireContext(),

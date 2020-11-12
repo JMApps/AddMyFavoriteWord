@@ -9,7 +9,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
-import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
+import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategories
 import jmapps.addmyfavoriteword.presentation.ui.holders.TaskCategoriesHolder
 
 class TaskCategoriesAdapter(
@@ -40,7 +40,7 @@ class TaskCategoriesAdapter(
         holder.taskCategoryColor.text = (position + 1).toString()
         holder.taskCategoryTitle.text = current.title
 
-        holder.findItemClick(onItemClickTaskCategory, (current._id + 1))
+        holder.findItemClick(onItemClickTaskCategory, (current._id))
     }
 
     override fun getItemCount() = taskCategoryList.size

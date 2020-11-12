@@ -1,8 +1,8 @@
 package jmapps.addmyfavoriteword.presentation.ui.repositories
 
 import androidx.lifecycle.LiveData
-import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
-import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategoriesDao
+import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategories
+import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategoriesDao
 
 class TaskCategoriesRepository(private val taskCategoriesDao: TaskCategoriesDao) {
     fun allTaskCategories(order: String): LiveData<MutableList<TaskCategories>> {

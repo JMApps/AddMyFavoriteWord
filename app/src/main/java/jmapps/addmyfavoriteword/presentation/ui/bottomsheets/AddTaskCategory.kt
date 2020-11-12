@@ -10,16 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import jmapps.addmyfavoriteword.R
-import jmapps.addmyfavoriteword.data.database.room.tasks.TaskCategories
+import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategories
 import jmapps.addmyfavoriteword.databinding.BottomsheetAddTaskCategoryBinding
-import jmapps.addmyfavoriteword.presentation.ui.models.TasksViewModel
+import jmapps.addmyfavoriteword.presentation.ui.models.TasksCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
 class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
-    private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
     private lateinit var binding: BottomsheetAddTaskCategoryBinding
 
     private var standardColor: String = "#E57373"
@@ -31,7 +31,7 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        tasksViewModel = ViewModelProvider(this).get(TasksViewModel::class.java)
+        tasksCategoryViewModel = ViewModelProvider(this).get(TasksCategoryViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -80,7 +80,7 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
             standardIntermediate,
             MainOther().currentTime,
             MainOther().currentTime)
-        tasksViewModel.insertTaskCategory(addTaskCategories)
+        tasksCategoryViewModel.insertTaskCategory(addTaskCategories)
         dialog?.dismiss()
     }
 }

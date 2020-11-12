@@ -1,4 +1,4 @@
-package jmapps.addmyfavoriteword.data.database.room.tasks
+package jmapps.addmyfavoriteword.data.database.room.tasks.categories
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
