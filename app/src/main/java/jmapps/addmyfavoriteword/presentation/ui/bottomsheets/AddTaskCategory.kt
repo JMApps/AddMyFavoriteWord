@@ -74,7 +74,7 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
 
     private fun addTaskCategory() {
         val addTaskCategories = TaskCategories(
-            1,
+            0,
             binding.editAddTaskCategory.text.toString(),
             standardColor,
             standardIntermediate,

@@ -126,7 +126,6 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
                 binding.rvTaskCategories.layoutManager = verticalLayout
                 binding.rvTaskCategories.adapter = taskCategoriesAdapter
                 otherFragmentsPresenter.updateState(taskCategoriesList)
-
             }
         })
     }
