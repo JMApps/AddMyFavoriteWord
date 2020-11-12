@@ -27,8 +27,12 @@ class TasksItemViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String) =
         viewModelScope.launch {
-            taskItemsRepository.updateTaskItem(newTitle, displayBy, newDateTime)
+            taskItemsRepository.updateTask(newTitle, displayBy, newDateTime)
         }
+
+    fun updateState(newState: Boolean, id: Long, newDateTime: String) = viewModelScope.launch {
+        taskItemsRepository.updateState(newState, id, newDateTime)
+    }
 
     fun deleteTaskItem(id: Long) = viewModelScope.launch {
         taskItemsRepository.deleteTaskItem(id)

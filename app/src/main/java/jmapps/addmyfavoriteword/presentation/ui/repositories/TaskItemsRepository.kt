@@ -13,8 +13,12 @@ class TaskItemsRepository(private val taskItemsDao: TaskItemsDao) {
         taskItemsDao.insertTaskItem(taskItems)
     }
 
-    suspend fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String) {
-        taskItemsDao.updateTaskCategoryTitle(newTitle, displayBy, newDateTime)
+    suspend fun updateTask(newTitle: String, displayBy: Long, newDateTime: String) {
+        taskItemsDao.updateTaskItem(newTitle, displayBy, newDateTime)
+    }
+
+    suspend fun updateState(newState: Boolean, id: Long, newDateTime: String) {
+        taskItemsDao.updateState(newState, id, newDateTime)
     }
 
     suspend fun deleteTaskItem(id: Long) {

@@ -15,7 +15,10 @@ interface TaskItemsDao {
     suspend fun insertTaskItem(taskItems: TaskItems?)
 
     @Query("UPDATE Table_of_task_items SET title = :newTitle, displayBy = :displayBy, changeDateTime = :newDateTime")
-    suspend fun updateTaskCategoryTitle(newTitle: String, displayBy: Long, newDateTime: String)
+    suspend fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String)
+
+    @Query("UPDATE Table_of_task_items SET currentTaskState = :newState, executionDateTime = :newDateTime WHERE _id = :id")
+    suspend fun updateState(newState: Boolean, id: Long, newDateTime: String)
 
     @Query("DELETE FROM Table_of_task_items WHERE _id = :id")
     suspend fun deleteTaskItem(id: Long)

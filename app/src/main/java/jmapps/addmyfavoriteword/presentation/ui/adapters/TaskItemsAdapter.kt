@@ -2,7 +2,9 @@ package jmapps.addmyfavoriteword.presentation.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -38,8 +40,16 @@ class TaskItemsAdapter(
 
         holder.taskItemColor.setBackgroundColor(Color.parseColor(current.taskColor))
         holder.taskItemColor.text = (position + 1).toString()
+
+        holder.taskItemCheckBox.buttonTintList = ColorStateList.valueOf(Color.parseColor(current.taskColor))
         holder.taskItemCheckBox.isChecked = current.currentTaskState
-        holder.taskItemTitle.text = current.title
+
+        if (current.currentTaskState) {
+            holder.taskItemTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            holder.taskItemTitle.text = current.title
+        } else {
+            holder.taskItemTitle.text = current.title
+        }
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
     }

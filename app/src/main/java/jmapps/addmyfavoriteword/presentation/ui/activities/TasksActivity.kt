@@ -19,7 +19,9 @@ import jmapps.addmyfavoriteword.databinding.ActivityTaskBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.OtherActivityPresenter
 import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskItemsAdapter
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskItem
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
+import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
@@ -35,11 +37,15 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     private lateinit var searchView: SearchView
     private lateinit var taskItemsAdapter: TaskItemsAdapter
 
-    private var taskCategoryId: Long = 0
+    private var taskCategoryId: Long? = null
+    private var taskCategoryTitle: String? = null
+    private var taskCategoryColor: String? = null
     private var defaultOrderIndex = 0
 
     companion object {
         const val keyTaskCategoryId = "key_task_category_id"
+        const val keyTaskCategoryTitle = "key_task_category_title"
+        const val keyTaskCategoryColor = "key_task_category_color"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +54,14 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_task)
         setSupportActionBar(binding.toolbar)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         taskCategoryId = intent.getLongExtra(keyTaskCategoryId, 0)
+        taskCategoryTitle = intent.getStringExtra(keyTaskCategoryTitle)
+        taskCategoryColor = intent.getStringExtra(keyTaskCategoryColor)
+
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.title = taskCategoryTitle
+        }
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         sharedLocalPreferences = SharedLocalProperties(preferences)
@@ -58,7 +69,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         defaultOrderIndex = sharedLocalPreferences.getIntValue("order_task_index", 0)!!
 
         otherActivityPresenter = OtherActivityPresenter(this)
-        otherActivityPresenter.initView(taskCategoryId, defaultOrderIndex)
+        otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex)
         otherActivityPresenter.defaultState()
 
         binding.taskItemContent.rvTaskItems.addOnScrollListener(onAddScroll)
@@ -110,7 +121,8 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun onClick(v: View?) {
-
+        val addTaskItem = AddTaskItem.toInstance(taskCategoryId!!, taskCategoryColor!!)
+        addTaskItem.show(supportFragmentManager, AddTaskItem.ARG_TASK_ITEM_FRAGMENT)
     }
 
     override fun initView(displayBy: Long, sortedBy: String) {
@@ -138,7 +150,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun onTaskCheckboxState(_id: Long, state: Boolean) {
-
+        taskItemViewModel.updateState(state, _id, MainOther().currentTime)
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {
@@ -153,7 +165,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     private fun changeOrderList(defaultOrderIndex: Int) {
-        otherActivityPresenter.initView(taskCategoryId, defaultOrderIndex)
+        otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex)
         sharedLocalPreferences.saveIntValue("order_task_index", defaultOrderIndex)
     }
 }
