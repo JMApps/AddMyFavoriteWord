@@ -1,4 +1,4 @@
-package jmapps.addmyfavoriteword.presentation.ui.dictionary
+package jmapps.addmyfavoriteword.presentation.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,21 +7,20 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import jmapps.addmyfavoriteword.R
-import jmapps.addmyfavoriteword.databinding.FragmentDictionaryBinding
+import jmapps.addmyfavoriteword.databinding.FragmentNotesBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
 
-class DictionaryFragment : Fragment(), ContractInterface.OtherView {
+class NotesFragment : Fragment(), ContractInterface.OtherView {
 
-    private lateinit var dictionaryViewModel: DictionaryViewModel
-    private lateinit var binding: FragmentDictionaryBinding
+    //private lateinit var notesViewModel: NotesViewModel
+    private lateinit var binding: FragmentNotesBinding
     private lateinit var otherFragmentsPresenter: OtherFragmentsPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dictionaryViewModel = ViewModelProvider(this).get(DictionaryViewModel::class.java)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dictionary, container, false)
+        //notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notes, container, false)
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.defaultState()
@@ -36,14 +35,14 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView {
 
     override fun defaultState() {
         val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show);
-        binding.fabAddDictionaryCategory.startAnimation(show)
+        binding.fabAddNotesCategory.startAnimation(show)
 
-        binding.rvDictionaryCategories.visibility = otherFragmentsPresenter.recyclerCategory()
+        binding.rvNoteCategories.visibility = otherFragmentsPresenter.recyclerCategory()
         binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun updateState() {
-        binding.rvDictionaryCategories.visibility = otherFragmentsPresenter.recyclerCategory()
+        binding.rvNoteCategories.visibility = otherFragmentsPresenter.recyclerCategory()
         binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 }

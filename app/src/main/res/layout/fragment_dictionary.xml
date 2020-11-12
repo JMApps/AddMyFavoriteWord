@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.dictionary.DictionaryFragment">
+        tools:context=".presentation.ui.fragments.DictionaryFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_dictionary_categories"

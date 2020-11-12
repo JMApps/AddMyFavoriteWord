@@ -42,8 +42,12 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
 
     private var defaultOrderIndex = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         tasksCategoryViewModel = ViewModelProvider(this).get(TasksCategoryViewModel::class.java)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -52,7 +56,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         retainInstance = true
         setHasOptionsMenu(true)
 
-        defaultOrderIndex = sharedLocalPreferences.getIntValue("order_index", 0)!!
+        defaultOrderIndex = sharedLocalPreferences.getIntValue("order_category_task_index", 0)!!
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.initView(defaultOrderIndex)
@@ -116,17 +120,13 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun initView(sortedBy: String) {
-        tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer { taskCategoriesList ->
-            taskCategoriesList.let {
-                taskCategoriesAdapter = TaskCategoriesAdapter(
-                    requireContext(),
-                    taskCategoriesList,
-                    this
-                )
+        tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer {
+            it.let {
+                taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this)
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
                 binding.rvTaskCategories.adapter = taskCategoriesAdapter
-                otherFragmentsPresenter.updateState(taskCategoriesList)
+                otherFragmentsPresenter.updateState(it)
             }
         })
     }
@@ -161,7 +161,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
 
     private fun changeOrderList(defaultOrderIndex: Int) {
         otherFragmentsPresenter.initView(defaultOrderIndex)
-        sharedLocalPreferences.saveIntValue("order_index", defaultOrderIndex)
+        sharedLocalPreferences.saveIntValue("order_category_task_index", defaultOrderIndex)
     }
 
     private fun toTaskActivity(_id: Long) {

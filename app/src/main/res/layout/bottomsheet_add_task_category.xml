@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/color_main_two"
-            android:drawableStart="@drawable/ic_task_solid"
+            android:drawableStart="@drawable/ic_main_task_solid"
             android:drawablePadding="@dimen/main_padding"
             android:gravity="center_vertical"
             android:padding="@dimen/main_padding"

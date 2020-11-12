@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.notes.NotesFragment">
+        tools:context=".presentation.ui.fragments.NotesFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_note_categories"
