@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dictionary"
-        android:name="jmapps.addmyfavoriteword.presentation.ui.dictionary.DictionaryFragment"
+        android:name="jmapps.addmyfavoriteword.presentation.ui.fragments.DictionaryFragment"
         android:label="@string/bottom_navigation_title_dictionary"
         tools:layout="@layout/fragment_dictionary" />
 
     <fragment
         android:id="@+id/navigation_notes"
-        android:name="jmapps.addmyfavoriteword.presentation.ui.notes.NotesFragment"
+        android:name="jmapps.addmyfavoriteword.presentation.ui.fragments.NotesFragment"
         android:label="@string/bottom_navigation_title_notes"
         tools:layout="@layout/fragment_notes" />
 </navigation>
