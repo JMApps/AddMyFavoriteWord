@@ -2,12 +2,12 @@ package jmapps.addmyfavoriteword.presentation.ui.fragments
 
 import android.app.SearchManager
 import android.content.Context.SEARCH_SERVICE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -20,6 +20,7 @@ import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.FragmentTasksBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
+import jmapps.addmyfavoriteword.presentation.ui.activities.TasksActivity
 import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskCategoriesAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategory
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksViewModel
@@ -144,7 +145,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun onItemClickTaskCategory(_id: Long) {
-        Toast.makeText(requireContext(), "Id = $_id", Toast.LENGTH_SHORT).show()
+        toTaskActivity(_id)
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {
@@ -161,5 +162,11 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     private fun changeOrderList(defaultOrderIndex: Int) {
         otherFragmentsPresenter.initView(defaultOrderIndex)
         sharedLocalPreferences.saveIntValue("order_index", defaultOrderIndex)
+    }
+
+    private fun toTaskActivity(_id: Long) {
+        val toTaskActivity = Intent(requireContext(), TasksActivity::class.java)
+        toTaskActivity.putExtra(TasksActivity.keyTaskCategoryId, _id)
+        startActivity(toTaskActivity)
     }
 }
