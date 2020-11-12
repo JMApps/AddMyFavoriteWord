@@ -26,7 +26,7 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
     private var standardIntermediate: String = "ci_day"
 
     companion object {
-        const val ARG_TASK_FRAGMENT = "arg_task_fragment"
+        const val ARG_TASK_CATEGORY_FRAGMENT = "arg_task_category_fragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

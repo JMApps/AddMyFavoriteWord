@@ -11,9 +11,13 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     val taskCategoryColor: TextView = viewCategory.findViewById(R.id.text_current_category_color)
     val taskCategoryTitle: TextView = viewCategory.findViewById(R.id.text_title_task_category)
 
-    fun findItemClick(onItemClickTaskCategory: TaskCategoriesAdapter.OnItemClickTaskCategory, _id: Long) {
+    fun findItemClick(
+        onItemClickTaskCategory: TaskCategoriesAdapter.OnItemClickTaskCategory,
+        _id: Long,
+        categoryTitle: String,
+        categoryColor: String) {
         itemView.setOnClickListener {
-            onItemClickTaskCategory.onItemClickTaskCategory(_id)
+            onItemClickTaskCategory.onItemClickTaskCategory(_id, categoryTitle, categoryColor)
         }
     }
 }

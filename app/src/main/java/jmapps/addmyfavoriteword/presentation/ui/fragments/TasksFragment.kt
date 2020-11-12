@@ -116,7 +116,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onClick(v: View?) {
         val addTaskCategory = AddTaskCategory()
-        addTaskCategory.show(childFragmentManager, AddTaskCategory.ARG_TASK_FRAGMENT)
+        addTaskCategory.show(childFragmentManager, AddTaskCategory.ARG_TASK_CATEGORY_FRAGMENT)
     }
 
     override fun initView(sortedBy: String) {
@@ -144,8 +144,8 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
-    override fun onItemClickTaskCategory(_id: Long) {
-        toTaskActivity(_id)
+    override fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String) {
+        toTaskActivity(_id, categoryTitle, categoryColor)
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {
@@ -164,9 +164,11 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         sharedLocalPreferences.saveIntValue("order_category_task_index", defaultOrderIndex)
     }
 
-    private fun toTaskActivity(_id: Long) {
+    private fun toTaskActivity(_id: Long, categoryTitle: String, categoryColor: String) {
         val toTaskActivity = Intent(requireContext(), TasksActivity::class.java)
         toTaskActivity.putExtra(TasksActivity.keyTaskCategoryId, _id)
+        toTaskActivity.putExtra(TasksActivity.keyTaskCategoryTitle, categoryTitle)
+        toTaskActivity.putExtra(TasksActivity.keyTaskCategoryColor, categoryColor)
         startActivity(toTaskActivity)
     }
 }

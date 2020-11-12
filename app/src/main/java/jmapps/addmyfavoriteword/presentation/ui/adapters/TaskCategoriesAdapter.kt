@@ -25,7 +25,7 @@ class TaskCategoriesAdapter(
     }
 
     interface OnItemClickTaskCategory {
-        fun onItemClickTaskCategory(_id: Long)
+        fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskCategoriesHolder {
@@ -40,7 +40,7 @@ class TaskCategoriesAdapter(
         holder.taskCategoryColor.text = (position + 1).toString()
         holder.taskCategoryTitle.text = current.title
 
-        holder.findItemClick(onItemClickTaskCategory, (current._id))
+        holder.findItemClick(onItemClickTaskCategory, current._id, current.title, current.categoryColor)
     }
 
     override fun getItemCount() = taskCategoryList.size
