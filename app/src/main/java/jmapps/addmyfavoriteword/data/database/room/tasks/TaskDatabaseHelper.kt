@@ -1,19 +1,23 @@
 package jmapps.addmyfavoriteword.data.database.room.tasks
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategories
+import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategoriesDao
+import jmapps.addmyfavoriteword.data.database.room.tasks.tasks.TaskItems
+import jmapps.addmyfavoriteword.data.database.room.tasks.tasks.TaskItemsDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [TaskCategories::class], version = 1, exportSchema = false)
+@Database(entities = [TaskCategories::class, TaskItems::class], version = 1, exportSchema = false)
 abstract class TaskDatabaseHelper : RoomDatabase() {
 
     abstract fun taskCategoriesDao(): TaskCategoriesDao
+    abstract fun taskItemsDao(): TaskItemsDao
 
     companion object {
         @Volatile
@@ -48,6 +52,10 @@ abstract class TaskDatabaseHelper : RoomDatabase() {
 
         fun populateCategories(taskCategoriesDao: TaskCategoriesDao) {
             taskCategoriesDao.getTaskCategoriesList("addDateTime")
+        }
+
+        fun populateItems(taskItemsDao: TaskItemsDao) {
+            taskItemsDao.getTaskItemsList(0, "addDateTime")
         }
     }
 }

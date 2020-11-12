@@ -69,7 +69,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_task, menu)
+        inflater.inflate(R.menu.menu_task_categories, menu)
         val searchManager = requireContext().getSystemService(SEARCH_SERVICE) as SearchManager
         searchView = menu.findItem(R.id.action_search_categories).actionView as SearchView
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))

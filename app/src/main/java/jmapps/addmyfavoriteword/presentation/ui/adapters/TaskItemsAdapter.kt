@@ -1,0 +1,78 @@
+package jmapps.addmyfavoriteword.presentation.ui.adapters
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Color
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import androidx.recyclerview.widget.RecyclerView
+import jmapps.addmyfavoriteword.R
+import jmapps.addmyfavoriteword.data.database.room.tasks.tasks.TaskItems
+import jmapps.addmyfavoriteword.presentation.ui.holders.TaskItemsHolder
+
+class TaskItemsAdapter(
+    context: Context,
+    private var taskItemList: MutableList<TaskItems>,
+    private val onTaskCheckboxState: OnTaskCheckboxState) : RecyclerView.Adapter<TaskItemsHolder>(), Filterable {
+
+    private val inflater: LayoutInflater = LayoutInflater.from(context)
+    private var firstTaskItemList: MutableList<TaskItems>? = null
+
+    init {
+        this.firstTaskItemList = taskItemList
+    }
+
+    interface OnTaskCheckboxState {
+        fun onTaskCheckboxState(_id: Long, state: Boolean)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskItemsHolder {
+        val viewItem = inflater.inflate(R.layout.item_task, parent, false)
+        return (TaskItemsHolder(viewItem))
+    }
+
+    override fun onBindViewHolder(holder: TaskItemsHolder, position: Int) {
+        val current = taskItemList[position]
+
+        holder.taskItemColor.setBackgroundColor(Color.parseColor(current.taskColor))
+        holder.taskItemColor.text = (position + 1).toString()
+        holder.taskItemCheckBox.isChecked = current.currentTaskState
+        holder.taskItemTitle.text = current.title
+
+        holder.findCheckboxChecked(onTaskCheckboxState, current._id)
+    }
+
+    override fun getItemCount() = taskItemList.size
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            @SuppressLint("DefaultLocale")
+            override fun performFiltering(charSequence: CharSequence): FilterResults {
+                val charString = charSequence.toString()
+                taskItemList = if (charString.isEmpty()) {
+                    firstTaskItemList as MutableList<TaskItems>
+                } else {
+                    val filteredList = ArrayList<TaskItems>()
+                    for (row in firstTaskItemList!!) {
+                        if (row._id.toString().contains(charSequence) ||
+                            row.title.toLowerCase().contains(charString.toLowerCase())
+                        ) {
+                            filteredList.add(row)
+                        }
+                    }
+                    filteredList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = taskItemList
+                return filterResults
+            }
+
+            override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
+                taskItemList = filterResults.values as ArrayList<TaskItems>
+                notifyDataSetChanged()
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.ui.activities.TasksActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_task_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarThumbVertical="@drawable/thumb_line_background"
+            android:scrollbars="vertical"
+            android:visibility="gone"
+            tools:itemCount="20"
+            tools:listitem="@layout/item_task_category" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_main_task_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:drawablePadding="16dp"
+            android:gravity="center"
+            android:text="@string/action_add_first_task"
+            android:textAlignment="center"
+            android:textSize="@dimen/main_app_text_size"
+            app:drawableTopCompat="@drawable/ic_task"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_task_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/main_margin"
+            app:srcCompat="@drawable/ic_task_solid" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
