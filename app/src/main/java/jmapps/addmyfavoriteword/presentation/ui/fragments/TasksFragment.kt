@@ -78,19 +78,21 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
         when (item.itemId) {
             R.id.item_order_by_add_time -> {
                 defaultOrderIndex = 0
+                changeOrderList(defaultOrderIndex)
             }
             R.id.item_order_by_change_time -> {
                 defaultOrderIndex = 1
+                changeOrderList(defaultOrderIndex)
             }
             R.id.item_order_by_color -> {
                 defaultOrderIndex = 2
+                changeOrderList(defaultOrderIndex)
             }
             R.id.item_order_by_alphabet -> {
                 defaultOrderIndex = 3
+                changeOrderList(defaultOrderIndex)
             }
         }
-        otherFragmentsPresenter.initView(defaultOrderIndex)
-        sharedLocalPreferences.saveIntValue("order_index", defaultOrderIndex)
         return super.onOptionsItemSelected(item)
     }
 
@@ -155,5 +157,10 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
                 binding.fabAddTaskCategory.show()
             }
         }
+    }
+
+    private fun changeOrderList(defaultOrderIndex: Int) {
+        otherFragmentsPresenter.initView(defaultOrderIndex)
+        sharedLocalPreferences.saveIntValue("order_index", defaultOrderIndex)
     }
 }
