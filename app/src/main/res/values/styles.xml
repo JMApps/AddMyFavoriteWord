@@ -11,13 +11,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!--    Splash screen theme-->
-    <style name="ThemeSplash" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
-        <item name="colorPrimaryDark">@color/color_primary</item>
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
     <!--    Bottom Sheet dialog styles-->
     <style name="BottomSheetStyleFull" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
