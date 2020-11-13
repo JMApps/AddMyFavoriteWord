@@ -37,4 +37,8 @@ class TasksItemViewModel(application: Application) : AndroidViewModel(applicatio
     fun deleteTaskItem(id: Long) = viewModelScope.launch {
         taskItemsRepository.deleteTaskItem(id)
     }
+
+    fun deleteAllTaskFromCategory(taskCategoryId: Long) = viewModelScope.launch {
+        taskItemsRepository.deleteAllTaskFromCategory(taskCategoryId)
+    }
 }

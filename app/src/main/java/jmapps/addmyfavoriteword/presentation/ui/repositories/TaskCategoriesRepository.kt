@@ -13,11 +13,23 @@ class TaskCategoriesRepository(private val taskCategoriesDao: TaskCategoriesDao)
         taskCategoriesDao.insertTaskCategory(taskCategories)
     }
 
-    suspend fun updateTaskCategory(newTitle: String, newCategoryColor: String, newDateTime: String) {
-        taskCategoriesDao.updateTaskCategoryTitle(newTitle, newCategoryColor, newDateTime)
+    suspend fun updateTaskCategory(newTitle: String, newCategoryColor: String, newDateTime: String, id: Long) {
+        taskCategoriesDao.updateTaskCategoryTitle(newTitle, newCategoryColor, newDateTime, id)
     }
 
     suspend fun deleteTaskCategory(id: Long) {
         taskCategoriesDao.deleteTaskCategory(id)
+    }
+
+    suspend fun deleteTaskItem(taskCategoryId: Long) {
+        taskCategoriesDao.deleteTaskItem(taskCategoryId)
+    }
+
+    suspend fun deleteAllTaskCategories() {
+        taskCategoriesDao.deleteAllTaskCategories()
+    }
+
+    suspend fun deleteAllTaskItems() {
+        taskCategoriesDao.deleteAllTaskItems()
     }
 }

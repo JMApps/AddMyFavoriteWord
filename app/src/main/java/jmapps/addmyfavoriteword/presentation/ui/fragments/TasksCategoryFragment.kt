@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -28,7 +29,7 @@ import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalPropertie
 
 class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener,
-    SearchView.OnQueryTextListener {
+    SearchView.OnQueryTextListener, TaskCategoriesAdapter.OnLongClickTaskCategory {
 
     private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
     private lateinit var binding: FragmentTasksCategoryBinding
@@ -97,6 +98,12 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
                 defaultOrderIndex = 3
                 changeOrderList(defaultOrderIndex)
             }
+            R.id.action_delete_all_categories -> {
+                // Запросить подтверждение
+                tasksCategoryViewModel.deleteAllTaskCategories()
+                tasksCategoryViewModel.deleteAllTaskItem()
+                Toast.makeText(requireContext(), getString(R.string.toast_list_cleared), Toast.LENGTH_SHORT).show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -123,7 +130,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer {
             it.let {
                 otherFragmentsPresenter.updateState(it)
-                taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this)
+                taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this, this)
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
                 binding.rvTaskCategories.adapter = taskCategoriesAdapter
@@ -146,6 +153,15 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String) {
         toTaskActivity(_id, categoryTitle, categoryColor)
+    }
+
+    override fun itemClickRenameCategory(_id: Long, categoryTitle: String) {
+    }
+
+    override fun itemClickDeleteCategory(_id: Long) {
+        tasksCategoryViewModel.deleteTaskCategory(_id)
+        tasksCategoryViewModel.deleteTaskItem(_id)
+        Toast.makeText(requireContext(), getString(R.string.action_deleted), Toast.LENGTH_SHORT).show()
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {

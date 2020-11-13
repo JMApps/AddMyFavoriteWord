@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -26,7 +27,8 @@ import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalPropertie
 
 
 class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
-    SearchView.OnQueryTextListener, TaskItemsAdapter.OnTaskCheckboxState, View.OnClickListener {
+    SearchView.OnQueryTextListener, TaskItemsAdapter.OnTaskCheckboxState, View.OnClickListener,
+    TaskItemsAdapter.OnLongClickTaskItem {
 
     private lateinit var taskItemViewModel: TasksItemViewModel
     private lateinit var binding: ActivityTaskBinding
@@ -80,7 +82,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         taskItemViewModel.allTaskItems(displayBy, sortedBy).observe(this, {
             it.let {
                 otherActivityPresenter.updateState(it)
-                taskItemsAdapter = TaskItemsAdapter(this, it, this)
+                taskItemsAdapter = TaskItemsAdapter(this, it, this, this)
                 val verticalLayout = LinearLayoutManager(this)
                 binding.taskItemContent.rvTaskItems.layoutManager = verticalLayout
                 binding.taskItemContent.rvTaskItems.adapter = taskItemsAdapter
@@ -127,6 +129,11 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                 defaultOrderIndex = 2
                 changeOrderList(defaultOrderIndex)
             }
+            R.id.action_delete_all_task_items -> {
+                // Запросить подтверждение
+                taskItemViewModel.deleteAllTaskFromCategory(taskCategoryId!!)
+                Toast.makeText(this, getString(R.string.action_tasks_deleted), Toast.LENGTH_SHORT).show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -147,6 +154,15 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     override fun onClick(v: View?) {
         val addTaskItem = AddTaskItem.toInstance(taskCategoryId!!, taskCategoryColor!!)
         addTaskItem.show(supportFragmentManager, AddTaskItem.ARG_TASK_ITEM_FRAGMENT)
+    }
+
+    override fun itemClickRenameItem(_id: Long, taskTitle: String) {
+        // Запросить подтверждение
+    }
+
+    override fun itemClickDeleteItem(_id: Long) {
+        taskItemViewModel.deleteTaskItem(_id)
+        Toast.makeText(this, getString(R.string.action_deleted), Toast.LENGTH_SHORT).show()
     }
 
     override fun onTaskCheckboxState(_id: Long, state: Boolean) {

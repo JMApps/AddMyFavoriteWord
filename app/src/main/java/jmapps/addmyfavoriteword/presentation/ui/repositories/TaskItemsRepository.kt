@@ -24,4 +24,7 @@ class TaskItemsRepository(private val taskItemsDao: TaskItemsDao) {
     suspend fun deleteTaskItem(id: Long) {
         taskItemsDao.deleteTaskItem(id)
     }
+    suspend fun deleteAllTaskFromCategory(taskCategoryId: Long) {
+        taskItemsDao.deleteAllTaskFromCategory(taskCategoryId)
+    }
 }

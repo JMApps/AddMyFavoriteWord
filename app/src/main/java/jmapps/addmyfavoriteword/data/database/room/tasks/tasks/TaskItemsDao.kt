@@ -22,4 +22,7 @@ interface TaskItemsDao {
 
     @Query("DELETE FROM Table_of_task_items WHERE _id = :id")
     suspend fun deleteTaskItem(id: Long)
+
+    @Query("DELETE FROM Table_of_task_items WHERE displayBy = :taskCategoryId")
+    suspend fun deleteAllTaskFromCategory(taskCategoryId: Long)
 }
