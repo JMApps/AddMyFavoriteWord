@@ -2,6 +2,7 @@ package jmapps.addmyfavoriteword.presentation.ui.holders
 
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskCategoriesAdapter
@@ -18,6 +19,28 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
         categoryColor: String) {
         itemView.setOnClickListener {
             onItemClickTaskCategory.onItemClickTaskCategory(_id, categoryTitle, categoryColor)
+        }
+    }
+
+    fun findLongItemClick(
+        onLongClickTaskCategory: TaskCategoriesAdapter.OnLongClickTaskCategory, _id: Long, categoryTitle: String) {
+        itemView.setOnLongClickListener {
+            val pop = PopupMenu(itemView.context, taskCategoryTitle)
+            pop.inflate(R.menu.menu_task_category_popup)
+            pop.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.popup_task_category_rename -> {
+                        onLongClickTaskCategory.itemClickRenameCategory(_id, categoryTitle)
+                    }
+
+                    R.id.popup_task_category_delete -> {
+                        onLongClickTaskCategory.itemClickDeleteCategory(_id)
+                    }
+                }
+                true
+            }
+            pop.show()
+            true
         }
     }
 }

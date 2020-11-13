@@ -15,7 +15,8 @@ import jmapps.addmyfavoriteword.presentation.ui.holders.TaskCategoriesHolder
 class TaskCategoriesAdapter(
     context: Context,
     private var taskCategoryList: MutableList<TaskCategories>,
-    private val onItemClickTaskCategory: OnItemClickTaskCategory) : RecyclerView.Adapter<TaskCategoriesHolder>(), Filterable {
+    private val onItemClickTaskCategory: OnItemClickTaskCategory,
+    private val onLongClickTaskCategory: OnLongClickTaskCategory) : RecyclerView.Adapter<TaskCategoriesHolder>(), Filterable {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var firstTaskCategoryList: MutableList<TaskCategories>? = null
@@ -26,6 +27,11 @@ class TaskCategoriesAdapter(
 
     interface OnItemClickTaskCategory {
         fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String)
+    }
+
+    interface OnLongClickTaskCategory {
+        fun itemClickRenameCategory(_id: Long, categoryTitle: String)
+        fun itemClickDeleteCategory(_id: Long)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskCategoriesHolder {
@@ -41,6 +47,7 @@ class TaskCategoriesAdapter(
         holder.taskCategoryTitle.text = current.title
 
         holder.findItemClick(onItemClickTaskCategory, current._id, current.title, current.categoryColor)
+        holder.findLongItemClick(onLongClickTaskCategory, current._id, current.title)
     }
 
     override fun getItemCount() = taskCategoryList.size
@@ -56,7 +63,8 @@ class TaskCategoriesAdapter(
                     val filteredList = ArrayList<TaskCategories>()
                     for (row in firstTaskCategoryList!!) {
                         if (row._id.toString().contains(charSequence) ||
-                            row.title.toLowerCase().contains(charString.toLowerCase())) {
+                            row.title.toLowerCase().contains(charString.toLowerCase())
+                        ) {
                             filteredList.add(row)
                         }
                     }

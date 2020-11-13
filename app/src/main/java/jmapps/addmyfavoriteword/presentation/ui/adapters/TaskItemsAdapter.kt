@@ -17,7 +17,8 @@ import jmapps.addmyfavoriteword.presentation.ui.holders.TaskItemsHolder
 class TaskItemsAdapter(
     context: Context,
     private var taskItemList: MutableList<TaskItems>,
-    private val onTaskCheckboxState: OnTaskCheckboxState) : RecyclerView.Adapter<TaskItemsHolder>(), Filterable {
+    private val onTaskCheckboxState: OnTaskCheckboxState,
+    private val onLongClickTaskItem: OnLongClickTaskItem) : RecyclerView.Adapter<TaskItemsHolder>(), Filterable {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var firstTaskItemList: MutableList<TaskItems>? = null
@@ -28,6 +29,11 @@ class TaskItemsAdapter(
 
     interface OnTaskCheckboxState {
         fun onTaskCheckboxState(_id: Long, state: Boolean)
+    }
+
+    interface OnLongClickTaskItem {
+        fun itemClickRenameItem(_id: Long, taskTitle: String)
+        fun itemClickDeleteItem(_id: Long)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskItemsHolder {
@@ -41,7 +47,8 @@ class TaskItemsAdapter(
         holder.taskItemColor.setBackgroundColor(Color.parseColor(current.taskColor))
         holder.taskItemColor.text = (position + 1).toString()
 
-        holder.taskItemCheckBox.buttonTintList = ColorStateList.valueOf(Color.parseColor(current.taskColor))
+        holder.taskItemCheckBox.buttonTintList =
+            ColorStateList.valueOf(Color.parseColor(current.taskColor))
         holder.taskItemCheckBox.isChecked = current.currentTaskState
 
         if (current.currentTaskState) {
@@ -52,6 +59,7 @@ class TaskItemsAdapter(
         }
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
+        holder.findLongItemClick(onLongClickTaskItem, current._id, current.title)
     }
 
     override fun getItemCount() = taskItemList.size
@@ -67,7 +75,8 @@ class TaskItemsAdapter(
                     val filteredList = ArrayList<TaskItems>()
                     for (row in firstTaskItemList!!) {
                         if (row._id.toString().contains(charSequence) ||
-                            row.title.toLowerCase().contains(charString.toLowerCase())) {
+                            row.title.toLowerCase().contains(charString.toLowerCase())
+                        ) {
                             filteredList.add(row)
                         }
                     }
