@@ -19,21 +19,19 @@
             android:layout_height="match_parent"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
             android:scrollbars="vertical"
-            android:visibility="gone"
-            tools:itemCount="20"
-            tools:listitem="@layout/item_task_category" />
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_main_task_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:drawablePadding="16dp"
+            android:layout_marginStart="@dimen/main_margin_mini"
+            android:layout_marginTop="@dimen/main_margin_mini"
+            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:drawablePadding="@dimen/main_padding"
             android:gravity="center"
-            android:text="@string/action_add_first_task"
+            android:text="@string/description_add_first_task"
             android:textAlignment="center"
             android:textSize="@dimen/main_app_text_size"
             app:drawableTopCompat="@drawable/ic_task"
@@ -48,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/main_margin"
+            android:contentDescription="@string/action_add"
             app:srcCompat="@drawable/ic_task_solid" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

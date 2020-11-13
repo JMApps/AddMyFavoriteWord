@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView_add_task_description"
+            android:id="@+id/text_view_add_task_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/color_main_two"
@@ -19,7 +19,7 @@
             android:drawablePadding="@dimen/main_padding"
             android:gravity="center_vertical"
             android:padding="@dimen/main_padding"
-            android:text="@string/action_add_task"
+            android:text="@string/description_add_task"
             android:textColor="@color/white"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
             android:layout_marginEnd="@dimen/main_margin"
             android:background="@drawable/edging_input_edit_text"
             android:ellipsize="end"
-            android:hint="@string/action_enter_task_name"
+            android:hint="@string/hint_enter_task_name"
             android:inputType="textCapSentences"
             android:maxLength="200"
             android:padding="@dimen/main_padding"
@@ -43,7 +43,7 @@
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_add_task_description">
+            app:layout_constraintTop_toBottomOf="@+id/text_view_add_task_description">
 
             <requestFocus />
         </androidx.appcompat.widget.AppCompatEditText>
@@ -57,7 +57,7 @@
             android:layout_marginEnd="@dimen/main_margin"
             android:layout_marginBottom="32dp"
             android:background="@drawable/main_button_ripple"
-            android:text="@string/action_add_category"
+            android:text="@string/action_add"
             android:textColor="@color/color_main_one"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintBottom_toBottomOf="parent"

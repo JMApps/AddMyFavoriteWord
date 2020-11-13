@@ -7,29 +7,33 @@
     <string name="bottom_navigation_title_notes">Заметки</string>
 
     <!--    Categories-->
-    <string name="action_add_first_task_category">Добавьте первую категорию <b>задач</b></string>
-    <string name="action_add_first_dictionary_category">Добавьте первую категорию <b>словаря</b></string>
-    <string name="action_add_first_note_category">Добавьте первую категорию <b>заметок</b></string>
+    <string name="description_add_task_first_category">Добавьте первую категорию <b>задач</b></string>
+    <string name="description_add_dictionary_first_category">Добавьте первую категорию <b>словаря</b></string>
+    <string name="description_add_first_note">Добавьте первую <b>заметку</b></string>
+
+    <string name="toast_category_added">Категория добавлена</string>
+    <string name="toast_task_added">Задача добавлена</string>
+    <string name="toast_word_added">Слово добавлено</string>
+    <string name="toast_note_added">Заметка добавлена</string>
 
     <string name="action_search_by_categories">Поиск категорий</string>
-    <string name="action_add_category_task">Добавить категорию</string>
-    <string name="action_enter_category_name">Введите название категории</string>
-    <string name="action_choose_color">Выберите цвет категории</string>
-    <string name="action_add_category">Добавить</string>
+    <string name="description_add_category">Добавить категорию</string>
+    <string name="hint_enter_category_name">Введите название категории</string>
+    <string name="description_choose_color">Выберите цвет категории</string>
+    <string name="action_add">Добавить</string>
 
     <!--    Order by-->
-    <string name="action_order_categories">Сортировать категории:</string>
-    <string name="action_order_by_add_time">По дате добавления</string>
-    <string name="action_order_by_change_time">По дате изменения</string>
-    <string name="action_order_by_executions">По дате выполнения</string>
-    <string name="action_order_by_color">По цвету</string>
-    <string name="action_order_by_alphabet">По алфавиту</string>
+    <string name="order_categories">Сортировать категории:</string>
+    <string name="order_by_add_time">По дате добавления</string>
+    <string name="order_by_change_time">По дате изменения</string>
+    <string name="order_by_executions">По дате выполнения</string>
+    <string name="order_by_color">По цвету</string>
+    <string name="order_by_alphabet">По алфавиту</string>
 
     <!--    Content categories-->
-    <string name="action_add_first_task">Добавьте первую задачу в категорию </string>
-    <string name="action_add_first_dictionary">Добавьте первое слово в категорию </string>
-    <string name="action_add_first_note">Добавьте первую заметку  категорию </string>
+    <string name="description_add_first_task">Добавьте первую задачу в категорию\n%1$s</string>
+    <string name="description_add_first_dictionary">Добавьте первое слово в категорию\n%1$s</string>
 
-    <string name="action_add_task">Добавьте задачу</string>
-    <string name="action_enter_task_name">Введите название задачи</string>
+    <string name="description_add_task">Добавьте задачу</string>
+    <string name="hint_enter_task_name">Введите название задачи</string>
 </resources>

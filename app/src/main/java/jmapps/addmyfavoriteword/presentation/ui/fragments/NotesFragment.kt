@@ -35,7 +35,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView {
 
     override fun defaultState() {
         val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show);
-        binding.fabAddNotesCategory.startAnimation(show)
+        binding.fabAddNoteCategory.startAnimation(show)
 
         binding.rvNoteCategories.visibility = otherFragmentsPresenter.recyclerCategory()
         binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()

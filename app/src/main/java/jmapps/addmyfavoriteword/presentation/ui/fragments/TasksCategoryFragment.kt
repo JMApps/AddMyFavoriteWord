@@ -17,7 +17,7 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
-import jmapps.addmyfavoriteword.databinding.FragmentTasksBinding
+import jmapps.addmyfavoriteword.databinding.FragmentTasksCategoryBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
 import jmapps.addmyfavoriteword.presentation.ui.activities.TasksActivity
@@ -26,12 +26,12 @@ import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategory
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
-class TasksFragment : Fragment(), ContractInterface.OtherView,
+class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener,
     SearchView.OnQueryTextListener {
 
     private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
-    private lateinit var binding: FragmentTasksBinding
+    private lateinit var binding: FragmentTasksCategoryBinding
 
     private lateinit var preferences: SharedPreferences
     private lateinit var sharedLocalPreferences: SharedLocalProperties
@@ -48,7 +48,7 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks_category, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)
@@ -122,11 +122,11 @@ class TasksFragment : Fragment(), ContractInterface.OtherView,
     override fun initView(sortedBy: String) {
         tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer {
             it.let {
+                otherFragmentsPresenter.updateState(it)
                 taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this)
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
                 binding.rvTaskCategories.adapter = taskCategoriesAdapter
-                otherFragmentsPresenter.updateState(it)
             }
         })
     }

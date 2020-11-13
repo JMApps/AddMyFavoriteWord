@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface TaskItemsDao {
-    @Query("SELECT * FROM Table_of_task_items WHERE displayBy = :displayBy ORDER BY CASE :order WHEN 'addDateTime' THEN addDateTime WHEN 'changeDateTime' THEN changeDateTime WHEN 'executionDateTime' THEN executionDateTime WHEN 'alphabet' THEN title END ASC")
+    @Query("SELECT * FROM Table_of_task_items WHERE displayBy = :displayBy ORDER BY CASE :order WHEN 'addDateTime' THEN addDateTime WHEN 'executionDateTime' THEN executionDateTime WHEN 'alphabet' THEN title END ASC")
     fun getTaskItemsList(displayBy: Long, order: String): LiveData<MutableList<TaskItems>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

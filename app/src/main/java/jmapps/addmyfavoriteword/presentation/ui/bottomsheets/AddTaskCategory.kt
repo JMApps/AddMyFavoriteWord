@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
@@ -22,7 +23,7 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
     private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
     private lateinit var binding: BottomsheetAddTaskCategoryBinding
 
-    private var standardColor: String = "#E57373"
+    private var standardColor: String = "#EF5350"
     private var standardIntermediate: String = "ci_day"
 
     companion object {
@@ -49,7 +50,7 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
             R.id.text_current_category_color -> {
                 MaterialColorPickerDialog
                     .Builder(requireContext())
-                    .setTitle(getString(R.string.action_choose_color))
+                    .setTitle(getString(R.string.description_choose_color))
                     .setColorRes(resources.getIntArray(R.array.themeColors).toList())
                     .setColorListener { _, colorHex ->
                         binding.textCurrentCategoryColor.setBackgroundColor(Color.parseColor(colorHex))
@@ -64,12 +65,11 @@ class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
         }
     }
 
-    private fun checkEditText() {
-        if (binding.editAddTaskCategory.text.toString().isNotEmpty()) {
-            addTaskCategory()
-        } else {
-            binding.editAddTaskCategory.error = getString(R.string.action_enter_category_name)
-        }
+    private fun checkEditText() = if (binding.editAddTaskCategory.text.toString().isNotEmpty()) {
+        Toast.makeText(requireContext(), getString(R.string.toast_category_added), Toast.LENGTH_SHORT).show()
+        addTaskCategory()
+    } else {
+        binding.editAddTaskCategory.error = getString(R.string.hint_enter_category_name)
     }
 
     private fun addTaskCategory() {

@@ -8,19 +8,19 @@ import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import jmapps.addmyfavoriteword.R
-import jmapps.addmyfavoriteword.databinding.FragmentDictionaryBinding
+import jmapps.addmyfavoriteword.databinding.FragmentDictionaryCategoryBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
 
 class DictionaryFragment : Fragment(), ContractInterface.OtherView {
 
     //private lateinit var dictionaryViewModel: DictionaryViewModel
-    private lateinit var binding: FragmentDictionaryBinding
+    private lateinit var binding: FragmentDictionaryCategoryBinding
     private lateinit var otherFragmentsPresenter: OtherFragmentsPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //dictionaryViewModel = ViewModelProvider(this).get(DictionaryViewModel::class.java)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dictionary, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dictionary_category, container, false)
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.defaultState()

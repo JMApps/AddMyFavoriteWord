@@ -56,8 +56,7 @@ class TaskCategoriesAdapter(
                     val filteredList = ArrayList<TaskCategories>()
                     for (row in firstTaskCategoryList!!) {
                         if (row._id.toString().contains(charSequence) ||
-                            row.title.toLowerCase().contains(charString.toLowerCase())
-                        ) {
+                            row.title.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row)
                         }
                     }

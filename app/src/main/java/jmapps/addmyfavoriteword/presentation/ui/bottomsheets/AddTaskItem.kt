@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -62,15 +63,14 @@ class AddTaskItem : BottomSheetDialogFragment(), View.OnClickListener {
         }
     }
 
-    private fun checkEditText() {
-        if (binding.editAddTaskItem.text.toString().isNotEmpty()) {
-            addTaskCategory()
-        } else {
-            binding.editAddTaskItem.error = getString(R.string.action_enter_task_name)
-        }
+    private fun checkEditText() = if (binding.editAddTaskItem.text.toString().isNotEmpty()) {
+        Toast.makeText(requireContext(), getString(R.string.toast_task_added), Toast.LENGTH_SHORT).show()
+        addTaskItem()
+    } else {
+        binding.editAddTaskItem.error = getString(R.string.hint_enter_task_name)
     }
 
-    private fun addTaskCategory() {
+    private fun addTaskItem() {
         val addTaskItems = TaskItems(
             0,
             binding.editAddTaskItem.text.toString(),

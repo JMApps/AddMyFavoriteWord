@@ -67,8 +67,7 @@ class TaskItemsAdapter(
                     val filteredList = ArrayList<TaskItems>()
                     for (row in firstTaskItemList!!) {
                         if (row._id.toString().contains(charSequence) ||
-                            row.title.toLowerCase().contains(charString.toLowerCase())
-                        ) {
+                            row.title.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row)
                         }
                     }

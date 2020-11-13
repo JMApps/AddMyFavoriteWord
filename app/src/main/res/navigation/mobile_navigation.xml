@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_tasks"
-        android:name="jmapps.addmyfavoriteword.presentation.ui.fragments.TasksFragment"
+        android:name="jmapps.addmyfavoriteword.presentation.ui.fragments.TasksCategoryFragment"
         android:label="@string/bottom_navigation_title_tasks"
-        tools:layout="@layout/fragment_tasks" />
+        tools:layout="@layout/fragment_tasks_category" />
 
     <fragment
         android:id="@+id/navigation_dictionary"
         android:name="jmapps.addmyfavoriteword.presentation.ui.fragments.DictionaryFragment"
         android:label="@string/bottom_navigation_title_dictionary"
-        tools:layout="@layout/fragment_dictionary" />
+        tools:layout="@layout/fragment_dictionary_category" />
 
     <fragment
         android:id="@+id/navigation_notes"

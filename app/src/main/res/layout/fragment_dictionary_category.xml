@@ -10,43 +10,42 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.fragments.TasksFragment">
+        tools:context=".presentation.ui.fragments.DictionaryFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_task_categories"
+            android:id="@+id/rv_dictionary_categories"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
             android:scrollbars="vertical"
-            android:visibility="gone"
-            tools:itemCount="20"
-            tools:listitem="@layout/item_task_category" />
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_main_view_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:drawablePadding="16dp"
+            android:layout_marginStart="@dimen/main_margin_mini"
+            android:layout_marginTop="@dimen/main_margin_mini"
+            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:drawablePadding="@dimen/main_padding"
             android:gravity="center"
-            android:text="@string/action_add_first_task_category"
+            android:text="@string/description_add_dictionary_first_category"
             android:textAlignment="center"
             android:textSize="@dimen/main_app_text_size"
-            app:drawableTopCompat="@drawable/ic_main_task_big"
+            app:drawableTopCompat="@drawable/ic_main_dictionary_big"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAddTaskCategory"
+            android:id="@+id/fab_add_dictionary_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_margin="@dimen/main_margin"
+            android:contentDescription="@string/action_add"
             app:srcCompat="@drawable/ic_add" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -24,6 +24,7 @@ import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
+
 class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     SearchView.OnQueryTextListener, TaskItemsAdapter.OnTaskCheckboxState, View.OnClickListener {
 
@@ -58,6 +59,10 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         taskCategoryTitle = intent.getStringExtra(keyTaskCategoryTitle)
         taskCategoryColor = intent.getStringExtra(keyTaskCategoryColor)
 
+        otherActivityPresenter = OtherActivityPresenter(this)
+        otherActivityPresenter.defaultState()
+        otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex)
+
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.title = taskCategoryTitle
@@ -65,15 +70,34 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         sharedLocalPreferences = SharedLocalProperties(preferences)
-
         defaultOrderIndex = sharedLocalPreferences.getIntValue("order_task_index", 0)!!
-
-        otherActivityPresenter = OtherActivityPresenter(this)
-        otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex)
-        otherActivityPresenter.defaultState()
 
         binding.taskItemContent.rvTaskItems.addOnScrollListener(onAddScroll)
         binding.taskItemContent.fabAddTaskItem.setOnClickListener(this)
+    }
+
+    override fun initView(displayBy: Long, sortedBy: String) {
+        taskItemViewModel.allTaskItems(displayBy, sortedBy).observe(this, {
+            it.let {
+                otherActivityPresenter.updateState(it)
+                taskItemsAdapter = TaskItemsAdapter(this, it, this)
+                val verticalLayout = LinearLayoutManager(this)
+                binding.taskItemContent.rvTaskItems.layoutManager = verticalLayout
+                binding.taskItemContent.rvTaskItems.adapter = taskItemsAdapter
+            }
+        })
+    }
+
+    override fun defaultState() {
+        binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
+        binding.taskItemContent.textMainTaskDescription.visibility = otherActivityPresenter.descriptionMain()
+        val categoryDescription = getString(R.string.description_add_first_task, taskCategoryTitle)
+        binding.taskItemContent.textMainTaskDescription.text = categoryDescription
+    }
+
+    override fun updateState() {
+        binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
+        binding.taskItemContent.textMainTaskDescription.visibility = otherActivityPresenter.descriptionMain()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -123,30 +147,6 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     override fun onClick(v: View?) {
         val addTaskItem = AddTaskItem.toInstance(taskCategoryId!!, taskCategoryColor!!)
         addTaskItem.show(supportFragmentManager, AddTaskItem.ARG_TASK_ITEM_FRAGMENT)
-    }
-
-    override fun initView(displayBy: Long, sortedBy: String) {
-        taskItemViewModel.allTaskItems(displayBy, sortedBy).observe(this, {
-            it.let {
-                taskItemsAdapter = TaskItemsAdapter(this, it, this)
-                val verticalLayout = LinearLayoutManager(this)
-                binding.taskItemContent.rvTaskItems.layoutManager = verticalLayout
-                binding.taskItemContent.rvTaskItems.adapter = taskItemsAdapter
-                otherActivityPresenter.updateState(it)
-            }
-        })
-    }
-
-    override fun defaultState() {
-        binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
-        binding.taskItemContent.textMainTaskDescription.visibility =
-            otherActivityPresenter.descriptionMain()
-    }
-
-    override fun updateState() {
-        binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
-        binding.taskItemContent.textMainTaskDescription.visibility =
-            otherActivityPresenter.descriptionMain()
     }
 
     override fun onTaskCheckboxState(_id: Long, state: Boolean) {

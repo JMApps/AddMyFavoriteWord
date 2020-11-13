@@ -27,7 +27,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <include
-            android:id="@+id/taskItemContent"
+            android:id="@+id/task_item_content"
             layout="@layout/content_task" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
