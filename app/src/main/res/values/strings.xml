@@ -21,6 +21,7 @@
     <string name="hint_enter_category_name">Введите название категории</string>
     <string name="description_choose_color">Выберите цвет категории</string>
     <string name="action_add">Добавить</string>
+    <string name="action_delete_all_categories">Удалить все категории</string>
 
     <!--    Order by-->
     <string name="order_categories">Сортировать категории:</string>
@@ -31,9 +32,15 @@
     <string name="order_by_alphabet">По алфавиту</string>
 
     <!--    Content categories-->
-    <string name="description_add_first_task">Добавьте первую задачу в категорию\n%1$s</string>
-    <string name="description_add_first_dictionary">Добавьте первое слово в категорию\n%1$s</string>
+    <string name="description_add_first_task">Добавьте первую задачу в категорию:\n%1$s</string>
+    <string name="description_add_first_dictionary">Добавьте первое слово в категорию:\n%1$s</string>
 
     <string name="description_add_task">Добавьте задачу</string>
     <string name="hint_enter_task_name">Введите название задачи</string>
+    <string name="action_rename">Переименовать</string>
+    <string name="popup_delete">Удалить</string>
+    <string name="action_delete_all_tasks">Удаличть все задачи категории</string>
+    <string name="action_tasks_deleted">Задачи удалены</string>
+    <string name="toast_list_cleared">Список полностью очищен</string>
+    <string name="action_deleted">Удалено</string>
 </resources>

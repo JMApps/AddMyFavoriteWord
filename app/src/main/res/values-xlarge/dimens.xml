@@ -24,7 +24,7 @@
     <dimen name="main_app_text_size">22sp</dimen>
 
     <!--    Min heights's-->
-    <dimen name="item_card_min_height">80dp</dimen>
+    <dimen name="item_card_min_height">100dp</dimen>
 
     <!--    Corner's-->
     <dimen name="main_card_corner">15dp</dimen>

@@ -33,4 +33,10 @@
                 android:title="@string/order_by_alphabet" />
         </menu>
     </item>
+
+    <item
+        android:id="@+id/action_delete_all_task_items"
+        android:orderInCategory="30"
+        android:title="@string/action_delete_all_tasks"
+        app:showAsAction="never" />
 </menu>
