@@ -27,6 +27,10 @@ class TasksCategoryViewModel(application: Application) : AndroidViewModel(applic
         taskCategoryRepository.updateTaskCategory(newTitle, newCategoryColor, newDateTime, id)
     }
 
+    fun updateTaskItemColor(newColor: String, categoryId: Long) = viewModelScope.launch {
+        taskCategoryRepository.updateTaskItemColor(newColor, categoryId)
+    }
+
     fun deleteTaskCategory(id: Long) = viewModelScope.launch {
         taskCategoryRepository.deleteTaskCategory(id)
     }

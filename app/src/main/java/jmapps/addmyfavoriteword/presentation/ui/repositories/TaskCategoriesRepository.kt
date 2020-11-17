@@ -17,6 +17,10 @@ class TaskCategoriesRepository(private val taskCategoriesDao: TaskCategoriesDao)
         taskCategoriesDao.updateTaskCategoryTitle(newTitle, newCategoryColor, newDateTime, id)
     }
 
+    suspend fun updateTaskItemColor(newColor: String, categoryId: Long) {
+        taskCategoriesDao.updateTaskItemColor(newColor, categoryId)
+    }
+
     suspend fun deleteTaskCategory(id: Long) {
         taskCategoriesDao.deleteTaskCategory(id)
     }

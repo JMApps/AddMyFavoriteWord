@@ -17,6 +17,9 @@ interface TaskCategoriesDao {
     @Query("UPDATE Table_of_task_categories SET title = :newTitle, categoryColor = :newCategoryColor, changeDateTime = :newDateTime WHERE _id = :id")
     suspend fun updateTaskCategoryTitle(newTitle: String, newCategoryColor: String, newDateTime: String, id: Long)
 
+    @Query("UPDATE Table_of_task_items SET taskColor = :newColor WHERE displayBy = :categoryId")
+    suspend fun updateTaskItemColor(newColor: String, categoryId: Long)
+
     @Query("DELETE FROM Table_of_task_categories WHERE _id = :id")
     suspend fun deleteTaskCategory(id: Long)
 
