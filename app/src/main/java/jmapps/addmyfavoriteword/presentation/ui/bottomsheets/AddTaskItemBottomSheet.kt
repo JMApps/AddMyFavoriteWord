@@ -22,19 +22,19 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
     private lateinit var binding: BottomsheetAddTaskItemBinding
 
     private var displayBy: Long = 0
-    private var color: String = "#E57373"
+    private var categoryColor: String = "#EF5350"
 
     companion object {
-        const val ARG_TASK_ITEM_FRAGMENT = "arg_task_item_fragment"
-        private const val ARG_TASK_CATEGORY_ID = "arg_task_category_id"
-        private const val ARG_TASK_CATEGORY_COLOR = "arg_task_category_color"
+        const val ARG_ADD_TASK_ITEM_BS = "arg_add_task_item_bs"
+        private const val ARG_ADD_TASK_CATEGORY_ID = "arg_add_task_category_id"
+        private const val ARG_ADD_TASK_CATEGORY_COLOR = "arg_add_task_category_color"
 
         @JvmStatic
         fun toInstance(displayBy: Long, color: String): AddTaskItemBottomSheet {
             return AddTaskItemBottomSheet().apply {
                 arguments = Bundle().apply {
-                    putLong(ARG_TASK_CATEGORY_ID, displayBy)
-                    putString(ARG_TASK_CATEGORY_COLOR, color)
+                    putLong(ARG_ADD_TASK_CATEGORY_ID, displayBy)
+                    putString(ARG_ADD_TASK_CATEGORY_COLOR, color)
                 }
             }
         }
@@ -44,8 +44,8 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
         super.onCreate(savedInstanceState)
         taskItemViewModel = ViewModelProvider(this).get(TasksItemViewModel::class.java)
 
-        displayBy = arguments?.getLong(ARG_TASK_CATEGORY_ID)!!
-        color = arguments?.getString(ARG_TASK_CATEGORY_COLOR)!!
+        displayBy = arguments?.getLong(ARG_ADD_TASK_CATEGORY_ID)!!
+        categoryColor = arguments?.getString(ARG_ADD_TASK_CATEGORY_COLOR)!!
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -75,7 +75,7 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
             0,
             binding.editAddTaskItem.text.toString(),
             displayBy,
-            color,
+            categoryColor,
             MainOther().currentTime,
             MainOther().currentTime,
             MainOther().currentTime,

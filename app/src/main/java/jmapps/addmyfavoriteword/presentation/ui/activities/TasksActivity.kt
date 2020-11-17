@@ -3,6 +3,7 @@ package jmapps.addmyfavoriteword.presentation.ui.activities
 import android.app.SearchManager
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Html
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
@@ -30,8 +31,8 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     SearchView.OnQueryTextListener, TaskItemsAdapter.OnTaskCheckboxState, View.OnClickListener,
     TaskItemsAdapter.OnLongClickTaskItem {
 
-    private lateinit var taskItemViewModel: TasksItemViewModel
     private lateinit var binding: ActivityTaskBinding
+    private lateinit var taskItemViewModel: TasksItemViewModel
 
     private lateinit var preferences: SharedPreferences
     private lateinit var sharedLocalPreferences: SharedLocalProperties
@@ -43,7 +44,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     private var taskCategoryId: Long? = null
     private var taskCategoryTitle: String? = null
     private var taskCategoryColor: String? = null
-    private var defaultOrderIndex = 0
+    private var defaultOrderIndex: Int? = null
 
     private lateinit var alertDialog: AlertUtil
 
@@ -59,13 +60,17 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_task)
         setSupportActionBar(binding.toolbar)
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        sharedLocalPreferences = SharedLocalProperties(preferences)
+        defaultOrderIndex = sharedLocalPreferences.getIntValue("order_task_index", 0)!!
+
         taskCategoryId = intent.getLongExtra(keyTaskCategoryId, 0)
         taskCategoryTitle = intent.getStringExtra(keyTaskCategoryTitle)
         taskCategoryColor = intent.getStringExtra(keyTaskCategoryColor)
 
         otherActivityPresenter = OtherActivityPresenter(this)
         otherActivityPresenter.defaultState()
-        otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex)
+        otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex!!)
 
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
@@ -73,10 +78,6 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         }
 
         alertDialog = AlertUtil(this)
-
-        preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        sharedLocalPreferences = SharedLocalProperties(preferences)
-        defaultOrderIndex = sharedLocalPreferences.getIntValue("order_task_index", 0)!!
 
         binding.taskItemContent.rvTaskItems.addOnScrollListener(onAddScroll)
         binding.taskItemContent.fabAddTaskItem.setOnClickListener(this)
@@ -96,16 +97,14 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     override fun defaultState() {
         binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
-        binding.taskItemContent.textMainTaskDescription.visibility =
-            otherActivityPresenter.descriptionMain()
-        val categoryDescription = getString(R.string.description_add_first_task, taskCategoryTitle)
-        binding.taskItemContent.textMainTaskDescription.text = categoryDescription
+        binding.taskItemContent.textMainTaskDescription.visibility = otherActivityPresenter.descriptionMain()
+        val categoryDescription = getString(R.string.description_add_first_task, "<b>$taskCategoryTitle</b>")
+        binding.taskItemContent.textMainTaskDescription.text = Html.fromHtml(categoryDescription)
     }
 
     override fun updateState() {
         binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
-        binding.taskItemContent.textMainTaskDescription.visibility =
-            otherActivityPresenter.descriptionMain()
+        binding.taskItemContent.textMainTaskDescription.visibility = otherActivityPresenter.descriptionMain()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -115,7 +114,6 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(this)
-
         return true
     }
 
@@ -124,16 +122,16 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
             android.R.id.home -> finish()
 
             R.id.item_order_by_add_time -> {
-                defaultOrderIndex = 0
-                changeOrderList(defaultOrderIndex)
+//                defaultOrderIndex = 0
+                changeOrderList(defaultOrderIndex = 0)
             }
             R.id.item_order_by_execution -> {
-                defaultOrderIndex = 1
-                changeOrderList(defaultOrderIndex)
+//                defaultOrderIndex = 1
+                changeOrderList(defaultOrderIndex = 1)
             }
             R.id.item_order_by_alphabet -> {
-                defaultOrderIndex = 2
-                changeOrderList(defaultOrderIndex)
+//                defaultOrderIndex = 2
+                changeOrderList(defaultOrderIndex = 2)
             }
             R.id.action_delete_all_task_items -> {
                 val deleteAllTaskDescription = getString(R.string.dialog_message_are_sure_you_want_items_task, "<b>$taskCategoryTitle</b>")
@@ -161,7 +159,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     override fun onClick(v: View?) {
         val addTaskItem = AddTaskItemBottomSheet.toInstance(taskCategoryId!!, taskCategoryColor!!)
-        addTaskItem.show(supportFragmentManager, AddTaskItemBottomSheet.ARG_TASK_ITEM_FRAGMENT)
+        addTaskItem.show(supportFragmentManager, AddTaskItemBottomSheet.ARG_ADD_TASK_ITEM_BS)
     }
 
     override fun itemClickRenameItem(_id: Long, taskTitle: String) {
