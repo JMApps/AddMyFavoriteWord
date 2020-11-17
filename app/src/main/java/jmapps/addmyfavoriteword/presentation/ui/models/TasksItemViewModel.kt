@@ -30,8 +30,8 @@ class TasksItemViewModel(application: Application) : AndroidViewModel(applicatio
             taskItemsRepository.updateTaskItem(newTitle, displayBy, newDateTime)
         }
 
-    fun updateTaskTitle(newTitle: String, newDateTime: String) = viewModelScope.launch {
-        taskItemsRepository.updateTaskTitle(newTitle, newDateTime)
+    fun updateTaskTitle(newTitle: String, newDateTime: String, taskId: Long) = viewModelScope.launch {
+        taskItemsRepository.updateTaskTitle(newTitle, newDateTime, taskId)
     }
 
     fun updateState(newState: Boolean, id: Long, newDateTime: String) = viewModelScope.launch {

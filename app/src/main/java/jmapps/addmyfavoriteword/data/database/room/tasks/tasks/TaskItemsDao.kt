@@ -17,8 +17,8 @@ interface TaskItemsDao {
     @Query("UPDATE Table_of_task_items SET title = :newTitle, displayBy = :displayBy, changeDateTime = :newDateTime")
     suspend fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String)
 
-    @Query("UPDATE Table_of_task_items SET title = :newTitle, changeDateTime = :newDateTime")
-    suspend fun updateTaskTitle(newTitle: String, newDateTime: String)
+    @Query("UPDATE Table_of_task_items SET title = :newTitle, changeDateTime = :newDateTime WHERE _id = :taskId")
+    suspend fun updateTaskTitle(newTitle: String, newDateTime: String, taskId: Long)
 
     @Query("UPDATE Table_of_task_items SET currentTaskState = :newState, executionDateTime = :newDateTime WHERE _id = :id")
     suspend fun updateState(newState: Boolean, id: Long, newDateTime: String)
