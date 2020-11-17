@@ -12,7 +12,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/list_selector_background"
+        android:background="?selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
         android:minHeight="@dimen/item_card_min_height"
         android:orientation="horizontal">

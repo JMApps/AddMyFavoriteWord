@@ -30,7 +30,8 @@ import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalPropertie
 
 class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener,
-    SearchView.OnQueryTextListener, TaskCategoriesAdapter.OnLongClickTaskCategory {
+    SearchView.OnQueryTextListener, TaskCategoriesAdapter.OnLongClickTaskCategory,
+    AlertUtil.OnClickDelete {
 
     private lateinit var binding: FragmentTasksCategoryBinding
     private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
@@ -51,7 +52,8 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks_category, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_tasks_category, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)
@@ -59,7 +61,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         retainInstance = true
         setHasOptionsMenu(true)
 
-        alertDialog = AlertUtil(requireContext())
+        alertDialog = AlertUtil(requireContext(), this)
 
         defaultOrderIndex = sharedLocalPreferences.getIntValue("order_category_task_index", 0)!!
 
@@ -86,26 +88,20 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_order_by_add_time -> {
-//                defaultOrderIndex = 0
                 changeOrderList(defaultOrderIndex = 0)
             }
             R.id.item_order_by_change_time -> {
-//                defaultOrderIndex = 1
                 changeOrderList(defaultOrderIndex = 1)
             }
             R.id.item_order_by_color -> {
-//                defaultOrderIndex = 2
                 changeOrderList(defaultOrderIndex = 2)
             }
             R.id.item_order_by_alphabet -> {
-//                defaultOrderIndex = 3
                 changeOrderList(defaultOrderIndex = 3)
             }
             R.id.action_delete_all_categories -> {
-//                tasksCategoryViewModel.deleteAllTaskCategories()
-//                tasksCategoryViewModel.deleteAllTaskItem()
                 alertDialog.showAlertDialog(
-                    getString(R.string.dialog_message_are_sure_you_want_task_categories)
+                    getString(R.string.dialog_message_are_sure_you_want_task_categories), 0, 0
                 )
             }
         }
@@ -127,7 +123,10 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onClick(v: View?) {
         val addTaskCategory = AddTaskCategoryBottomSheet()
-        addTaskCategory.show(childFragmentManager, AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS)
+        addTaskCategory.show(
+            childFragmentManager,
+            AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS
+        )
     }
 
     override fun initView(sortedBy: String) {
@@ -147,12 +146,14 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         binding.fabAddTaskCategory.startAnimation(show)
 
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility =
+            otherFragmentsPresenter.descriptionMain()
     }
 
     override fun updateState() {
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility =
+            otherFragmentsPresenter.descriptionMain()
     }
 
     override fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String) {
@@ -166,9 +167,8 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun itemClickDeleteCategory(_id: Long, categoryTitle: String) {
         val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$categoryTitle</b>")
-//        tasksCategoryViewModel.deleteTaskCategory(_id)
-//        tasksCategoryViewModel.deleteTaskItem(_id)
-        alertDialog.showAlertDialog(deleteTaskCategoryDescription)
+        alertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, _id)
+
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {
@@ -193,5 +193,15 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         toTaskActivity.putExtra(TasksActivity.keyTaskCategoryTitle, categoryTitle)
         toTaskActivity.putExtra(TasksActivity.keyTaskCategoryColor, categoryColor)
         startActivity(toTaskActivity)
+    }
+
+    override fun onClickDeleteOnly(_id: Long) {
+        tasksCategoryViewModel.deleteTaskCategory(_id)
+        tasksCategoryViewModel.deleteTaskItem(_id)
+    }
+
+    override fun onClickDeleteAll() {
+        tasksCategoryViewModel.deleteAllTaskCategories()
+        tasksCategoryViewModel.deleteAllTaskItem()
     }
 }

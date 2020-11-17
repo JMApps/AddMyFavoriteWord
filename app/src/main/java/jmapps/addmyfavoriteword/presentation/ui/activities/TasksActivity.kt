@@ -29,7 +29,7 @@ import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalPropertie
 
 class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     SearchView.OnQueryTextListener, TaskItemsAdapter.OnTaskCheckboxState, View.OnClickListener,
-    TaskItemsAdapter.OnLongClickTaskItem {
+    TaskItemsAdapter.OnLongClickTaskItem, AlertUtil.OnClickDelete {
 
     private lateinit var binding: ActivityTaskBinding
     private lateinit var taskItemViewModel: TasksItemViewModel
@@ -77,7 +77,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
             it.title = taskCategoryTitle
         }
 
-        alertDialog = AlertUtil(this)
+        alertDialog = AlertUtil(this, this)
 
         binding.taskItemContent.rvTaskItems.addOnScrollListener(onAddScroll)
         binding.taskItemContent.fabAddTaskItem.setOnClickListener(this)
@@ -122,23 +122,17 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
             android.R.id.home -> finish()
 
             R.id.item_order_by_add_time -> {
-//                defaultOrderIndex = 0
                 changeOrderList(defaultOrderIndex = 0)
             }
             R.id.item_order_by_execution -> {
-//                defaultOrderIndex = 1
                 changeOrderList(defaultOrderIndex = 1)
             }
             R.id.item_order_by_alphabet -> {
-//                defaultOrderIndex = 2
                 changeOrderList(defaultOrderIndex = 2)
             }
             R.id.action_delete_all_task_items -> {
                 val deleteAllTaskDescription = getString(R.string.dialog_message_are_sure_you_want_items_task, "<b>$taskCategoryTitle</b>")
-//                val deleteAllTaskCategories: Any = taskItemViewModel.deleteAllTaskFromCategory(taskCategoryId!!)
-                alertDialog.showAlertDialog(
-                    deleteAllTaskDescription
-                )
+                alertDialog.showAlertDialog(deleteAllTaskDescription, 0, 0)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -166,10 +160,8 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun itemClickDeleteItem(_id: Long) {
-//        val deleteItem= taskItemViewModel.deleteTaskItem(_id)
         alertDialog.showAlertDialog(
-            getString(R.string.dialog_message_are_sure_you_want_item_task)
-        )
+            getString(R.string.dialog_message_are_sure_you_want_item_task), 1, _id)
     }
 
     override fun onTaskCheckboxState(_id: Long, state: Boolean) {
@@ -190,5 +182,13 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     private fun changeOrderList(defaultOrderIndex: Int) {
         otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex)
         sharedLocalPreferences.saveIntValue("order_task_index", defaultOrderIndex)
+    }
+
+    override fun onClickDeleteAll() {
+        taskItemViewModel.deleteAllTaskFromCategory(taskCategoryId!!)
+    }
+
+    override fun onClickDeleteOnly(_id: Long) {
+        taskItemViewModel.deleteTaskItem(_id)
     }
 }
