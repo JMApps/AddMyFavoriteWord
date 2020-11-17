@@ -39,7 +39,10 @@
     <string name="description_add_first_dictionary">Добавьте первое слово в категорию:\n%1$s</string>
 
     <string name="description_add_task">Добавьте задачу</string>
+    <string name="description_rename_task">Переименовать задачу</string>
+    <string name="description_renamed_task">Задача переименована</string>
     <string name="hint_enter_task_name">Введите название задачи</string>
+    <string name="hint_enter_new_task_name">Введите новое название задачи</string>
     <string name="action_rename">Переименовать</string>
     <string name="popup_delete">Удалить</string>
     <string name="action_delete_all_tasks">Удаличть все задачи категории</string>

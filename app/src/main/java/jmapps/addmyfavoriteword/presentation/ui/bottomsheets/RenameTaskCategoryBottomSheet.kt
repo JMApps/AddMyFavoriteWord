@@ -63,6 +63,7 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_rename_task_category, container, false)
 
         binding.editRenameTaskCategory.setText(categoryTitle)
+        binding.editRenameTaskCategory.setSelection(categoryTitle!!.length)
         binding.textCurrentCategoryColor.setBackgroundColor(Color.parseColor(categoryColor))
 
         binding.textCurrentCategoryColor.setOnClickListener(this)
@@ -94,18 +95,13 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
     private fun checkName() {
         when {
             binding.editRenameTaskCategory.text.toString().isEmpty() -> {
-                binding.editRenameTaskCategory.error =
-                    getString(R.string.hint_enter_new_category_name)
+                binding.editRenameTaskCategory.error = getString(R.string.hint_enter_new_category_name)
             }
             binding.editRenameTaskCategory.text.toString().isNotEmpty() &&
                     binding.editRenameTaskCategory.text.toString() != categoryTitle ||
                         categoryColor != newCategoryColor -> {
                 renameTaskCategory()
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.toast_category_renamed),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(), getString(R.string.toast_category_renamed), Toast.LENGTH_SHORT).show()
             }
             else -> {
                 dialog?.dismiss()

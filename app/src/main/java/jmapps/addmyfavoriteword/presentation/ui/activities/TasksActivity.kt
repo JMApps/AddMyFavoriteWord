@@ -21,6 +21,7 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.ContractInterfa
 import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.OtherActivityPresenter
 import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskItemBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameTaskItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.AlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
@@ -157,6 +158,8 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun itemClickRenameItem(_id: Long, taskTitle: String) {
+        val renameTaskItem = RenameTaskItemBottomSheet.toInstance(_id, taskTitle)
+        renameTaskItem.show(supportFragmentManager, RenameTaskItemBottomSheet.ARG_RENAME_TASK_ITEM_BS)
     }
 
     override fun itemClickDeleteItem(_id: Long) {
