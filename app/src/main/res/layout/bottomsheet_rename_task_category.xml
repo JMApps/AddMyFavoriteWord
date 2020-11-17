@@ -19,7 +19,7 @@
             android:drawablePadding="@dimen/main_padding"
             android:gravity="center_vertical"
             android:padding="@dimen/main_padding"
-            android:text="@string/action_rename_category"
+            android:text="@string/description_rename_category"
             android:textColor="@color/white"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toEndOf="parent"

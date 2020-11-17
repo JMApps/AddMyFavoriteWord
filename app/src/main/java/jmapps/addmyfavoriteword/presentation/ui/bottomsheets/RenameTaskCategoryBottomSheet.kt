@@ -19,8 +19,8 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
-    private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
     private lateinit var binding: BottomsheetRenameTaskCategoryBinding
+    private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
 
     private var categoryId: Long? = null
     private var categoryTitle: String? = null
@@ -29,9 +29,9 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
     companion object {
         const val ARG_RENAME_TASK_CATEGORY_BS = "arg_rename_task_category_bs"
-        private const val ARG_TASK_CATEGORY_ID = "arg_task_category_id"
-        private const val ARG_TASK_CATEGORY_TITLE = "arg_task_category_title"
-        private const val ARG_TASK_CATEGORY_COLOR = "arg_task_category_color"
+        private const val ARG_RENAME_TASK_CATEGORY_ID = "arg_rename_task_category_id"
+        private const val ARG_RENAME_TASK_CATEGORY_TITLE = "arg_rename_task_category_title"
+        private const val ARG_RENAME_TASK_CATEGORY_COLOR = "arg_rename_task_category_color"
 
         @JvmStatic
         fun toInstance(
@@ -40,9 +40,9 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
             categoryColor: String): RenameTaskCategoryBottomSheet {
             return RenameTaskCategoryBottomSheet().apply {
                 arguments = Bundle().apply {
-                    putLong(ARG_TASK_CATEGORY_ID, categoryId)
-                    putString(ARG_TASK_CATEGORY_TITLE, categoryTitle)
-                    putString(ARG_TASK_CATEGORY_COLOR, categoryColor)
+                    putLong(ARG_RENAME_TASK_CATEGORY_ID, categoryId)
+                    putString(ARG_RENAME_TASK_CATEGORY_TITLE, categoryTitle)
+                    putString(ARG_RENAME_TASK_CATEGORY_COLOR, categoryColor)
                 }
             }
         }
@@ -50,11 +50,12 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         tasksCategoryViewModel = ViewModelProvider(this).get(TasksCategoryViewModel::class.java)
-        categoryId = arguments?.getLong(ARG_TASK_CATEGORY_ID, 0)
-        categoryTitle = arguments?.getString(ARG_TASK_CATEGORY_TITLE)
-        categoryColor = arguments?.getString(ARG_TASK_CATEGORY_COLOR)
+
+        categoryId = arguments?.getLong(ARG_RENAME_TASK_CATEGORY_ID, 0)
+        categoryTitle = arguments?.getString(ARG_RENAME_TASK_CATEGORY_TITLE)
+        categoryColor = arguments?.getString(ARG_RENAME_TASK_CATEGORY_COLOR)
+
         newCategoryColor = categoryColor
     }
 
@@ -119,6 +120,10 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
             MainOther().currentTime,
             categoryId!!
         )
+
+        if (newCategoryColor != categoryColor) {
+            tasksCategoryViewModel.updateTaskItemColor(newCategoryColor!!, categoryId!!)
+        }
         dialog?.dismiss()
     }
 }
