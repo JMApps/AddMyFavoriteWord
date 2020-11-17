@@ -32,8 +32,8 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener,
     SearchView.OnQueryTextListener, TaskCategoriesAdapter.OnLongClickTaskCategory {
 
-    private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
     private lateinit var binding: FragmentTasksCategoryBinding
+    private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
 
     private lateinit var preferences: SharedPreferences
     private lateinit var sharedLocalPreferences: SharedLocalProperties
@@ -43,7 +43,6 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     private lateinit var taskCategoriesAdapter: TaskCategoriesAdapter
 
     private var defaultOrderIndex = 0
-
     private lateinit var alertDialog: AlertUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,20 +86,20 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_order_by_add_time -> {
-                defaultOrderIndex = 0
-                changeOrderList(defaultOrderIndex)
+//                defaultOrderIndex = 0
+                changeOrderList(defaultOrderIndex = 0)
             }
             R.id.item_order_by_change_time -> {
-                defaultOrderIndex = 1
-                changeOrderList(defaultOrderIndex)
+//                defaultOrderIndex = 1
+                changeOrderList(defaultOrderIndex = 1)
             }
             R.id.item_order_by_color -> {
-                defaultOrderIndex = 2
-                changeOrderList(defaultOrderIndex)
+//                defaultOrderIndex = 2
+                changeOrderList(defaultOrderIndex = 2)
             }
             R.id.item_order_by_alphabet -> {
-                defaultOrderIndex = 3
-                changeOrderList(defaultOrderIndex)
+//                defaultOrderIndex = 3
+                changeOrderList(defaultOrderIndex = 3)
             }
             R.id.action_delete_all_categories -> {
 //                tasksCategoryViewModel.deleteAllTaskCategories()
@@ -128,17 +127,17 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onClick(v: View?) {
         val addTaskCategory = AddTaskCategoryBottomSheet()
-        addTaskCategory.show(childFragmentManager, AddTaskCategoryBottomSheet.ARG_TASK_CATEGORY_FRAGMENT)
+        addTaskCategory.show(childFragmentManager, AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS)
     }
 
     override fun initView(sortedBy: String) {
         tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer {
             it.let {
-                otherFragmentsPresenter.updateState(it)
                 taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this, this)
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
                 binding.rvTaskCategories.adapter = taskCategoriesAdapter
+                otherFragmentsPresenter.updateState(it)
             }
         })
     }
@@ -148,12 +147,12 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         binding.fabAddTaskCategory.startAnimation(show)
 
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun updateState() {
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String) {

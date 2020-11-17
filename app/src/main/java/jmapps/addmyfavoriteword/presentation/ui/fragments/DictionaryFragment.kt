@@ -38,11 +38,11 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView {
         binding.fabAddDictionaryCategory.startAnimation(show)
 
         binding.rvDictionaryCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainDictionaryContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun updateState() {
         binding.rvDictionaryCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainDictionaryContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 }

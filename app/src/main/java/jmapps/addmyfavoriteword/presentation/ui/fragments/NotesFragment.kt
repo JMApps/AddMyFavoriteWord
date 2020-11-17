@@ -38,11 +38,11 @@ class NotesFragment : Fragment(), ContractInterface.OtherView {
         binding.fabAddNoteCategory.startAnimation(show)
 
         binding.rvNoteCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainNoteContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun updateState() {
         binding.rvNoteCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainViewDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainNoteContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 }
