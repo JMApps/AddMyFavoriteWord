@@ -30,8 +30,8 @@ class TaskCategoriesAdapter(
     }
 
     interface OnLongClickTaskCategory {
-        fun itemClickRenameCategory(_id: Long, categoryTitle: String)
-        fun itemClickDeleteCategory(_id: Long)
+        fun itemClickRenameCategory(_id: Long, categoryTitle: String, categoryColor: String)
+        fun itemClickDeleteCategory(_id: Long, categoryTitle: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskCategoriesHolder {
@@ -47,7 +47,7 @@ class TaskCategoriesAdapter(
         holder.taskCategoryTitle.text = current.title
 
         holder.findItemClick(onItemClickTaskCategory, current._id, current.title, current.categoryColor)
-        holder.findLongItemClick(onLongClickTaskCategory, current._id, current.title)
+        holder.findLongItemClick(onLongClickTaskCategory, current._id, current.title, current.categoryColor)
     }
 
     override fun getItemCount() = taskCategoryList.size

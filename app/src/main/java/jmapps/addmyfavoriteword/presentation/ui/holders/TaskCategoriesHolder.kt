@@ -23,18 +23,21 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     }
 
     fun findLongItemClick(
-        onLongClickTaskCategory: TaskCategoriesAdapter.OnLongClickTaskCategory, _id: Long, categoryTitle: String) {
+        onLongClickTaskCategory: TaskCategoriesAdapter.OnLongClickTaskCategory,
+        _id: Long,
+        categoryTitle: String,
+        categoryColor: String) {
         itemView.setOnLongClickListener {
             val pop = PopupMenu(itemView.context, taskCategoryTitle)
             pop.inflate(R.menu.menu_task_category_popup)
             pop.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.popup_task_category_rename -> {
-                        onLongClickTaskCategory.itemClickRenameCategory(_id, categoryTitle)
+                        onLongClickTaskCategory.itemClickRenameCategory(_id, categoryTitle, categoryColor)
                     }
 
                     R.id.popup_task_category_delete -> {
-                        onLongClickTaskCategory.itemClickDeleteCategory(_id)
+                        onLongClickTaskCategory.itemClickDeleteCategory(_id, categoryTitle)
                     }
                 }
                 true
