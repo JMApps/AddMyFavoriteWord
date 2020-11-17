@@ -14,7 +14,7 @@ import jmapps.addmyfavoriteword.databinding.BottomsheetAddTaskItemBinding
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
-class AddTaskItem : BottomSheetDialogFragment(), View.OnClickListener {
+class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
@@ -30,8 +30,8 @@ class AddTaskItem : BottomSheetDialogFragment(), View.OnClickListener {
         private const val ARG_TASK_CATEGORY_COLOR = "arg_task_category_color"
 
         @JvmStatic
-        fun toInstance(displayBy: Long, color: String): AddTaskItem {
-            return AddTaskItem().apply {
+        fun toInstance(displayBy: Long, color: String): AddTaskItemBottomSheet {
+            return AddTaskItemBottomSheet().apply {
                 arguments = Bundle().apply {
                     putLong(ARG_TASK_CATEGORY_ID, displayBy)
                     putString(ARG_TASK_CATEGORY_COLOR, color)

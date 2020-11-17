@@ -16,7 +16,7 @@ import jmapps.addmyfavoriteword.databinding.BottomsheetAddTaskCategoryBinding
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
-class AddTaskCategory : BottomSheetDialogFragment(), View.OnClickListener {
+class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 

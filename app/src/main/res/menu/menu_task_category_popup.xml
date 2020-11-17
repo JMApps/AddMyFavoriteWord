@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/popup_task_category_rename"
-        android:icon="@drawable/ic_rename"
+        android:icon="@drawable/ic_rename_solid"
         android:orderInCategory="10"
         android:title="@string/action_rename" />
 
