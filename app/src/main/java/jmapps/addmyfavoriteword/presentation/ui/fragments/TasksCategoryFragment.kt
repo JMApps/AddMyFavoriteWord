@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -23,8 +22,10 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterfac
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
 import jmapps.addmyfavoriteword.presentation.ui.activities.TasksActivity
 import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskCategoriesAdapter
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategory
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameTaskCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksCategoryViewModel
+import jmapps.addmyfavoriteword.presentation.ui.other.AlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
@@ -43,6 +44,8 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     private var defaultOrderIndex = 0
 
+    private lateinit var alertDialog: AlertUtil
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         tasksCategoryViewModel = ViewModelProvider(this).get(TasksCategoryViewModel::class.java)
@@ -56,6 +59,8 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
         retainInstance = true
         setHasOptionsMenu(true)
+
+        alertDialog = AlertUtil(requireContext())
 
         defaultOrderIndex = sharedLocalPreferences.getIntValue("order_category_task_index", 0)!!
 
@@ -76,7 +81,6 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(this)
-
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -99,10 +103,11 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex)
             }
             R.id.action_delete_all_categories -> {
-                // Запросить подтверждение
-                tasksCategoryViewModel.deleteAllTaskCategories()
-                tasksCategoryViewModel.deleteAllTaskItem()
-                Toast.makeText(requireContext(), getString(R.string.toast_list_cleared), Toast.LENGTH_SHORT).show()
+//                tasksCategoryViewModel.deleteAllTaskCategories()
+//                tasksCategoryViewModel.deleteAllTaskItem()
+                alertDialog.showAlertDialog(
+                    getString(R.string.dialog_message_are_sure_you_want_task_categories)
+                )
             }
         }
         return super.onOptionsItemSelected(item)
@@ -122,8 +127,8 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun onClick(v: View?) {
-        val addTaskCategory = AddTaskCategory()
-        addTaskCategory.show(childFragmentManager, AddTaskCategory.ARG_TASK_CATEGORY_FRAGMENT)
+        val addTaskCategory = AddTaskCategoryBottomSheet()
+        addTaskCategory.show(childFragmentManager, AddTaskCategoryBottomSheet.ARG_TASK_CATEGORY_FRAGMENT)
     }
 
     override fun initView(sortedBy: String) {
@@ -155,13 +160,16 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         toTaskActivity(_id, categoryTitle, categoryColor)
     }
 
-    override fun itemClickRenameCategory(_id: Long, categoryTitle: String) {
+    override fun itemClickRenameCategory(_id: Long, categoryTitle: String, categoryColor: String) {
+        val renameTaskCategory = RenameTaskCategoryBottomSheet.toInstance(_id, categoryTitle, categoryColor)
+        renameTaskCategory.show(childFragmentManager, RenameTaskCategoryBottomSheet.ARG_RENAME_TASK_CATEGORY_BS)
     }
 
-    override fun itemClickDeleteCategory(_id: Long) {
-        tasksCategoryViewModel.deleteTaskCategory(_id)
-        tasksCategoryViewModel.deleteTaskItem(_id)
-        Toast.makeText(requireContext(), getString(R.string.action_deleted), Toast.LENGTH_SHORT).show()
+    override fun itemClickDeleteCategory(_id: Long, categoryTitle: String) {
+        val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$categoryTitle</b>")
+//        tasksCategoryViewModel.deleteTaskCategory(_id)
+//        tasksCategoryViewModel.deleteTaskItem(_id)
+        alertDialog.showAlertDialog(deleteTaskCategoryDescription)
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {
