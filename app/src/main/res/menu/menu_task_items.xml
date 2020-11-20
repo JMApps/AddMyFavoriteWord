@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_search_categories"
+        android:id="@+id/action_search_tasks"
         android:icon="@drawable/ic_search"
         android:orderInCategory="10"
-        android:title="@string/action_search_by_categories"
+        android:title="@string/action_search_by_tasks"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/action_order_categories"
+        android:id="@+id/action_order_tasks"
         android:icon="@drawable/ic_sort"
         android:orderInCategory="20"
-        android:title="@string/order_categories"
+        android:title="@string/order_tasks"
         app:showAsAction="ifRoom">
         <menu>
             <item

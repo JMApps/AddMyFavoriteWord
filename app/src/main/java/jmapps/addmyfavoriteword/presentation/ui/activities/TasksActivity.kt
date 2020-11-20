@@ -111,7 +111,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_task_items, menu)
         val searchManager = getSystemService(SEARCH_SERVICE) as SearchManager
-        searchView = menu.findItem(R.id.action_search_categories).actionView as SearchView
+        searchView = menu.findItem(R.id.action_search_tasks).actionView as SearchView
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(this)

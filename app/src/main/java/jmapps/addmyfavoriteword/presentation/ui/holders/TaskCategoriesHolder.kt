@@ -29,14 +29,14 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
         categoryColor: String) {
         itemView.setOnLongClickListener {
             val pop = PopupMenu(itemView.context, taskCategoryTitle)
-            pop.inflate(R.menu.menu_task_category_popup)
+            pop.inflate(R.menu.menu_change_item_popup)
             pop.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
-                    R.id.popup_task_category_rename -> {
+                    R.id.popup_change_item -> {
                         onLongClickTaskCategory.itemClickRenameCategory(_id, categoryTitle, categoryColor)
                     }
 
-                    R.id.popup_task_category_delete -> {
+                    R.id.popup_delete_item -> {
                         onLongClickTaskCategory.itemClickDeleteCategory(_id, categoryTitle)
                     }
                 }

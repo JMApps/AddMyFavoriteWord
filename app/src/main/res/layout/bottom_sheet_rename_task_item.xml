@@ -57,7 +57,7 @@
             android:layout_marginEnd="@dimen/main_margin"
             android:layout_marginBottom="32dp"
             android:background="@drawable/main_button_ripple"
-            android:text="@string/action_rename"
+            android:text="@string/action_rename_task"
             android:textColor="@color/color_main_one"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintBottom_toBottomOf="parent"

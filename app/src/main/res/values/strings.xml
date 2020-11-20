@@ -11,56 +11,55 @@
     <string name="description_add_dictionary_first_category">Добавьте первую категорию <b>словаря</b></string>
     <string name="description_add_first_note">Добавьте первую <b>заметку</b></string>
 
-    <string name="toast_category_added">Категория добавлена</string>
-    <string name="description_rename_category">Переименовать категорию</string>
-    <string name="toast_category_renamed">Категория переименована</string>
-    <string name="toast_task_added">Задача добавлена</string>
-    <string name="toast_word_added">Слово добавлено</string>
-    <string name="toast_note_added">Заметка добавлена</string>
-
     <string name="action_search_by_categories">Поиск категорий</string>
     <string name="description_add_category">Добавить категорию</string>
     <string name="hint_enter_category_name">Введите название категории</string>
-    <string name="hint_enter_new_category_name">Введите новое название категории</string>
     <string name="description_choose_color">Выберите цвет категории</string>
-    <string name="action_add">Добавить</string>
+    <string name="action_add_category">Добавить</string>
+    <string name="toast_category_added">Категория добавлена</string>
+    <string name="description_rename_category">Переименовать категорию</string>
+    <string name="hint_enter_new_category_name">Введите новое название категории</string>
+    <string name="action_rename_category">Переименовать</string>
+    <string name="toast_category_renamed">Категория переименована</string>
     <string name="action_delete_all_categories">Удалить все категории</string>
+    <string name="action_categories_deleted">Категории удалены</string>
+
+    <!--    Task items-->
+    <string name="action_search_by_tasks">Поиск задач</string>
+    <string name="description_add_first_task">Добавьте первую задачу в категорию:\n%1$s</string>
+    <string name="description_add_task">Добавить задачу</string>
+    <string name="hint_enter_task_name">Введите название задачи</string>
+    <string name="action_add_task">Добавить</string>
+    <string name="toast_task_added">Задача добавлена</string>
+    <string name="description_rename_task">Переименовать задачу</string>
+    <string name="hint_enter_new_task_name">Введите новое название задачи</string>
+    <string name="action_rename_task">Переименовать</string>
+    <string name="toast_task_renamed">Задача переименована</string>
+    <string name="action_delete_all_tasks">Удалить все задачи категории</string>
+    <string name="action_tasks_deleted">Задачи удалены</string>
+
+    <!--    Popup-->
+    <string name="popup_change">Изменить</string>
+    <string name="popup_delete">Удалить</string>
+    <string name="toast_deleted">Удалено</string>
 
     <!--    Order by-->
     <string name="order_categories">Сортировать категории:</string>
+    <string name="order_tasks">Сортировать задачи:</string>
     <string name="order_by_add_time">По дате добавления</string>
     <string name="order_by_change_time">По дате изменения</string>
     <string name="order_by_executions">По дате выполнения</string>
     <string name="order_by_color">По цвету</string>
     <string name="order_by_alphabet">По алфавиту</string>
 
-    <!--    Content categories-->
-    <string name="description_add_first_task">Добавьте первую задачу в категорию:\n%1$s</string>
-    <string name="description_add_first_dictionary">Добавьте первое слово в категорию:\n%1$s</string>
-
-    <string name="description_add_task">Добавьте задачу</string>
-    <string name="description_rename_task">Переименовать задачу</string>
-    <string name="description_renamed_task">Задача переименована</string>
-    <string name="hint_enter_task_name">Введите название задачи</string>
-    <string name="hint_enter_new_task_name">Введите новое название задачи</string>
-    <string name="action_rename">Переименовать</string>
-    <string name="popup_delete">Удалить</string>
-    <string name="action_delete_all_tasks">Удаличть все задачи категории</string>
-    <string name="action_tasks_deleted">Задачи удалены</string>
+    <!--    Alert dialogs-->
+    <string name="dialog_message_are_sure_you_want_task_categories">Вы уверены что хотите удалить все категории задач вместе с их содержимым?</string>
+    <string name="dialog_message_are_sure_you_want_category">Вы уверены что хотите удалить категорию %1$s вместе с её содержимым?</string>
+    <string name="dialog_message_are_sure_you_want_items_task">Вы уверены что хотите удалить все задачи из категории: %1$s?</string>
+    <string name="dialog_message_are_sure_you_want_item_task">Вы уверены что хотите удалить задачу?</string>
     <string name="toast_list_cleared">Список полностью очищен</string>
 
-    <!--    Alert dialogs-->
     <string name="action_warning">Подтверждение</string>
-    <string name="dialog_message_are_sure_you_want_task_categories">Вы уверены что хотите удалить все категории задач вместе с их содержимым?</string>
-    <string name="dialog_message_are_sure_you_want_dictionary_categories">Вы уверены что хотите удалить все категории словаря вместе с их содержимым?</string>
-    <string name="dialog_message_are_sure_you_want_category">Вы уверены что хотите удалить категорию %1$s вместе с её содержимым?</string>
-    <string name="dialog_message_are_sure_you_want_item_task">Вы уверены что хотите удалить задачу?</string>
-    <string name="dialog_message_are_sure_you_want_items_task">Вы уверены что хотите удалить все задачи из категории: %1$s?</string>
-    <string name="dialog_message_are_sure_you_want_item_word">Вы уверены что хотите удалить слово?</string>
-    <string name="dialog_message_are_sure_you_want_items_word">Вы уверены что хотите удалить все слова из категории: %1$s?</string>
-    <string name="dialog_message_are_sure_you_want_item_note">Вы уверены что хотите удалить заметку?</string>
-    <string name="dialog_message_are_sure_you_want_items_note">Вы уверены что хотите удалить все заметки?</string>
     <string name="alert_ok">Ок</string>
     <string name="alert_cancel">Отмена</string>
-    <string name="toast_deleted">Удалено</string>
 </resources>

@@ -68,7 +68,7 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
             if (binding.editRenameTaskCategory.text.toString() != taskTitle) {
                 val newTitle = binding.editRenameTaskCategory.text.toString()
                 taskItemViewModel.updateTaskTitle(newTitle, MainOther().currentTime, taskId!!)
-                Toast.makeText(requireContext(), getString(R.string.description_renamed_task), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.toast_task_renamed), Toast.LENGTH_SHORT).show()
                 dialog?.dismiss()
             } else {
                 dialog?.dismiss()

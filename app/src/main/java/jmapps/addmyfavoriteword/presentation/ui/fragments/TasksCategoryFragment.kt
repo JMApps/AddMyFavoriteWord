@@ -52,8 +52,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_tasks_category, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks_category, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)
@@ -123,18 +122,15 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onClick(v: View?) {
         val addTaskCategory = AddTaskCategoryBottomSheet()
-        addTaskCategory.show(
-            childFragmentManager,
-            AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS
-        )
+        addTaskCategory.show(childFragmentManager, AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS)
     }
 
     override fun initView(sortedBy: String) {
         tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer {
             it.let {
-                taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this, this)
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
+                taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this, this)
                 binding.rvTaskCategories.adapter = taskCategoriesAdapter
                 otherFragmentsPresenter.updateState(it)
             }
@@ -146,14 +142,12 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         binding.fabAddTaskCategory.startAnimation(show)
 
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility =
-            otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun updateState() {
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility =
-            otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String) {
@@ -169,6 +163,16 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$categoryTitle</b>")
         alertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, _id)
 
+    }
+
+    override fun onClickDeleteOnly(_id: Long) {
+        tasksCategoryViewModel.deleteTaskCategory(_id)
+        tasksCategoryViewModel.deleteTaskItem(_id)
+    }
+
+    override fun onClickDeleteAll() {
+        tasksCategoryViewModel.deleteAllTaskCategories()
+        tasksCategoryViewModel.deleteAllTaskItem()
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {
@@ -193,15 +197,5 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         toTaskActivity.putExtra(TasksActivity.keyTaskCategoryTitle, categoryTitle)
         toTaskActivity.putExtra(TasksActivity.keyTaskCategoryColor, categoryColor)
         startActivity(toTaskActivity)
-    }
-
-    override fun onClickDeleteOnly(_id: Long) {
-        tasksCategoryViewModel.deleteTaskCategory(_id)
-        tasksCategoryViewModel.deleteTaskItem(_id)
-    }
-
-    override fun onClickDeleteAll() {
-        tasksCategoryViewModel.deleteAllTaskCategories()
-        tasksCategoryViewModel.deleteAllTaskItem()
     }
 }
