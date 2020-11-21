@@ -28,22 +28,23 @@ abstract class TaskDatabaseHelper : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TaskDatabaseHelper::class.java,
-                    "TaskDatabase"
-                )
-                    .addCallback(WordsDatabaseCallback(scope))
+                    "TaskDatabase")
+                    .addCallback(DatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
 
-        private class WordsDatabaseCallback(private val scope: CoroutineScope) :
-            RoomDatabase.Callback() {
+        private class DatabaseCallback(private val scope: CoroutineScope) : RoomDatabase.Callback() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 INSTANCE.let { database ->
                     scope.launch(Dispatchers.IO) {
                         database?.taskCategoriesDao()?.let { taskCategories ->
                             populateCategories(taskCategories)
+                        }
+                        database?.taskItemsDao()?.let { taskItems ->
+                            populateItems(taskItems)
                         }
                     }
                 }

@@ -13,20 +13,17 @@ class TasksItemViewModel(application: Application) : AndroidViewModel(applicatio
     private val taskItemsRepository: TaskItemsRepository
 
     init {
-        val taskItemsDao =
-            TaskDatabaseHelper.getDatabase(application, viewModelScope).taskItemsDao()
+        val taskItemsDao = TaskDatabaseHelper.getDatabase(application, viewModelScope).taskItemsDao()
         taskItemsRepository = TaskItemsRepository(taskItemsDao)
     }
 
-    fun allTaskItems(displayBy: Long, order: String): LiveData<MutableList<TaskItems>> =
-        taskItemsRepository.allTaskItems(displayBy, order)
+    fun allTaskItems(displayBy: Long, order: String): LiveData<MutableList<TaskItems>> = taskItemsRepository.allTaskItems(displayBy, order)
 
     fun insertTaskItem(taskItems: TaskItems) = viewModelScope.launch {
         taskItemsRepository.insertTaskItem(taskItems)
     }
 
-    fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String) =
-        viewModelScope.launch {
+    fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String) = viewModelScope.launch {
             taskItemsRepository.updateTaskItem(newTitle, displayBy, newDateTime)
         }
 
