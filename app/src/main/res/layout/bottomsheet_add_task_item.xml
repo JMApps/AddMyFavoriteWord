@@ -48,14 +48,40 @@
             <requestFocus />
         </androidx.appcompat.widget.AppCompatEditText>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_add_task_item"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_task_priory_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginEnd="@dimen/main_margin"
-            android:layout_marginBottom="32dp"
+            android:text="@string/description_task_priory"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_add_task_item" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_task_priority"
+            style="@style/SpinnerTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:entries="@array/priority"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_task_priory_description" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_add_task_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin_big"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/main_margin_big"
             android:background="@drawable/main_button_ripple"
             android:text="@string/action_add_task"
             android:textColor="@color/color_main_one"
@@ -64,6 +90,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_add_task_item" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_task_priority" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

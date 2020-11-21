@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="priority">
+        <item>"Высокий"</item>
+        <item>"Обычный"</item>
+        <item>"Низкий"</item>
+    </string-array>
+</resources>
