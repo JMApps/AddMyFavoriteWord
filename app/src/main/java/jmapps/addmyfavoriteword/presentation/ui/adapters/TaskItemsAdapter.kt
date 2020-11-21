@@ -15,7 +15,7 @@ import jmapps.addmyfavoriteword.data.database.room.tasks.tasks.TaskItems
 import jmapps.addmyfavoriteword.presentation.ui.holders.TaskItemsHolder
 
 class TaskItemsAdapter(
-    context: Context,
+    private val context: Context,
     private var taskItemList: MutableList<TaskItems>,
     private val onTaskCheckboxState: OnTaskCheckboxState,
     private val onLongClickTaskItem: OnLongClickTaskItem) : RecyclerView.Adapter<TaskItemsHolder>(), Filterable {
@@ -47,8 +47,7 @@ class TaskItemsAdapter(
         holder.taskItemColor.setBackgroundColor(Color.parseColor(current.taskColor))
         holder.taskItemColor.text = (position + 1).toString()
 
-        holder.taskItemCheckBox.buttonTintList =
-            ColorStateList.valueOf(Color.parseColor(current.taskColor))
+        holder.taskItemCheckBox.buttonTintList = ColorStateList.valueOf(Color.parseColor(current.taskColor))
         holder.taskItemCheckBox.isChecked = current.currentTaskState
 
         if (current.currentTaskState) {
@@ -57,6 +56,12 @@ class TaskItemsAdapter(
         } else {
             holder.taskItemTitle.text = current.title
         }
+
+        val taskAddDateTime = context.getString(R.string.action_add_time_item_task, current.addDateTime)
+        val taskChangeDateTime = context.getString(R.string.action_change_time_item_task, current.changeDateTime)
+
+        holder.taskItemAddDateTime.text = taskAddDateTime
+        holder.taskItemChangeDateTime.text = taskChangeDateTime
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
         holder.findLongItemClick(onLongClickTaskItem, current._id, current.title)

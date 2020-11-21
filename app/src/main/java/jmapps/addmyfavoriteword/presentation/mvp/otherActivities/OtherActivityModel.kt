@@ -7,12 +7,6 @@ class OtherActivityModel : ContractInterface.Model {
     private var recycler = View.GONE
     private var description = View.VISIBLE
 
-    private val listOrderCategories = listOf(
-        "addDateTime",
-        "executionDateTime",
-        "alphabet"
-    )
-
     override fun recyclerCategory() = recycler
 
     override fun descriptionMain() = description
@@ -25,9 +19,5 @@ class OtherActivityModel : ContractInterface.Model {
             recycler = View.GONE
             description = View.VISIBLE
         }
-    }
-
-    override fun orderBy(orderIndex: Int) : String {
-        return listOrderCategories[orderIndex]
     }
 }

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_settings_task_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/color_main_two"
+            android:drawableStart="@drawable/ic_settings"
+            android:drawablePadding="@dimen/main_padding"
+            android:gravity="center_vertical"
+            android:padding="@dimen/main_padding"
+            android:text="@string/action_settings"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_text_size_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:text="@string/description_text_size"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_settings_task_description" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seek_bar_task_text_size"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:max="9"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_task_text_size_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_text_size_description" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_task_text_size_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:textColor="@color/color_main_one"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/seek_bar_task_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/seek_bar_task_text_size" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_date_show_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:text="@string/action_showing_dates"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seek_bar_task_text_size" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_add_task_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:text="@string/action_add_date_time"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_date_show_description" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_change_task_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:layout_marginBottom="32dp"
+            android:text="@string/action_change_date_time"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch_add_task_time" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

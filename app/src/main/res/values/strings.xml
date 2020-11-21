@@ -62,4 +62,13 @@
     <string name="action_warning">Подтверждение</string>
     <string name="alert_ok">Ок</string>
     <string name="alert_cancel">Отмена</string>
+
+    <!--    Settings-->
+    <string name="action_settings">Настройки</string>
+    <string name="description_text_size">Размер текста:</string>
+    <string name="action_showing_dates">Отображение дат:</string>
+    <string name="action_add_date_time">Дата добавления</string>
+    <string name="action_change_date_time">Дата изменения</string>
+    <string name="action_add_time_item_task">Добавлено: %1$s</string>
+    <string name="action_change_time_item_task">Изменено: %1$s</string>
 </resources>

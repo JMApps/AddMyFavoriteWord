@@ -6,8 +6,8 @@ class OtherActivityPresenter(_otherView: ContractInterface.OtherView) :
     private var otherView: ContractInterface.OtherView = _otherView
     private var model: ContractInterface.Model = OtherActivityModel()
 
-    override fun initView(dysplayBy: Long, orderIndex: Int) {
-        otherView.initView(dysplayBy, getOrderBy(orderIndex))
+    override fun initView(dysplayBy: Long, orderBy: String) {
+        otherView.initView(dysplayBy, orderBy)
     }
 
     override fun defaultState() {
@@ -22,6 +22,4 @@ class OtherActivityPresenter(_otherView: ContractInterface.OtherView) :
         model.updateState(list)
         otherView.updateState()
     }
-
-    override fun getOrderBy(orderIndex: Int) = model.orderBy(orderIndex)
 }
