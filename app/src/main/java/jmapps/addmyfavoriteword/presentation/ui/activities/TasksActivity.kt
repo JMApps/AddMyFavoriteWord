@@ -22,6 +22,7 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.OtherActivityPr
 import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameTaskItemBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsTaskItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.AlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
@@ -53,6 +54,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         const val keyTaskCategoryId = "key_task_category_id"
         const val keyTaskCategoryTitle = "key_task_category_title"
         const val keyTaskCategoryColor = "key_task_category_color"
+        private const val KEY_ORDER_TASK_INDEX = "key_order_task_index"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,13 +63,13 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_task)
         setSupportActionBar(binding.toolbar)
 
-        preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        sharedLocalPreferences = SharedLocalProperties(preferences)
-        defaultOrderIndex = sharedLocalPreferences.getIntValue("order_task_index", 0)!!
-
         taskCategoryId = intent.getLongExtra(keyTaskCategoryId, 0)
         taskCategoryTitle = intent.getStringExtra(keyTaskCategoryTitle)
         taskCategoryColor = intent.getStringExtra(keyTaskCategoryColor)
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        sharedLocalPreferences = SharedLocalProperties(preferences)
+        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_TASK_INDEX, 0)!!
 
         otherActivityPresenter = OtherActivityPresenter(this)
         otherActivityPresenter.defaultState()
@@ -84,28 +86,31 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         binding.taskItemContent.fabAddTaskItem.setOnClickListener(this)
     }
 
-    override fun initView(displayBy: Long, sortedBy: String) {
-        taskItemViewModel.allTaskItems(displayBy, sortedBy).observe(this, {
+    override fun initView(displayBy: Long, orderBy: String) {
+        taskItemViewModel.allTaskItems(displayBy, orderBy).observe(this, {
             it.let {
-                otherActivityPresenter.updateState(it)
-                taskItemsAdapter = TaskItemsAdapter(this, it, this, this)
                 val verticalLayout = LinearLayoutManager(this)
                 binding.taskItemContent.rvTaskItems.layoutManager = verticalLayout
+                taskItemsAdapter = TaskItemsAdapter(this, it, this, this)
                 binding.taskItemContent.rvTaskItems.adapter = taskItemsAdapter
+                otherActivityPresenter.updateState(it)
             }
         })
     }
 
     override fun defaultState() {
         binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
-        binding.taskItemContent.textMainTaskDescription.visibility = otherActivityPresenter.descriptionMain()
-        val categoryDescription = getString(R.string.description_add_first_task, "<b>$taskCategoryTitle</b>")
+        binding.taskItemContent.textMainTaskDescription.visibility =
+            otherActivityPresenter.descriptionMain()
+        val categoryDescription =
+            getString(R.string.description_add_first_task, "<b>$taskCategoryTitle</b>")
         binding.taskItemContent.textMainTaskDescription.text = Html.fromHtml(categoryDescription)
     }
 
     override fun updateState() {
         binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
-        binding.taskItemContent.textMainTaskDescription.visibility = otherActivityPresenter.descriptionMain()
+        binding.taskItemContent.textMainTaskDescription.visibility =
+            otherActivityPresenter.descriptionMain()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -122,6 +127,13 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         when (item.itemId) {
             android.R.id.home -> finish()
 
+            R.id.action_tools_task_items -> {
+                val toolsTaskItem = ToolsTaskItemBottomSheet()
+                toolsTaskItem.show(
+                    supportFragmentManager,
+                    ToolsTaskItemBottomSheet.ARG_TOOLS_TASK_ITEM_BS
+                )
+            }
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)
             }
@@ -132,9 +144,13 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex = 2)
             }
             R.id.action_delete_all_task_items -> {
-                val deleteAllTaskDescription = getString(R.string.dialog_message_are_sure_you_want_items_task, "<b>$taskCategoryTitle</b>")
+                val deleteAllTaskDescription = getString(
+                    R.string.dialog_message_are_sure_you_want_items_task,
+                    "<b>$taskCategoryTitle</b>"
+                )
                 alertDialog.showAlertDialog(deleteAllTaskDescription, 0, 0)
             }
+
         }
         return super.onOptionsItemSelected(item)
     }
@@ -159,16 +175,32 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     override fun itemClickRenameItem(_id: Long, taskTitle: String) {
         val renameTaskItem = RenameTaskItemBottomSheet.toInstance(_id, taskTitle)
-        renameTaskItem.show(supportFragmentManager, RenameTaskItemBottomSheet.ARG_RENAME_TASK_ITEM_BS)
+        renameTaskItem.show(
+            supportFragmentManager,
+            RenameTaskItemBottomSheet.ARG_RENAME_TASK_ITEM_BS
+        )
+    }
+
+    override fun onClickDeleteAll() {
+        taskItemViewModel.deleteAllTaskFromCategory(taskCategoryId!!)
+    }
+
+    override fun onClickDeleteOnly(_id: Long) {
+        taskItemViewModel.deleteTaskItem(_id)
     }
 
     override fun itemClickDeleteItem(_id: Long) {
         alertDialog.showAlertDialog(
-            getString(R.string.dialog_message_are_sure_you_want_item_task), 1, _id)
+            getString(R.string.dialog_message_are_sure_you_want_item_task), 1, _id
+        )
     }
 
     override fun onTaskCheckboxState(_id: Long, state: Boolean) {
-        taskItemViewModel.updateState(state, _id, MainOther().currentTime)
+        if (state) {
+            taskItemViewModel.updateState(state, _id, MainOther().currentTime)
+        } else {
+            taskItemViewModel.updateState(state, _id, "null")
+        }
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {
@@ -183,15 +215,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     private fun changeOrderList(defaultOrderIndex: Int) {
+        sharedLocalPreferences.saveIntValue(KEY_ORDER_TASK_INDEX, defaultOrderIndex)
         otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex)
-        sharedLocalPreferences.saveIntValue("order_task_index", defaultOrderIndex)
-    }
-
-    override fun onClickDeleteAll() {
-        taskItemViewModel.deleteAllTaskFromCategory(taskCategoryId!!)
-    }
-
-    override fun onClickDeleteOnly(_id: Long) {
-        taskItemViewModel.deleteTaskItem(_id)
     }
 }

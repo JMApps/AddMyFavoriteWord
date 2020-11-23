@@ -46,6 +46,10 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     private var defaultOrderIndex = 0
     private lateinit var alertDialog: AlertUtil
 
+    companion object {
+        private const val KEY_ORDER_TASK_CATEGORY_INDEX = "key_order_task_category_index"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         tasksCategoryViewModel = ViewModelProvider(this).get(TasksCategoryViewModel::class.java)
@@ -62,7 +66,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
         alertDialog = AlertUtil(requireContext(), this)
 
-        defaultOrderIndex = sharedLocalPreferences.getIntValue("order_category_task_index", 0)!!
+        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_TASK_CATEGORY_INDEX, 0)!!
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.initView(defaultOrderIndex)
@@ -188,7 +192,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     private fun changeOrderList(defaultOrderIndex: Int) {
         otherFragmentsPresenter.initView(defaultOrderIndex)
-        sharedLocalPreferences.saveIntValue("order_category_task_index", defaultOrderIndex)
+        sharedLocalPreferences.saveIntValue(KEY_ORDER_TASK_CATEGORY_INDEX, defaultOrderIndex)
     }
 
     private fun toTaskActivity(_id: Long, categoryTitle: String, categoryColor: String) {

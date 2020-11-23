@@ -17,7 +17,7 @@ class TasksItemViewModel(application: Application) : AndroidViewModel(applicatio
         taskItemsRepository = TaskItemsRepository(taskItemsDao)
     }
 
-    fun allTaskItems(displayBy: Long, order: String): LiveData<MutableList<TaskItems>> = taskItemsRepository.allTaskItems(displayBy, order)
+    fun allTaskItems(displayBy: Long, orderBy: String): LiveData<MutableList<TaskItems>> = taskItemsRepository.allTaskItems(displayBy, orderBy)
 
     fun insertTaskItem(taskItems: TaskItems) = viewModelScope.launch {
         taskItemsRepository.insertTaskItem(taskItems)
