@@ -51,9 +51,9 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     private lateinit var alertDialog: AlertUtil
 
     companion object {
-        const val keyTaskCategoryId = "key_task_category_id"
-        const val keyTaskCategoryTitle = "key_task_category_title"
-        const val keyTaskCategoryColor = "key_task_category_color"
+        const val KEY_TASK_CATEGORY_ID = "key_task_category_id"
+        const val KEY_TASK_CATEGORY_TITLE = "key_task_category_title"
+        const val KEY_TASK_CATEGORY_COLOR = "key_task_category_color"
         private const val KEY_ORDER_TASK_INDEX = "key_order_task_index"
     }
 
@@ -63,9 +63,9 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_task)
         setSupportActionBar(binding.toolbar)
 
-        taskCategoryId = intent.getLongExtra(keyTaskCategoryId, 0)
-        taskCategoryTitle = intent.getStringExtra(keyTaskCategoryTitle)
-        taskCategoryColor = intent.getStringExtra(keyTaskCategoryColor)
+        taskCategoryId = intent.getLongExtra(KEY_TASK_CATEGORY_ID, 0)
+        taskCategoryTitle = intent.getStringExtra(KEY_TASK_CATEGORY_TITLE)
+        taskCategoryColor = intent.getStringExtra(KEY_TASK_CATEGORY_COLOR)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         sharedLocalPreferences = SharedLocalProperties(preferences)
@@ -129,10 +129,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
             R.id.action_tools_task_items -> {
                 val toolsTaskItem = ToolsTaskItemBottomSheet()
-                toolsTaskItem.show(
-                    supportFragmentManager,
-                    ToolsTaskItemBottomSheet.ARG_TOOLS_TASK_ITEM_BS
-                )
+                toolsTaskItem.show(supportFragmentManager, ToolsTaskItemBottomSheet.ARG_TOOLS_TASK_ITEM_BS)
             }
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)
@@ -197,9 +194,9 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     override fun onTaskCheckboxState(_id: Long, state: Boolean) {
         if (state) {
-            taskItemViewModel.updateState(state, _id, MainOther().currentTime)
+            taskItemViewModel.updateState(state, MainOther().currentTime, _id)
         } else {
-            taskItemViewModel.updateState(state, _id, "null")
+            taskItemViewModel.updateState(state, "null",  _id)
         }
     }
 
@@ -217,5 +214,6 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     private fun changeOrderList(defaultOrderIndex: Int) {
         sharedLocalPreferences.saveIntValue(KEY_ORDER_TASK_INDEX, defaultOrderIndex)
         otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex)
+        recreate()
     }
 }

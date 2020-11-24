@@ -197,9 +197,9 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     private fun toTaskActivity(_id: Long, categoryTitle: String, categoryColor: String) {
         val toTaskActivity = Intent(requireContext(), TasksActivity::class.java)
-        toTaskActivity.putExtra(TasksActivity.keyTaskCategoryId, _id)
-        toTaskActivity.putExtra(TasksActivity.keyTaskCategoryTitle, categoryTitle)
-        toTaskActivity.putExtra(TasksActivity.keyTaskCategoryColor, categoryColor)
+        toTaskActivity.putExtra(TasksActivity.KEY_TASK_CATEGORY_ID, _id)
+        toTaskActivity.putExtra(TasksActivity.KEY_TASK_CATEGORY_TITLE, categoryTitle)
+        toTaskActivity.putExtra(TasksActivity.KEY_TASK_CATEGORY_COLOR, categoryColor)
         startActivity(toTaskActivity)
     }
 }
