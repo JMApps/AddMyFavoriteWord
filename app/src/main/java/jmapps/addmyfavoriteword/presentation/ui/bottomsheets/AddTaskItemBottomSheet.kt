@@ -30,11 +30,11 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
         private const val ARG_ADD_TASK_CATEGORY_COLOR = "arg_add_task_category_color"
 
         @JvmStatic
-        fun toInstance(displayBy: Long, color: String): AddTaskItemBottomSheet {
+        fun toInstance(displayBy: Long, categoryColor: String): AddTaskItemBottomSheet {
             return AddTaskItemBottomSheet().apply {
                 arguments = Bundle().apply {
                     putLong(ARG_ADD_TASK_CATEGORY_ID, displayBy)
-                    putString(ARG_ADD_TASK_CATEGORY_COLOR, color)
+                    putString(ARG_ADD_TASK_CATEGORY_COLOR, categoryColor)
                 }
             }
         }

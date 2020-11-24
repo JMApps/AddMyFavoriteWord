@@ -34,8 +34,8 @@
     <string name="toast_task_added">Задача добавлена</string>
     <string name="description_rename_task">Переименовать задачу</string>
     <string name="hint_enter_new_task_name">Введите новое название задачи</string>
-    <string name="action_rename_task">Переименовать</string>
-    <string name="toast_task_renamed">Задача переименована</string>
+    <string name="action_change_task">Изменить</string>
+    <string name="toast_task_changed">Задача изменена</string>
     <string name="action_delete_all_tasks">Удалить все задачи категории</string>
     <string name="action_tasks_deleted">Задачи удалены</string>
 
@@ -52,6 +52,7 @@
     <string name="order_by_executions">По дате выполнения</string>
     <string name="order_by_color">По цвету</string>
     <string name="order_by_alphabet">По алфавиту</string>
+    <string name="order_by_priority">По приоритету</string>
 
     <!--    Alert dialogs-->
     <string name="dialog_message_are_sure_you_want_task_categories">Вы уверены что хотите удалить все категории задач вместе с их содержимым?</string>
@@ -61,7 +62,7 @@
     <string name="toast_list_cleared">Список полностью очищен</string>
 
     <string name="action_warning">Подтверждение</string>
-    <string name="alert_ok">Ок</string>
+    <string name="alert_ok">Да</string>
     <string name="alert_cancel">Отмена</string>
 
     <!--    Settings-->
