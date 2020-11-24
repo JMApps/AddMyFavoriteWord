@@ -32,7 +32,7 @@ class TaskItemsAdapter(
     }
 
     interface OnLongClickTaskItem {
-        fun itemClickRenameItem(_id: Long, taskTitle: String)
+        fun itemClickRenameItem(_id: Long, taskTitle: String, taskPriority: Long)
         fun itemClickDeleteItem(_id: Long)
     }
 
@@ -64,7 +64,7 @@ class TaskItemsAdapter(
         holder.taskItemChangeDateTime.text = taskChangeDateTime
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
-        holder.findLongItemClick(onLongClickTaskItem, current._id, current.title)
+        holder.findLongItemClick(onLongClickTaskItem, current._id, current.title, current.priority)
     }
 
     override fun getItemCount() = taskItemList.size

@@ -12,5 +12,6 @@ data class TaskItems(
     val addDateTime: String,
     val changeDateTime: String,
     val executionDateTime: String,
+    val priority: Long,
     val currentTaskState: Boolean,
 )

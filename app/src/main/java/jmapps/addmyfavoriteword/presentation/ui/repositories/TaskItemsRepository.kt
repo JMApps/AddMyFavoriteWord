@@ -17,8 +17,8 @@ class TaskItemsRepository(private val taskItemsDao: TaskItemsDao) {
         taskItemsDao.updateTaskItem(newTitle, displayBy, newDateTime)
     }
 
-    suspend fun updateTaskTitle(newTitle: String, newDateTime: String, taskId: Long) {
-        taskItemsDao.updateTaskTitle(newTitle, newDateTime, taskId)
+    suspend fun updateTaskTitle(newTitle: String, newDateTime: String, newPriority: Long, taskId: Long) {
+        taskItemsDao.updateTaskTitle(newTitle, newDateTime, newPriority, taskId)
     }
 
     suspend fun updateState(newState: Boolean, id: Long, newDateTime: String) {

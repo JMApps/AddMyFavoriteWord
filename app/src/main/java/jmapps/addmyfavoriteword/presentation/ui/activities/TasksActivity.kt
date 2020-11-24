@@ -143,6 +143,9 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
             R.id.item_order_by_alphabet -> {
                 changeOrderList(defaultOrderIndex = 2)
             }
+            R.id.item_order_by_priority -> {
+                changeOrderList(defaultOrderIndex = 3)
+            }
             R.id.action_delete_all_task_items -> {
                 val deleteAllTaskDescription = getString(
                     R.string.dialog_message_are_sure_you_want_items_task,
@@ -173,12 +176,9 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         addTaskItem.show(supportFragmentManager, AddTaskItemBottomSheet.ARG_ADD_TASK_ITEM_BS)
     }
 
-    override fun itemClickRenameItem(_id: Long, taskTitle: String) {
-        val renameTaskItem = RenameTaskItemBottomSheet.toInstance(_id, taskTitle)
-        renameTaskItem.show(
-            supportFragmentManager,
-            RenameTaskItemBottomSheet.ARG_RENAME_TASK_ITEM_BS
-        )
+    override fun itemClickRenameItem(_id: Long, taskTitle: String, taskPriority: Long) {
+        val renameTaskItem = RenameTaskItemBottomSheet.toInstance(_id, taskTitle, taskPriority)
+        renameTaskItem.show(supportFragmentManager, RenameTaskItemBottomSheet.ARG_RENAME_TASK_ITEM_BS)
     }
 
     override fun onClickDeleteAll() {

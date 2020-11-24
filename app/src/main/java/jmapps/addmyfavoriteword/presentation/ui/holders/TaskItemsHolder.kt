@@ -38,14 +38,14 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
         }
     }
 
-    fun findLongItemClick(onItemLongClickTaskItem: TaskItemsAdapter.OnLongClickTaskItem, _id: Long, taskTitle: String) {
+    fun findLongItemClick(onItemLongClickTaskItem: TaskItemsAdapter.OnLongClickTaskItem, _id: Long, taskTitle: String, taskPriority: Long) {
         itemView.setOnLongClickListener {
             val pop = PopupMenu(itemView.context, taskItemTitle)
             pop.inflate(R.menu.menu_change_item_popup)
             pop.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.popup_change_item -> {
-                        onItemLongClickTaskItem.itemClickRenameItem(_id, taskTitle)
+                        onItemLongClickTaskItem.itemClickRenameItem(_id, taskTitle, taskPriority)
                     }
 
                     R.id.popup_delete_item -> {

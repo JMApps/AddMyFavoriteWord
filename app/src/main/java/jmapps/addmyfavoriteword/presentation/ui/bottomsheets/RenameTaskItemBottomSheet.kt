@@ -22,20 +22,24 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
 
     private var taskId: Long? = null
     private var taskTitle: String? = null
+    private var taskPriority: Long? = null
 
     companion object {
         const val ARG_RENAME_TASK_ITEM_BS = "arg_rename_task_item_bs"
         private const val ARG_RENAME_TASK_ITEM_ID = "arg_rename_task_item_id"
         private const val ARG_RENAME_TASK_ITEM_TITLE = "arg_rename_task_item_title"
+        private const val ARG_RENAME_TASK_ITEM_PRIORITY = "arg_rename_task_item_priority"
 
         @JvmStatic
         fun toInstance(
             taskId: Long,
-            taskTitle: String): RenameTaskItemBottomSheet {
+            taskTitle: String,
+            taskPriority: Long): RenameTaskItemBottomSheet {
             return RenameTaskItemBottomSheet().apply {
                 arguments = Bundle().apply {
                     putLong(ARG_RENAME_TASK_ITEM_ID, taskId)
                     putString(ARG_RENAME_TASK_ITEM_TITLE, taskTitle)
+                    putLong(ARG_RENAME_TASK_ITEM_PRIORITY, taskPriority)
                 }
             }
         }
@@ -47,14 +51,17 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
 
         taskId = arguments?.getLong(ARG_RENAME_TASK_ITEM_ID)
         taskTitle = arguments?.getString(ARG_RENAME_TASK_ITEM_TITLE)
+        taskPriority = arguments?.getLong(ARG_RENAME_TASK_ITEM_PRIORITY)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottom_sheet_rename_task_item, container, false)
 
-        binding.editRenameTaskCategory.setText(taskTitle)
-        binding.editRenameTaskCategory.setSelection(taskTitle!!.length)
+        binding.editRenameTaskItem.setText(taskTitle)
+        binding.editRenameTaskItem.setSelection(taskTitle!!.length)
         binding.buttonRenameTaskItem.setOnClickListener(this)
+
+        binding.spinnerTaskNewPriority.setSelection(taskPriority!!.toInt())
 
         return binding.root
     }
@@ -64,17 +71,23 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
     }
 
     private fun checkName() {
-        if (binding.editRenameTaskCategory.text.toString().isNotEmpty()) {
-            if (binding.editRenameTaskCategory.text.toString() != taskTitle) {
-                val newTitle = binding.editRenameTaskCategory.text.toString()
-                taskItemViewModel.updateTaskTitle(newTitle, MainOther().currentTime, taskId!!)
-                Toast.makeText(requireContext(), getString(R.string.toast_task_renamed), Toast.LENGTH_SHORT).show()
+        if (binding.editRenameTaskItem.text.toString().isNotEmpty()) {
+            if (binding.editRenameTaskItem.text.toString() != taskTitle ||
+                binding.spinnerTaskNewPriority.selectedItemId != taskPriority) {
+                val newTitle = binding.editRenameTaskItem.text.toString()
+                taskItemViewModel.updateTaskTitle(
+                    newTitle,
+                    MainOther().currentTime,
+                    binding.spinnerTaskNewPriority.selectedItemId,
+                    taskId!!
+                )
+                Toast.makeText(requireContext(), getString(R.string.toast_task_changed), Toast.LENGTH_SHORT).show()
                 dialog?.dismiss()
             } else {
                 dialog?.dismiss()
             }
         } else {
-            binding.editRenameTaskCategory.error = getString(R.string.hint_enter_new_task_name)
+            binding.editRenameTaskItem.error = getString(R.string.hint_enter_new_task_name)
         }
     }
 }

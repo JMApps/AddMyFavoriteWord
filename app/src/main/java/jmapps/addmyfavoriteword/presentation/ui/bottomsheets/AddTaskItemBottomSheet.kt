@@ -22,7 +22,7 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
     private lateinit var binding: BottomsheetAddTaskItemBinding
 
     private var displayBy: Long = 0
-    private var categoryColor: String = "#EF5350"
+    private var categoryColor: String? = null
 
     companion object {
         const val ARG_ADD_TASK_ITEM_BS = "arg_add_task_item_bs"
@@ -75,10 +75,11 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
             0,
             binding.editAddTaskItem.text.toString(),
             displayBy,
-            categoryColor,
+            categoryColor!!,
             MainOther().currentTime,
             MainOther().currentTime,
-            MainOther().currentTime,
+            "null",
+            binding.spinnerTaskPriority.selectedItemId,
             false,
         )
         taskItemViewModel.insertTaskItem(addTaskItems)

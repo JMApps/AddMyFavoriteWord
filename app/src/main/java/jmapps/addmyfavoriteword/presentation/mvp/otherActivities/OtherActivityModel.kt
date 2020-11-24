@@ -10,7 +10,8 @@ class OtherActivityModel : ContractInterface.Model {
     private val listOrderCategories = listOf(
         "addDateTime",
         "executionDateTime",
-        "alphabet"
+        "alphabet",
+        "priority"
     )
 
     override fun recyclerCategory() = recycler
@@ -27,7 +28,7 @@ class OtherActivityModel : ContractInterface.Model {
         }
     }
 
-    override fun orderBy(orderIndex: Int) : String {
+    override fun orderBy(orderIndex: Int): String {
         return listOrderCategories[orderIndex]
     }
 }

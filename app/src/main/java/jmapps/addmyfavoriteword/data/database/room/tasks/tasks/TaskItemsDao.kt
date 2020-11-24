@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface TaskItemsDao {
-    @Query("SELECT * FROM Table_of_task_items WHERE displayBy = :displayBy ORDER BY CASE :order WHEN 'addDateTime' THEN addDateTime WHEN 'executionDateTime' THEN executionDateTime WHEN 'alphabet' THEN title END ASC")
+    @Query("SELECT * FROM Table_of_task_items WHERE displayBy = :displayBy ORDER BY CASE :order WHEN 'addDateTime' THEN addDateTime WHEN 'executionDateTime' THEN executionDateTime WHEN 'alphabet' THEN title WHEN 'priority' THEN priority END ASC")
     fun getTaskItemsList(displayBy: Long, order: String): LiveData<MutableList<TaskItems>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -17,8 +17,8 @@ interface TaskItemsDao {
     @Query("UPDATE Table_of_task_items SET title = :newTitle, displayBy = :displayBy, changeDateTime = :newDateTime")
     suspend fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String)
 
-    @Query("UPDATE Table_of_task_items SET title = :newTitle, changeDateTime = :newDateTime WHERE _id = :taskId")
-    suspend fun updateTaskTitle(newTitle: String, newDateTime: String, taskId: Long)
+    @Query("UPDATE Table_of_task_items SET title = :newTitle, changeDateTime = :newDateTime, priority = :newPriority WHERE _id = :taskId")
+    suspend fun updateTaskTitle(newTitle: String, newDateTime: String, newPriority: Long, taskId: Long)
 
     @Query("UPDATE Table_of_task_items SET currentTaskState = :newState, executionDateTime = :newDateTime WHERE _id = :id")
     suspend fun updateState(newState: Boolean, id: Long, newDateTime: String)
