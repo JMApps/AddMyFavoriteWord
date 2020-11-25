@@ -73,8 +73,10 @@
     <string name="action_showing_dates">Отображать:</string>
     <string name="action_add_date_time">Дата добавления</string>
     <string name="action_change_date_time">Дата изменения</string>
+    <string name="action_execution_date_time">Дата выполнения</string>
     <string name="action_priority">Приоритет</string>
     <string name="action_add_time_item_task">Добавлено: %1$s</string>
     <string name="action_change_time_item_task">Изменено: %1$s</string>
+    <string name="action_execution_time_item_task">Выполнено: %1$s</string>
     <string name="action_priority_item_task">Приоритет: %1$s</string>
 </resources>

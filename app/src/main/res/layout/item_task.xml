@@ -27,11 +27,17 @@
             android:textColor="@color/white"
             android:textSize="@dimen/main_app_text_size" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_task_item_priority"
+            android:layout_width="@dimen/main_padding_mini"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/small_text_size" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:layout_margin="@dimen/main_margin_mini"
             android:gravity="start|center_vertical"
             android:orientation="vertical">
 
@@ -66,19 +72,25 @@
                     android:id="@+id/text_view_task_item_add_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/main_margin_mini" />
+                    android:layout_marginEnd="@dimen/main_margin_mini"
+                    android:gravity="center"
+                    android:textSize="@dimen/small_text_size" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/text_view_task_item_change_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/main_margin_mini" />
+                    android:layout_marginEnd="@dimen/main_margin_mini"
+                    android:gravity="center"
+                    android:textSize="@dimen/small_text_size" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_view_task_item_priority"
+                    android:id="@+id/text_view_task_item_execution_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/main_margin_mini" />
+                    android:layout_marginEnd="@dimen/main_margin_mini"
+                    android:gravity="center"
+                    android:textSize="@dimen/small_text_size" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>

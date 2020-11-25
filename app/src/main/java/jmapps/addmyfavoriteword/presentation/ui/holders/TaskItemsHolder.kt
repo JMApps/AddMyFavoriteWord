@@ -23,6 +23,7 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
     val taskItemTitle: TextView = taskView.findViewById(R.id.text_title_task)
     val taskItemAddDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_add_date_time)
     val taskItemChangeDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_change_date_time)
+    val taskItemExecutionDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_execution_date_time)
     val taskItemPriority: TextView = taskView.findViewById(R.id.text_view_task_item_priority)
 
     init {
@@ -73,7 +74,8 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
     private fun setShowAddChangeDateTime() {
         val addShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_ADD_DATE_TIME, false)
         val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_CHANGE_DATE_TIME, false)
-        val changeShowingPriority = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_PRIORITY, false)
+        val executionShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_EXECUTION_DATE_TIME, false)
+        val showingPriority = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_PRIORITY, false)
 
         if (!addShowingDateTime!!) {
             taskItemAddDateTime.visibility = View.GONE
@@ -87,7 +89,13 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
             taskItemChangeDateTime.visibility = View.VISIBLE
         }
 
-        if (!changeShowingPriority!!) {
+        if (!executionShowingDateTime!!) {
+            taskItemExecutionDateTime.visibility = View.GONE
+        } else {
+            taskItemExecutionDateTime.visibility = View.VISIBLE
+        }
+
+        if (!showingPriority!!) {
             taskItemPriority.visibility = View.GONE
         } else {
             taskItemPriority.visibility = View.VISIBLE

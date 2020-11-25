@@ -21,6 +21,7 @@
     <dimen name="main_view_description_text_size">20sp</dimen>
 
     <!--    TextSize's-->
+    <dimen name="small_text_size">10sp</dimen>
     <dimen name="main_app_text_size">18sp</dimen>
 
     <!--    Min heights's-->

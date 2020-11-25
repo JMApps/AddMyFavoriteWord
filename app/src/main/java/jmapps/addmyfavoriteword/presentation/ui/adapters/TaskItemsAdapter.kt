@@ -57,14 +57,21 @@ class TaskItemsAdapter(
             holder.taskItemTitle.text = current.title
         }
 
-        val taskAddDateTime = context.getString(R.string.action_add_time_item_task, current.addDateTime)
-        val taskChangeDateTime = context.getString(R.string.action_change_time_item_task, current.changeDateTime)
-        val priorityName = arrayListOf("Высокий", "Средний", "Низкий")
-        val taskPriority = context.getString(R.string.action_priority_item_task, priorityName[current.priority.toInt()])
+        val taskAddDateTime = context.getString(R.string.action_add_time_item_task, "\n${current.addDateTime}")
+        val taskChangeDateTime = context.getString(R.string.action_change_time_item_task, "\n${current.changeDateTime}")
 
         holder.taskItemAddDateTime.text = taskAddDateTime
         holder.taskItemChangeDateTime.text = taskChangeDateTime
-        holder.taskItemPriority.text = taskPriority
+
+        if (current.executionDateTime != "null") {
+            val taskExecutionDateTime = context.getString(R.string.action_execution_time_item_task, "\n${current.executionDateTime}")
+            holder.taskItemExecutionDateTime.text = taskExecutionDateTime
+        } else {
+            holder.taskItemExecutionDateTime.text = "Не выполнено"
+        }
+
+        val priorityName = arrayListOf("#FFCDD2", "#C8E6C9", "#FFECB3")
+        holder.taskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
         holder.findLongItemClick(onLongClickTaskItem, current._id, current.title, current.priority)
