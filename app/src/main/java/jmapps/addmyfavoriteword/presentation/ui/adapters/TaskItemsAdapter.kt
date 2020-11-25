@@ -59,9 +59,12 @@ class TaskItemsAdapter(
 
         val taskAddDateTime = context.getString(R.string.action_add_time_item_task, current.addDateTime)
         val taskChangeDateTime = context.getString(R.string.action_change_time_item_task, current.changeDateTime)
+        val priorityName = arrayListOf("Высокий", "Средний", "Низкий")
+        val taskPriority = context.getString(R.string.action_priority_item_task, priorityName[current.priority.toInt()])
 
         holder.taskItemAddDateTime.text = taskAddDateTime
         holder.taskItemChangeDateTime.text = taskChangeDateTime
+        holder.taskItemPriority.text = taskPriority
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
         holder.findLongItemClick(onLongClickTaskItem, current._id, current.title, current.priority)
@@ -80,8 +83,7 @@ class TaskItemsAdapter(
                     val filteredList = ArrayList<TaskItems>()
                     for (row in firstTaskItemList!!) {
                         if (row._id.toString().contains(charSequence) ||
-                            row.title.toLowerCase().contains(charString.toLowerCase())
-                        ) {
+                            row.title.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row)
                         }
                     }

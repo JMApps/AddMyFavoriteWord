@@ -32,6 +32,7 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         const val KEY_TASK_ITEM_TEXT_SIZE = "key_task_item_text_size"
         const val KEY_TASK_ITEM_ADD_DATE_TIME = "key_task_item_add_date_time"
         const val KEY_TASK_ITEM_CHANGE_DATE_TIME = "key_task_item_change_date_time"
+        const val KEY_TASK_ITEM_PRIORITY = "key_task_item_priority"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,17 +45,20 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         val lastTaskTextSize = sharedLocalPreferences.getIntValue(KEY_TASK_ITEM_TEXT_SIZE, 18)
         val lastTaskAddDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_ADD_DATE_TIME, false)
         val lastTaskChangeDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_CHANGE_DATE_TIME, false)
+        val lastTaskChangePrioritySwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_PRIORITY, false)
 
         binding.apply {
             seekBarTaskTextSize.progress = lastTaskTextSizeProgress!!
             textViewTaskTextSizeCount.text = lastTaskTextSize!!.toString()
             switchAddTaskTime.isChecked = lastTaskAddDateTimeSwitch!!
             switchChangeTaskTime.isChecked = lastTaskChangeDateTimeSwitch!!
+            switchPriority.isChecked = lastTaskChangePrioritySwitch!!
         }
 
         binding.seekBarTaskTextSize.setOnSeekBarChangeListener(this)
         binding.switchAddTaskTime.setOnCheckedChangeListener(this)
         binding.switchChangeTaskTime.setOnCheckedChangeListener(this)
+        binding.switchPriority.setOnCheckedChangeListener(this)
 
         return binding.root
     }
@@ -80,6 +84,9 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
             }
             R.id.switch_change_task_time -> {
                 sharedLocalPreferences.saveBooleanValue(KEY_TASK_ITEM_CHANGE_DATE_TIME, isChecked)
+            }
+            R.id.switch_priority -> {
+                sharedLocalPreferences.saveBooleanValue(KEY_TASK_ITEM_PRIORITY, isChecked)
             }
         }
     }

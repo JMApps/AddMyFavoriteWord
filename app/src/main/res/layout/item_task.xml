@@ -66,14 +66,19 @@
                     android:id="@+id/text_view_task_item_add_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/main_margin_mini"
-                    android:text="@string/action_add_time_item_task" />
+                    android:layout_marginEnd="@dimen/main_margin_mini" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/text_view_task_item_change_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/action_change_time_item_task" />
+                    android:layout_marginEnd="@dimen/main_margin_mini" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_task_item_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/main_margin_mini" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
