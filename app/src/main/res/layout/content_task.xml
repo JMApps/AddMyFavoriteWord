@@ -18,8 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
-            android:scrollbars="vertical"
-            android:visibility="gone" />
+            android:scrollbars="vertical" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_main_task_description"
@@ -45,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/main_margin"
+            android:layout_margin="@dimen/main_margin_big"
             android:contentDescription="@string/action_add_task"
             app:srcCompat="@drawable/ic_task_solid" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

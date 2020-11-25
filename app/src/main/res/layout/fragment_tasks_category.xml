@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
-            android:scrollbars="vertical"
-            android:visibility="gone" />
+            android:scrollbars="vertical" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_main_task_container_description"

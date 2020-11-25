@@ -28,7 +28,6 @@ import jmapps.addmyfavoriteword.presentation.ui.other.AlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
-
 class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     SearchView.OnQueryTextListener, TaskItemsAdapter.OnTaskCheckboxState, View.OnClickListener,
     TaskItemsAdapter.OnLongClickTaskItem, AlertUtil.OnClickDelete {
@@ -58,8 +57,8 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         taskItemViewModel = ViewModelProvider(this).get(TasksItemViewModel::class.java)
+        super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_task)
         setSupportActionBar(binding.toolbar)
 
