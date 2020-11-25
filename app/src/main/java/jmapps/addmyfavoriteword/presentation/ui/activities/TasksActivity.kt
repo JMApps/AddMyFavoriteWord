@@ -71,7 +71,6 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_TASK_INDEX, 0)!!
 
         otherActivityPresenter = OtherActivityPresenter(this)
-        otherActivityPresenter.defaultState()
         otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex!!)
 
         supportActionBar?.let {
@@ -93,6 +92,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                 taskItemsAdapter = TaskItemsAdapter(this, it, this, this)
                 binding.taskItemContent.rvTaskItems.adapter = taskItemsAdapter
                 otherActivityPresenter.updateState(it)
+                otherActivityPresenter.defaultState()
             }
         })
     }
@@ -144,7 +144,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                     R.string.dialog_message_are_sure_you_want_items_task,
                     "<b>$taskCategoryTitle</b>"
                 )
-                alertDialog.showAlertDialog(deleteAllTaskDescription, 0, 0)
+                alertDialog.showAlertDialog(deleteAllTaskDescription, 0, 0, getString(R.string.action_tasks_deleted))
             }
         }
         return super.onOptionsItemSelected(item)
@@ -183,7 +183,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     override fun itemClickDeleteItem(_id: Long) {
         alertDialog.showAlertDialog(
-            getString(R.string.dialog_message_are_sure_you_want_item_task), 1, _id
+            getString(R.string.dialog_message_are_sure_you_want_item_task), 1, _id, getString(R.string.action_task_deleted)
         )
     }
 

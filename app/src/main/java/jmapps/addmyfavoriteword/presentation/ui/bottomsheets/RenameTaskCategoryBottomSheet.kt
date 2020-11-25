@@ -101,7 +101,7 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
                     binding.editRenameTaskCategory.text.toString() != categoryTitle ||
                         categoryColor != newCategoryColor -> {
                 renameTaskCategory()
-                Toast.makeText(requireContext(), getString(R.string.toast_category_renamed), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.toast_category_changed), Toast.LENGTH_SHORT).show()
             }
             else -> {
                 dialog?.dismiss()

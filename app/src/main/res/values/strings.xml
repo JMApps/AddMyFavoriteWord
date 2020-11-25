@@ -17,11 +17,12 @@
     <string name="description_choose_color">Выберите цвет категории</string>
     <string name="action_add_category">Добавить</string>
     <string name="toast_category_added">Категория добавлена</string>
-    <string name="description_rename_category">Переименовать категорию</string>
+    <string name="description_change_category">Изменить категорию</string>
     <string name="hint_enter_new_category_name">Введите новое название категории</string>
-    <string name="action_rename_category">Переименовать</string>
-    <string name="toast_category_renamed">Категория переименована</string>
+    <string name="action_change_category">Изменить</string>
+    <string name="toast_category_changed">Категория изменена</string>
     <string name="action_delete_all_categories">Удалить все категории</string>
+    <string name="action_category_deleted">Категория удалена</string>
     <string name="action_categories_deleted">Категории удалены</string>
 
     <!--    Task items-->
@@ -32,11 +33,12 @@
     <string name="description_task_priory">Приоритет:</string>
     <string name="action_add_task">Добавить</string>
     <string name="toast_task_added">Задача добавлена</string>
-    <string name="description_rename_task">Переименовать задачу</string>
+    <string name="description_change_task">Изменить задачу</string>
     <string name="hint_enter_new_task_name">Введите новое название задачи</string>
     <string name="action_change_task">Изменить</string>
     <string name="toast_task_changed">Задача изменена</string>
     <string name="action_delete_all_tasks">Удалить все задачи категории</string>
+    <string name="action_task_deleted">Задача удалена</string>
     <string name="action_tasks_deleted">Задачи удалены</string>
 
     <!--    Popup-->

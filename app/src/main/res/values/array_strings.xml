@@ -2,7 +2,7 @@
 <resources>
     <string-array name="priority">
         <item>"Высокий"</item>
-        <item>"Обычный"</item>
+        <item>"Средний"</item>
         <item>"Низкий"</item>
     </string-array>
 </resources>

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import jmapps.addmyfavoriteword.R
 
 class AlertUtil(private val ctx: Context, private val onClickDelete: OnClickDelete) {
-    fun showAlertDialog(message: String, sectionDelete: Int, id: Long) {
+    fun showAlertDialog(message: String, sectionDelete: Int, id: Long, deleteMessage: String) {
         AlertDialog.Builder(ctx).let {
             it.setIcon(R.drawable.ic_warning)
             it.setTitle(R.string.action_warning)
@@ -21,7 +21,7 @@ class AlertUtil(private val ctx: Context, private val onClickDelete: OnClickDele
                     0 -> onClickDelete.onClickDeleteAll()
                     1 -> onClickDelete.onClickDeleteOnly(id)
                 }
-                Toast.makeText(ctx, ctx.getString(R.string.toast_deleted), Toast.LENGTH_SHORT).show()
+                Toast.makeText(ctx, deleteMessage, Toast.LENGTH_SHORT).show()
                 dialog?.dismiss()
             }
             it.show()

@@ -70,12 +70,24 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.initView(defaultOrderIndex)
-        otherFragmentsPresenter.defaultState()
 
         binding.rvTaskCategories.addOnScrollListener(onAddScroll)
         binding.fabAddTaskCategory.setOnClickListener(this)
 
         return binding.root
+    }
+
+    override fun initView(sortedBy: String) {
+        tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer {
+            it.let {
+                val verticalLayout = LinearLayoutManager(requireContext())
+                binding.rvTaskCategories.layoutManager = verticalLayout
+                taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this, this)
+                binding.rvTaskCategories.adapter = taskCategoriesAdapter
+                otherFragmentsPresenter.updateState(it)
+                otherFragmentsPresenter.defaultState()
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -104,7 +116,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
             }
             R.id.action_delete_all_categories -> {
                 alertDialog.showAlertDialog(
-                    getString(R.string.dialog_message_are_sure_you_want_task_categories), 0, 0
+                    getString(R.string.dialog_message_are_sure_you_want_task_categories), 0, 0, getString(R.string.action_categories_deleted)
                 )
             }
         }
@@ -132,18 +144,6 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         )
     }
 
-    override fun initView(sortedBy: String) {
-        tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer {
-            it.let {
-                val verticalLayout = LinearLayoutManager(requireContext())
-                binding.rvTaskCategories.layoutManager = verticalLayout
-                taskCategoriesAdapter = TaskCategoriesAdapter(requireContext(), it, this, this)
-                binding.rvTaskCategories.adapter = taskCategoriesAdapter
-                otherFragmentsPresenter.updateState(it)
-            }
-        })
-    }
-
     override fun defaultState() {
         val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show);
         binding.fabAddTaskCategory.startAnimation(show)
@@ -168,7 +168,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun itemClickDeleteCategory(_id: Long, categoryTitle: String) {
         val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$categoryTitle</b>")
-        alertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, _id)
+        alertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, _id, getString(R.string.action_category_deleted))
 
     }
 
