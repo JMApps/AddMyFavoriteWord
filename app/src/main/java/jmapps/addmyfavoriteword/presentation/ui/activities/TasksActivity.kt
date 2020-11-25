@@ -100,17 +100,14 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     override fun defaultState() {
         binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
-        binding.taskItemContent.textMainTaskDescription.visibility =
-            otherActivityPresenter.descriptionMain()
-        val categoryDescription =
-            getString(R.string.description_add_first_task, "<b>$taskCategoryTitle</b>")
+        binding.taskItemContent.textMainTaskDescription.visibility = otherActivityPresenter.descriptionMain()
+        val categoryDescription = getString(R.string.description_add_first_task, "<b>$taskCategoryTitle</b>")
         binding.taskItemContent.textMainTaskDescription.text = Html.fromHtml(categoryDescription)
     }
 
     override fun updateState() {
         binding.taskItemContent.rvTaskItems.visibility = otherActivityPresenter.recyclerCategory()
-        binding.taskItemContent.textMainTaskDescription.visibility =
-            otherActivityPresenter.descriptionMain()
+        binding.taskItemContent.textMainTaskDescription.visibility = otherActivityPresenter.descriptionMain()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -150,7 +147,6 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                 )
                 alertDialog.showAlertDialog(deleteAllTaskDescription, 0, 0)
             }
-
         }
         return super.onOptionsItemSelected(item)
     }

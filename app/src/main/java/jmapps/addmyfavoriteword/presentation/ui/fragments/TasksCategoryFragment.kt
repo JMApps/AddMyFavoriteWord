@@ -126,7 +126,10 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onClick(v: View?) {
         val addTaskCategory = AddTaskCategoryBottomSheet()
-        addTaskCategory.show(childFragmentManager, AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS)
+        addTaskCategory.show(
+            childFragmentManager,
+            AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS
+        )
     }
 
     override fun initView(sortedBy: String) {
