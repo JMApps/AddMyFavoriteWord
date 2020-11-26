@@ -28,14 +28,42 @@
             android:textColor="@color/white"
             android:textSize="@dimen/main_app_text_size" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_title_task_category"
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/main_margin_mini"
-            android:layout_weight="1"
-            android:padding="@dimen/main_padding_mini"
-            android:textSize="@dimen/main_app_text_size"
-            tools:text="На сегодня" />
+            android:gravity="start|center_vertical"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_title_task_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/main_margin_mini"
+                android:padding="@dimen/main_padding_mini"
+                android:textSize="@dimen/main_app_text_size"
+                tools:text="На сегодня" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_task_category_item_add_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/main_margin_mini"
+                    android:gravity="center"
+                    android:textSize="@dimen/small_text_size" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_task_category_item_change_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/small_text_size" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>

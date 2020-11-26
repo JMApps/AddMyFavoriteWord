@@ -13,7 +13,7 @@ import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategori
 import jmapps.addmyfavoriteword.presentation.ui.holders.TaskCategoriesHolder
 
 class TaskCategoriesAdapter(
-    context: Context,
+    private val context: Context,
     private var taskCategoryList: MutableList<TaskCategories>,
     private val onItemClickTaskCategory: OnItemClickTaskCategory,
     private val onLongClickTaskCategory: OnLongClickTaskCategory) : RecyclerView.Adapter<TaskCategoriesHolder>(), Filterable {
@@ -45,6 +45,12 @@ class TaskCategoriesAdapter(
         holder.taskCategoryColor.setBackgroundColor(Color.parseColor(current.categoryColor))
         holder.taskCategoryColor.text = (position + 1).toString()
         holder.taskCategoryTitle.text = current.title
+
+        val taskCategoryAddDateTime = context.getString(R.string.action_add_time_item_task, "\n${current.addDateTime}")
+        val taskCategoryChangeDateTime = context.getString(R.string.action_change_time_item_task, "\n${current.changeDateTime}")
+
+        holder.taskCategoryAddDateTime.text = taskCategoryAddDateTime
+        holder.taskCategoryChangeDateTime.text = taskCategoryChangeDateTime
 
         holder.findItemClick(onItemClickTaskCategory, current._id, current.title, current.categoryColor)
         holder.findLongItemClick(onLongClickTaskCategory, current._id, current.title, current.categoryColor)
