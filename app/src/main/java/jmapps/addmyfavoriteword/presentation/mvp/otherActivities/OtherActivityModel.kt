@@ -9,7 +9,9 @@ class OtherActivityModel : ContractInterface.Model {
 
     private val listOrderCategories = listOf(
         "addDateTime",
+        "changeDateTime",
         "executionDateTime",
+        "color",
         "alphabet",
         "priority"
     )

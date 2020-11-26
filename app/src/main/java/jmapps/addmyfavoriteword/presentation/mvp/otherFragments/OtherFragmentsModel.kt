@@ -10,8 +10,10 @@ class OtherFragmentsModel : ContractInterface.Model {
     private val listOrderCategories = listOf(
         "addDateTime",
         "changeDateTime",
-        "categoryColor",
-        "alphabet"
+        "executionDateTime",
+        "color",
+        "alphabet",
+        "priority"
     )
 
     override fun recyclerCategory() = recycler

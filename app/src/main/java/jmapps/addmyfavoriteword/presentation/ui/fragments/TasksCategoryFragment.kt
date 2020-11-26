@@ -91,6 +91,19 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         })
     }
 
+    override fun defaultState() {
+        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show);
+        binding.fabAddTaskCategory.startAnimation(show)
+
+        binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
+        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
+    }
+
+    override fun updateState() {
+        binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
+        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_task_categories, menu)
         val searchManager = requireContext().getSystemService(SEARCH_SERVICE) as SearchManager
@@ -114,10 +127,10 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex = 1)
             }
             R.id.item_order_by_color -> {
-                changeOrderList(defaultOrderIndex = 2)
+                changeOrderList(defaultOrderIndex = 3)
             }
             R.id.item_order_by_alphabet -> {
-                changeOrderList(defaultOrderIndex = 3)
+                changeOrderList(defaultOrderIndex = 4)
             }
             R.id.action_delete_all_categories -> {
                 alertDialog.showAlertDialog(
@@ -143,23 +156,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun onClick(v: View?) {
         val addTaskCategory = AddTaskCategoryBottomSheet()
-        addTaskCategory.show(
-            childFragmentManager,
-            AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS
-        )
-    }
-
-    override fun defaultState() {
-        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show);
-        binding.fabAddTaskCategory.startAnimation(show)
-
-        binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
-    }
-
-    override fun updateState() {
-        binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        addTaskCategory.show(childFragmentManager, AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS)
     }
 
     override fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String) {
@@ -174,7 +171,6 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     override fun itemClickDeleteCategory(_id: Long, categoryTitle: String) {
         val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$categoryTitle</b>")
         alertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, _id, getString(R.string.action_category_deleted))
-
     }
 
     override fun onClickDeleteOnly(_id: Long) {

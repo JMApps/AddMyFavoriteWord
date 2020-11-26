@@ -26,6 +26,7 @@
 
     <!--    Min heights's-->
     <dimen name="item_card_min_height">80dp</dimen>
+    <dimen name="item_card_normal_height">120dp</dimen>
 
     <!--    Corner's-->
     <dimen name="main_card_corner">5dp</dimen>

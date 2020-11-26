@@ -131,13 +131,13 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex = 0)
             }
             R.id.item_order_by_execution -> {
-                changeOrderList(defaultOrderIndex = 1)
-            }
-            R.id.item_order_by_alphabet -> {
                 changeOrderList(defaultOrderIndex = 2)
             }
-            R.id.item_order_by_priority -> {
+            R.id.item_order_by_alphabet -> {
                 changeOrderList(defaultOrderIndex = 3)
+            }
+            R.id.item_order_by_priority -> {
+                changeOrderList(defaultOrderIndex = 4)
             }
             R.id.action_delete_all_task_items -> {
                 val deleteAllTaskDescription = getString(
@@ -173,18 +173,18 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         renameTaskItem.show(supportFragmentManager, RenameTaskItemBottomSheet.ARG_RENAME_TASK_ITEM_BS)
     }
 
-    override fun onClickDeleteAll() {
-        taskItemViewModel.deleteAllTaskFromCategory(taskCategoryId!!)
+    override fun itemClickDeleteItem(_id: Long) {
+        alertDialog.showAlertDialog(
+            getString(R.string.dialog_message_are_sure_you_want_item_task), 1, _id, getString(R.string.action_task_deleted)
+        )
     }
 
     override fun onClickDeleteOnly(_id: Long) {
         taskItemViewModel.deleteTaskItem(_id)
     }
 
-    override fun itemClickDeleteItem(_id: Long) {
-        alertDialog.showAlertDialog(
-            getString(R.string.dialog_message_are_sure_you_want_item_task), 1, _id, getString(R.string.action_task_deleted)
-        )
+    override fun onClickDeleteAll() {
+        taskItemViewModel.deleteAllTaskFromCategory(taskCategoryId!!)
     }
 
     override fun onTaskCheckboxState(_id: Long, state: Boolean) {

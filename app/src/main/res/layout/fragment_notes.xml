@@ -13,12 +13,11 @@
         tools:context=".presentation.ui.fragments.NotesFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_note_categories"
+            android:id="@+id/rv_note_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
-            android:scrollbars="vertical"
-            android:visibility="gone" />
+            android:scrollbars="vertical" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_main_note_container_description"
@@ -40,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_note_category"
+            android:id="@+id/fab_add_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
