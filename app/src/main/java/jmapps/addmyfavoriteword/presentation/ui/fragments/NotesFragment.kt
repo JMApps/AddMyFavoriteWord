@@ -2,6 +2,7 @@ package jmapps.addmyfavoriteword.presentation.ui.fragments
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
@@ -19,6 +20,7 @@ import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.FragmentNotesBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
+import jmapps.addmyfavoriteword.presentation.ui.activities.AddNoteActivity
 import jmapps.addmyfavoriteword.presentation.ui.adapters.NoteItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.models.NotesItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.AlertUtil
@@ -148,7 +150,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
     }
 
     override fun onClick(v: View?) {
-        Toast.makeText(requireContext(), "Добавить заметку", Toast.LENGTH_SHORT).show()
+        toAddNoteActivity()
     }
 
     override fun onItemClickNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: String) {
@@ -189,8 +191,8 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
         sharedLocalPreferences.saveIntValue(KEY_ORDER_NOTE_ITEM_INDEX, defaultOrderIndex)
     }
 
-    private fun toNoteActivity(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: String) {
-//        val toNoteActivity = Intent(requireContext(), NotesActivity::class.java)
-//        startActivity(toNoteActivity)
+    private fun toAddNoteActivity() {
+        val toNoteActivity = Intent(requireContext(), AddNoteActivity::class.java)
+        startActivity(toNoteActivity)
     }
 }
