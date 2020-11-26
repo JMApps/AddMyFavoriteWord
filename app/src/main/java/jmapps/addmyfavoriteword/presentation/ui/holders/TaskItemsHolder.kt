@@ -75,7 +75,7 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
         val addShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_ADD_DATE_TIME, false)
         val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_CHANGE_DATE_TIME, false)
         val executionShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_EXECUTION_DATE_TIME, false)
-        val showingPriority = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_PRIORITY, false)
+        val showingPriority = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_PRIORITY, true)
 
         if (!addShowingDateTime!!) {
             taskItemAddDateTime.visibility = View.GONE
