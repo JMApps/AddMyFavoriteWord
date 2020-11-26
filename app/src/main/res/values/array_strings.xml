@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="priority">
+    <string-array name="priorities">
         <item>"Высокий"</item>
         <item>"Средний"</item>
         <item>"Низкий"</item>

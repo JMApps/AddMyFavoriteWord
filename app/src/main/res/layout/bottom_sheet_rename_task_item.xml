@@ -68,7 +68,7 @@
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginEnd="@dimen/main_margin"
-            android:entries="@array/priority"
+            android:entries="@array/priorities"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_task_priory_description" />

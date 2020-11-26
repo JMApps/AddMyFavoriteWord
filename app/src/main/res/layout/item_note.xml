@@ -15,16 +15,14 @@
         android:layout_height="wrap_content"
         android:gravity="top|center_vertical"
         android:minHeight="@dimen/item_card_normal_height"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:background="@color/red_50">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_current_note_color"
+            android:id="@+id/text_note_item_color"
             android:layout_width="match_parent"
             android:layout_height="@dimen/main_padding_big"
-            android:layout_marginEnd="@dimen/main_margin_mini"
             android:gravity="center"
-            android:minWidth="@dimen/main_padding_big"
-            android:minHeight="@dimen/item_card_min_height"
             android:textColor="@color/white"
             android:textSize="@dimen/main_app_text_size"
             tools:background="@color/green_400" />
