@@ -43,20 +43,20 @@ class NoteItemsAdapter(
     override fun onBindViewHolder(holder: NoteItemsHolder, position: Int) {
         val current = noteItemList[position]
 
-        holder.noteItemColor.setBackgroundColor(Color.parseColor(current.noteColor))
-        holder.noteItemColor.text = (position + 1).toString()
+        holder.tvNoteItemColor.setBackgroundColor(Color.parseColor(current.noteColor))
+        holder.tvNoteItemColor.text = (position + 1).toString()
 
-        val priorityName = arrayListOf("#FFCDD2", "#C8E6C9", "#FFECB3")
-        holder.noteItemLayout.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+        val priorityName = arrayListOf("#FFFFFF", "#FFECB3", "#C8E6C9", "#FFCDD2")
+        holder.tvNoteItemLayout.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
 
-        if (current.title.isNotEmpty()) {
-            holder.noteItemTitle.text = current.title
+        if (current.noteTitle.isNotEmpty()) {
+            holder.tvNoteItemTitle.text = current.noteTitle
         } else {
-            holder.noteItemTitle.text = "Без названия"
+            holder.tvNoteItemTitle.text = "Без названия"
         }
 
-        holder.noteItemAddDateTime.text = current.addDateTime
-        holder.noteItemContent.text = current.content
+        holder.tvNoteItemAddDateTime.text = current.addDateTime
+        holder.tvNoteItemContent.text = current.noteContent
     }
 
     override fun getItemCount() = noteItemList.size
@@ -71,8 +71,8 @@ class NoteItemsAdapter(
                 } else {
                     val filteredList = ArrayList<NoteItems>()
                     for (row in firstNoteItemList!!) {
-                        if (row.title.toLowerCase().contains(charString.toLowerCase()) ||
-                            row.content.toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.noteTitle.toLowerCase().contains(charString.toLowerCase()) ||
+                            row.noteContent.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row)
                         }
                     }

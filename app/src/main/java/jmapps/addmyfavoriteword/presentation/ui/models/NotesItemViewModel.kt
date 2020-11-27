@@ -23,8 +23,8 @@ class NotesItemViewModel(application: Application) : AndroidViewModel(applicatio
         noteItemsRepository.insertNoteItem(noteItems)
     }
 
-    fun updateNoteItem(newTitle: String, newContent: String, newNoteColor: String, newPriority: Long, noteId: Long) = viewModelScope.launch {
-        noteItemsRepository.updateNoteItem(newTitle, newContent, newNoteColor, newPriority, noteId)
+    fun updateNoteItem(newNoteTitle: String, newNoteContent: String, newNoteColor: String, newPriority: Long, noteId: Long) = viewModelScope.launch {
+        noteItemsRepository.updateNoteItem(newNoteTitle, newNoteContent, newNoteColor, newPriority, noteId)
     }
 
     fun deleteNoteItem(noteId: Long) = viewModelScope.launch {

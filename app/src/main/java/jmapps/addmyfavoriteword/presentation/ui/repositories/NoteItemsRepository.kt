@@ -13,8 +13,8 @@ class NoteItemsRepository(private val noteItemsDao: NoteItemsDao) {
         noteItemsDao.insertNoteItem(noteItems)
     }
 
-    suspend fun updateNoteItem(newTitle: String, newContent: String, newNoteColor: String, newPriority: Long, noteId: Long) {
-        noteItemsDao.updateNoteItem(newTitle, newContent, newNoteColor, newPriority, noteId)
+    suspend fun updateNoteItem(newNoteTitle: String, newNoteContent: String, newNoteColor: String, newPriority: Long, noteId: Long) {
+        noteItemsDao.updateNoteItem(newNoteTitle, newNoteContent, newNoteColor, newPriority, noteId)
     }
 
     suspend fun deleteNoteItem(noteId: Long) {
