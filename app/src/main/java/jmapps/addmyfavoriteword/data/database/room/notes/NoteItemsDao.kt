@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface NoteItemsDao {
-    @Query("SELECT * FROM Table_of_notes ORDER BY CASE :orderBy WHEN 'addDateTime' THEN addDateTime WHEN 'changeDateTime' THEN changeDateTime WHEN 'alphabet' THEN noteTitle WHEN 'alphabet' THEN noteContent END ASC, CASE WHEN 'priority' THEN priority END DESC")
+    @Query("SELECT * FROM Table_of_notes ORDER BY CASE :orderBy WHEN 'addDateTime' THEN addDateTime WHEN 'changeDateTime' THEN changeDateTime WHEN 'color' THEN noteColor WHEN 'alphabet' THEN noteTitle WHEN 'alphabet' THEN noteContent END ASC, CASE :orderBy WHEN 'priority' THEN priority END DESC")
     fun getNotesList(orderBy: String): LiveData<MutableList<NoteItems>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

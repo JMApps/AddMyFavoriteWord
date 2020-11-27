@@ -134,10 +134,10 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex = 2)
             }
             R.id.item_order_by_alphabet -> {
-                changeOrderList(defaultOrderIndex = 3)
+                changeOrderList(defaultOrderIndex = 4)
             }
             R.id.item_order_by_priority -> {
-                changeOrderList(defaultOrderIndex = 4)
+                changeOrderList(defaultOrderIndex = 5)
             }
             R.id.action_delete_all_task_items -> {
                 val deleteAllTaskDescription = getString(
