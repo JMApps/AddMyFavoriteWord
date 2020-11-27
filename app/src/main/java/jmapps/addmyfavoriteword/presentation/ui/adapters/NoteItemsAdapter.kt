@@ -26,11 +26,11 @@ class NoteItemsAdapter(
     }
 
     interface OnItemClickNote {
-        fun onItemClickNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: String)
+        fun onItemClickNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: Long)
     }
 
     interface OnLongClickNoteItem {
-        fun itemClickRenameNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: String)
+        fun itemClickRenameNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: Long)
 
         fun itemClickDeleteNote(noteId: Long)
     }
@@ -57,6 +57,8 @@ class NoteItemsAdapter(
 
         holder.tvNoteItemAddDateTime.text = current.addDateTime
         holder.tvNoteItemContent.text = current.noteContent
+
+        holder.findNoteItemClick(onItemClickNote, current._id, current.noteTitle, current.noteContent, current.noteColor, current.priority)
     }
 
     override fun getItemCount() = noteItemList.size

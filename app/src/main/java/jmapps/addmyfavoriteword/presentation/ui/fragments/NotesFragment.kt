@@ -153,11 +153,11 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
         toAddNoteActivity()
     }
 
-    override fun onItemClickNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: String) {
+    override fun onItemClickNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: Long) {
         Toast.makeText(requireContext(), "Открыть заметку", Toast.LENGTH_SHORT).show()
     }
 
-    override fun itemClickRenameNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: String) {
+    override fun itemClickRenameNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: Long) {
         Toast.makeText(requireContext(), "Изменить заметку", Toast.LENGTH_SHORT).show()
     }
 

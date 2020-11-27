@@ -12,63 +12,57 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackgroundBorderless">
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/item_card_min_height"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_task_category_color"
+            android:layout_width="@dimen/main_padding_big"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:gravity="center"
+            android:minWidth="@dimen/main_padding_big"
+            android:minHeight="@dimen/item_card_min_height"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_app_text_size" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackgroundBorderless"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/item_card_min_height"
-            android:orientation="horizontal">
+            android:gravity="start|center_vertical"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_task_category_color"
-                android:layout_width="@dimen/main_padding_big"
-                android:layout_height="match_parent"
+                android:id="@+id/text_task_category_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/main_margin_mini"
-                android:gravity="center"
-                android:minWidth="@dimen/main_padding_big"
-                android:minHeight="@dimen/item_card_min_height"
-                android:textColor="@color/white"
-                android:textSize="@dimen/main_app_text_size" />
+                android:padding="@dimen/main_padding_mini"
+                android:textSize="@dimen/main_app_text_size"
+                tools:text="На сегодня" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start|center_vertical"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_task_category_title"
-                    android:layout_width="match_parent"
+                    android:id="@+id/text_view_task_category_item_add_date_time"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/main_margin_mini"
-                    android:padding="@dimen/main_padding_mini"
-                    android:textSize="@dimen/main_app_text_size"
-                    tools:text="На сегодня" />
+                    android:gravity="center"
+                    android:textSize="@dimen/small_text_size" />
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_task_category_item_change_date_time"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/text_view_task_category_item_add_date_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/main_margin_mini"
-                        android:gravity="center"
-                        android:textSize="@dimen/small_text_size" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/text_view_task_category_item_change_date_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="@dimen/small_text_size" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:gravity="center"
+                    android:textSize="@dimen/small_text_size" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>

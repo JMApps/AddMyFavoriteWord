@@ -10,12 +10,12 @@
     app:cardCornerRadius="15dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_task_item_priority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackgroundBorderless">
+        android:minHeight="@dimen/item_card_min_height">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/layout_task_item_priority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackgroundBorderless"
