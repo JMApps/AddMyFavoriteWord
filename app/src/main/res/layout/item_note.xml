@@ -5,64 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/main_card_margin"
-    android:background="?android:selectableItemBackgroundBorderless"
     android:elevation="@dimen/main_card_elevation"
     android:minHeight="@dimen/item_card_normal_height"
     app:cardCornerRadius="50dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout_note_priority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top|center_vertical"
-        android:minHeight="@dimen/item_card_normal_height"
-        android:orientation="vertical"
-        tools:background="@color/red_50">
+        android:background="?android:selectableItemBackgroundBorderless">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_note_item_color"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/main_padding_big"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/main_app_text_size"
-            tools:background="@color/green_400" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_title_note_item"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_note_priority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:paddingStart="@dimen/main_padding"
-            android:paddingTop="@dimen/main_padding_mini"
-            android:paddingEnd="@dimen/main_padding"
-            android:paddingBottom="@dimen/main_padding_mini"
-            android:textSize="@dimen/main_app_text_size"
-            android:textStyle="bold"
-            tools:text="На сегодня" />
+            android:gravity="top|center_vertical"
+            android:minHeight="@dimen/item_card_normal_height"
+            android:orientation="vertical"
+            tools:background="@color/red_50">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_view_note_item_add_date_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:paddingStart="@dimen/main_padding"
-            android:paddingEnd="@dimen/main_padding"
-            android:textSize="@dimen/small_text_size"
-            tools:text="29.11.2020 / 11:54" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_note_item_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_padding_big"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/main_app_text_size"
+                tools:background="@color/green_400" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_view_note_item_little_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ellipsize="end"
-            android:gravity="start"
-            android:maxLines="5"
-            android:paddingStart="@dimen/main_padding"
-            android:paddingTop="@dimen/main_padding_mini"
-            android:paddingEnd="@dimen/main_padding"
-            android:paddingBottom="@dimen/main_padding"
-            android:textSize="@dimen/main_app_text_size"
-            tools:text="Content" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_title_note_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:paddingStart="@dimen/main_padding"
+                android:paddingTop="@dimen/main_padding_mini"
+                android:paddingEnd="@dimen/main_padding"
+                android:paddingBottom="@dimen/main_padding_mini"
+                android:textSize="@dimen/main_app_text_size"
+                android:textStyle="bold"
+                tools:text="На сегодня" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_note_item_add_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:paddingStart="@dimen/main_padding"
+                android:paddingEnd="@dimen/main_padding"
+                android:textSize="@dimen/small_text_size"
+                tools:text="29.11.2020 / 11:54" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_note_item_little_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="5"
+                android:paddingStart="@dimen/main_padding"
+                android:paddingTop="@dimen/main_padding_mini"
+                android:paddingEnd="@dimen/main_padding"
+                android:paddingBottom="@dimen/main_padding"
+                android:textSize="@dimen/main_app_text_size"
+                tools:text="Content" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>
