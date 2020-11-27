@@ -5,29 +5,30 @@ import jmapps.addmyfavoriteword.data.database.room.tasks.tasks.TaskItems
 import jmapps.addmyfavoriteword.data.database.room.tasks.tasks.TaskItemsDao
 
 class TaskItemsRepository(private val taskItemsDao: TaskItemsDao) {
-    fun allTaskItems(displayBy: Long, order: String): LiveData<MutableList<TaskItems>> {
-        return taskItemsDao.getTaskItemsList(displayBy, order)
+    fun allTaskItems(displayBy: Long, orderBy: String): LiveData<MutableList<TaskItems>> {
+        return taskItemsDao.getTaskItemsList(displayBy, orderBy)
     }
 
     suspend fun insertTaskItem(taskItems: TaskItems) {
         taskItemsDao.insertTaskItem(taskItems)
     }
 
-    suspend fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String) {
-        taskItemsDao.updateTaskItem(newTitle, displayBy, newDateTime)
+    suspend fun updateTaskItem(newTaskItemTitle: String, displayBy: Long, newDateTime: String) {
+        taskItemsDao.updateTaskItem(newTaskItemTitle, displayBy, newDateTime)
     }
 
-    suspend fun updateTaskTitle(newTitle: String, newDateTime: String, newPriority: Long, taskId: Long) {
-        taskItemsDao.updateTaskTitle(newTitle, newDateTime, newPriority, taskId)
+    suspend fun updateTaskTitle(newTaskItemTitle: String, newDateTime: String, newPriority: Long, taskItemId: Long) {
+        taskItemsDao.updateTaskTitle(newTaskItemTitle, newDateTime, newPriority, taskItemId)
     }
 
-    suspend fun updateState(newState: Boolean, newDateTime: String, id: Long) {
-        taskItemsDao.updateState(newState,newDateTime,  id)
+    suspend fun updateState(newState: Boolean, newDateTime: String, taskItemId: Long) {
+        taskItemsDao.updateState(newState, newDateTime, taskItemId)
     }
 
-    suspend fun deleteTaskItem(id: Long) {
-        taskItemsDao.deleteTaskItem(id)
+    suspend fun deleteTaskItem(taskItemId: Long) {
+        taskItemsDao.deleteTaskItem(taskItemId)
     }
+
     suspend fun deleteAllTaskFromCategory(taskCategoryId: Long) {
         taskItemsDao.deleteAllTaskFromCategory(taskCategoryId)
     }

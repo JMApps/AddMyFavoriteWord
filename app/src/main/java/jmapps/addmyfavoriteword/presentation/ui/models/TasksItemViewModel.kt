@@ -23,20 +23,20 @@ class TasksItemViewModel(application: Application) : AndroidViewModel(applicatio
         taskItemsRepository.insertTaskItem(taskItems)
     }
 
-    fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String) = viewModelScope.launch {
-            taskItemsRepository.updateTaskItem(newTitle, displayBy, newDateTime)
+    fun updateTaskItem(newTaskItemTitle: String, displayBy: Long, newDateTime: String) = viewModelScope.launch {
+            taskItemsRepository.updateTaskItem(newTaskItemTitle, displayBy, newDateTime)
         }
 
-    fun updateTaskTitle(newTitle: String, newDateTime: String, newPriority: Long, taskId: Long) = viewModelScope.launch {
-        taskItemsRepository.updateTaskTitle(newTitle, newDateTime, newPriority, taskId)
+    fun updateTaskTitle(newTaskItemTitle: String, newDateTime: String, newPriority: Long, taskItemId: Long) = viewModelScope.launch {
+        taskItemsRepository.updateTaskTitle(newTaskItemTitle, newDateTime, newPriority, taskItemId)
     }
 
-    fun updateState(newState: Boolean, newDateTime: String, id: Long) = viewModelScope.launch {
-        taskItemsRepository.updateState(newState, newDateTime, id)
+    fun updateState(newState: Boolean, newDateTime: String, taskItemId: Long) = viewModelScope.launch {
+        taskItemsRepository.updateState(newState, newDateTime, taskItemId)
     }
 
-    fun deleteTaskItem(id: Long) = viewModelScope.launch {
-        taskItemsRepository.deleteTaskItem(id)
+    fun deleteTaskItem(taskItemId: Long) = viewModelScope.launch {
+        taskItemsRepository.deleteTaskItem(taskItemId)
     }
 
     fun deleteAllTaskFromCategory(taskCategoryId: Long) = viewModelScope.launch {

@@ -18,7 +18,7 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     private var sharedLocalPreferences: SharedLocalProperties
 
     val tvTaskCategoryColor: TextView = viewCategory.findViewById(R.id.text_current_category_color)
-    val tvTaskCategoryTitle: TextView = viewCategory.findViewById(R.id.text_title_task_category)
+    val tvTaskCategoryTitle: TextView = viewCategory.findViewById(R.id.text_task_category_title)
     val tvTaskCategoryAddDateTime: TextView = viewCategory.findViewById(R.id.text_view_task_category_item_add_date_time)
     val tvTaskCategoryChangeDateTime: TextView = viewCategory.findViewById(R.id.text_view_task_category_item_change_date_time)
 

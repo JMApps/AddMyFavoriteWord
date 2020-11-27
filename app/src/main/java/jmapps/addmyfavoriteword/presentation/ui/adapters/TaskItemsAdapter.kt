@@ -28,12 +28,12 @@ class TaskItemsAdapter(
     }
 
     interface OnTaskCheckboxState {
-        fun onTaskCheckboxState(_id: Long, state: Boolean)
+        fun onTaskCheckboxState(taskItemId: Long, state: Boolean)
     }
 
     interface OnLongClickTaskItem {
-        fun itemClickRenameItem(_id: Long, taskTitle: String, taskPriority: Long)
-        fun itemClickDeleteItem(_id: Long)
+        fun itemClickRenameItem(taskItemId: Long, taskItemTitle: String, priority: Long)
+        fun itemClickDeleteItem(taskItemId: Long)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskItemsHolder {
@@ -44,37 +44,37 @@ class TaskItemsAdapter(
     override fun onBindViewHolder(holder: TaskItemsHolder, position: Int) {
         val current = taskItemList[position]
 
-        holder.taskItemColor.setBackgroundColor(Color.parseColor(current.taskColor))
-        holder.taskItemColor.text = (position + 1).toString()
+        holder.tvTaskItemColor.setBackgroundColor(Color.parseColor(current.taskItemColor))
+        holder.tvTaskItemColor.text = (position + 1).toString()
 
-        holder.taskItemCheckBox.buttonTintList = ColorStateList.valueOf(Color.parseColor(current.taskColor))
-        holder.taskItemCheckBox.isChecked = current.currentTaskState
+        holder.tvTaskItemCheckBox.buttonTintList = ColorStateList.valueOf(Color.parseColor(current.taskItemColor))
+        holder.tvTaskItemCheckBox.isChecked = current.currentTaskState
 
         if (current.currentTaskState) {
-            holder.taskItemTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            holder.taskItemTitle.text = current.title
+            holder.tvTaskItemTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            holder.tvTaskItemTitle.text = current.taskItemTitle
         } else {
-            holder.taskItemTitle.text = current.title
+            holder.tvTaskItemTitle.text = current.taskItemTitle
         }
 
         val taskAddDateTime = context.getString(R.string.action_add_time_item_task, "\n${current.addDateTime}")
         val taskChangeDateTime = context.getString(R.string.action_change_time_item_task, "\n${current.changeDateTime}")
 
-        holder.taskItemAddDateTime.text = taskAddDateTime
-        holder.taskItemChangeDateTime.text = taskChangeDateTime
+        holder.tvTaskItemAddDateTime.text = taskAddDateTime
+        holder.tvTaskItemChangeDateTime.text = taskChangeDateTime
 
         if (current.executionDateTime != "null") {
             val taskExecutionDateTime = context.getString(R.string.action_execution_time_item_task, "\n${current.executionDateTime}")
-            holder.taskItemExecutionDateTime.text = taskExecutionDateTime
+            holder.tvTaskItemExecutionDateTime.text = taskExecutionDateTime
         } else {
-            holder.taskItemExecutionDateTime.text = "Не выполнено"
+            holder.tvTaskItemExecutionDateTime.text = "Не выполнено"
         }
 
-        val priorityName = arrayListOf("#FFCDD2", "#C8E6C9", "#FFECB3")
-        holder.taskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+        val priorityName = arrayListOf("#FFFFFF", "#FFECB3", "#C8E6C9", "#FFCDD2")
+        holder.tvTaskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
-        holder.findLongItemClick(onLongClickTaskItem, current._id, current.title, current.priority)
+        holder.findLongItemClick(onLongClickTaskItem, current._id, current.taskItemTitle, current.priority)
     }
 
     override fun getItemCount() = taskItemList.size
@@ -90,7 +90,7 @@ class TaskItemsAdapter(
                     val filteredList = ArrayList<TaskItems>()
                     for (row in firstTaskItemList!!) {
                         if (row._id.toString().contains(charSequence) ||
-                            row.title.toLowerCase().contains(charString.toLowerCase())) {
+                            row.taskItemTitle.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row)
                         }
                     }

@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_current_category_color"
+            android:id="@+id/text_current_task_category_color"
             android:layout_width="@dimen/main_padding_big"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/main_margin_mini"
@@ -35,7 +35,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_title_task_category"
+                android:id="@+id/text_task_category_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/main_margin_mini"

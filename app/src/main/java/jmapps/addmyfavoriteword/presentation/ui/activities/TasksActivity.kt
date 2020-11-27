@@ -168,15 +168,13 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         addTaskItem.show(supportFragmentManager, AddTaskItemBottomSheet.ARG_ADD_TASK_ITEM_BS)
     }
 
-    override fun itemClickRenameItem(_id: Long, taskTitle: String, taskPriority: Long) {
-        val renameTaskItem = RenameTaskItemBottomSheet.toInstance(_id, taskTitle, taskPriority)
+    override fun itemClickRenameItem(taskItemId: Long, taskItemTitle: String, priority: Long) {
+        val renameTaskItem = RenameTaskItemBottomSheet.toInstance(taskItemId, taskItemTitle, priority)
         renameTaskItem.show(supportFragmentManager, RenameTaskItemBottomSheet.ARG_RENAME_TASK_ITEM_BS)
     }
 
-    override fun itemClickDeleteItem(_id: Long) {
-        alertDialog.showAlertDialog(
-            getString(R.string.dialog_message_are_sure_you_want_item_task), 1, _id, getString(R.string.action_task_deleted)
-        )
+    override fun itemClickDeleteItem(taskItemId: Long) {
+        alertDialog.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_item_task), 1, taskItemId, getString(R.string.action_task_deleted))
     }
 
     override fun onClickDeleteOnly(_id: Long) {
@@ -187,11 +185,11 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
         taskItemViewModel.deleteAllTaskFromCategory(taskCategoryId!!)
     }
 
-    override fun onTaskCheckboxState(_id: Long, state: Boolean) {
+    override fun onTaskCheckboxState(taskItemId: Long, state: Boolean) {
         if (state) {
-            taskItemViewModel.updateState(state, MainOther().currentTime, _id)
+            taskItemViewModel.updateState(state, MainOther().currentTime, taskItemId)
         } else {
-            taskItemViewModel.updateState(state, "null",  _id)
+            taskItemViewModel.updateState(state, "null",  taskItemId)
         }
     }
 

@@ -8,23 +8,23 @@ import androidx.room.Query
 
 @Dao
 interface TaskItemsDao {
-    @Query("SELECT * FROM Table_of_task_items WHERE displayBy = :displayBy ORDER BY CASE :order WHEN 'addDateTime' THEN addDateTime WHEN 'alphabet' THEN title WHEN 'priority' THEN priority END ASC, CASE WHEN 'executionDateTime' THEN executionDateTime END DESC")
+    @Query("SELECT * FROM Table_of_task_items WHERE displayBy = :displayBy ORDER BY CASE :order WHEN 'addDateTime' THEN addDateTime WHEN 'alphabet' THEN taskItemTitle WHEN 'priority' THEN priority END ASC, CASE WHEN 'executionDateTime' THEN executionDateTime END DESC")
     fun getTaskItemsList(displayBy: Long, order: String): LiveData<MutableList<TaskItems>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTaskItem(taskItems: TaskItems?)
 
-    @Query("UPDATE Table_of_task_items SET title = :newTitle, displayBy = :displayBy, changeDateTime = :newDateTime")
-    suspend fun updateTaskItem(newTitle: String, displayBy: Long, newDateTime: String)
+    @Query("UPDATE Table_of_task_items SET taskItemTitle = :newTaskItemTitle, displayBy = :displayBy, changeDateTime = :newDateTime")
+    suspend fun updateTaskItem(newTaskItemTitle: String, displayBy: Long, newDateTime: String)
 
-    @Query("UPDATE Table_of_task_items SET title = :newTitle, changeDateTime = :newDateTime, priority = :newPriority WHERE _id = :taskId")
-    suspend fun updateTaskTitle(newTitle: String, newDateTime: String, newPriority: Long, taskId: Long)
+    @Query("UPDATE Table_of_task_items SET taskItemTitle = :newTaskItemTitle, changeDateTime = :newDateTime, priority = :newPriority WHERE _id = :taskItemId")
+    suspend fun updateTaskTitle(newTaskItemTitle: String, newDateTime: String, newPriority: Long, taskItemId: Long)
 
-    @Query("UPDATE Table_of_task_items SET currentTaskState = :newState, executionDateTime = :newDateTime WHERE _id = :id")
-    suspend fun updateState(newState: Boolean, newDateTime: String, id: Long)
+    @Query("UPDATE Table_of_task_items SET currentTaskState = :newState, executionDateTime = :newDateTime WHERE _id = :taskItemId")
+    suspend fun updateState(newState: Boolean, newDateTime: String, taskItemId: Long)
 
-    @Query("DELETE FROM Table_of_task_items WHERE _id = :id")
-    suspend fun deleteTaskItem(id: Long)
+    @Query("DELETE FROM Table_of_task_items WHERE _id = :taskItemId")
+    suspend fun deleteTaskItem(taskItemId: Long)
 
     @Query("DELETE FROM Table_of_task_items WHERE displayBy = :taskCategoryId")
     suspend fun deleteAllTaskFromCategory(taskCategoryId: Long)

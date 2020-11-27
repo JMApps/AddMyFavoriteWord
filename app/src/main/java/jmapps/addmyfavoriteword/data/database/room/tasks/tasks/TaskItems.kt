@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Table_of_task_items")
 data class TaskItems(
     @PrimaryKey(autoGenerate = true) val _id: Long,
-    val title: String,
+    val taskItemTitle: String,
     val displayBy: Long,
-    val taskColor: String,
+    val taskItemColor: String,
     val addDateTime: String,
     val changeDateTime: String,
     val executionDateTime: String,

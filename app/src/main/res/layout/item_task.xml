@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_title_task"
+                    android:id="@+id/text_task_item_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

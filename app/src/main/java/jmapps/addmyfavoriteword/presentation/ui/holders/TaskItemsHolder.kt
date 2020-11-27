@@ -18,13 +18,13 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
     private var preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(itemView.context)
     private var sharedLocalPreferences: SharedLocalProperties
 
-    val taskItemColor: TextView = taskView.findViewById(R.id.text_task_item_color)
-    val taskItemCheckBox: CheckBox = taskView.findViewById(R.id.checkbox_task_state)
-    val taskItemTitle: TextView = taskView.findViewById(R.id.text_title_task)
-    val taskItemAddDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_add_date_time)
-    val taskItemChangeDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_change_date_time)
-    val taskItemExecutionDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_execution_date_time)
-    val taskItemPriority: TextView = taskView.findViewById(R.id.text_view_task_item_priority)
+    val tvTaskItemColor: TextView = taskView.findViewById(R.id.text_task_item_color)
+    val tvTaskItemCheckBox: CheckBox = taskView.findViewById(R.id.checkbox_task_state)
+    val tvTaskItemTitle: TextView = taskView.findViewById(R.id.text_task_item_title)
+    val tvTaskItemAddDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_add_date_time)
+    val tvTaskItemChangeDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_change_date_time)
+    val tvTaskItemExecutionDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_execution_date_time)
+    val tvTaskItemPriority: TextView = taskView.findViewById(R.id.text_view_task_item_priority)
 
     init {
         sharedLocalPreferences = SharedLocalProperties(preferences)
@@ -34,24 +34,24 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
         setShowAddChangeDateTime()
     }
 
-    fun findCheckboxChecked(onTaskCheckboxState: TaskItemsAdapter.OnTaskCheckboxState, _id: Long) {
-        taskItemCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            onTaskCheckboxState.onTaskCheckboxState(_id, isChecked)
+    fun findCheckboxChecked(onTaskCheckboxState: TaskItemsAdapter.OnTaskCheckboxState, taskItemId: Long) {
+        tvTaskItemCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            onTaskCheckboxState.onTaskCheckboxState(taskItemId, isChecked)
         }
     }
 
-    fun findLongItemClick(onItemLongClickTaskItem: TaskItemsAdapter.OnLongClickTaskItem, _id: Long, taskTitle: String, taskPriority: Long) {
+    fun findLongItemClick(onItemLongClickTaskItem: TaskItemsAdapter.OnLongClickTaskItem, taskItemId: Long, taskItemTitle: String, priority: Long) {
         itemView.setOnLongClickListener {
-            val pop = PopupMenu(itemView.context, taskItemTitle)
+            val pop = PopupMenu(itemView.context, tvTaskItemTitle)
             pop.inflate(R.menu.menu_change_item_popup)
             pop.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.popup_change_item -> {
-                        onItemLongClickTaskItem.itemClickRenameItem(_id, taskTitle, taskPriority)
+                        onItemLongClickTaskItem.itemClickRenameItem(taskItemId, taskItemTitle, priority)
                     }
 
                     R.id.popup_delete_item -> {
-                        onItemLongClickTaskItem.itemClickDeleteItem(_id)
+                        onItemLongClickTaskItem.itemClickDeleteItem(taskItemId)
                     }
                 }
                 true
@@ -68,7 +68,7 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
 
     private fun setTextSize() {
         val textSize = sharedLocalPreferences.getIntValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_TEXT_SIZE, 18)
-        taskItemTitle.textSize = textSize!!.toFloat()
+        tvTaskItemTitle.textSize = textSize!!.toFloat()
     }
 
     private fun setShowAddChangeDateTime() {
@@ -78,27 +78,27 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
         val showingPriority = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_PRIORITY, true)
 
         if (!addShowingDateTime!!) {
-            taskItemAddDateTime.visibility = View.GONE
+            tvTaskItemAddDateTime.visibility = View.GONE
         } else {
-            taskItemAddDateTime.visibility = View.VISIBLE
+            tvTaskItemAddDateTime.visibility = View.VISIBLE
         }
 
         if (!changeShowingDateTime!!) {
-            taskItemChangeDateTime.visibility = View.GONE
+            tvTaskItemChangeDateTime.visibility = View.GONE
         } else {
-            taskItemChangeDateTime.visibility = View.VISIBLE
+            tvTaskItemChangeDateTime.visibility = View.VISIBLE
         }
 
         if (!executionShowingDateTime!!) {
-            taskItemExecutionDateTime.visibility = View.GONE
+            tvTaskItemExecutionDateTime.visibility = View.GONE
         } else {
-            taskItemExecutionDateTime.visibility = View.VISIBLE
+            tvTaskItemExecutionDateTime.visibility = View.VISIBLE
         }
 
         if (!showingPriority!!) {
-            taskItemPriority.visibility = View.GONE
+            tvTaskItemPriority.visibility = View.GONE
         } else {
-            taskItemPriority.visibility = View.VISIBLE
+            tvTaskItemPriority.visibility = View.VISIBLE
         }
     }
 }
