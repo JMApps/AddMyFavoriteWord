@@ -64,9 +64,9 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
         binding.editRenameTaskCategory.setText(categoryTitle)
         binding.editRenameTaskCategory.setSelection(categoryTitle!!.length)
-        binding.textCurrentCategoryColor.setBackgroundColor(Color.parseColor(categoryColor))
+        binding.textNewCategoryColor.setBackgroundColor(Color.parseColor(categoryColor))
 
-        binding.textCurrentCategoryColor.setOnClickListener(this)
+        binding.textNewCategoryColor.setOnClickListener(this)
         binding.buttonRenameTaskCategory.setOnClickListener(this)
 
         return binding.root
@@ -74,13 +74,13 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.text_current_category_color -> {
+            R.id.text_new_category_color -> {
                 MaterialColorPickerDialog
                     .Builder(requireContext())
                     .setTitle(getString(R.string.description_choose_color))
                     .setColorRes(resources.getIntArray(R.array.themeColors).toList())
                     .setColorListener { _, colorHex ->
-                        binding.textCurrentCategoryColor.setBackgroundColor(
+                        binding.textNewCategoryColor.setBackgroundColor(
                             Color.parseColor(
                                 colorHex
                             )

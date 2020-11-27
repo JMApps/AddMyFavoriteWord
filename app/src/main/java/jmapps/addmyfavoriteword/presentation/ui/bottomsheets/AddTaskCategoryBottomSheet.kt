@@ -38,8 +38,8 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_task_category, container, false)
 
-        binding.textCurrentTaskCategoryColor.setBackgroundColor(Color.parseColor(standardColor))
-        binding.textCurrentTaskCategoryColor.setOnClickListener(this)
+        binding.textAddTaskCategoryColor.setBackgroundColor(Color.parseColor(standardColor))
+        binding.textAddTaskCategoryColor.setOnClickListener(this)
         binding.buttonAddTaskCategory.setOnClickListener(this)
 
         return binding.root
@@ -47,13 +47,13 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.text_current_category_color -> {
+            R.id.text_add_task_category_color -> {
                 MaterialColorPickerDialog
                     .Builder(requireContext())
                     .setTitle(getString(R.string.description_choose_color))
                     .setColorRes(resources.getIntArray(R.array.themeColors).toList())
                     .setColorListener { _, colorHex ->
-                        binding.textCurrentTaskCategoryColor.setBackgroundColor(Color.parseColor(colorHex))
+                        binding.textAddTaskCategoryColor.setBackgroundColor(Color.parseColor(colorHex))
                         standardColor = colorHex
                     }
                     .show()
