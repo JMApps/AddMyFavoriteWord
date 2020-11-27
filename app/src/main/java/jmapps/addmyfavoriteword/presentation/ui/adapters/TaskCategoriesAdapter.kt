@@ -26,12 +26,21 @@ class TaskCategoriesAdapter(
     }
 
     interface OnItemClickTaskCategory {
-        fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String)
+        fun onItemClickTaskCategory(
+            taskCategoryId: Long,
+            taskCategoryTitle: String,
+            taskCategoryColor: String
+        )
     }
 
     interface OnLongClickTaskCategory {
-        fun itemClickRenameCategory(_id: Long, categoryTitle: String, categoryColor: String)
-        fun itemClickDeleteCategory(_id: Long, categoryTitle: String)
+        fun itemClickRenameCategory(
+            taskCategoryId: Long,
+            taskCategoryTitle: String,
+            taskCategoryColor: String
+        )
+
+        fun itemClickDeleteCategory(taskCategoryId: Long, taskCategoryTitle: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskCategoriesHolder {
@@ -42,18 +51,30 @@ class TaskCategoriesAdapter(
     override fun onBindViewHolder(holder: TaskCategoriesHolder, position: Int) {
         val current = taskCategoryList[position]
 
-        holder.taskCategoryColor.setBackgroundColor(Color.parseColor(current.categoryColor))
-        holder.taskCategoryColor.text = (position + 1).toString()
-        holder.taskCategoryTitle.text = current.title
+        holder.tvTaskCategoryColor.setBackgroundColor(Color.parseColor(current.taskCategoryColor))
+        holder.tvTaskCategoryColor.text = (position + 1).toString()
+        holder.tvTaskCategoryTitle.text = current.taskCategoryTitle
 
-        val taskCategoryAddDateTime = context.getString(R.string.action_add_time_item_task, "\n${current.addDateTime}")
-        val taskCategoryChangeDateTime = context.getString(R.string.action_change_time_item_task, "\n${current.changeDateTime}")
+        val taskCategoryAddDateTime =
+            context.getString(R.string.action_add_time_item_task, "\n${current.addDateTime}")
+        val taskCategoryChangeDateTime =
+            context.getString(R.string.action_change_time_item_task, "\n${current.changeDateTime}")
 
-        holder.taskCategoryAddDateTime.text = taskCategoryAddDateTime
-        holder.taskCategoryChangeDateTime.text = taskCategoryChangeDateTime
+        holder.tvTaskCategoryAddDateTime.text = taskCategoryAddDateTime
+        holder.tvTaskCategoryChangeDateTime.text = taskCategoryChangeDateTime
 
-        holder.findItemClick(onItemClickTaskCategory, current._id, current.title, current.categoryColor)
-        holder.findLongItemClick(onLongClickTaskCategory, current._id, current.title, current.categoryColor)
+        holder.findItemClick(
+            onItemClickTaskCategory,
+            current._id,
+            current.taskCategoryTitle,
+            current.taskCategoryColor
+        )
+        holder.findLongItemClick(
+            onLongClickTaskCategory,
+            current._id,
+            current.taskCategoryTitle,
+            current.taskCategoryColor
+        )
     }
 
     override fun getItemCount() = taskCategoryList.size
@@ -69,7 +90,8 @@ class TaskCategoriesAdapter(
                     val filteredList = ArrayList<TaskCategories>()
                     for (row in firstTaskCategoryList!!) {
                         if (row._id.toString().contains(charSequence) ||
-                            row.title.toLowerCase().contains(charString.toLowerCase())) {
+                            row.taskCategoryTitle.toLowerCase().contains(charString.toLowerCase())
+                        ) {
                             filteredList.add(row)
                         }
                     }

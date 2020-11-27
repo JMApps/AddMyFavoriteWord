@@ -8,20 +8,20 @@ import androidx.room.Query
 
 @Dao
 interface TaskCategoriesDao {
-    @Query("SELECT * FROM Table_of_task_categories ORDER BY CASE :order WHEN 'addDateTime' THEN addDateTime WHEN 'changeDateTime' THEN changeDateTime WHEN 'color' THEN categoryColor WHEN 'alphabet' THEN title END ASC")
+    @Query("SELECT * FROM Table_of_task_categories ORDER BY CASE :order WHEN 'addDateTime' THEN addDateTime WHEN 'changeDateTime' THEN changeDateTime WHEN 'color' THEN taskCategoryColor WHEN 'alphabet' THEN taskCategoryTitle END ASC")
     fun getTaskCategoriesList(order: String): LiveData<MutableList<TaskCategories>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTaskCategory(taskCategories: TaskCategories?)
 
-    @Query("UPDATE Table_of_task_categories SET title = :newTitle, categoryColor = :newCategoryColor, changeDateTime = :newDateTime WHERE _id = :id")
-    suspend fun updateTaskCategoryTitle(newTitle: String, newCategoryColor: String, newDateTime: String, id: Long)
+    @Query("UPDATE Table_of_task_categories SET taskCategoryTitle = :newTitle, taskCategoryColor = :newCategoryColor, changeDateTime = :newDateTime WHERE _id = :taskCategoryId")
+    suspend fun updateTaskCategoryTitle(newTitle: String, newCategoryColor: String, newDateTime: String, taskCategoryId: Long)
 
-    @Query("UPDATE Table_of_task_items SET taskColor = :newColor WHERE displayBy = :categoryId")
-    suspend fun updateTaskItemColor(newColor: String, categoryId: Long)
+    @Query("UPDATE Table_of_task_items SET taskColor = :newColor WHERE displayBy = :taskCategoryId")
+    suspend fun updateTaskItemColor(newColor: String, taskCategoryId: Long)
 
-    @Query("DELETE FROM Table_of_task_categories WHERE _id = :id")
-    suspend fun deleteTaskCategory(id: Long)
+    @Query("DELETE FROM Table_of_task_categories WHERE _id = :taskCategoryId")
+    suspend fun deleteTaskCategory(taskCategoryId: Long)
 
     @Query("DELETE FROM Table_of_task_items WHERE displayBy = :taskCategoryId")
     suspend fun deleteTaskItem(taskCategoryId: Long)

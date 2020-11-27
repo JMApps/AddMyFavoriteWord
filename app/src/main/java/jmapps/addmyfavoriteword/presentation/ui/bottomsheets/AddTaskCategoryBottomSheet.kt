@@ -20,8 +20,8 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
-    private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
     private lateinit var binding: BottomsheetAddTaskCategoryBinding
+    private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
 
     private var standardColor: String = "#ef5350"
     private var standardIntermediate: String = "ci_day"
@@ -38,8 +38,8 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_task_category, container, false)
 
-        binding.textCurrentCategoryColor.setBackgroundColor(Color.parseColor(standardColor))
-        binding.textCurrentCategoryColor.setOnClickListener(this)
+        binding.textCurrentTaskCategoryColor.setBackgroundColor(Color.parseColor(standardColor))
+        binding.textCurrentTaskCategoryColor.setOnClickListener(this)
         binding.buttonAddTaskCategory.setOnClickListener(this)
 
         return binding.root
@@ -53,7 +53,7 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
                     .setTitle(getString(R.string.description_choose_color))
                     .setColorRes(resources.getIntArray(R.array.themeColors).toList())
                     .setColorListener { _, colorHex ->
-                        binding.textCurrentCategoryColor.setBackgroundColor(Color.parseColor(colorHex))
+                        binding.textCurrentTaskCategoryColor.setBackgroundColor(Color.parseColor(colorHex))
                         standardColor = colorHex
                     }
                     .show()

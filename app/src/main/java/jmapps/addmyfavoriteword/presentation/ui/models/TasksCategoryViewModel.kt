@@ -17,22 +17,22 @@ class TasksCategoryViewModel(application: Application) : AndroidViewModel(applic
         taskCategoryRepository = TaskCategoriesRepository(taskCategoriesDao)
     }
 
-    fun allTaskCategories(order: String): LiveData<MutableList<TaskCategories>> = taskCategoryRepository.allTaskCategories(order)
+    fun allTaskCategories(orderBy: String): LiveData<MutableList<TaskCategories>> = taskCategoryRepository.allTaskCategories(orderBy)
 
     fun insertTaskCategory(taskCategories: TaskCategories) = viewModelScope.launch {
         taskCategoryRepository.insertTaskCategory(taskCategories)
     }
 
-    fun updateTaskCategory(newTitle: String, newCategoryColor: String, newDateTime: String, id: Long) = viewModelScope.launch {
-        taskCategoryRepository.updateTaskCategory(newTitle, newCategoryColor, newDateTime, id)
+    fun updateTaskCategory(newTaskCategoryTitle: String, newTaskCategoryColor: String, newDateTime: String, taskCategoryId: Long) = viewModelScope.launch {
+        taskCategoryRepository.updateTaskCategory(newTaskCategoryTitle, newTaskCategoryColor, newDateTime, taskCategoryId)
     }
 
-    fun updateTaskItemColor(newColor: String, categoryId: Long) = viewModelScope.launch {
-        taskCategoryRepository.updateTaskItemColor(newColor, categoryId)
+    fun updateTaskItemColor(newTaskCategoryColor: String, taskCategoryId: Long) = viewModelScope.launch {
+        taskCategoryRepository.updateTaskItemColor(newTaskCategoryColor, taskCategoryId)
     }
 
-    fun deleteTaskCategory(id: Long) = viewModelScope.launch {
-        taskCategoryRepository.deleteTaskCategory(id)
+    fun deleteTaskCategory(taskCategoryId: Long) = viewModelScope.launch {
+        taskCategoryRepository.deleteTaskCategory(taskCategoryId)
     }
 
     fun deleteTaskItem(taskCategoryId: Long) = viewModelScope.launch {

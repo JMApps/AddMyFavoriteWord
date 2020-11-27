@@ -17,10 +17,10 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     private var preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(itemView.context)
     private var sharedLocalPreferences: SharedLocalProperties
 
-    val taskCategoryColor: TextView = viewCategory.findViewById(R.id.text_current_category_color)
-    val taskCategoryTitle: TextView = viewCategory.findViewById(R.id.text_title_task_category)
-    val taskCategoryAddDateTime: TextView = viewCategory.findViewById(R.id.text_view_task_category_item_add_date_time)
-    val taskCategoryChangeDateTime: TextView = viewCategory.findViewById(R.id.text_view_task_category_item_change_date_time)
+    val tvTaskCategoryColor: TextView = viewCategory.findViewById(R.id.text_current_category_color)
+    val tvTaskCategoryTitle: TextView = viewCategory.findViewById(R.id.text_title_task_category)
+    val tvTaskCategoryAddDateTime: TextView = viewCategory.findViewById(R.id.text_view_task_category_item_add_date_time)
+    val tvTaskCategoryChangeDateTime: TextView = viewCategory.findViewById(R.id.text_view_task_category_item_change_date_time)
 
     init {
         sharedLocalPreferences = SharedLocalProperties(preferences)
@@ -31,30 +31,29 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
 
     fun findItemClick(
         onItemClickTaskCategory: TaskCategoriesAdapter.OnItemClickTaskCategory,
-        _id: Long,
-        categoryTitle: String,
-        categoryColor: String) {
+        taskCategoryId: Long,
+        taskCategoryTitle: String,
+        taskCategoryColor: String) {
         itemView.setOnClickListener {
-            onItemClickTaskCategory.onItemClickTaskCategory(_id, categoryTitle, categoryColor)
+            onItemClickTaskCategory.onItemClickTaskCategory(taskCategoryId, taskCategoryTitle, taskCategoryColor)
         }
     }
 
     fun findLongItemClick(
         onLongClickTaskCategory: TaskCategoriesAdapter.OnLongClickTaskCategory,
-        _id: Long,
-        categoryTitle: String,
-        categoryColor: String) {
+        taskCategoryId: Long,
+        taskCategoryTitle: String,
+        taskCategoryColor: String) {
         itemView.setOnLongClickListener {
-            val pop = PopupMenu(itemView.context, taskCategoryTitle)
+            val pop = PopupMenu(itemView.context, tvTaskCategoryTitle)
             pop.inflate(R.menu.menu_change_item_popup)
             pop.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.popup_change_item -> {
-                        onLongClickTaskCategory.itemClickRenameCategory(_id, categoryTitle, categoryColor)
+                        onLongClickTaskCategory.itemClickRenameCategory(taskCategoryId, taskCategoryTitle, taskCategoryColor)
                     }
-
                     R.id.popup_delete_item -> {
-                        onLongClickTaskCategory.itemClickDeleteCategory(_id, categoryTitle)
+                        onLongClickTaskCategory.itemClickDeleteCategory(taskCategoryId, taskCategoryTitle)
                     }
                 }
                 true
@@ -73,15 +72,15 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
         val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskCategoryBottomSheet.KEY_TASK_CATEGORY_CHANGE_DATE_TIME, false)
 
         if (!addShowingDateTime!!) {
-            taskCategoryAddDateTime.visibility = View.GONE
+            tvTaskCategoryAddDateTime.visibility = View.GONE
         } else {
-            taskCategoryAddDateTime.visibility = View.VISIBLE
+            tvTaskCategoryAddDateTime.visibility = View.VISIBLE
         }
 
         if (!changeShowingDateTime!!) {
-            taskCategoryChangeDateTime.visibility = View.GONE
+            tvTaskCategoryChangeDateTime.visibility = View.GONE
         } else {
-            taskCategoryChangeDateTime.visibility = View.VISIBLE
+            tvTaskCategoryChangeDateTime.visibility = View.VISIBLE
         }
     }
 }

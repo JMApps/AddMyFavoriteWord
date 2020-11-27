@@ -56,7 +56,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         tasksCategoryViewModel = ViewModelProvider(this).get(TasksCategoryViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks_category, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -78,8 +78,8 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         return binding.root
     }
 
-    override fun initView(sortedBy: String) {
-        tasksCategoryViewModel.allTaskCategories(sortedBy).observe(this, Observer {
+    override fun initView(orderBy: String) {
+        tasksCategoryViewModel.allTaskCategories(orderBy).observe(this, Observer {
             it.let {
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
@@ -96,12 +96,14 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         binding.fabAddTaskCategory.startAnimation(show)
 
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility =
+            otherFragmentsPresenter.descriptionMain()
     }
 
     override fun updateState() {
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility =
+            otherFragmentsPresenter.descriptionMain()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -133,9 +135,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex = 4)
             }
             R.id.action_delete_all_categories -> {
-                alertDialog.showAlertDialog(
-                    getString(R.string.dialog_message_are_sure_you_want_task_categories), 0, 0, getString(R.string.action_categories_deleted)
-                )
+                alertDialog.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_task_categories), 0, 0, getString(R.string.action_categories_deleted))
             }
         }
         return super.onOptionsItemSelected(item)
@@ -159,18 +159,21 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         addTaskCategory.show(childFragmentManager, AddTaskCategoryBottomSheet.ARG_ADD_TASK_CATEGORY_BS)
     }
 
-    override fun onItemClickTaskCategory(_id: Long, categoryTitle: String, categoryColor: String) {
-        toTaskActivity(_id, categoryTitle, categoryColor)
+    override fun onItemClickTaskCategory(
+        taskCategoryId: Long,
+        taskCategoryTitle: String,
+        taskCategoryColor: String) {
+        toTaskActivity(taskCategoryId, taskCategoryTitle, taskCategoryColor)
     }
 
-    override fun itemClickRenameCategory(_id: Long, categoryTitle: String, categoryColor: String) {
-        val renameTaskCategory = RenameTaskCategoryBottomSheet.toInstance(_id, categoryTitle, categoryColor)
+    override fun itemClickRenameCategory(taskCategoryId: Long, taskCategoryTitle: String, taskCategoryColor: String) {
+        val renameTaskCategory = RenameTaskCategoryBottomSheet.toInstance(taskCategoryId, taskCategoryTitle, taskCategoryColor)
         renameTaskCategory.show(childFragmentManager, RenameTaskCategoryBottomSheet.ARG_RENAME_TASK_CATEGORY_BS)
     }
 
-    override fun itemClickDeleteCategory(_id: Long, categoryTitle: String) {
-        val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$categoryTitle</b>")
-        alertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, _id, getString(R.string.action_category_deleted))
+    override fun itemClickDeleteCategory(taskCategoryId: Long, taskCategoryTitle: String) {
+        val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$taskCategoryTitle</b>")
+        alertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, taskCategoryId, getString(R.string.action_category_deleted))
     }
 
     override fun onClickDeleteOnly(_id: Long) {

@@ -3,7 +3,7 @@ package jmapps.addmyfavoriteword.presentation.mvp.otherFragments
 interface ContractInterface {
 
     interface OtherView {
-        fun initView(sortedBy: String)
+        fun initView(orderBy: String)
         fun defaultState()
         fun updateState()
     }

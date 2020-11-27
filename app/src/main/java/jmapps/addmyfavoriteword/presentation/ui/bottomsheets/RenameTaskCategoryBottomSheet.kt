@@ -59,7 +59,7 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
         newCategoryColor = categoryColor
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_rename_task_category, container, false)
 
         binding.editRenameTaskCategory.setText(categoryTitle)
@@ -80,7 +80,11 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
                     .setTitle(getString(R.string.description_choose_color))
                     .setColorRes(resources.getIntArray(R.array.themeColors).toList())
                     .setColorListener { _, colorHex ->
-                        binding.textCurrentCategoryColor.setBackgroundColor(Color.parseColor(colorHex))
+                        binding.textCurrentCategoryColor.setBackgroundColor(
+                            Color.parseColor(
+                                colorHex
+                            )
+                        )
                         newCategoryColor = colorHex
                     }
                     .show()
@@ -99,7 +103,7 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
             }
             binding.editRenameTaskCategory.text.toString().isNotEmpty() &&
                     binding.editRenameTaskCategory.text.toString() != categoryTitle ||
-                        categoryColor != newCategoryColor -> {
+                    categoryColor != newCategoryColor -> {
                 renameTaskCategory()
                 Toast.makeText(requireContext(), getString(R.string.toast_category_changed), Toast.LENGTH_SHORT).show()
             }
