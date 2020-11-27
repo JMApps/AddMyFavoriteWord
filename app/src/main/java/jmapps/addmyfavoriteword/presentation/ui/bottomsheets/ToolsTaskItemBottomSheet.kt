@@ -33,7 +33,6 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         const val KEY_TASK_ITEM_ADD_DATE_TIME = "key_task_item_add_date_time"
         const val KEY_TASK_ITEM_CHANGE_DATE_TIME = "key_task_item_change_date_time"
         const val KEY_TASK_ITEM_EXECUTION_DATE_TIME = "key_task_item_execution_date_time"
-        const val KEY_TASK_ITEM_PRIORITY = "key_task_item_priority"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,7 +46,6 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         val lastTaskAddDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_ADD_DATE_TIME, false)
         val lastTaskChangeDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_CHANGE_DATE_TIME, false)
         val lastTaskExecutionDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_EXECUTION_DATE_TIME, false)
-        val lastTaskPrioritySwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_PRIORITY, true)
 
         binding.apply {
             seekBarTaskTextSize.progress = lastTaskTextSizeProgress!!
@@ -55,14 +53,12 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
             switchAddTaskTime.isChecked = lastTaskAddDateTimeSwitch!!
             switchChangeTaskTime.isChecked = lastTaskChangeDateTimeSwitch!!
             switchExecutionTaskTime.isChecked = lastTaskExecutionDateTimeSwitch!!
-            switchPriority.isChecked = lastTaskPrioritySwitch!!
         }
 
         binding.seekBarTaskTextSize.setOnSeekBarChangeListener(this)
         binding.switchAddTaskTime.setOnCheckedChangeListener(this)
         binding.switchChangeTaskTime.setOnCheckedChangeListener(this)
         binding.switchExecutionTaskTime.setOnCheckedChangeListener(this)
-        binding.switchPriority.setOnCheckedChangeListener(this)
 
         return binding.root
     }
@@ -91,9 +87,6 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
             }
             R.id.switch_execution_task_time -> {
                 sharedLocalPreferences.saveBooleanValue(KEY_TASK_ITEM_EXECUTION_DATE_TIME, isChecked)
-            }
-            R.id.switch_priority -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_TASK_ITEM_PRIORITY, isChecked)
             }
         }
     }

@@ -109,25 +109,13 @@
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginEnd="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/main_margin"
             android:text="@string/action_execution_date_time"
-            android:textSize="@dimen/main_app_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_change_task_time" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_priority"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin"
-            android:layout_marginTop="@dimen/main_margin"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:layout_marginBottom="@dimen/main_margin_big"
-            android:text="@string/action_priority"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_execution_task_time" />
+            app:layout_constraintTop_toBottomOf="@+id/switch_change_task_time" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

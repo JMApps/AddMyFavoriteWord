@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.appcompat.widget.PopupMenu
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,13 +19,13 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
     private var preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(itemView.context)
     private var sharedLocalPreferences: SharedLocalProperties
 
+    val tvTaskItemPriority: LinearLayoutCompat = taskView.findViewById(R.id.layout_task_item_priority)
     val tvTaskItemColor: TextView = taskView.findViewById(R.id.text_task_item_color)
     val tvTaskItemCheckBox: CheckBox = taskView.findViewById(R.id.checkbox_task_state)
     val tvTaskItemTitle: TextView = taskView.findViewById(R.id.text_task_item_title)
     val tvTaskItemAddDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_add_date_time)
     val tvTaskItemChangeDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_change_date_time)
     val tvTaskItemExecutionDateTime: TextView = taskView.findViewById(R.id.text_view_task_item_execution_date_time)
-    val tvTaskItemPriority: TextView = taskView.findViewById(R.id.text_view_task_item_priority)
 
     init {
         sharedLocalPreferences = SharedLocalProperties(preferences)
@@ -75,7 +76,6 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
         val addShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_ADD_DATE_TIME, false)
         val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_CHANGE_DATE_TIME, false)
         val executionShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_EXECUTION_DATE_TIME, false)
-        val showingPriority = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.KEY_TASK_ITEM_PRIORITY, true)
 
         if (!addShowingDateTime!!) {
             tvTaskItemAddDateTime.visibility = View.GONE
@@ -93,12 +93,6 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
             tvTaskItemExecutionDateTime.visibility = View.GONE
         } else {
             tvTaskItemExecutionDateTime.visibility = View.VISIBLE
-        }
-
-        if (!showingPriority!!) {
-            tvTaskItemPriority.visibility = View.GONE
-        } else {
-            tvTaskItemPriority.visibility = View.VISIBLE
         }
     }
 }
