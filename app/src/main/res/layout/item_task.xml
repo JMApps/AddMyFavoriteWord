@@ -27,6 +27,7 @@
                 android:id="@+id/text_task_item_color"
                 android:layout_width="@dimen/main_padding_big"
                 android:layout_height="match_parent"
+                android:background="@drawable/symmetry_right_circular_color_view"
                 android:gravity="center"
                 android:minWidth="@dimen/main_padding_big"
                 android:minHeight="@dimen/item_card_min_height"
@@ -49,7 +50,8 @@
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/checkbox_task_state"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/state_task_item" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_task_item_title"

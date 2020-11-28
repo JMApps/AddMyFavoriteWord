@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.data.database.room.tasks.tasks.TaskItems
@@ -44,7 +45,7 @@ class TaskItemsAdapter(
     override fun onBindViewHolder(holder: TaskItemsHolder, position: Int) {
         val current = taskItemList[position]
 
-        holder.tvTaskItemColor.setBackgroundColor(Color.parseColor(current.taskItemColor))
+        DrawableCompat.setTint(holder.tvTaskItemColor.background, Color.parseColor(current.taskItemColor))
         holder.tvTaskItemColor.text = (position + 1).toString()
 
         holder.tvTaskItemCheckBox.buttonTintList = ColorStateList.valueOf(Color.parseColor(current.taskItemColor))
@@ -67,7 +68,7 @@ class TaskItemsAdapter(
             val taskExecutionDateTime = context.getString(R.string.action_execution_time_item_task, "\n${current.executionDateTime}")
             holder.tvTaskItemExecutionDateTime.text = taskExecutionDateTime
         } else {
-            holder.tvTaskItemExecutionDateTime.text = "Не выполнено"
+            holder.tvTaskItemExecutionDateTime.text = "Состояние:\nНе выполнено"
         }
 
         val priorityName = arrayListOf("#FFFFFF", "#FFECB3", "#C8E6C9", "#FFCDD2")
