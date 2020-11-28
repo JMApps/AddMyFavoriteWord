@@ -23,8 +23,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/symmetry_right_circular_color_view"
             android:gravity="center"
-            android:minWidth="@dimen/main_padding_big"
-            android:minHeight="@dimen/item_card_min_height"
             android:textColor="@color/white"
             android:textSize="@dimen/main_app_text_size"
             app:fontFamily="@font/gilroy_light" />
