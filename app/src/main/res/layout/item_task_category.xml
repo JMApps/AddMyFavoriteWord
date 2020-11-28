@@ -21,7 +21,6 @@
             android:id="@+id/text_task_category_color"
             android:layout_width="@dimen/main_padding_big"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/main_margin_mini"
             android:background="@drawable/symmetry_right_circular_color_view"
             android:gravity="center"
             android:minWidth="@dimen/main_padding_big"
@@ -34,14 +33,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/main_padding_mini">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_task_category_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/main_margin_mini"
-                android:padding="@dimen/main_padding_mini"
+                android:gravity="start|center_vertical"
+                android:paddingTop="@dimen/main_padding_mini"
+                android:paddingBottom="@dimen/main_padding_mini"
                 android:textSize="@dimen/main_app_text_size"
                 android:textStyle="bold"
                 tools:text="На сегодня" />
@@ -57,14 +59,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/main_margin_mini"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textSize="@dimen/small_text_size" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/text_view_task_category_item_change_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textSize="@dimen/small_text_size" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>

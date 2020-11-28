@@ -2,6 +2,8 @@ package jmapps.addmyfavoriteword.presentation.ui.bottomsheets
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +18,8 @@ import jmapps.addmyfavoriteword.databinding.BottomsheetRenameTaskCategoryBinding
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
-class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
+class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickListener,
+    TextWatcher {
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
@@ -67,11 +70,24 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
         binding.editRenameTaskCategory.setSelection(categoryTitle!!.length)
         DrawableCompat.setTint(binding.textNewCategoryColor.background, Color.parseColor(categoryColor))
 
+        val categoryNameCharacters = getString(R.string.max_task_category_name_characters, categoryTitle!!.length)
+        binding.textLengthChangeCategoryCharacters.text = categoryNameCharacters
+
+        binding.editRenameTaskCategory.addTextChangedListener(this)
         binding.textNewCategoryColor.setOnClickListener(this)
         binding.buttonRenameTaskCategory.setOnClickListener(this)
 
         return binding.root
     }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        val categoryNameCharacters = getString(R.string.max_task_category_name_characters, s?.length)
+        binding.textLengthChangeCategoryCharacters.text = categoryNameCharacters
+    }
+
+    override fun afterTextChanged(s: Editable?) {}
 
     override fun onClick(v: View?) {
         when (v?.id) {

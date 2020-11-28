@@ -36,7 +36,7 @@
             android:ellipsize="end"
             android:hint="@string/hint_enter_new_category_name"
             android:inputType="textCapSentences"
-            android:maxLength="200"
+            android:maxLength="100"
             android:padding="@dimen/main_padding"
             android:singleLine="true"
             android:textSize="@dimen/main_app_text_size"
@@ -59,6 +59,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edit_rename_task_category" />
 
+        <TextView
+            android:id="@+id/text_length_change_category_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/main_margin_mini"
+            app:layout_constraintEnd_toEndOf="@+id/edit_rename_task_category"
+            app:layout_constraintTop_toBottomOf="@+id/edit_rename_task_category" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_rename_task_category"
             android:layout_width="0dp"
@@ -73,6 +81,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_rename_task_category" />
+            app:layout_constraintTop_toBottomOf="@+id/text_length_change_category_characters" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
