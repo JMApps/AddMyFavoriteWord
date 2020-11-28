@@ -30,7 +30,7 @@ import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalPropertie
 
 class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     SearchView.OnQueryTextListener, TaskItemsAdapter.OnTaskCheckboxState, View.OnClickListener,
-    TaskItemsAdapter.OnLongClickTaskItem, DeleteAlertUtil.OnClickDelete {
+    TaskItemsAdapter.OnItemClickTaskItem, DeleteAlertUtil.OnClickDelete {
 
     private lateinit var binding: ActivityTaskBinding
     private lateinit var taskItemViewModel: TasksItemViewModel

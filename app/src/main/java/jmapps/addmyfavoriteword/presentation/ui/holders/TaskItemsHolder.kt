@@ -41,8 +41,8 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
         }
     }
 
-    fun findLongItemClick(onItemLongClickTaskItem: TaskItemsAdapter.OnLongClickTaskItem, taskItemId: Long, taskItemTitle: String, priority: Long) {
-        itemView.setOnLongClickListener {
+    fun findOnItemClick(onItemLongClickTaskItem: TaskItemsAdapter.OnItemClickTaskItem, taskItemId: Long, taskItemTitle: String, priority: Long) {
+        itemView.setOnClickListener {
             val pop = PopupMenu(itemView.context, tvTaskItemTitle)
             pop.inflate(R.menu.menu_change_item_popup)
             pop.setOnMenuItemClickListener { item ->
@@ -58,7 +58,6 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
                 true
             }
             pop.show()
-            true
         }
     }
 

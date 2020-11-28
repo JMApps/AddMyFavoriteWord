@@ -19,7 +19,7 @@ class TaskItemsAdapter(
     private val context: Context,
     private var taskItemList: MutableList<TaskItems>,
     private val onTaskCheckboxState: OnTaskCheckboxState,
-    private val onLongClickTaskItem: OnLongClickTaskItem) : RecyclerView.Adapter<TaskItemsHolder>(), Filterable {
+    private val onLongClickTaskItem: OnItemClickTaskItem) : RecyclerView.Adapter<TaskItemsHolder>(), Filterable {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var firstTaskItemList: MutableList<TaskItems>? = null
@@ -32,7 +32,7 @@ class TaskItemsAdapter(
         fun onTaskCheckboxState(taskItemId: Long, state: Boolean)
     }
 
-    interface OnLongClickTaskItem {
+    interface OnItemClickTaskItem {
         fun itemClickRenameItem(taskItemId: Long, taskItemTitle: String, priority: Long)
         fun itemClickDeleteItem(taskItemId: Long)
     }
@@ -75,7 +75,7 @@ class TaskItemsAdapter(
         holder.tvTaskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
-        holder.findLongItemClick(onLongClickTaskItem, current._id, current.taskItemTitle, current.priority)
+        holder.findOnItemClick(onLongClickTaskItem, current._id, current.taskItemTitle, current.priority)
     }
 
     override fun getItemCount() = taskItemList.size
