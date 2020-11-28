@@ -140,10 +140,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex = 5)
             }
             R.id.action_delete_all_task_items -> {
-                val deleteAllTaskDescription = getString(
-                    R.string.dialog_message_are_sure_you_want_items_task,
-                    "<b>$taskCategoryTitle</b>"
-                )
+                val deleteAllTaskDescription = getString(R.string.dialog_message_are_sure_you_want_items_task, "<b>$taskCategoryTitle</b>")
                 deleteAlertDialog.showAlertDialog(deleteAllTaskDescription, 0, 0, getString(R.string.action_tasks_deleted))
             }
         }

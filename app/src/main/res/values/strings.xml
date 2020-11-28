@@ -17,6 +17,7 @@
     <string name="description_add_category">Добавить категорию</string>
     <string name="hint_enter_category_name">Введите название категории</string>
     <string name="description_choose_color">Выберите цвет категории</string>
+    <string name="max_task_category_name_characters">%1$d/100</string>
     <string name="action_add_category">Добавить</string>
     <string name="toast_category_added">Категория добавлена</string>
     <string name="description_change_category">Изменить категорию</string>
@@ -32,6 +33,7 @@
     <string name="description_add_first_task">Добавьте первую задачу в категорию:\n%1$s</string>
     <string name="description_add_task">Добавить задачу</string>
     <string name="hint_enter_task_name">Введите название задачи</string>
+    <string name="max_task_item_name_characters">%1$d/100</string>
     <string name="description_task_priory">Приоритет:</string>
     <string name="action_add_task">Добавить</string>
     <string name="toast_task_added">Задача добавлена</string>

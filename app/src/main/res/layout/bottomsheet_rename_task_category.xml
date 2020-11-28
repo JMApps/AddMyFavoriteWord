@@ -40,7 +40,7 @@
             android:padding="@dimen/main_padding"
             android:singleLine="true"
             android:textSize="@dimen/main_app_text_size"
-            app:layout_constraintEnd_toStartOf="@+id/text_new_category_color"
+            app:layout_constraintEnd_toStartOf="@+id/text_new_task_category_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_rename_task_category_description">
 
@@ -48,7 +48,7 @@
         </androidx.appcompat.widget.AppCompatEditText>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_new_category_color"
+            android:id="@+id/text_new_task_category_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/symmetry_left_circular_color_view"
@@ -60,7 +60,7 @@
             app:layout_constraintTop_toTopOf="@+id/edit_rename_task_category" />
 
         <TextView
-            android:id="@+id/text_length_change_category_characters"
+            android:id="@+id/text_length_change_task_category_characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/main_margin_mini"
@@ -81,6 +81,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_length_change_category_characters" />
+            app:layout_constraintTop_toBottomOf="@+id/text_length_change_task_category_characters" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

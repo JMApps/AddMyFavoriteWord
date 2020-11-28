@@ -7,7 +7,7 @@
     android:layout_margin="@dimen/main_card_margin"
     android:elevation="@dimen/main_card_elevation"
     android:minHeight="@dimen/item_card_normal_height"
-    app:cardCornerRadius="50dp">
+    app:cardCornerRadius="@dimen/main_card_corner">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/layout_note_priority"

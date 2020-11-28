@@ -29,7 +29,7 @@
     <dimen name="item_card_normal_height">120dp</dimen>
 
     <!--    Corner's-->
-    <dimen name="main_card_corner">5dp</dimen>
+    <dimen name="main_card_corner">10dp</dimen>
 
     <!--    Elevation's-->
     <dimen name="main_card_elevation">3dp</dimen>

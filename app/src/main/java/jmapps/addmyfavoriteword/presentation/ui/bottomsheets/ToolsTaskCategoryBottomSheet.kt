@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import jmapps.addmyfavoriteword.R
-import jmapps.addmyfavoriteword.databinding.BottomSheetToolsTaskCategoryBinding
+import jmapps.addmyfavoriteword.databinding.BottomsheetToolsTaskCategoryBinding
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class ToolsTaskCategoryBottomSheet : BottomSheetDialogFragment(),
@@ -18,7 +18,7 @@ class ToolsTaskCategoryBottomSheet : BottomSheetDialogFragment(),
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
-    private lateinit var binding: BottomSheetToolsTaskCategoryBinding
+    private lateinit var binding: BottomsheetToolsTaskCategoryBinding
 
     private lateinit var preferences: SharedPreferences
     private lateinit var sharedLocalPreferences: SharedLocalProperties
@@ -30,7 +30,7 @@ class ToolsTaskCategoryBottomSheet : BottomSheetDialogFragment(),
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.bottom_sheet_tools_task_category, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_tools_task_category, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)

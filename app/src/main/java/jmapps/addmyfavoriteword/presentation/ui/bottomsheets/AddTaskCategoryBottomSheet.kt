@@ -44,7 +44,7 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
         DrawableCompat.setTint(binding.textAddTaskCategoryColor.background, Color.parseColor(standardColor))
 
         val categoryNameCharacters = getString(R.string.max_task_category_name_characters, 0)
-        binding.textLengthAddCategoryCharacters.text = categoryNameCharacters
+        binding.textLengthAddTaskCategoryCharacters.text = categoryNameCharacters
 
         binding.editAddTaskCategory.addTextChangedListener(this)
         binding.textAddTaskCategoryColor.setOnClickListener(this)
@@ -58,7 +58,7 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         val categoryNameCharacters = getString(R.string.max_task_category_name_characters, s?.length)
-        binding.textLengthAddCategoryCharacters.text = categoryNameCharacters
+        binding.textLengthAddTaskCategoryCharacters.text = categoryNameCharacters
     }
 
     override fun afterTextChanged(s: Editable?) {}

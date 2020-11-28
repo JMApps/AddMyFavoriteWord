@@ -68,13 +68,13 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
         binding.editRenameTaskCategory.setText(categoryTitle)
         binding.editRenameTaskCategory.setSelection(categoryTitle!!.length)
-        DrawableCompat.setTint(binding.textNewCategoryColor.background, Color.parseColor(categoryColor))
+        DrawableCompat.setTint(binding.textNewTaskCategoryColor.background, Color.parseColor(categoryColor))
 
         val categoryNameCharacters = getString(R.string.max_task_category_name_characters, categoryTitle!!.length)
-        binding.textLengthChangeCategoryCharacters.text = categoryNameCharacters
+        binding.textLengthChangeTaskCategoryCharacters.text = categoryNameCharacters
 
         binding.editRenameTaskCategory.addTextChangedListener(this)
-        binding.textNewCategoryColor.setOnClickListener(this)
+        binding.textNewTaskCategoryColor.setOnClickListener(this)
         binding.buttonRenameTaskCategory.setOnClickListener(this)
 
         return binding.root
@@ -84,21 +84,21 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         val categoryNameCharacters = getString(R.string.max_task_category_name_characters, s?.length)
-        binding.textLengthChangeCategoryCharacters.text = categoryNameCharacters
+        binding.textLengthChangeTaskCategoryCharacters.text = categoryNameCharacters
     }
 
     override fun afterTextChanged(s: Editable?) {}
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.text_new_category_color -> {
+            R.id.text_new_task_category_color -> {
                 MaterialColorPickerDialog
                     .Builder(requireContext())
                     .setTitle(getString(R.string.description_choose_color))
                     .setColorRes(resources.getIntArray(R.array.themeColors).toList())
                     .setColorListener { _, colorHex ->
                         newCategoryColor = colorHex
-                        DrawableCompat.setTint(binding.textNewCategoryColor.background, Color.parseColor(newCategoryColor))
+                        DrawableCompat.setTint(binding.textNewTaskCategoryColor.background, Color.parseColor(newCategoryColor))
                     }
                     .show()
             }

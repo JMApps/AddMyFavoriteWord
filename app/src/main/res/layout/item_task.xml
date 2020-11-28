@@ -7,7 +7,7 @@
     android:layout_margin="@dimen/main_card_margin"
     android:elevation="@dimen/main_card_elevation"
     android:minHeight="@dimen/item_card_min_height"
-    app:cardCornerRadius="15dp">
+    app:cardCornerRadius="@dimen/main_card_corner">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/layout_task_item_priority"
@@ -50,8 +50,7 @@
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/checkbox_task_state"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/state_task_item" />
+                        android:layout_height="wrap_content" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_task_item_title"
