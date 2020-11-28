@@ -27,9 +27,4 @@
     <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="behavior_peekHeight">1000dp</item>
     </style>
-
-    <style name="SpinnerTheme" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
-        <item name="android:textSize">@dimen/main_app_text_size</item>
-        <item name="android:textColor">@color/red_500</item>
-    </style>
 </resources>

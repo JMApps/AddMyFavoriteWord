@@ -58,6 +58,8 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:padding="@dimen/main_padding_mini"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/gilroy_extra_bold"
                         tools:text="Дочитать head first Kotlin" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

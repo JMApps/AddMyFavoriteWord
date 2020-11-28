@@ -43,6 +43,7 @@
                 android:paddingBottom="@dimen/main_padding_mini"
                 android:textSize="@dimen/main_app_text_size"
                 android:textStyle="bold"
+                app:fontFamily="@font/gilroy_extra_bold"
                 tools:text="На сегодня" />
 
             <androidx.appcompat.widget.AppCompatTextView
