@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
@@ -64,7 +65,7 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
         binding.editRenameTaskCategory.setText(categoryTitle)
         binding.editRenameTaskCategory.setSelection(categoryTitle!!.length)
-        binding.textNewCategoryColor.setBackgroundColor(Color.parseColor(categoryColor))
+        DrawableCompat.setTint(binding.textNewCategoryColor.background, Color.parseColor(categoryColor))
 
         binding.textNewCategoryColor.setOnClickListener(this)
         binding.buttonRenameTaskCategory.setOnClickListener(this)
@@ -80,12 +81,8 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
                     .setTitle(getString(R.string.description_choose_color))
                     .setColorRes(resources.getIntArray(R.array.themeColors).toList())
                     .setColorListener { _, colorHex ->
-                        binding.textNewCategoryColor.setBackgroundColor(
-                            Color.parseColor(
-                                colorHex
-                            )
-                        )
                         newCategoryColor = colorHex
+                        DrawableCompat.setTint(binding.textNewCategoryColor.background, Color.parseColor(newCategoryColor))
                     }
                     .show()
             }

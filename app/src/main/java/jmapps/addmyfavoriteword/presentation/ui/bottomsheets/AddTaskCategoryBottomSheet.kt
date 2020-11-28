@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
@@ -35,10 +36,11 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
         tasksCategoryViewModel = ViewModelProvider(this).get(TasksCategoryViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_task_category, container, false)
 
-        binding.textAddTaskCategoryColor.setBackgroundColor(Color.parseColor(standardColor))
+        DrawableCompat.setTint(binding.textAddTaskCategoryColor.background, Color.parseColor(standardColor))
+
         binding.textAddTaskCategoryColor.setOnClickListener(this)
         binding.buttonAddTaskCategory.setOnClickListener(this)
 
@@ -53,14 +55,13 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
                     .setTitle(getString(R.string.description_choose_color))
                     .setColorRes(resources.getIntArray(R.array.themeColors).toList())
                     .setColorListener { _, colorHex ->
-                        binding.textAddTaskCategoryColor.setBackgroundColor(Color.parseColor(colorHex))
                         standardColor = colorHex
+                        DrawableCompat.setTint(binding.textAddTaskCategoryColor.background, Color.parseColor(standardColor))
                     }
                     .show()
             }
-
             R.id.button_add_task_category -> {
-               checkEditText()
+                checkEditText()
             }
         }
     }
@@ -79,7 +80,8 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
             standardColor,
             standardIntermediate,
             MainOther().currentTime,
-            MainOther().currentTime)
+            MainOther().currentTime
+        )
         tasksCategoryViewModel.insertTaskCategory(addTaskCategories)
         dialog?.dismiss()
     }

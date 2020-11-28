@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.data.database.room.tasks.categories.TaskCategories
@@ -51,14 +52,12 @@ class TaskCategoriesAdapter(
     override fun onBindViewHolder(holder: TaskCategoriesHolder, position: Int) {
         val current = taskCategoryList[position]
 
-        holder.tvTaskCategoryColor.setBackgroundColor(Color.parseColor(current.taskCategoryColor))
+        DrawableCompat.setTint(holder.tvTaskCategoryColor.background, Color.parseColor(current.taskCategoryColor))
         holder.tvTaskCategoryColor.text = (position + 1).toString()
         holder.tvTaskCategoryTitle.text = current.taskCategoryTitle
 
-        val taskCategoryAddDateTime =
-            context.getString(R.string.action_add_time_item_task, "\n${current.addDateTime}")
-        val taskCategoryChangeDateTime =
-            context.getString(R.string.action_change_time_item_task, "\n${current.changeDateTime}")
+        val taskCategoryAddDateTime = context.getString(R.string.action_add_time_item_task, "\n${current.addDateTime}")
+        val taskCategoryChangeDateTime = context.getString(R.string.action_change_time_item_task, "\n${current.changeDateTime}")
 
         holder.tvTaskCategoryAddDateTime.text = taskCategoryAddDateTime
         holder.tvTaskCategoryChangeDateTime.text = taskCategoryChangeDateTime
