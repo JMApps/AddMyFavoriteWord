@@ -26,13 +26,13 @@ import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategoryBott
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameTaskCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsTaskCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksCategoryViewModel
-import jmapps.addmyfavoriteword.presentation.ui.other.AlertUtil
+import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     TaskCategoriesAdapter.OnItemClickTaskCategory, View.OnClickListener,
     SearchView.OnQueryTextListener, TaskCategoriesAdapter.OnLongClickTaskCategory,
-    AlertUtil.OnClickDelete {
+    DeleteAlertUtil.OnClickDelete {
 
     private lateinit var binding: FragmentTasksCategoryBinding
     private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
@@ -45,7 +45,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     private lateinit var taskCategoriesAdapter: TaskCategoriesAdapter
 
     private var defaultOrderIndex = 0
-    private lateinit var alertDialog: AlertUtil
+    private lateinit var deleteAlertDialog: DeleteAlertUtil
 
     companion object {
         private const val KEY_ORDER_TASK_CATEGORY_INDEX = "key_order_task_category_index"
@@ -65,7 +65,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         retainInstance = true
         setHasOptionsMenu(true)
 
-        alertDialog = AlertUtil(requireContext(), this)
+        deleteAlertDialog = DeleteAlertUtil(requireContext(), this)
 
         defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_TASK_CATEGORY_INDEX, 0)!!
 
@@ -135,7 +135,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex = 4)
             }
             R.id.action_delete_all_categories -> {
-                alertDialog.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_task_categories), 0, 0, getString(R.string.action_categories_deleted))
+                deleteAlertDialog.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_task_categories), 0, 0, getString(R.string.action_categories_deleted))
             }
         }
         return super.onOptionsItemSelected(item)
@@ -173,7 +173,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun itemClickDeleteCategory(taskCategoryId: Long, taskCategoryTitle: String) {
         val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$taskCategoryTitle</b>")
-        alertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, taskCategoryId, getString(R.string.action_category_deleted))
+        deleteAlertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, taskCategoryId, getString(R.string.action_category_deleted))
     }
 
     override fun onClickDeleteOnly(_id: Long) {

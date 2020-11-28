@@ -23,6 +23,7 @@
             android:inputType="textCapSentences"
             android:maxLines="1"
             android:padding="@dimen/main_padding_mini"
+            app:fontFamily="@font/gilroy_extra_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -70,12 +71,17 @@
             android:layout_marginBottom="8dp"
             android:gravity="start"
             android:hint="Содержимое"
-            android:inputType="textCapSentences"
+            android:inputType="textCapSentences|textMultiLine"
             android:padding="@dimen/main_padding_mini"
+            android:scrollbars="vertical"
+            app:fontFamily="@font/gilroy_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_note_priority" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_note_priority">
+
+            <requestFocus />
+        </androidx.appcompat.widget.AppCompatEditText>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView2"

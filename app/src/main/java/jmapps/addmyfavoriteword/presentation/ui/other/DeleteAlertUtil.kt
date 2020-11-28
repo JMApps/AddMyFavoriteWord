@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import jmapps.addmyfavoriteword.R
 
-class AlertUtil(private val ctx: Context, private val onClickDelete: OnClickDelete) {
+class DeleteAlertUtil(private val ctx: Context, private val onClickDelete: OnClickDelete) {
     fun showAlertDialog(message: String, sectionDelete: Int, id: Long, deleteMessage: String) {
         AlertDialog.Builder(ctx).let {
             it.setIcon(R.drawable.ic_warning)

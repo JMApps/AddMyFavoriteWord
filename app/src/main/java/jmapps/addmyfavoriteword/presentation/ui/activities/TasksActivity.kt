@@ -24,13 +24,13 @@ import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskItemBottomSh
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameTaskItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsTaskItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
-import jmapps.addmyfavoriteword.presentation.ui.other.AlertUtil
+import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     SearchView.OnQueryTextListener, TaskItemsAdapter.OnTaskCheckboxState, View.OnClickListener,
-    TaskItemsAdapter.OnLongClickTaskItem, AlertUtil.OnClickDelete {
+    TaskItemsAdapter.OnLongClickTaskItem, DeleteAlertUtil.OnClickDelete {
 
     private lateinit var binding: ActivityTaskBinding
     private lateinit var taskItemViewModel: TasksItemViewModel
@@ -47,7 +47,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     private var taskCategoryColor: String? = null
     private var defaultOrderIndex: Int? = null
 
-    private lateinit var alertDialog: AlertUtil
+    private lateinit var deleteAlertDialog: DeleteAlertUtil
 
     companion object {
         const val KEY_TASK_CATEGORY_ID = "key_task_category_id"
@@ -78,7 +78,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
             it.title = taskCategoryTitle
         }
 
-        alertDialog = AlertUtil(this, this)
+        deleteAlertDialog = DeleteAlertUtil(this, this)
 
         binding.taskItemContent.rvTaskItems.addOnScrollListener(onAddScroll)
         binding.taskItemContent.fabAddTaskItem.setOnClickListener(this)
@@ -144,7 +144,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
                     R.string.dialog_message_are_sure_you_want_items_task,
                     "<b>$taskCategoryTitle</b>"
                 )
-                alertDialog.showAlertDialog(deleteAllTaskDescription, 0, 0, getString(R.string.action_tasks_deleted))
+                deleteAlertDialog.showAlertDialog(deleteAllTaskDescription, 0, 0, getString(R.string.action_tasks_deleted))
             }
         }
         return super.onOptionsItemSelected(item)
@@ -174,7 +174,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun itemClickDeleteItem(taskItemId: Long) {
-        alertDialog.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_item_task), 1, taskItemId, getString(R.string.action_task_deleted))
+        deleteAlertDialog.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_item_task), 1, taskItemId, getString(R.string.action_task_deleted))
     }
 
     override fun onClickDeleteOnly(_id: Long) {

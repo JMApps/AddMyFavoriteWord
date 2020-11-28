@@ -23,11 +23,11 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPr
 import jmapps.addmyfavoriteword.presentation.ui.activities.AddNoteActivity
 import jmapps.addmyfavoriteword.presentation.ui.adapters.NoteItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.models.NotesItemViewModel
-import jmapps.addmyfavoriteword.presentation.ui.other.AlertUtil
+import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListener,
-    AlertUtil.OnClickDelete, SearchView.OnQueryTextListener, NoteItemsAdapter.OnItemClickNote,
+    DeleteAlertUtil.OnClickDelete, SearchView.OnQueryTextListener, NoteItemsAdapter.OnItemClickNote,
     NoteItemsAdapter.OnLongClickNoteItem {
 
     private lateinit var binding: FragmentNotesBinding
@@ -41,7 +41,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
     private lateinit var noteItemsAdapter: NoteItemsAdapter
 
     private var defaultOrderIndex = 0
-    private lateinit var alertDialog: AlertUtil
+    private lateinit var deleteAlertDialog: DeleteAlertUtil
 
     companion object {
         private const val KEY_ORDER_NOTE_ITEM_INDEX = "key_order_note_item_index"
@@ -61,7 +61,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
         retainInstance = true
         setHasOptionsMenu(true)
 
-        alertDialog = AlertUtil(requireContext(), this)
+        deleteAlertDialog = DeleteAlertUtil(requireContext(), this)
 
         defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_NOTE_ITEM_INDEX, 0)!!
 
@@ -128,7 +128,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
                 changeOrderList(defaultOrderIndex = 5)
             }
             R.id.action_delete_all_note_items -> {
-                alertDialog.showAlertDialog(
+                deleteAlertDialog.showAlertDialog(
                     getString(R.string.dialog_message_are_sure_you_want_item_notes), 0, 0, getString(R.string.action_notes_deleted)
                 )
             }
@@ -162,7 +162,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
     }
 
     override fun itemClickDeleteNote(noteId: Long) {
-        alertDialog.showAlertDialog(
+        deleteAlertDialog.showAlertDialog(
             getString(R.string.dialog_message_are_sure_you_want_item_note), 1, noteId, getString(R.string.action_note_deleted)
         )
     }

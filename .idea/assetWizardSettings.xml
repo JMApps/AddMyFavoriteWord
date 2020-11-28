@@ -317,8 +317,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_action_ready" />
-                            <entry key="sourceFile" value="$USER_HOME$/Desktop/pencil.svg" />
+                            <entry key="outputName" value="ic_baseline_check_24" />
+                            <entry key="sourceFile" value="$USER_HOME$/Desktop/checkbox.svg" />
                           </map>
                         </option>
                       </PersistentState>
