@@ -36,7 +36,7 @@
             android:ellipsize="end"
             android:hint="@string/hint_enter_new_task_name"
             android:inputType="textCapSentences"
-            android:maxLength="200"
+            android:maxLength="100"
             android:padding="@dimen/main_padding"
             android:singleLine="true"
             android:textSize="@dimen/main_app_text_size"
@@ -47,18 +47,26 @@
             <requestFocus />
         </androidx.appcompat.widget.AppCompatEditText>
 
+        <TextView
+            android:id="@+id/text_length_change_task_item_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/main_margin_mini"
+            app:layout_constraintEnd_toEndOf="@+id/edit_rename_task_item"
+            app:layout_constraintTop_toBottomOf="@+id/edit_rename_task_item" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_task_priory_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin"
-            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin_mini"
             android:layout_marginEnd="@dimen/main_margin"
             android:text="@string/description_task_priory"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_rename_task_item" />
+            app:layout_constraintTop_toBottomOf="@+id/text_length_change_task_item_characters" />
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner_task_new_priority"

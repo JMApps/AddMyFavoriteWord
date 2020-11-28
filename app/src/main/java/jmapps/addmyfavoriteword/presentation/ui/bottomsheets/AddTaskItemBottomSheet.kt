@@ -1,6 +1,8 @@
 package jmapps.addmyfavoriteword.presentation.ui.bottomsheets
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +16,7 @@ import jmapps.addmyfavoriteword.databinding.BottomsheetAddTaskItemBinding
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
-class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
+class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener, TextWatcher {
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
@@ -50,10 +52,25 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_task_item, container, false)
+
+        val taskItemNameCharacters = getString(R.string.max_task_item_name_characters, 0)
+        binding.textLengthAddTaskItemCharacters.text = taskItemNameCharacters
+
+        binding.editAddTaskItem.addTextChangedListener(this)
         binding.buttonAddTaskItem.setOnClickListener(this)
 
         return binding.root
     }
+
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        val taskItemNameCharacters = getString(R.string.max_task_item_name_characters, s?.length)
+        binding.textLengthAddTaskItemCharacters.text = taskItemNameCharacters
+    }
+
+    override fun afterTextChanged(s: Editable?) {}
 
     override fun onClick(v: View?) {
         when (v?.id) {

@@ -1,6 +1,8 @@
 package jmapps.addmyfavoriteword.presentation.ui.bottomsheets
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +11,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import jmapps.addmyfavoriteword.R
-import jmapps.addmyfavoriteword.databinding.BottomSheetRenameTaskItemBinding
+import jmapps.addmyfavoriteword.databinding.BottomsheetRenameTaskItemBinding
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
-class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
+class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener, TextWatcher {
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
-    private lateinit var binding: BottomSheetRenameTaskItemBinding
+    private lateinit var binding: BottomsheetRenameTaskItemBinding
     private lateinit var taskItemViewModel: TasksItemViewModel
 
     private var taskId: Long? = null
@@ -55,10 +57,14 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.bottom_sheet_rename_task_item, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_rename_task_item, container, false)
+
+        val taskItemNameCharacters = getString(R.string.max_task_item_name_characters, taskTitle!!.length)
+        binding.textLengthChangeTaskItemCharacters.text = taskItemNameCharacters
 
         binding.editRenameTaskItem.setText(taskTitle)
         binding.editRenameTaskItem.setSelection(taskTitle!!.length)
+        binding.editRenameTaskItem.addTextChangedListener(this)
         binding.buttonRenameTaskItem.setOnClickListener(this)
 
         binding.spinnerTaskNewPriority.setSelection(taskPriority!!.toInt())
@@ -66,8 +72,22 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
         return binding.root
     }
 
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        val taskItemNameCharacters = getString(R.string.max_task_item_name_characters, s?.length)
+        binding.textLengthChangeTaskItemCharacters.text = taskItemNameCharacters
+    }
+
+    override fun afterTextChanged(s: Editable?) {}
+
     override fun onClick(v: View?) {
-        checkName()
+        when (v?.id) {
+            R.id.button_rename_task_item -> {
+                checkName()
+            }
+        }
     }
 
     private fun checkName() {
