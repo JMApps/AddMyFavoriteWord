@@ -16,7 +16,7 @@
     <string name="action_search_by_categories">Поиск категорий</string>
     <string name="description_add_category">Добавить категорию</string>
     <string name="hint_enter_category_name">Введите название категории</string>
-    <string name="description_choose_color">Выберите цвет категории</string>
+    <string name="description_choose_color">Выберите цвет</string>
     <string name="max_task_category_name_characters">%1$d/100</string>
     <string name="action_add_category">Добавить</string>
     <string name="toast_category_added">Категория добавлена</string>
@@ -48,7 +48,8 @@
     <!--    Note items-->
     <string name="action_search_by_notes">Поиск заметок</string>
     <string name="description_add_note">Добавить Заметку</string>
-    <string name="hint_enter_note_title">Введите название заголовка</string>
+    <string name="hint_enter_note_title">Название</string>
+    <string name="max_note_title_characters">%1$d/200</string>
     <string name="hint_enter_note_content">Содержимое…</string>
     <string name="description_note_priory">Приоритет:</string>
     <string name="action_add_note">Добавить</string>

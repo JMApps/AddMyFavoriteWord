@@ -24,16 +24,16 @@
     <dimen name="small_text_size">10sp</dimen>
     <dimen name="main_app_text_size">18sp</dimen>
 
+    <!--    Min width's-->
+    <dimen name="characters_min_width">50dp</dimen>
+
     <!--    Min heights's-->
     <dimen name="item_card_min_height">80dp</dimen>
-    <dimen name="item_card_normal_height">120dp</dimen>
+    <dimen name="item_card_normal_height">150dp</dimen>
 
     <!--    Corner's-->
     <dimen name="main_card_corner">10dp</dimen>
 
     <!--    Elevation's-->
     <dimen name="main_card_elevation">3dp</dimen>
-
-    <!--    Max text line's-->
-    <dimen name="max_item_text_line">5</dimen>
 </resources>

@@ -26,7 +26,7 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
     private lateinit var binding: BottomsheetAddTaskCategoryBinding
     private lateinit var tasksCategoryViewModel: TasksCategoryViewModel
 
-    private var standardColor: String = "#ef5350"
+    private var standardColor: String = "#e57373"
     private var standardIntermediate: String = "ci_day"
 
     companion object {
