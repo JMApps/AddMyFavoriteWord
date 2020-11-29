@@ -12,37 +12,34 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/layout_note_priority"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:minHeight="@dimen/item_card_normal_height">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="?android:selectableItemBackgroundBorderless"
-            android:gravity="top|center_vertical"
-            android:minHeight="@dimen/item_card_normal_height"
-            android:orientation="vertical"
-            tools:background="@color/red_50">
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_note_item_color"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/main_padding_big"
+                android:background="@drawable/symmetry_bottom_circular_color_view"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/main_app_text_size"
-                tools:background="@color/green_400" />
+                tools:background="@color/amber_50" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_title_note_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:gravity="start"
-                android:paddingStart="@dimen/main_padding"
-                android:paddingTop="@dimen/main_padding_mini"
-                android:paddingEnd="@dimen/main_padding"
-                android:paddingBottom="@dimen/main_padding_mini"
+                android:maxLines="1"
+                android:padding="@dimen/main_padding_mini"
                 android:textSize="@dimen/main_app_text_size"
-                android:textStyle="bold"
                 app:fontFamily="@font/gilroy_extra_bold"
                 tools:text="На сегодня" />
 
@@ -51,8 +48,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:paddingStart="@dimen/main_padding"
-                android:paddingEnd="@dimen/main_padding"
+                android:paddingStart="@dimen/main_padding_mini"
+                android:paddingEnd="@dimen/main_padding_mini"
                 android:textSize="@dimen/small_text_size"
                 tools:text="29.11.2020 / 11:54" />
 
@@ -62,11 +59,8 @@
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:gravity="start"
-                android:maxLines="5"
-                android:paddingStart="@dimen/main_padding"
-                android:paddingTop="@dimen/main_padding_mini"
-                android:paddingEnd="@dimen/main_padding"
-                android:paddingBottom="@dimen/main_padding"
+                android:maxLines="3"
+                android:padding="@dimen/main_padding_mini"
                 android:textSize="@dimen/main_app_text_size"
                 tools:text="Content" />
         </androidx.appcompat.widget.LinearLayoutCompat>

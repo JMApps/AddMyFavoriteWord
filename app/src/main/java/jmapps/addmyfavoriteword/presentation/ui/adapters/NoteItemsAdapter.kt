@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.data.database.room.notes.NoteItems
@@ -43,10 +44,10 @@ class NoteItemsAdapter(
     override fun onBindViewHolder(holder: NoteItemsHolder, position: Int) {
         val current = noteItemList[position]
 
-        holder.tvNoteItemColor.setBackgroundColor(Color.parseColor(current.noteColor))
+        DrawableCompat.setTint(holder.tvNoteItemColor.background, Color.parseColor(current.noteColor))
         holder.tvNoteItemColor.text = (position + 1).toString()
 
-        val priorityName = arrayListOf("#FFFFFF", "#FFECB3", "#C8E6C9", "#FFCDD2")
+        val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
         holder.tvNoteItemLayout.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
 
         if (current.noteTitle.isNotEmpty()) {
