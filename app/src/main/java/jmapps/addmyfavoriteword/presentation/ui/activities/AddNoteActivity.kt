@@ -2,10 +2,13 @@ package jmapps.addmyfavoriteword.presentation.ui.activities
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
@@ -15,12 +18,12 @@ import jmapps.addmyfavoriteword.databinding.ActivityAddNoteBinding
 import jmapps.addmyfavoriteword.presentation.ui.models.NotesItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
-class AddNoteActivity : AppCompatActivity(), View.OnClickListener {
+class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher {
 
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var notesItemViewModel: NotesItemViewModel
 
-    private var standardNoteColor = "#ef5350"
+    private var standardNoteColor = "#e57373"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         notesItemViewModel = ViewModelProvider(this).get(NotesItemViewModel::class.java)
@@ -30,7 +33,13 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        DrawableCompat.setTint(binding.noteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
+
+        val noteTitleCharacters = getString(R.string.max_note_title_characters, 0)
+        binding.noteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
+
         binding.noteItemContent.textCurrentNoteColor.setOnClickListener(this)
+        binding.noteItemContent.editAddNoteItemTitle.addTextChangedListener(this)
 
     }
 
@@ -74,4 +83,13 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener {
             }
             .show()
     }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        val noteTitleCharacters = getString(R.string.max_note_title_characters, s?.length)
+        binding.noteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
+    }
+
+    override fun afterTextChanged(s: Editable?) {}
 }

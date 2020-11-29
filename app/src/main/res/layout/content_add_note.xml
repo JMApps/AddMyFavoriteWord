@@ -11,86 +11,74 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edit_add_note_item_title"
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_current_note_color"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:ellipsize="end"
-            android:hint="Заголовок"
-            android:inputType="textCapSentences"
-            android:maxLines="1"
+            android:layout_marginTop="@dimen/main_margin_mini"
+            android:background="@drawable/symmetry_right_circular_color_view"
+            android:drawableStart="@drawable/ic_palette"
             android:padding="@dimen/main_padding_mini"
-            app:fontFamily="@font/gilroy_extra_bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner_note_priority"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:entries="@array/priorities"
-            android:padding="@dimen/main_padding_mini"
-            app:layout_constraintEnd_toStartOf="@+id/text_current_note_color"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Цвет заметки"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_add_note_item_title" />
+            android:layout_marginStart="@dimen/main_margin_mini"
+            android:background="@drawable/priority_circular_color_view"
+            android:entries="@array/priorities"
+            android:padding="@dimen/main_padding_mini"
+            app:layout_constraintBottom_toBottomOf="@+id/text_current_note_color"
+            app:layout_constraintStart_toEndOf="@+id/text_current_note_color"
+            app:layout_constraintTop_toTopOf="@+id/text_current_note_color" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_current_note_color"
-            android:layout_width="@dimen/main_icon_size"
-            android:layout_height="@dimen/main_icon_size"
-            android:layout_marginEnd="8dp"
-            android:background="@color/red_400"
-            app:layout_constraintBottom_toBottomOf="@+id/spinner_note_priority"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_add_note_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/main_margin_big"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/hint_enter_note_title"
+            android:inputType="textCapSentences"
+            android:maxLength="200"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/main_padding"
+            android:paddingRight="@dimen/main_padding"
+            app:fontFamily="@font/gilroy_extra_bold"
+            app:layout_constraintEnd_toStartOf="@+id/text_length_add_note_characters"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_note_priority" />
+
+        <TextView
+            android:id="@+id/text_length_add_note_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/main_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_add_note_item_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/spinner_note_priority" />
+            app:layout_constraintTop_toTopOf="@+id/edit_add_note_item_title" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edit_add_note_item_content"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
             android:gravity="start"
-            android:hint="Содержимое"
+            android:hint="@string/hint_enter_note_content"
             android:inputType="textCapSentences|textMultiLine"
-            android:padding="@dimen/main_padding_mini"
+            android:padding="@dimen/main_padding"
+            android:scrollbarThumbVertical="@drawable/thumb_line_background"
             android:scrollbars="vertical"
             app:fontFamily="@font/gilroy_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_note_priority">
+            app:layout_constraintTop_toBottomOf="@+id/edit_add_note_item_title">
 
             <requestFocus />
         </androidx.appcompat.widget.AppCompatEditText>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Приоритет"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_add_note_item_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
