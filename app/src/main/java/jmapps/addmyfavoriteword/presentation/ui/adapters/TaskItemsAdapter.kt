@@ -71,7 +71,7 @@ class TaskItemsAdapter(
             holder.tvTaskItemExecutionDateTime.text = "Состояние:\nНе выполнено"
         }
 
-        val priorityName = arrayListOf("#FFFFFF", "#FFECB3", "#C8E6C9", "#FFCDD2")
+        val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
         holder.tvTaskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)

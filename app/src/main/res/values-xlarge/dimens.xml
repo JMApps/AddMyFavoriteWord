@@ -25,11 +25,14 @@
 
     <!--    Min heights's-->
     <dimen name="item_card_min_height">100dp</dimen>
-    <dimen name="item_card_normal_height">180dp</dimen>
+    <dimen name="item_card_normal_height">200dp</dimen>
 
     <!--    Corner's-->
     <dimen name="main_card_corner">15dp</dimen>
 
     <!--    Elevation's-->
     <dimen name="main_card_elevation">5dp</dimen>
+
+    <!--    Max text line's-->
+    <dimen name="max_item_text_line">3</dimen>
 </resources>

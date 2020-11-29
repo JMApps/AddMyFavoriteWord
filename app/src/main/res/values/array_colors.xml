@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="themeColors">
-        <item>@color/green_400</item>
-        <item>@color/blue_400</item>
-        <item>@color/red_400</item>
-        <item>@color/amber_400</item>
-        <item>@color/brown_400</item>
-        <item>@color/grey_400</item>
-        <item>@color/teal_400</item>
-        <item>@color/pink_400</item>
-        <item>@color/orange_400</item>
-        <item>@color/yellow_400</item>
-        <item>@color/purple_400</item>
-        <item>@color/cyan_400</item>
+        <item>@color/green_300</item>
+        <item>@color/blue_300</item>
+        <item>@color/red_300</item>
+        <item>@color/amber_300</item>
+        <item>@color/brown_300</item>
+        <item>@color/grey_300</item>
+        <item>@color/teal_300</item>
+        <item>@color/pink_300</item>
+        <item>@color/orange_300</item>
+        <item>@color/yellow_300</item>
+        <item>@color/purple_300</item>
+        <item>@color/cyan_300</item>
     </array>
 </resources>

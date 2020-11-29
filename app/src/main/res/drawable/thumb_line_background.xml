@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners
-        android:bottomLeftRadius="50dp"
-        android:bottomRightRadius="50dp"
-        android:topLeftRadius="50dp"
-        android:topRightRadius="50dp" />
-
-    <size
-        android:width="5dp"
-        android:height="5dp" />
-    <padding
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp" />
-    <solid android:color="@color/color_accent" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/color_main_two" />
+            <corners android:radius="5dp" />
+            <size android:width="5dp" />
+        </shape>
+    </item>
+</layer-list>

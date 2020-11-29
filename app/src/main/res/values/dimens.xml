@@ -33,4 +33,7 @@
 
     <!--    Elevation's-->
     <dimen name="main_card_elevation">3dp</dimen>
+
+    <!--    Max text line's-->
+    <dimen name="max_item_text_line">5</dimen>
 </resources>
