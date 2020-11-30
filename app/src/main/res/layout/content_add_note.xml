@@ -61,24 +61,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edit_add_note_item_title" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edit_add_note_item_content"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@android:color/transparent"
-            android:gravity="start"
-            android:hint="@string/hint_enter_note_content"
-            android:inputType="textCapSentences|textMultiLine"
-            android:padding="@dimen/main_padding"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
             android:scrollbars="vertical"
-            app:fontFamily="@font/gilroy_light"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_add_note_item_title">
+            app:layout_constraintTop_toBottomOf="@+id/edit_add_note_item_title"
+            app:layout_constraintVertical_bias="0.0">
 
-            <requestFocus />
-        </androidx.appcompat.widget.AppCompatEditText>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_add_note_item_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="start"
+                android:hint="@string/hint_enter_note_content"
+                android:inputType="textCapSentences|textMultiLine"
+                android:padding="@dimen/main_padding"
+                app:fontFamily="@font/gilroy_light">
+
+                <requestFocus />
+            </androidx.appcompat.widget.AppCompatEditText>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

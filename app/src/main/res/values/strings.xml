@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name_title">Мой словарик</string>
-    <string name="note_name_title">Заметки</string>
+    <string name="app_name_title">Мой блокнот PRO</string>
+    <string name="note_name_title">Добавить заметку</string>
 
     <!--    Main screen-->
     <string name="bottom_navigation_title_tasks">Задачи</string>
@@ -54,6 +54,7 @@
     <string name="description_note_priory">Приоритет:</string>
     <string name="action_add_note">Добавить</string>
     <string name="toast_note_added">Заметка добавлена</string>
+    <string name="action_canceled">Действие отменено</string>
     <string name="description_change_note">Изменить заметку</string>
     <string name="hint_enter_new_note_name">Введите новое название заголовка</string>
     <string name="action_change_note">Изменить</string>
@@ -85,10 +86,13 @@
     <string name="dialog_message_are_sure_you_want_item_task">Вы уверены что хотите удалить задачу?</string>
     <string name="dialog_message_are_sure_you_want_item_notes">Вы уверены что хотите удалить все заметки?</string>
     <string name="dialog_message_are_sure_you_want_item_note">Вы уверены что хотите удалить заметку?</string>
+    <string name="dialog_message_are_sure_you_want_item_note_without_save">Сохранить заметку перед выходом?</string>
     <string name="toast_list_cleared">Список полностью очищен</string>
 
     <string name="action_warning">Подтверждение</string>
     <string name="alert_ok">Да</string>
+    <string name="alert_save">Сохранить</string>
+    <string name="alert_delete">Удалить</string>
     <string name="alert_cancel">Отмена</string>
 
     <!--    Settings-->

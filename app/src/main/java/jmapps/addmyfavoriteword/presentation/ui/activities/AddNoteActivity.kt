@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
@@ -17,13 +18,17 @@ import jmapps.addmyfavoriteword.data.database.room.notes.NoteItems
 import jmapps.addmyfavoriteword.databinding.ActivityAddNoteBinding
 import jmapps.addmyfavoriteword.presentation.ui.models.NotesItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
+import jmapps.addmyfavoriteword.presentation.ui.other.QuestionAlertUtil
 
-class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher {
+class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher,
+    QuestionAlertUtil.OnClickQuestion {
 
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var notesItemViewModel: NotesItemViewModel
 
     private var standardNoteColor = "#e57373"
+
+    private lateinit var questionAlertUtil: QuestionAlertUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         notesItemViewModel = ViewModelProvider(this).get(NotesItemViewModel::class.java)
@@ -34,6 +39,8 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         DrawableCompat.setTint(binding.noteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
+
+        questionAlertUtil = QuestionAlertUtil(this, this)
 
         val noteTitleCharacters = getString(R.string.max_note_title_characters, 0)
         binding.noteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
@@ -50,26 +57,34 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> finish()
+            android.R.id.home -> {
+                if (checkEditTexts()) {
+                    questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_item_note_without_save))
+                } else {
+                    finish()
+                }
+            }
 
             R.id.action_ready -> {
-                addNote()
+                if (checkEditTexts()) {
+                    addNote()
+                } else {
+                    finish()
+                    Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun addNote() {
-        val insertNote = NoteItems(
-            0,
-            binding.noteItemContent.editAddNoteItemTitle.text.toString(),
-            binding.noteItemContent.editAddNoteItemContent.text.toString(),
-            standardNoteColor,
-            MainOther().currentTime,
-            MainOther().currentTime,
-            binding.noteItemContent.spinnerNotePriority.selectedItemId
-        )
-        notesItemViewModel.insertNoteItem(insertNote)
+    override fun onClickPositive() {
+        addNote()
+    }
+
+    override fun onClickDelete() {
+        finish()
+        Toast.makeText(this, getString(R.string.toast_deleted), Toast.LENGTH_SHORT).show()
     }
 
     override fun onClick(v: View?) {
@@ -78,8 +93,8 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher {
             .setTitle(getString(R.string.description_choose_color))
             .setColorRes(resources.getIntArray(R.array.themeColors).toList())
             .setColorListener { _, colorHex ->
-                binding.noteItemContent.textCurrentNoteColor.setBackgroundColor(Color.parseColor(colorHex))
                 standardNoteColor = colorHex
+                DrawableCompat.setTint(binding.noteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
             }
             .show()
     }
@@ -92,4 +107,25 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher {
     }
 
     override fun afterTextChanged(s: Editable?) {}
+
+    private fun checkEditTexts(): Boolean {
+        return binding.noteItemContent.editAddNoteItemTitle.text.toString().isNotEmpty() ||
+            binding.noteItemContent.editAddNoteItemContent.text.toString().isNotEmpty()
+    }
+
+
+    private fun addNote() {
+        val insertNote = NoteItems(
+            0,
+            binding.noteItemContent.editAddNoteItemTitle.text.toString(),
+            binding.noteItemContent.editAddNoteItemContent.text.toString(),
+            standardNoteColor,
+            MainOther().currentTime,
+            MainOther().currentTime,
+            binding.noteItemContent.spinnerNotePriority.selectedItemId
+        )
+        notesItemViewModel.insertNoteItem(insertNote)
+        Toast.makeText(this, getString(R.string.toast_note_added), Toast.LENGTH_SHORT).show()
+        finish()
+    }
 }
