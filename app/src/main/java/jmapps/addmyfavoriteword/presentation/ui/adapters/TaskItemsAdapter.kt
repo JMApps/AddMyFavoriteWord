@@ -68,7 +68,7 @@ class TaskItemsAdapter(
             val taskExecutionDateTime = context.getString(R.string.action_execution_time_item_task, "\n${current.executionDateTime}")
             holder.tvTaskItemExecutionDateTime.text = taskExecutionDateTime
         } else {
-            holder.tvTaskItemExecutionDateTime.text = "Состояние:\nНе выполнено"
+            holder.tvTaskItemExecutionDateTime.text = context.getString(R.string.action_state_item_task)
         }
 
         val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")

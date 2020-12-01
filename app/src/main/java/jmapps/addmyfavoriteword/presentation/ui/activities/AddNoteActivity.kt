@@ -102,8 +102,12 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher,
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        val noteTitleCharacters = getString(R.string.max_note_title_characters, s?.length)
-        binding.noteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
+        if (s?.length!!.toInt() < 200) {
+            val noteTitleCharacters = getString(R.string.max_note_title_characters, s.length)
+            binding.noteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
+        } else {
+            Toast.makeText(this, getString(R.string.toast_achieved_max_note_title_characters), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun afterTextChanged(s: Editable?) {}

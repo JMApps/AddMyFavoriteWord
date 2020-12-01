@@ -83,8 +83,12 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        val categoryNameCharacters = getString(R.string.max_task_category_name_characters, s?.length)
-        binding.textLengthChangeTaskCategoryCharacters.text = categoryNameCharacters
+        if (s?.length!!.toInt() < 100) {
+            val categoryNameCharacters = getString(R.string.max_task_category_name_characters, s.length)
+            binding.textLengthChangeTaskCategoryCharacters.text = categoryNameCharacters
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.toast_achieved_max_task_category_name_characters), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun afterTextChanged(s: Editable?) {}
