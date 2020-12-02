@@ -2,9 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_ready"
+        android:id="@+id/action_add_note"
         android:icon="@drawable/ic_action_ready"
         android:orderInCategory="10"
         android:title="@string/action_ready"
+        android:visible="false"
         app:showAsAction="always" />
 </menu>
