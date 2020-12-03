@@ -66,6 +66,18 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher,
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onBackPressed() {
+        if (checkEditTexts()) {
+            if (checkInitialNewValues()) {
+                questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_item_note_without_save))
+            } else {
+                addNote()
+            }
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
