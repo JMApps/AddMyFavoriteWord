@@ -66,10 +66,12 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (s?.length!!.toInt() < 100) {
+        if (s?.length!!.toInt() <= 100) {
             val taskItemNameCharacters = getString(R.string.max_task_item_name_characters, s.length)
             binding.textLengthAddTaskItemCharacters.text = taskItemNameCharacters
-        } else {
+        }
+
+        if (s.length == 100) {
             Toast.makeText(requireContext(), getString(R.string.toast_achieved_max_task_item_name_characters), Toast.LENGTH_SHORT).show()
         }
     }

@@ -44,11 +44,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher,
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        DrawableCompat.setTint(
-            binding.noteItemContent.textCurrentNoteColor.background, Color.parseColor(
-                standardNoteColor
-            )
-        )
+        DrawableCompat.setTint(binding.noteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
 
         questionAlertUtil = QuestionAlertUtil(this, this)
 
@@ -63,6 +59,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher,
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_note, menu)
         itemAddNote = menu!!.findItem(R.id.action_add_note)
+        itemAddNote.isVisible = checkEditTexts()
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -96,8 +93,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher,
                     assignNewValues()
                     clearFocus()
                 } else {
-                    Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }
@@ -124,17 +120,14 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher,
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (s?.length!!.toInt() < 200) {
+        if (s?.length!! <= 200) {
             val noteTitleCharacters = getString(R.string.max_note_title_characters, s.length)
             binding.noteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
-        } else {
-            Toast.makeText(
-                this,
-                getString(R.string.toast_achieved_max_note_title_characters),
-                Toast.LENGTH_SHORT
-            ).show()
         }
-        itemAddNote.isVisible = s.isNotEmpty()
+
+        if (s.length == 200) {
+            Toast.makeText(this, getString(R.string.toast_achieved_max_note_title_characters), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun afterTextChanged(s: Editable?) {}
@@ -181,8 +174,8 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, TextWatcher,
     private fun addNote() {
         val insertNote = NoteItems(
             0,
-            currentNoteTitle!!,
-            currentNoteContent!!,
+            currentNoteTitle!!.trim(),
+            currentNoteContent!!.trim(),
             standardNoteColor,
             MainOther().currentTime,
             MainOther().currentTime,
