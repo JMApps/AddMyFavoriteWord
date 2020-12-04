@@ -59,6 +59,8 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_rename_task_item, container, false)
 
+        retainInstance = true
+
         val taskItemNameCharacters = getString(R.string.max_task_item_name_characters, taskTitle!!.length)
         binding.textLengthChangeTaskItemCharacters.text = taskItemNameCharacters
 
@@ -102,7 +104,7 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
                 binding.spinnerTaskNewPriority.selectedItemId != taskPriority) {
                 val newTitle = binding.editRenameTaskItem.text.toString()
                 taskItemViewModel.updateTaskTitle(
-                    newTitle,
+                    newTitle.trim(),
                     MainOther().currentTime,
                     binding.spinnerTaskNewPriority.selectedItemId,
                     taskId!!

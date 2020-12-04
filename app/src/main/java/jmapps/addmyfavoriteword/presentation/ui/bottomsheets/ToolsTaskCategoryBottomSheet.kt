@@ -32,6 +32,8 @@ class ToolsTaskCategoryBottomSheet : BottomSheetDialogFragment(),
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_tools_task_category, container, false)
 
+        retainInstance = true
+
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)
 

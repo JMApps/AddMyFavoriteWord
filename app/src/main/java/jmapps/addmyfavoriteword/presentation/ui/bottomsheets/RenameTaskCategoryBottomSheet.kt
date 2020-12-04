@@ -66,6 +66,8 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_rename_task_category, container, false)
 
+        retainInstance = true
+
         binding.editRenameTaskCategory.setText(categoryTitle)
         binding.editRenameTaskCategory.setSelection(categoryTitle!!.length)
         DrawableCompat.setTint(binding.textNewTaskCategoryColor.background, Color.parseColor(categoryColor))
@@ -134,7 +136,7 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
 
     private fun renameTaskCategory() {
         tasksCategoryViewModel.updateTaskCategory(
-            binding.editRenameTaskCategory.text.toString(),
+            binding.editRenameTaskCategory.text.toString().trim(),
             newCategoryColor!!,
             MainOther().currentTime,
             categoryId!!

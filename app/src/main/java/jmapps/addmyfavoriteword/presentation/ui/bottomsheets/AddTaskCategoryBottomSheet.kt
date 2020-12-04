@@ -41,6 +41,8 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_task_category, container, false)
 
+        retainInstance = true
+
         DrawableCompat.setTint(binding.textAddTaskCategoryColor.background, Color.parseColor(standardColor))
 
         val categoryNameCharacters = getString(R.string.max_task_category_name_characters, 0)
@@ -98,7 +100,7 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
     private fun addTaskCategory() {
         val addTaskCategories = TaskCategories(
             0,
-            binding.editAddTaskCategory.text.toString(),
+            binding.editAddTaskCategory.text.toString().trim(),
             standardColor,
             standardIntermediate,
             MainOther().currentTime,

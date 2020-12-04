@@ -53,6 +53,8 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_task_item, container, false)
 
+        retainInstance = true
+
         val taskItemNameCharacters = getString(R.string.max_task_item_name_characters, 0)
         binding.textLengthAddTaskItemCharacters.text = taskItemNameCharacters
 
@@ -96,7 +98,7 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
     private fun addTaskItem() {
         val addTaskItems = TaskItems(
             0,
-            binding.editAddTaskItem.text.toString(),
+            binding.editAddTaskItem.text.toString().trim(),
             displayBy,
             categoryColor!!,
             MainOther().currentTime,
