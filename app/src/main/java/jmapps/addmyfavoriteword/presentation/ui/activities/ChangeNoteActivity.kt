@@ -35,6 +35,8 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
     private var currentNoteTitle: String? = null
     private var currentNoteContent: String? = null
 
+    private var intermediateVariable: String? = null
+
     private var newNoteColor: String? = null
     private var newNotePriority: Long? = null
     private var newNoteTitle: String? = null
@@ -55,7 +57,6 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         binding = DataBindingUtil.setContentView(this, R.layout.activity_change_note)
         setSupportActionBar(binding.toolbar)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         questionAlertUtil = QuestionAlertUtil(this, this)
 
         currentNoteId = intent.getLongExtra(KEY_CURRENT_NOTE_ID, 0)
@@ -64,10 +65,7 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         currentNoteTitle = intent.getStringExtra(KEY_CURRENT_NOTE_TITLE)
         currentNoteContent = intent.getStringExtra(KEY_CURRENT_NOTE_CONTENT)
 
-        newNoteColor = currentNoteColor
-        newNotePriority = currentNotePriority
-        newNoteTitle = currentNoteTitle
-        newNoteContent = currentNoteContent
+        intermediateVariable = currentNoteColor
 
         binding.apply {
             DrawableCompat.setTint(changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(currentNoteColor))
@@ -81,6 +79,8 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         binding.changeNoteItemContent.textChangeNoteColor.setOnClickListener(this)
         binding.changeNoteItemContent.editChangeNoteItemTitle.addTextChangedListener(this)
         binding.changeNoteItemContent.editChangeNoteItemContent.addTextChangedListener(this)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(!checkChangeCurrentValues())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -90,75 +90,75 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
     }
 
     override fun onBackPressed() {
-        // Если поступившие данные изменились
-        if (checkAllData()) {
-            // Если поля ввода не пустые
+        // Проверяем, изменились ли поступившие данные
+        if (checkChangeCurrentValues()) {
             if (checkEditTexts()) {
-                // Спросить, применить ли изменения перед выходом
+                // Вызываем диалоговое окно с предложением применить изменение
                 questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_change_item_note_without_save),
                     getString(R.string.alert_apply), getString(R.string.alert_not_apply))
             } else {
-                // Если поля ввода пустые закрыть окно вывести сообщение "действие отменено"
                 Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
                 super.onBackPressed()
             }
         } else {
-            super.onBackPressed()
+            if (checkChangeNewValues()) {
+                super.onBackPressed()
+            } else {
+                // Если данные были изменены
+                assignNewValues()
+                changeNote()
+            }
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString(KEY_RESTORE_CURRENT_NOTE_COLOR, currentNoteColor)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        currentNoteColor = savedInstanceState.getString(KEY_RESTORE_CURRENT_NOTE_COLOR).toString()
-        DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(currentNoteColor))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                // Применить новые данные если они были изменены
-                applyIfChange()
-                // Если данные изменились
-                if (checkAllData()) {
-                    // Если поля ввода не пустые
+                // Проверяем, изменились ли поступившие данные
+                if (checkChangeCurrentValues()) {
+                    // Проверяем, не пустые ли поля ввода
                     if (checkEditTexts()) {
-                        // Спросить, применить ли изменения перед выходом
                         questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_change_item_note_without_save),
                             getString(R.string.alert_apply), getString(R.string.alert_not_apply))
                     } else {
-                        // Если поля ввода пустые закрыть окно вывести сообщение "действие отменено"
                         Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
-                        finish()
+                        super.onBackPressed()
                     }
                 } else {
-                    changeNote()
+                    if (checkChangeNewValues()) {
+                        super.onBackPressed()
+                    } else {
+                        // Если данные были изменены
+                        assignNewValues()
+                        changeNote()
+                    }
                 }
             }
             R.id.action_change_note -> {
-                // Применить новые данные если они были изменены
-                applyIfChange()
-                // Если данные изменились
-                if (checkAllData()) {
-                    // Если поля ввода не пустые
+                if (checkChangeCurrentValues()) {
                     if (checkEditTexts()) {
+                        assignCurrentValues()
                         assignNewValues()
                         clearFocus()
                     } else {
                         Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
                         finish()
                     }
-                } else {
-                    Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
-                    finish()
                 }
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClickPositive() {
+        assignCurrentValues()
+        assignNewValues()
+        changeNote()
+    }
+
+    override fun onClickNegative() {
+        Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
+        finish()
     }
 
     override fun onClick(v: View?) {
@@ -167,8 +167,8 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
             .setTitle(getString(R.string.description_choose_color))
             .setColorRes(resources.getIntArray(R.array.themeColors).toList())
             .setColorListener { _, colorHex ->
-                currentNoteColor = colorHex
-                DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(currentNoteColor))
+                intermediateVariable = colorHex
+                DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(intermediateVariable))
             }
             .show()
     }
@@ -186,44 +186,46 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
                 Toast.makeText(this, getString(R.string.toast_achieved_max_note_title_characters), Toast.LENGTH_SHORT).show()
             }
         }
-        applyIfChange()
-        itemChangeNote?.isVisible = checkAllData()
+        itemChangeNote?.isVisible = checkChangeCurrentValues()
     }
 
     override fun afterTextChanged(s: Editable?) {}
 
-    override fun onClickPositive() {
-        assignNewValues()
-        changeNote()
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(KEY_RESTORE_CURRENT_NOTE_COLOR, currentNoteColor)
     }
 
-    override fun onClickDelete() {
-        Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
-        finish()
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        currentNoteColor = savedInstanceState.getString(KEY_RESTORE_CURRENT_NOTE_COLOR).toString()
+        DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(currentNoteColor))
     }
 
-    private fun applyIfChange() {
-        when {
-            currentNotePriority != binding.changeNoteItemContent.spinnerNoteNewPriority.selectedItemId -> {
-                currentNotePriority = binding.changeNoteItemContent.spinnerNoteNewPriority.selectedItemId
-            }
-            currentNoteTitle != binding.changeNoteItemContent.editChangeNoteItemTitle.text.toString() -> {
-                currentNoteTitle = binding.changeNoteItemContent.editChangeNoteItemTitle.text.toString()
-            }
-            currentNoteContent != binding.changeNoteItemContent.editChangeNoteItemContent.text.toString() -> {
-                currentNoteContent = binding.changeNoteItemContent.editChangeNoteItemContent.text.toString()
-            }
-        }
-    }
-
-    private fun checkAllData(): Boolean {
-        return newNoteColor != currentNoteColor || newNotePriority != currentNotePriority ||
-                newNoteTitle != currentNoteTitle || newNoteContent != currentNoteContent
+    private fun checkChangeCurrentValues(): Boolean {
+        return currentNoteColor != intermediateVariable ||
+                currentNotePriority != binding.changeNoteItemContent.spinnerNoteNewPriority.selectedItemId ||
+                currentNoteTitle != binding.changeNoteItemContent.editChangeNoteItemTitle.text.toString() ||
+                currentNoteContent != binding.changeNoteItemContent.editChangeNoteItemContent.text.toString()
     }
 
     private fun checkEditTexts(): Boolean {
         return binding.changeNoteItemContent.editChangeNoteItemTitle.text.toString().isNotEmpty() ||
                 binding.changeNoteItemContent.editChangeNoteItemContent.text.toString().isNotEmpty()
+    }
+
+    private fun checkChangeNewValues(): Boolean {
+        return newNoteColor != currentNoteColor ||
+        newNotePriority != currentNotePriority ||
+        newNoteTitle != currentNoteTitle ||
+        newNoteContent != currentNoteContent
+    }
+
+    private fun assignCurrentValues() {
+        currentNoteColor = intermediateVariable
+        currentNotePriority = binding.changeNoteItemContent.spinnerNoteNewPriority.selectedItemId
+        currentNoteTitle = binding.changeNoteItemContent.editChangeNoteItemTitle.text.toString()
+        currentNoteContent = binding.changeNoteItemContent.editChangeNoteItemContent.text.toString()
     }
 
     private fun assignNewValues () {
