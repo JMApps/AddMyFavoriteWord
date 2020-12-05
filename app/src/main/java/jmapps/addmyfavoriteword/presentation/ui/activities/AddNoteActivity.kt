@@ -22,7 +22,8 @@ import jmapps.addmyfavoriteword.presentation.ui.models.NotesItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 import jmapps.addmyfavoriteword.presentation.ui.other.QuestionAlertUtil
 
-class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlertUtil.OnClickQuestion,
+class AddNoteActivity : AppCompatActivity(), View.OnClickListener,
+    QuestionAlertUtil.OnClickQuestion,
     TextWatcher {
 
     private lateinit var binding: ActivityAddNoteBinding
@@ -47,10 +48,9 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
         setSupportActionBar(binding.toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        questionAlertUtil = QuestionAlertUtil(this, this)
 
         DrawableCompat.setTint(binding.addNoteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
-
-        questionAlertUtil = QuestionAlertUtil(this, this)
 
         val noteTitleCharacters = getString(R.string.max_note_title_characters, 0)
         binding.addNoteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
@@ -70,7 +70,9 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
     override fun onBackPressed() {
         if (checkEditTexts()) {
             if (checkInitialNewValues()) {
-                questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_add_item_note_without_save))
+                questionAlertUtil.showAlertDialog(
+                    getString(R.string.dialog_message_are_sure_you_want_add_item_note_without_save),
+                    getString(R.string.alert_save), getString(R.string.alert_delete))
             } else {
                 addNote()
             }
@@ -95,7 +97,9 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
             android.R.id.home -> {
                 if (checkEditTexts()) {
                     if (checkInitialNewValues()) {
-                        questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_add_item_note_without_save))
+                        questionAlertUtil.showAlertDialog(
+                            getString(R.string.dialog_message_are_sure_you_want_add_item_note_without_save),
+                            getString(R.string.alert_save), getString(R.string.alert_delete))
                     } else {
                         addNote()
                     }
@@ -123,7 +127,10 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
             .setColorRes(resources.getIntArray(R.array.themeColors).toList())
             .setColorListener { _, colorHex ->
                 standardNoteColor = colorHex
-                DrawableCompat.setTint(binding.addNoteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
+                DrawableCompat.setTint(
+                    binding.addNoteItemContent.textCurrentNoteColor.background,
+                    Color.parseColor(standardNoteColor)
+                )
             }
             .show()
     }
@@ -138,7 +145,11 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
             }
 
             if (s.length == 200) {
-                Toast.makeText(this, getString(R.string.toast_achieved_max_note_title_characters), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    getString(R.string.toast_achieved_max_note_title_characters),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
         itemAddNote?.isVisible = checkEditTexts()
@@ -166,7 +177,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
                 currentNoteContent != binding.addNoteItemContent.editAddNoteItemContent.text.toString()
     }
 
-    private fun assignNewValues () {
+    private fun assignNewValues() {
         currentNoteTitle = binding.addNoteItemContent.editAddNoteItemTitle.text.toString()
         currentNoteContent = binding.addNoteItemContent.editAddNoteItemContent.text.toString()
         itemAddNote?.isVisible = false
@@ -179,7 +190,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
     }
 
     private fun closeKeyboard() {
-        binding.addNoteItemContent.editAddNoteItemContent.postDelayed(Runnable {
+        binding.addNoteItemContent.editAddNoteItemContent.postDelayed({
             val keyboard: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             keyboard.hideSoftInputFromWindow(binding.addNoteItemContent.editAddNoteItemContent.windowToken, 0)
         }, 200)

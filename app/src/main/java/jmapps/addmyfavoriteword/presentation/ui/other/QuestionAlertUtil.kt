@@ -6,24 +6,21 @@ import androidx.appcompat.app.AlertDialog
 import jmapps.addmyfavoriteword.R
 
 class QuestionAlertUtil(private val ctx: Context, private val onClickQuestion: OnClickQuestion) {
-    fun showAlertDialog(message: String) {
+    fun showAlertDialog(message: String, positive: String, negative: String) {
         AlertDialog.Builder(ctx).let {
             it.setIcon(R.drawable.ic_warning)
             it.setTitle(R.string.action_warning)
             it.setMessage(Html.fromHtml(message))
             it.setCancelable(false)
-            it.setNegativeButton(ctx.getString(R.string.alert_cancel)) { dialog, _ ->
-                dialog?.dismiss()
-            }
-            it.setPositiveButton(ctx.getString(R.string.alert_save)) { dialog, _ ->
+            it.setPositiveButton(positive) { dialog, _ ->
                 onClickQuestion.onClickPositive()
                 dialog?.dismiss()
             }
-            it.setNeutralButton(ctx.getString(R.string.alert_delete)) { dialog, _ ->
+            it.setNegativeButton(negative) { dialog, _ ->
                 onClickQuestion.onClickDelete()
                 dialog?.dismiss()
             }
-            it.setNegativeButton(ctx.getString(R.string.alert_cancel)) { dialog, _ ->
+            it.setNeutralButton(ctx.getString(R.string.alert_cancel)) { dialog, _ ->
                 dialog?.dismiss()
             }
             it.show()

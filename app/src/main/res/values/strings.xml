@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name_title">Мой блокнот PRO</string>
-    <string name="note_name_title">Добавить заметку</string>
+    <string name="add_note">Добавить заметку</string>
+    <string name="change_note">Изменить заметку</string>
 
     <!--    Main screen-->
     <string name="bottom_navigation_title_tasks">Задачи</string>
@@ -92,12 +93,15 @@
     <string name="dialog_message_are_sure_you_want_item_note">Вы уверены что хотите удалить заметку?</string>
     <string name="dialog_message_are_sure_you_want_add_item_note_without_save">Сохранить заметку перед выходом?</string>
     <string name="dialog_message_are_sure_you_want_change_item_note_without_save">Применить изменения перед выходом?</string>
+    <string name="dialog_message_are_sure_you_deleted_current_note">Удалить текущую заметку?</string>
     <string name="toast_list_cleared">Список полностью очищен</string>
 
     <string name="action_warning">Подтверждение</string>
     <string name="alert_ok">Да</string>
     <string name="alert_save">Сохранить</string>
     <string name="alert_delete">Удалить</string>
+    <string name="alert_apply">Применить</string>
+    <string name="alert_not_apply">Не применять</string>
     <string name="alert_cancel">Отмена</string>
 
     <!--    Settings-->
