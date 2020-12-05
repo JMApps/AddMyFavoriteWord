@@ -12,19 +12,21 @@ class NoteItemsHolder(noteView: View) : RecyclerView.ViewHolder(noteView) {
     val tvNoteItemColor: TextView = noteView.findViewById(R.id.text_note_item_color)
     val tvNoteItemLayout: LinearLayoutCompat = noteView.findViewById(R.id.layout_note_priority)
     val tvNoteItemTitle: TextView = noteView.findViewById(R.id.text_title_note_item)
-    val tvNoteItemAddDateTime: TextView =
-        noteView.findViewById(R.id.text_view_note_item_add_date_time)
+    val tvNoteItemAddDateTime: TextView = noteView.findViewById(R.id.text_view_note_item_add_date_time)
     val tvNoteItemContent: TextView = noteView.findViewById(R.id.text_view_note_item_little_content)
 
     fun findNoteItemClick(
         onItemClickNote: NoteItemsAdapter.OnItemClickNote,
-        noteId: Long,
-        noteTitle: String,
-        noteContent: String,
-        noteColor: String,
-        notePriority: Long) {
+        noteId: Long, noteColor: String, notePriority: Long, noteTitle: String, noteContent: String) {
         itemView.setOnClickListener {
-            onItemClickNote.onItemClickNote(noteId, noteTitle, noteContent, noteColor, notePriority)
+            onItemClickNote.onItemClickNote(noteId, noteColor, notePriority, noteTitle, noteContent)
+        }
+    }
+
+    fun findNoteLongItemClick(onLongClickNoteItem: NoteItemsAdapter.OnLongItemClickNote, noteId: Long) {
+        itemView.setOnLongClickListener {
+            onLongClickNoteItem.onLongItemClickNote(noteId)
+            true
         }
     }
 }

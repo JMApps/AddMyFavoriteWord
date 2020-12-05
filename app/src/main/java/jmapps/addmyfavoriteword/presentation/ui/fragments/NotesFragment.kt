@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -21,6 +20,7 @@ import jmapps.addmyfavoriteword.databinding.FragmentNotesBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
 import jmapps.addmyfavoriteword.presentation.ui.activities.AddNoteActivity
+import jmapps.addmyfavoriteword.presentation.ui.activities.ChangeNoteActivity
 import jmapps.addmyfavoriteword.presentation.ui.adapters.NoteItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.models.NotesItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
@@ -28,7 +28,7 @@ import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalPropertie
 
 class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListener,
     DeleteAlertUtil.OnClickDelete, SearchView.OnQueryTextListener, NoteItemsAdapter.OnItemClickNote,
-    NoteItemsAdapter.OnLongClickNoteItem {
+    NoteItemsAdapter.OnLongItemClickNote {
 
     private lateinit var binding: FragmentNotesBinding
     private lateinit var notesItemViewModel: NotesItemViewModel
@@ -153,15 +153,11 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
         toAddNoteActivity()
     }
 
-    override fun onItemClickNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: Long) {
-        Toast.makeText(requireContext(), "Открыть заметку", Toast.LENGTH_SHORT).show()
+    override fun onItemClickNote(noteId: Long, noteColor: String, notePriority: Long, noteTitle: String, noteContent: String) {
+        toChangeNoteActivity(noteId, noteColor, notePriority, noteTitle, noteContent)
     }
 
-    override fun itemClickRenameNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: Long) {
-        Toast.makeText(requireContext(), "Изменить заметку", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun itemClickDeleteNote(noteId: Long) {
+    override fun onLongItemClickNote(noteId: Long) {
         deleteAlertDialog.showAlertDialog(
             getString(R.string.dialog_message_are_sure_you_want_item_note), 1, noteId, getString(R.string.action_note_deleted)
         )
@@ -194,5 +190,15 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
     private fun toAddNoteActivity() {
         val toNoteActivity = Intent(requireContext(), AddNoteActivity::class.java)
         startActivity(toNoteActivity)
+    }
+
+    private fun toChangeNoteActivity(noteId: Long, noteColor: String, notePriority: Long, noteTitle: String, noteContent: String) {
+        val toChangeNoteActivity = Intent(requireContext(), ChangeNoteActivity::class.java)
+        toChangeNoteActivity.putExtra(ChangeNoteActivity.KEY_CURRENT_NOTE_ID, noteId)
+        toChangeNoteActivity.putExtra(ChangeNoteActivity.KEY_CURRENT_NOTE_COLOR, noteColor)
+        toChangeNoteActivity.putExtra(ChangeNoteActivity.KEY_CURRENT_NOTE_PRIORITY, notePriority)
+        toChangeNoteActivity.putExtra(ChangeNoteActivity.KEY_CURRENT_NOTE_TITLE, noteTitle)
+        toChangeNoteActivity.putExtra(ChangeNoteActivity.KEY_CURRENT_NOTE_CONTENT, noteContent)
+        startActivity(toChangeNoteActivity)
     }
 }

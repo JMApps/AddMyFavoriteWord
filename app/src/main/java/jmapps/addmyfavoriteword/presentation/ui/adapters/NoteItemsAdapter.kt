@@ -14,10 +14,10 @@ import jmapps.addmyfavoriteword.data.database.room.notes.NoteItems
 import jmapps.addmyfavoriteword.presentation.ui.holders.NoteItemsHolder
 
 class NoteItemsAdapter(
-    private val context: Context,
+    context: Context,
     private var noteItemList: MutableList<NoteItems>,
     private val onItemClickNote: OnItemClickNote,
-    private val onLongClickNoteItem: OnLongClickNoteItem): RecyclerView.Adapter<NoteItemsHolder>(), Filterable {
+    private val onLongItemClickNote: OnLongItemClickNote): RecyclerView.Adapter<NoteItemsHolder>(), Filterable {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var firstNoteItemList: MutableList<NoteItems>? = null
@@ -27,13 +27,11 @@ class NoteItemsAdapter(
     }
 
     interface OnItemClickNote {
-        fun onItemClickNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: Long)
+        fun onItemClickNote(noteId: Long, noteColor: String, notePriority: Long, noteTitle: String, noteContent: String)
     }
 
-    interface OnLongClickNoteItem {
-        fun itemClickRenameNote(noteId: Long, noteTitle: String, noteContent: String, noteColor: String, notePriority: Long)
-
-        fun itemClickDeleteNote(noteId: Long)
+    interface OnLongItemClickNote {
+        fun onLongItemClickNote(noteId: Long)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemsHolder {
@@ -59,7 +57,8 @@ class NoteItemsAdapter(
         holder.tvNoteItemAddDateTime.text = current.addDateTime
         holder.tvNoteItemContent.text = current.noteContent
 
-        holder.findNoteItemClick(onItemClickNote, current._id, current.noteTitle, current.noteContent, current.noteColor, current.priority)
+        holder.findNoteItemClick(onItemClickNote, current._id, current.noteColor, current.priority, current.noteTitle, current.noteContent)
+        holder.findNoteLongItemClick(onLongItemClickNote, current._id)
     }
 
     override fun getItemCount() = noteItemList.size
