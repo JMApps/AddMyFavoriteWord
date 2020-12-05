@@ -26,7 +26,12 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".presentation.ui.activities.AddNoteActivity"
-            android:label="@string/note_name_title"
+            android:label="@string/add_note"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".presentation.ui.activities.ChangeNoteActivity"
+            android:label="@string/change_note"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateVisible|adjustResize" />
     </application>
