@@ -17,7 +17,7 @@ class QuestionAlertUtil(private val ctx: Context, private val onClickQuestion: O
                 dialog?.dismiss()
             }
             it.setNegativeButton(negative) { dialog, _ ->
-                onClickQuestion.onClickDelete()
+                onClickQuestion.onClickNegative()
                 dialog?.dismiss()
             }
             it.setNeutralButton(ctx.getString(R.string.alert_cancel)) { dialog, _ ->
@@ -29,6 +29,6 @@ class QuestionAlertUtil(private val ctx: Context, private val onClickQuestion: O
 
     interface OnClickQuestion {
         fun onClickPositive()
-        fun onClickDelete()
+        fun onClickNegative()
     }
 }

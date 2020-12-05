@@ -120,6 +120,16 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener,
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onClickPositive() {
+        assignNewValues()
+        addNote()
+    }
+
+    override fun onClickNegative() {
+        Toast.makeText(this, getString(R.string.toast_deleted), Toast.LENGTH_SHORT).show()
+        finish()
+    }
+
     override fun onClick(v: View?) {
         MaterialColorPickerDialog
             .Builder(this)
@@ -127,10 +137,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener,
             .setColorRes(resources.getIntArray(R.array.themeColors).toList())
             .setColorListener { _, colorHex ->
                 standardNoteColor = colorHex
-                DrawableCompat.setTint(
-                    binding.addNoteItemContent.textCurrentNoteColor.background,
-                    Color.parseColor(standardNoteColor)
-                )
+                DrawableCompat.setTint(binding.addNoteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
             }
             .show()
     }
@@ -145,27 +152,13 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener,
             }
 
             if (s.length == 200) {
-                Toast.makeText(
-                    this,
-                    getString(R.string.toast_achieved_max_note_title_characters),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, getString(R.string.toast_achieved_max_note_title_characters), Toast.LENGTH_SHORT).show()
             }
         }
         itemAddNote?.isVisible = checkEditTexts()
     }
 
     override fun afterTextChanged(s: Editable?) {}
-
-    override fun onClickPositive() {
-        assignNewValues()
-        addNote()
-    }
-
-    override fun onClickDelete() {
-        Toast.makeText(this, getString(R.string.toast_deleted), Toast.LENGTH_SHORT).show()
-        finish()
-    }
 
     private fun checkEditTexts(): Boolean {
         return binding.addNoteItemContent.editAddNoteItemTitle.text.toString().isNotEmpty() ||
