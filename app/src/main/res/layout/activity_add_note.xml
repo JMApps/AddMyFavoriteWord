@@ -27,7 +27,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <include
-            android:id="@+id/note_item_content"
+            android:id="@+id/add_note_item_content"
             layout="@layout/content_add_note" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

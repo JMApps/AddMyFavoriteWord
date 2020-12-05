@@ -48,20 +48,20 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        DrawableCompat.setTint(binding.noteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
+        DrawableCompat.setTint(binding.addNoteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
 
         questionAlertUtil = QuestionAlertUtil(this, this)
 
         val noteTitleCharacters = getString(R.string.max_note_title_characters, 0)
-        binding.noteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
+        binding.addNoteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
 
-        binding.noteItemContent.textCurrentNoteColor.setOnClickListener(this)
-        binding.noteItemContent.editAddNoteItemTitle.addTextChangedListener(this)
-        binding.noteItemContent.editAddNoteItemContent.addTextChangedListener(this)
+        binding.addNoteItemContent.textCurrentNoteColor.setOnClickListener(this)
+        binding.addNoteItemContent.editAddNoteItemTitle.addTextChangedListener(this)
+        binding.addNoteItemContent.editAddNoteItemContent.addTextChangedListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_note, menu)
+        menuInflater.inflate(R.menu.menu_add_note, menu)
         itemAddNote = menu!!.findItem(R.id.action_add_note)
         itemAddNote?.isVisible = checkEditTexts()
         return super.onCreateOptionsMenu(menu)
@@ -70,7 +70,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
     override fun onBackPressed() {
         if (checkEditTexts()) {
             if (checkInitialNewValues()) {
-                questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_item_note_without_save))
+                questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_add_item_note_without_save))
             } else {
                 addNote()
             }
@@ -87,7 +87,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         standardNoteColor = savedInstanceState.getString(KEY_RESTORE_STANDARD_NOTE_COLOR).toString()
-        DrawableCompat.setTint(binding.noteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
+        DrawableCompat.setTint(binding.addNoteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -95,7 +95,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
             android.R.id.home -> {
                 if (checkEditTexts()) {
                     if (checkInitialNewValues()) {
-                        questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_item_note_without_save))
+                        questionAlertUtil.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_add_item_note_without_save))
                     } else {
                         addNote()
                     }
@@ -123,7 +123,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
             .setColorRes(resources.getIntArray(R.array.themeColors).toList())
             .setColorListener { _, colorHex ->
                 standardNoteColor = colorHex
-                DrawableCompat.setTint(binding.noteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
+                DrawableCompat.setTint(binding.addNoteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))
             }
             .show()
     }
@@ -131,10 +131,10 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (binding.noteItemContent.editAddNoteItemTitle.text.hashCode() == s?.hashCode()) {
+        if (binding.addNoteItemContent.editAddNoteItemTitle.text.hashCode() == s?.hashCode()) {
             if (s.length <= 200) {
                 val noteTitleCharacters = getString(R.string.max_note_title_characters, s.length)
-                binding.noteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
+                binding.addNoteItemContent.textLengthAddNoteCharacters.text = noteTitleCharacters
             }
 
             if (s.length == 200) {
@@ -157,31 +157,31 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
     }
 
     private fun checkEditTexts(): Boolean {
-        return binding.noteItemContent.editAddNoteItemTitle.text.toString().isNotEmpty() ||
-                binding.noteItemContent.editAddNoteItemContent.text.toString().isNotEmpty()
+        return binding.addNoteItemContent.editAddNoteItemTitle.text.toString().isNotEmpty() ||
+                binding.addNoteItemContent.editAddNoteItemContent.text.toString().isNotEmpty()
     }
 
     private fun checkInitialNewValues(): Boolean {
-        return currentNoteTitle != binding.noteItemContent.editAddNoteItemTitle.text.toString() ||
-                currentNoteContent != binding.noteItemContent.editAddNoteItemContent.text.toString()
+        return currentNoteTitle != binding.addNoteItemContent.editAddNoteItemTitle.text.toString() ||
+                currentNoteContent != binding.addNoteItemContent.editAddNoteItemContent.text.toString()
     }
 
     private fun assignNewValues () {
-        currentNoteTitle = binding.noteItemContent.editAddNoteItemTitle.text.toString()
-        currentNoteContent = binding.noteItemContent.editAddNoteItemContent.text.toString()
+        currentNoteTitle = binding.addNoteItemContent.editAddNoteItemTitle.text.toString()
+        currentNoteContent = binding.addNoteItemContent.editAddNoteItemContent.text.toString()
         itemAddNote?.isVisible = false
     }
 
     private fun clearFocus() {
-        binding.noteItemContent.editAddNoteItemTitle.clearFocus()
-        binding.noteItemContent.editAddNoteItemContent.clearFocus()
+        binding.addNoteItemContent.editAddNoteItemTitle.clearFocus()
+        binding.addNoteItemContent.editAddNoteItemContent.clearFocus()
         closeKeyboard()
     }
 
     private fun closeKeyboard() {
-        binding.noteItemContent.editAddNoteItemContent.postDelayed(Runnable {
+        binding.addNoteItemContent.editAddNoteItemContent.postDelayed(Runnable {
             val keyboard: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            keyboard.hideSoftInputFromWindow(binding.noteItemContent.editAddNoteItemContent.windowToken, 0)
+            keyboard.hideSoftInputFromWindow(binding.addNoteItemContent.editAddNoteItemContent.windowToken, 0)
         }, 200)
     }
 
@@ -193,7 +193,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener, QuestionAlert
             standardNoteColor,
             MainOther().currentTime,
             MainOther().currentTime,
-            binding.noteItemContent.spinnerNotePriority.selectedItemId
+            binding.addNoteItemContent.spinnerNotePriority.selectedItemId
         )
         notesItemViewModel.insertNoteItem(insertNote)
         Toast.makeText(this, getString(R.string.toast_note_added), Toast.LENGTH_SHORT).show()
