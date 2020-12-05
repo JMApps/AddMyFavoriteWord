@@ -79,8 +79,6 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         binding.changeNoteItemContent.textChangeNoteColor.setOnClickListener(this)
         binding.changeNoteItemContent.editChangeNoteItemTitle.addTextChangedListener(this)
         binding.changeNoteItemContent.editChangeNoteItemContent.addTextChangedListener(this)
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(!checkChangeCurrentValues())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -140,6 +138,7 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
                         assignCurrentValues()
                         assignNewValues()
                         clearFocus()
+                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     } else {
                         Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
                         finish()
