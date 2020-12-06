@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
@@ -35,7 +36,7 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
     private var currentNoteTitle: String? = null
     private var currentNoteContent: String? = null
 
-    private var intermediateVariable: String? = null
+    private var intermediateVariableNoteColor: String? = null
 
     private var newNoteColor: String? = null
     private var newNotePriority: Long? = null
@@ -57,6 +58,7 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         binding = DataBindingUtil.setContentView(this, R.layout.activity_change_note)
         setSupportActionBar(binding.toolbar)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         questionAlertUtil = QuestionAlertUtil(this, this)
 
         currentNoteId = intent.getLongExtra(KEY_CURRENT_NOTE_ID, 0)
@@ -65,10 +67,10 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         currentNoteTitle = intent.getStringExtra(KEY_CURRENT_NOTE_TITLE)
         currentNoteContent = intent.getStringExtra(KEY_CURRENT_NOTE_CONTENT)
 
-        intermediateVariable = currentNoteColor
+        intermediateVariableNoteColor = currentNoteColor
 
         binding.apply {
-            DrawableCompat.setTint(changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(currentNoteColor))
+            DrawableCompat.setTint(changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(intermediateVariableNoteColor))
             changeNoteItemContent.spinnerNoteNewPriority.setSelection(currentNotePriority!!.toInt())
             changeNoteItemContent.editChangeNoteItemTitle.setText(currentNoteTitle)
             val currentNoteTitleCharacters = getString(R.string.max_note_title_characters, currentNoteTitle?.length)
@@ -77,6 +79,7 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         }
 
         binding.changeNoteItemContent.textChangeNoteColor.setOnClickListener(this)
+        binding.changeNoteItemContent.spinnerNoteNewPriority.onItemSelectedListener = onItemSpinnerClick
         binding.changeNoteItemContent.editChangeNoteItemTitle.addTextChangedListener(this)
         binding.changeNoteItemContent.editChangeNoteItemContent.addTextChangedListener(this)
     }
@@ -138,7 +141,6 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
                         assignCurrentValues()
                         assignNewValues()
                         clearFocus()
-                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     } else {
                         Toast.makeText(this, getString(R.string.action_canceled), Toast.LENGTH_SHORT).show()
                         finish()
@@ -147,6 +149,17 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(KEY_RESTORE_CURRENT_NOTE_COLOR, intermediateVariableNoteColor)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        intermediateVariableNoteColor = savedInstanceState.getString(KEY_RESTORE_CURRENT_NOTE_COLOR).toString()
+        DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(intermediateVariableNoteColor))
     }
 
     override fun onClickPositive() {
@@ -166,10 +179,20 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
             .setTitle(getString(R.string.description_choose_color))
             .setColorRes(resources.getIntArray(R.array.themeColors).toList())
             .setColorListener { _, colorHex ->
-                intermediateVariable = colorHex
-                DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(intermediateVariable))
+                intermediateVariableNoteColor = colorHex
+                DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(intermediateVariableNoteColor))
+                itemChangeNote?.isVisible = currentNoteColor != intermediateVariableNoteColor
             }
             .show()
+    }
+
+    private val onItemSpinnerClick = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+        }
+
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long){
+            itemChangeNote?.isVisible = currentNotePriority != id
+        }
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -190,19 +213,8 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
 
     override fun afterTextChanged(s: Editable?) {}
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString(KEY_RESTORE_CURRENT_NOTE_COLOR, currentNoteColor)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        currentNoteColor = savedInstanceState.getString(KEY_RESTORE_CURRENT_NOTE_COLOR).toString()
-        DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(currentNoteColor))
-    }
-
     private fun checkChangeCurrentValues(): Boolean {
-        return currentNoteColor != intermediateVariable ||
+        return currentNoteColor != intermediateVariableNoteColor ||
                 currentNotePriority != binding.changeNoteItemContent.spinnerNoteNewPriority.selectedItemId ||
                 currentNoteTitle != binding.changeNoteItemContent.editChangeNoteItemTitle.text.toString() ||
                 currentNoteContent != binding.changeNoteItemContent.editChangeNoteItemContent.text.toString()
@@ -221,7 +233,7 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
     }
 
     private fun assignCurrentValues() {
-        currentNoteColor = intermediateVariable
+        currentNoteColor = intermediateVariableNoteColor
         currentNotePriority = binding.changeNoteItemContent.spinnerNoteNewPriority.selectedItemId
         currentNoteTitle = binding.changeNoteItemContent.editChangeNoteItemTitle.text.toString()
         currentNoteContent = binding.changeNoteItemContent.editChangeNoteItemContent.text.toString()
