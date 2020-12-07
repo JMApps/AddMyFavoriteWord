@@ -10,7 +10,7 @@
     app:cardCornerRadius="@dimen/main_card_corner">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout_note_priority"
+        android:id="@+id/layout_note_item_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:minHeight="@dimen/item_card_normal_height">
@@ -22,36 +22,40 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_note_item_color"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_padding_big"
-                android:background="@drawable/symmetry_bottom_circular_color_view"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/main_app_text_size"
-                tools:background="@color/amber_50" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_title_note_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:gravity="start"
                 android:maxLines="1"
                 android:padding="@dimen/main_padding_mini"
                 android:textSize="@dimen/main_app_text_size"
                 app:fontFamily="@font/gilroy_extra_bold"
                 tools:text="На сегодня" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_view_note_item_add_date_time"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:paddingStart="@dimen/main_padding_mini"
-                android:paddingEnd="@dimen/main_padding_mini"
-                android:textSize="@dimen/small_text_size"
-                tools:text="29.11.2020 / 11:54" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_note_item_priority"
+                    android:layout_width="@dimen/note_priority_view_size"
+                    android:layout_height="@dimen/note_priority_view_size"
+                    android:layout_marginStart="@dimen/main_margin_mini"
+                    android:background="@drawable/circular_priority_color_view"
+                    tools:background="@color/red_400" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_note_item_add_date_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/main_margin_mini"
+                    android:layout_marginEnd="@dimen/main_margin_mini"
+                    android:gravity="start"
+                    android:textSize="@dimen/small_text_size"
+                    tools:text="29.11.2020 / 11:54" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_note_item_little_content"

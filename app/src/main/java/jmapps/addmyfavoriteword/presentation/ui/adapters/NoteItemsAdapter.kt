@@ -42,11 +42,10 @@ class NoteItemsAdapter(
     override fun onBindViewHolder(holder: NoteItemsHolder, position: Int) {
         val current = noteItemList[position]
 
-        DrawableCompat.setTint(holder.tvNoteItemColor.background, Color.parseColor(current.noteColor))
-        holder.tvNoteItemColor.text = (position + 1).toString()
+        holder.tvNoteItemLayout.setBackgroundColor(Color.parseColor(current.noteColor))
 
-        val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
-        holder.tvNoteItemLayout.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+        val priorityName = arrayListOf("#FFFFFF", "#F4FF81", "#00C853", "#FF3D00")
+        DrawableCompat.setTint(holder.tvNoteItemPriority.background, Color.parseColor(priorityName[current.priority.toInt()]))
 
         if (current.noteTitle.isNotEmpty()) {
             holder.tvNoteItemTitle.text = current.noteTitle
