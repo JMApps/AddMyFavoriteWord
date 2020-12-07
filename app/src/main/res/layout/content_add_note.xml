@@ -42,6 +42,7 @@
             android:background="@android:color/transparent"
             android:ellipsize="end"
             android:hint="@string/hint_enter_note_title"
+            android:imeOptions="actionNext"
             android:inputType="textCapSentences"
             android:maxLength="200"
             android:maxLines="1"
@@ -52,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_note_priority" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_length_add_note_characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,6 +84,7 @@
                 android:background="@android:color/transparent"
                 android:gravity="start"
                 android:hint="@string/hint_enter_note_content"
+                android:imeOptions="actionGo"
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="@dimen/main_padding"
                 app:fontFamily="@font/gilroy_light">
