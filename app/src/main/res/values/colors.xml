@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_toolbar">#F44336</color>
-    <color name="color_appbar">#F44336</color>
-    <color name="color_accent">#2196F3</color>
+    <color name="color_toolbar">#EF5350</color>
+    <color name="color_appbar">#EF5350</color>
+    <color name="color_accent">#42A5F5</color>
 
-    <color name="color_id_numbers">#2196F3</color>
+    <color name="white">#F1F1F1</color>
+    <color name="black">#2E2E2E</color>
+    <color name="grey">#878787</color>
 
-    <color name="color_main_one">#F44336</color>
-    <color name="color_main_two">#2196F3</color>
-
-    <color name="color_warning">#F44336</color>
-
-    <color name="color_edit_button">#2196F3</color>
-    <color name="color_delete_button">#F44336</color>
-
-    <color name="color_ripple">#2196F3</color>
-
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="grey">#7C7C7C</color>
-    <color name="main">#FF8A8A</color>
-
-    <color name="solid">#EAEAEA</color>
-
-    <color name="bottom_sheet_background">#FFFFFF</color>
+    <color name="bottom_sheet_background">#F1F1F1</color>
+    <color name="color_warning">#EF5350</color>
+    <color name="color_item_icon">#EF5350</color>
+    <color name="color_big_main_icon_one">#42A5F5</color>
+    <color name="color_big_main_icon_two">#EF5350</color>
+    <color name="color_edit_text_active_hint_line">#26A69A</color>
+    <color name="color_edit_text_not_active_hint_line">#EF5350</color>
+    <color name="color_add_button">#EF5350</color>
+    <color name="color_add_button_ripple">#C62828</color>
+    <color name="color_choose_color_ripple">#7B7B7B</color>
+    <color name="color_scroll_progress_line">#7B7B7B</color>
+    <color name="color_tools_count">#26A69A</color>
+    <color name="color_priority_circular">#26A69A</color>
 </resources>
