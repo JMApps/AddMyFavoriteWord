@@ -8,11 +8,12 @@
     <dimen name="main_margin_big">32dp</dimen>
     <dimen name="main_margin">20dp</dimen>
     <dimen name="main_margin_mini">12dp</dimen>
-    <dimen name="main_card_margin">10dp</dimen>
+    <dimen name="main_card_margin">8dp</dimen>
 
     <!--    Icon's-->
     <dimen name="main_view_icon_size">150dp</dimen>
-    <dimen name="main_icon_size">40dp</dimen>
+    <dimen name="main_icon_size">26dp</dimen>
+    <dimen name="note_priority_view_size">12dp</dimen>
 
     <!--    View's-->
     <dimen name="main_view_size">40dp</dimen>
@@ -21,6 +22,7 @@
     <dimen name="main_view_description_text_size">24sp</dimen>
 
     <!--    TextSize's-->
+    <dimen name="small_text_size">14sp</dimen>
     <dimen name="main_app_text_size">22sp</dimen>
 
     <!--    Min width's-->

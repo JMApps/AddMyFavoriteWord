@@ -8,11 +8,12 @@
     <dimen name="main_margin_big">24dp</dimen>
     <dimen name="main_margin">16dp</dimen>
     <dimen name="main_margin_mini">8dp</dimen>
-    <dimen name="main_card_margin">5dp</dimen>
+    <dimen name="main_card_margin">3dp</dimen>
 
     <!--    Icon's-->
     <dimen name="main_view_icon_size">100dp</dimen>
-    <dimen name="main_icon_size">30dp</dimen>
+    <dimen name="main_icon_size">18dp</dimen>
+    <dimen name="note_priority_view_size">5dp</dimen>
 
     <!--    View's-->
     <dimen name="main_view_size">30dp</dimen>

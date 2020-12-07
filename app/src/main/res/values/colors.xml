@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#F44336</color>
-    <color name="color_primary_dark">#F44336</color>
+    <color name="color_toolbar">#F44336</color>
+    <color name="color_appbar">#F44336</color>
     <color name="color_accent">#2196F3</color>
 
     <color name="color_id_numbers">#2196F3</color>
 
     <color name="color_main_one">#F44336</color>
     <color name="color_main_two">#2196F3</color>
+
+    <color name="color_warning">#F44336</color>
 
     <color name="color_edit_button">#2196F3</color>
     <color name="color_delete_button">#F44336</color>
@@ -17,7 +19,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="grey">#7C7C7C</color>
-    <color name="main">#434343</color>
+    <color name="main">#FF8A8A</color>
 
     <color name="solid">#EAEAEA</color>
 
