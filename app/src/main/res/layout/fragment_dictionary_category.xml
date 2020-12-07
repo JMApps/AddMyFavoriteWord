@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
-            android:scrollbars="vertical"
-            android:visibility="gone" />
+            android:scrollbars="vertical" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_main_dictionary_container_description"
@@ -32,7 +31,8 @@
             android:gravity="center"
             android:text="@string/description_add_dictionary_first_category"
             android:textAlignment="center"
-            android:textSize="@dimen/main_view_description_text_size"
+            android:textSize="@dimen/main_description_big_text_size"
+            android:visibility="gone"
             app:drawableTopCompat="@drawable/ic_main_dictionary_big"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

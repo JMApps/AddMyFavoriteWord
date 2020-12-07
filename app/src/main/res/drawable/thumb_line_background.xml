@@ -2,9 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <solid android:color="@color/color_main_two" />
-            <corners android:radius="5dp" />
-            <size android:width="5dp" />
+            <solid android:color="@color/color_scroll_progress_line" />
+            <corners android:radius="@dimen/thumb_line_corner" />
+            <size android:width="@dimen/thumb_line_width" />
         </shape>
     </item>
 </layer-list>

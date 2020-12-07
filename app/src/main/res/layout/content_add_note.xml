@@ -27,9 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin_mini"
-            android:background="@drawable/priority_circular_color_view"
+            android:background="@drawable/priority_stroke_circular_color_view"
             android:entries="@array/priorities"
-            android:padding="@dimen/main_padding_mini"
+            android:padding="@dimen/main_padding_micro"
             app:layout_constraintBottom_toBottomOf="@+id/text_current_note_color"
             app:layout_constraintStart_toEndOf="@+id/text_current_note_color"
             app:layout_constraintTop_toTopOf="@+id/text_current_note_color" />

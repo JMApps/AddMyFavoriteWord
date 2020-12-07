@@ -1,40 +1,55 @@
 <resources>
     <!--    Padding's-->
-    <dimen name="main_padding_big">32dp</dimen>
+    <dimen name="main_padding_big">36dp</dimen>
     <dimen name="main_padding">20dp</dimen>
     <dimen name="main_padding_mini">12dp</dimen>
+    <dimen name="main_padding_micro">8dp</dimen>
 
     <!--    Margin's-->
-    <dimen name="main_margin_big">32dp</dimen>
+    <dimen name="main_margin_big">36dp</dimen>
     <dimen name="main_margin">20dp</dimen>
     <dimen name="main_margin_mini">12dp</dimen>
-    <dimen name="main_card_margin">8dp</dimen>
+    <dimen name="main_margin_micro">8dp</dimen>
+
+    <!--    Card margin's-->
+    <dimen name="items_card_margin">8dp</dimen>
+
+    <!--    Corner's-->
+    <dimen name="item_small_card_corner">18dp</dimen>
+    <dimen name="item_big_card_corner">30dp</dimen>
+    <dimen name="input_view_hint_corner">25dp</dimen>
+    <dimen name="priority_view_hint_corner">25dp</dimen>
+    <dimen name="color_choose_view_corner">20dp</dimen>
+    <dimen name="color_start_line_view_corner">18dp</dimen>
+    <dimen name="add_button_corner">25dp</dimen>
+    <dimen name="thumb_line_corner">5dp</dimen>
+
+    <!--    Width's-->
+    <dimen name="priority_hint_stroke_width">1dp</dimen>
+    <dimen name="input_view_hint_stroke_width">1dp</dimen>
+    <dimen name="thumb_line_width">6dp</dimen>
+
+    <!--    Elevation's-->
+    <dimen name="item_card_elevation">4dp</dimen>
 
     <!--    Icon's-->
-    <dimen name="main_view_icon_size">150dp</dimen>
-    <dimen name="main_icon_size">26dp</dimen>
-    <dimen name="note_priority_view_size">12dp</dimen>
+    <dimen name="main_icon_size">28dp</dimen>
+    <dimen name="main_big_icon_size">150dp</dimen>
+    <dimen name="tools_icon_size">30dp</dimen>
+    <dimen name="priority_icon_size">15dp</dimen>
 
     <!--    View's-->
-    <dimen name="main_view_size">40dp</dimen>
-
-    <!--    Description's-->
-    <dimen name="main_view_description_text_size">24sp</dimen>
+    <dimen name="main_view_size">35dp</dimen>
 
     <!--    TextSize's-->
     <dimen name="small_text_size">14sp</dimen>
-    <dimen name="main_app_text_size">22sp</dimen>
-
-    <!--    Min width's-->
-    <dimen name="characters_min_width">100dp</dimen>
+    <dimen name="main_app_text_size">24sp</dimen>
+    <dimen name="main_description_big_text_size">31sp</dimen>
 
     <!--    Min heights's-->
-    <dimen name="item_card_min_height">100dp</dimen>
+    <dimen name="item_card_min_height">110dp</dimen>
     <dimen name="item_card_normal_height">200dp</dimen>
 
-    <!--    Corner's-->
-    <dimen name="main_card_corner">15dp</dimen>
-
-    <!--    Elevation's-->
-    <dimen name="main_card_elevation">7dp</dimen>
+    <!--    Min width's-->
+    <dimen name="characters_min_width">50dp</dimen>
 </resources>

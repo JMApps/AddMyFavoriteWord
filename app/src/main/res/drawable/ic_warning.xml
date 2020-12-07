@@ -1,6 +1,6 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="@dimen/main_icon_size"
-    android:height="@dimen/main_icon_size"
+    android:width="@dimen/tools_icon_size"
+    android:height="@dimen/tools_icon_size"
     android:viewportWidth="512"
     android:viewportHeight="512">
     <path

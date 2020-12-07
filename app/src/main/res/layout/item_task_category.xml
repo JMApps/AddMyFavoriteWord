@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/main_card_margin"
-    android:elevation="@dimen/main_card_elevation"
+    android:layout_margin="@dimen/items_card_margin"
+    android:elevation="@dimen/item_card_elevation"
     android:minHeight="@dimen/item_card_min_height"
-    app:cardCornerRadius="@dimen/main_card_corner">
+    app:cardCornerRadius="@dimen/item_small_card_corner">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/main_card_margin"
-    android:elevation="@dimen/main_card_elevation"
+    android:layout_margin="@dimen/items_card_margin"
+    android:elevation="@dimen/item_card_elevation"
     android:minHeight="@dimen/item_card_normal_height"
-    app:cardCornerRadius="@dimen/main_card_corner">
+    app:cardCornerRadius="@dimen/item_big_card_corner">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/layout_note_item_color"
@@ -40,8 +40,8 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/text_note_item_priority"
-                    android:layout_width="@dimen/note_priority_view_size"
-                    android:layout_height="@dimen/note_priority_view_size"
+                    android:layout_width="@dimen/priority_icon_size"
+                    android:layout_height="@dimen/priority_icon_size"
                     android:layout_marginStart="@dimen/main_margin_mini"
                     android:background="@drawable/circular_priority_color_view"
                     tools:background="@color/red_400" />

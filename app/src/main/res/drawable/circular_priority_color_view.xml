@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/color_card_radius" />
+            <corners android:radius="@dimen/color_choose_view_corner" />
         </shape>
     </item>
 </selector>

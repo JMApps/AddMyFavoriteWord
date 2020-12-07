@@ -14,7 +14,7 @@
             android:id="@+id/text_view_settings_task_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/color_main_two"
+            android:background="@color/color_accent"
             android:drawableStart="@drawable/ic_settings"
             android:drawablePadding="@dimen/main_padding"
             android:gravity="center_vertical"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/main_margin"
-            android:textColor="@color/color_main_one"
+            android:textColor="@color/color_tools_count"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/seek_bar_task_text_size"
             app:layout_constraintEnd_toEndOf="parent"
@@ -122,6 +122,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch_change_task_time" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
