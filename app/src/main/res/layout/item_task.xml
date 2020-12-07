@@ -36,7 +36,8 @@
                 android:id="@+id/checkbox_task_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/main_margin_mini" />
+                android:layout_marginStart="@dimen/main_margin_mini"
+                android:button="@drawable/state_task" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
