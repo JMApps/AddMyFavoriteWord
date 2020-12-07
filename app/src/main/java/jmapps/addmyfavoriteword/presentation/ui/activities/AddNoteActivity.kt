@@ -29,7 +29,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener,
     private lateinit var binding: ActivityAddNoteBinding
     private lateinit var notesItemViewModel: NotesItemViewModel
 
-    private var standardNoteColor = "#e57373"
+    private var standardNoteColor = "#ef9a9a"
 
     private lateinit var questionAlertUtil: QuestionAlertUtil
     private var itemAddNote: MenuItem? = null
@@ -134,7 +134,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener,
         MaterialColorPickerDialog
             .Builder(this)
             .setTitle(getString(R.string.description_choose_color))
-            .setColorRes(resources.getIntArray(R.array.themeColors).toList())
+            .setColorRes(resources.getIntArray(R.array.noteItemColors).toList())
             .setColorListener { _, colorHex ->
                 standardNoteColor = colorHex
                 DrawableCompat.setTint(binding.addNoteItemContent.textCurrentNoteColor.background, Color.parseColor(standardNoteColor))

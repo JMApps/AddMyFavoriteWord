@@ -103,7 +103,7 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
                 MaterialColorPickerDialog
                     .Builder(requireContext())
                     .setTitle(getString(R.string.description_choose_color))
-                    .setColorRes(resources.getIntArray(R.array.themeColors).toList())
+                    .setColorRes(resources.getIntArray(R.array.taskColors).toList())
                     .setColorListener { _, colorHex ->
                         newCategoryColor = colorHex
                         DrawableCompat.setTint(binding.textNewTaskCategoryColor.background, Color.parseColor(newCategoryColor))

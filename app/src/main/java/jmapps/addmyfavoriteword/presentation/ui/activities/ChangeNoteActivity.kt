@@ -177,7 +177,7 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         MaterialColorPickerDialog
             .Builder(this)
             .setTitle(getString(R.string.description_choose_color))
-            .setColorRes(resources.getIntArray(R.array.themeColors).toList())
+            .setColorRes(resources.getIntArray(R.array.noteItemColors).toList())
             .setColorListener { _, colorHex ->
                 intermediateVariableNoteColor = colorHex
                 DrawableCompat.setTint(binding.changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(intermediateVariableNoteColor))

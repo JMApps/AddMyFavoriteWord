@@ -77,7 +77,7 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
                 MaterialColorPickerDialog
                     .Builder(requireContext())
                     .setTitle(getString(R.string.description_choose_color))
-                    .setColorRes(resources.getIntArray(R.array.themeColors).toList())
+                    .setColorRes(resources.getIntArray(R.array.taskColors).toList())
                     .setColorListener { _, colorHex ->
                         standardColor = colorHex
                         DrawableCompat.setTint(binding.textAddTaskCategoryColor.background, Color.parseColor(standardColor))
