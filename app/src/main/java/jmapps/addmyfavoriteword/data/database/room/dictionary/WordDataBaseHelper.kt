@@ -84,18 +84,18 @@ abstract class WordDataBaseHelper() : RoomDatabase() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 INSTANCE.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        database?.wordCategoriesDao()?.let { populateCategories(it) }
-                        database?.wordItemsDao()?.let { populateWords(it) }
+                        database?.wordCategoriesDao()?.let { populateWordCategories(it) }
+                        database?.wordItemsDao()?.let { populateWordItems(it) }
                     }
                 }
             }
         }
 
-        fun populateCategories(wordCategoriesDao: WordCategoriesDao) {
+        fun populateWordCategories(wordCategoriesDao: WordCategoriesDao) {
             wordCategoriesDao.getWordCategoriesList("AddDateTime")
         }
 
-        fun populateWords(wordItemsDao: WordItemsDao) {
+        fun populateWordItems(wordItemsDao: WordItemsDao) {
             wordItemsDao.getAllWordsList(0, "AddDateTime")
         }
     }
