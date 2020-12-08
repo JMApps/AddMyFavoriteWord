@@ -13,7 +13,7 @@
         tools:context=".presentation.ui.fragments.DictionaryFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_dictionary_categories"
+            android:id="@+id/rv_word_categories"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
@@ -40,7 +40,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_dictionary_category"
+            android:id="@+id/fab_add_word_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"

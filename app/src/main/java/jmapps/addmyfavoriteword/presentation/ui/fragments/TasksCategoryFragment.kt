@@ -96,14 +96,12 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         binding.fabAddTaskCategory.startAnimation(show)
 
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility =
-            otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun updateState() {
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
-        binding.textMainTaskContainerDescription.visibility =
-            otherFragmentsPresenter.descriptionMain()
+        binding.textMainTaskContainerDescription.visibility = otherFragmentsPresenter.descriptionMain()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -172,7 +170,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun itemClickDeleteCategory(taskCategoryId: Long, taskCategoryTitle: String) {
-        val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_category, "<b>$taskCategoryTitle</b>")
+        val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_task_category, "<b>$taskCategoryTitle</b>")
         deleteAlertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, taskCategoryId, getString(R.string.action_category_deleted))
     }
 
