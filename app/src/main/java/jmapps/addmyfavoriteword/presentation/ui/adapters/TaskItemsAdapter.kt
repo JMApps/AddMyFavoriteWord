@@ -72,7 +72,7 @@ class TaskItemsAdapter(
         }
 
         val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
-        holder.tvTaskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+        holder.llTaskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
         holder.findOnItemClick(onLongClickTaskItem, current._id, current.taskItemTitle, current.priority)

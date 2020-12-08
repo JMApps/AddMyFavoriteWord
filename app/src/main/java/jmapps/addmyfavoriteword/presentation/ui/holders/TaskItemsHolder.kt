@@ -19,7 +19,7 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
     private var preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(itemView.context)
     private var sharedLocalPreferences: SharedLocalProperties
 
-    val tvTaskItemPriority: LinearLayoutCompat = taskView.findViewById(R.id.layout_task_item_priority)
+    val llTaskItemPriority: LinearLayoutCompat = taskView.findViewById(R.id.layout_task_item_priority)
     val tvTaskItemColor: TextView = taskView.findViewById(R.id.text_task_item_color)
     val tvTaskItemCheckBox: CheckBox = taskView.findViewById(R.id.checkbox_task_state)
     val tvTaskItemTitle: TextView = taskView.findViewById(R.id.text_task_item_title)
