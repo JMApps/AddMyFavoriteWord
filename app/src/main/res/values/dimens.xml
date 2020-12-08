@@ -12,7 +12,7 @@
     <dimen name="main_margin_micro">4dp</dimen>
 
     <!--    Card margin's-->
-    <dimen name="items_card_margin">3dp</dimen>
+    <dimen name="items_card_margin">5dp</dimen>
 
     <!--    Corner's-->
     <dimen name="item_small_card_corner">12dp</dimen>
@@ -33,10 +33,10 @@
     <dimen name="item_card_elevation">2dp</dimen>
 
     <!--    Icon's-->
-    <dimen name="main_icon_size">20dp</dimen>
+    <dimen name="main_icon_size">22dp</dimen>
     <dimen name="main_big_icon_size">100dp</dimen>
-    <dimen name="tools_icon_size">20dp</dimen>
-    <dimen name="priority_icon_size">5dp</dimen>
+    <dimen name="tools_icon_size">25dp</dimen>
+    <dimen name="priority_icon_size">7.5dp</dimen>
 
     <!--    View's-->
     <dimen name="main_view_size">25dp</dimen>
@@ -44,6 +44,7 @@
     <!--    TextSize's-->
     <dimen name="small_text_size">10sp</dimen>
     <dimen name="main_app_text_size">18sp</dimen>
+    <dimen name="main_app_big_text_size">22sp</dimen>
     <dimen name="main_description_big_text_size">25sp</dimen>
 
     <!--    Min heights's-->

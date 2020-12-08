@@ -47,6 +47,7 @@
             android:maxLines="1"
             android:paddingLeft="@dimen/main_padding"
             android:paddingRight="@dimen/main_padding"
+            android:textSize="@dimen/main_app_big_text_size"
             app:fontFamily="@font/gilroy_extra_bold"
             app:layout_constraintEnd_toStartOf="@+id/text_length_change_note_characters"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +84,7 @@
                 android:hint="@string/hint_enter_note_content"
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="@dimen/main_padding"
+                android:textSize="@dimen/main_app_text_size"
                 app:fontFamily="@font/gilroy_light" />
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
