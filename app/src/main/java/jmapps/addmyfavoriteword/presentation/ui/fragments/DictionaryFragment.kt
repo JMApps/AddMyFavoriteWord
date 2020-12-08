@@ -19,6 +19,7 @@ import jmapps.addmyfavoriteword.databinding.FragmentDictionaryCategoryBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordCategoriesAdapter
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.models.WordsCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
@@ -144,7 +145,8 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
     }
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+        val addWordCategoryBottomSheet = AddWordCategoryBottomSheet()
+        addWordCategoryBottomSheet.show(childFragmentManager, AddWordCategoryBottomSheet.ARG_ADD_WORD_CATEGORY_BS)
     }
 
     override fun onItemClickWordCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String) {
@@ -152,11 +154,11 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
     }
 
     override fun itemClickRenameCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String) {
-        // Переименовать категорию
+        TODO("Not yet implemented")
     }
 
     override fun itemClickDeleteCategory(wordCategoryId: Long, wordCategoryTitle: String) {
-        // Удалить категорию
+        TODO("Not yet implemented")
     }
 
     override fun onClickDeleteOnly(_id: Long) {
@@ -186,6 +188,6 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
     }
 
     private fun toWordActivity(_id: Long, categoryTitle: String, categoryColor: String) {
-        // Перейти к словам категории
+        TODO("Not yet implemented")
     }
 }

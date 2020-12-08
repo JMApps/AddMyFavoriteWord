@@ -3,6 +3,7 @@ package jmapps.addmyfavoriteword.presentation.ui.holders
 import android.content.SharedPreferences
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.appcompat.widget.PopupMenu
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     private var preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(itemView.context)
     private var sharedLocalPreferences: SharedLocalProperties
 
+    val llWordCategoryItemPriority: LinearLayoutCompat = viewCategory.findViewById(R.id.layout_word_category_item_priority)
     val tvWordCategoryColor: TextView = viewCategory.findViewById(R.id.text_word_category_color)
     val tvWordCategoryTitle: TextView = viewCategory.findViewById(R.id.text_word_category_title)
     val tvWordCategoryAddDateTime: TextView = viewCategory.findViewById(R.id.text_view_word_category_item_add_date_time)

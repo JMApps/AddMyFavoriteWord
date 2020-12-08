@@ -56,6 +56,9 @@ class WordCategoriesAdapter(
         holder.tvWordCategoryColor.text = (position + 1).toString()
         holder.tvWordCategoryTitle.text = current.wordCategoryTitle
 
+        val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
+        holder.llWordCategoryItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+
         val wordCategoryAddDateTime = context.getString(R.string.action_add_time_item_word, "\n${current.addDateTime}")
         val wordCategoryChangeDateTime = context.getString(R.string.action_change_time_item_word, "\n${current.changeDateTime}")
 

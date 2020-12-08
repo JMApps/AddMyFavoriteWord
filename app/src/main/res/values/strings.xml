@@ -19,7 +19,9 @@
     <string name="hint_enter_category_name">Введите название категории</string>
     <string name="description_choose_color">Выберите цвет</string>
     <string name="max_task_category_name_characters">%1$d/100</string>
+    <string name="max_word_category_name_characters">%1$d/100</string>
     <string name="toast_achieved_max_task_category_name_characters">Достигнуто макс. число 100</string>
+    <string name="toast_achieved_max_word_category_name_characters">Достигнуто макс. число 100</string>
     <string name="action_add_category">Добавить</string>
     <string name="toast_category_added">Категория добавлена</string>
     <string name="description_change_category">Изменить категорию</string>

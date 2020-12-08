@@ -12,23 +12,23 @@ interface WordCategoriesDao {
     fun getWordCategoriesList(orderBy: String): LiveData<MutableList<WordCategories>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertWordCategory(wordCategories: WordCategories)
+    suspend fun insertWordCategory(wordCategories: WordCategories)
 
     @Query("UPDATE Table_of_word_categories SET wordCategoryTitle = :newTitle, wordCategoryColor = :newColor, changeDateTime = :newDateTime WHERE _id = :wordCategoryId")
-    fun updateWordCategory(newTitle: String, newColor: String, newDateTime: String, wordCategoryId: Long)
+    suspend fun updateWordCategory(newTitle: String, newColor: String, newDateTime: String, wordCategoryId: Long)
 
     @Query("UPDATE Table_of_words SET wordItemColor = :newColor WHERE _id = :wordCategoryId")
-    fun updateWordItemColor(newColor: String, wordCategoryId: Long)
+    suspend fun updateWordItemColor(newColor: String, wordCategoryId: Long)
 
     @Query("DELETE FROM Table_of_word_categories WHERE _id = :wordCategoryId")
-    fun deleteWordCategory(wordCategoryId: Long)
+    suspend fun deleteWordCategory(wordCategoryId: Long)
 
     @Query("DELETE FROM Table_of_words WHERE _id = :wordCategoryId")
-    fun deleteWordItem(wordCategoryId: Long)
+    suspend fun deleteWordItem(wordCategoryId: Long)
 
     @Query("DELETE FROM Table_of_word_categories")
-    fun deleteAllWordCategories()
+    suspend fun deleteAllWordCategories()
 
     @Query("DELETE FROM Table_of_words")
-    fun deleteAllWordItems()
+    suspend fun deleteAllWordItems()
 }
