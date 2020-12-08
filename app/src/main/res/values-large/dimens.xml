@@ -33,7 +33,7 @@
     <dimen name="item_card_elevation">3dp</dimen>
 
     <!--    Icon's-->
-    <dimen name="main_icon_size">23dp</dimen>
+    <dimen name="main_icon_size">25dp</dimen>
     <dimen name="main_big_icon_size">125dp</dimen>
     <dimen name="tools_icon_size">25dp</dimen>
     <dimen name="priority_icon_size">10dp</dimen>
