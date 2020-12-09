@@ -20,6 +20,9 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterfac
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordCategoriesAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameWordCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.ARG_TOOLS_WORD_ITEM_BS
 import jmapps.addmyfavoriteword.presentation.ui.models.WordsCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
@@ -50,7 +53,7 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
         wordCategoriesViewModel = ViewModelProvider(this).get(WordsCategoryViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dictionary_category, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -86,7 +89,7 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
     }
 
     override fun defaultState() {
-        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show);
+        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show)
         binding.fabAddWordCategory.startAnimation(show)
 
         binding.rvWordCategories.visibility = otherFragmentsPresenter.recyclerCategory()
@@ -111,6 +114,8 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_tools_word_categories -> {
+                val toolsWordCategoryBottomSheet = ToolsWordCategoryBottomSheet()
+                toolsWordCategoryBottomSheet.show(childFragmentManager, ARG_TOOLS_WORD_ITEM_BS)
             }
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)
@@ -156,12 +161,14 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
         toWordActivity(wordCategoryId, wordCategoryTitle, wordCategoryColor)
     }
 
-    override fun itemClickRenameCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String) {
-        TODO("Not yet implemented")
+    override fun itemClickRenameCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String, wordCategoryPriority: Long) {
+        val renameWordCategoryBottomSheet = RenameWordCategoryBottomSheet.toInstance(wordCategoryId, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
+        renameWordCategoryBottomSheet.show(childFragmentManager, RenameWordCategoryBottomSheet.ARG_RENAME_WORD_CATEGORY_BS)
     }
 
     override fun itemClickDeleteCategory(wordCategoryId: Long, wordCategoryTitle: String) {
-        TODO("Not yet implemented")
+        val deleteTaskCategoryDescription = getString(R.string.dialog_message_are_sure_you_want_word_category, "<b>$wordCategoryTitle</b>")
+        deleteAlertDialog.showAlertDialog(deleteTaskCategoryDescription, 1, wordCategoryId, getString(R.string.action_category_deleted))
     }
 
     override fun onClickDeleteOnly(_id: Long) {
@@ -191,6 +198,6 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
     }
 
     private fun toWordActivity(_id: Long, categoryTitle: String, categoryColor: String) {
-        TODO("Not yet implemented")
+
     }
 }
