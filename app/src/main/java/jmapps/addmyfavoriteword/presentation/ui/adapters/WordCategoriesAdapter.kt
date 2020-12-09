@@ -30,7 +30,8 @@ class WordCategoriesAdapter(
         fun onItemClickWordCategory(
             wordCategoryId: Long,
             wordCategoryTitle: String,
-            wordCategoryColor: String
+            wordCategoryColor: String,
+            wordCategoryPriority: Long
         )
     }
 
@@ -70,7 +71,8 @@ class WordCategoriesAdapter(
             onItemClickWordCategory,
             current._id,
             current.wordCategoryTitle,
-            current.wordCategoryColor
+            current.wordCategoryColor,
+            current.priority
         )
         holder.findLongItemClick(
             onLongClickWordCategory,

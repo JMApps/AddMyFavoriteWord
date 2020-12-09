@@ -2,6 +2,7 @@ package jmapps.addmyfavoriteword.presentation.ui.fragments
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
@@ -18,6 +19,11 @@ import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.FragmentDictionaryCategoryBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPresenter
+import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity
+import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_COLOR
+import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_ID
+import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_PRIORITY
+import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_TITLE
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordCategoriesAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameWordCategoryBottomSheet
@@ -157,8 +163,8 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
         addWordCategoryBottomSheet.show(childFragmentManager, AddWordCategoryBottomSheet.ARG_ADD_WORD_CATEGORY_BS)
     }
 
-    override fun onItemClickWordCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String) {
-        toWordActivity(wordCategoryId, wordCategoryTitle, wordCategoryColor)
+    override fun onItemClickWordCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String, wordCategoryPriority: Long) {
+        toWordActivity(wordCategoryId, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
     }
 
     override fun itemClickRenameCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String, wordCategoryPriority: Long) {
@@ -197,7 +203,12 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
         sharedLocalPreferences.saveIntValue(KEY_ORDER_WORD_CATEGORY_INDEX, defaultOrderIndex)
     }
 
-    private fun toWordActivity(_id: Long, categoryTitle: String, categoryColor: String) {
-
+    private fun toWordActivity(_id: Long, categoryTitle: String, categoryColor: String, categoryPriority: Long) {
+        val toAddWordActivity = Intent(requireContext(), AddWordActivity::class.java)
+        toAddWordActivity.putExtra(KEY_WORD_CATEGORY_ID, _id)
+        toAddWordActivity.putExtra(KEY_WORD_CATEGORY_TITLE, categoryTitle)
+        toAddWordActivity.putExtra(KEY_WORD_CATEGORY_COLOR, categoryColor)
+        toAddWordActivity.putExtra(KEY_WORD_CATEGORY_PRIORITY, categoryPriority)
+        startActivity(toAddWordActivity)
     }
 }

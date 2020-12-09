@@ -35,9 +35,10 @@ class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
         onItemClickWordCategory: WordCategoriesAdapter.OnItemClickWordCategory,
         wordCategoryId: Long,
         wordCategoryTitle: String,
-        wordCategoryColor: String) {
+        wordCategoryColor: String,
+        wordCategoryPriority: Long) {
         itemView.setOnClickListener {
-            onItemClickWordCategory.onItemClickWordCategory(wordCategoryId, wordCategoryTitle, wordCategoryColor)
+            onItemClickWordCategory.onItemClickWordCategory(wordCategoryId, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
         }
     }
 
