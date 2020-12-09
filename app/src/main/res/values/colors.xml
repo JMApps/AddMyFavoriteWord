@@ -21,4 +21,7 @@
     <color name="color_scroll_progress_line">#7B7B7B</color>
     <color name="color_tools_count">#26A69A</color>
     <color name="color_priority_circular">#26A69A</color>
+    <color name="color_word">#EF5350</color>
+    <color name="color_word_transcription">#26A69A</color>
+    <color name="color_word_translate">#7B7B7B</color>
 </resources>

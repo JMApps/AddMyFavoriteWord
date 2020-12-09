@@ -34,6 +34,11 @@
             android:label="@string/change_note"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".presentation.ui.activities.AddWordActivity"
+            android:label="@string/add_word"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
     </application>
 
 </manifest>

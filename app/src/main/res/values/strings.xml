@@ -2,6 +2,7 @@
     <string name="app_name_title">Мой блокнот PRO</string>
     <string name="add_note">Добавить заметку</string>
     <string name="change_note">Изменить заметку</string>
+    <string name="add_word">Добавить слово</string>
 
     <!--    Main screen-->
     <string name="bottom_navigation_title_tasks">Задачи</string>
@@ -19,9 +20,7 @@
     <string name="hint_enter_category_name">Введите название категории</string>
     <string name="description_choose_color">Выберите цвет</string>
     <string name="max_task_category_name_characters">%1$d/100</string>
-    <string name="max_word_category_name_characters">%1$d/100</string>
     <string name="toast_achieved_max_task_category_name_characters">Достигнуто макс. число 100</string>
-    <string name="toast_achieved_max_word_category_name_characters">Достигнуто макс. число 100</string>
     <string name="action_add_category">Добавить</string>
     <string name="toast_category_added">Категория добавлена</string>
     <string name="description_change_category">Изменить категорию</string>
@@ -32,7 +31,7 @@
     <string name="action_category_deleted">Категория удалена</string>
     <string name="action_categories_deleted">Категории удалены</string>
 
-    <!--    Task items-->
+    <!--    Task item's-->
     <string name="action_search_by_tasks">Поиск задач</string>
     <string name="description_add_first_task">Добавьте первую задачу в категорию:\n%1$s</string>
     <string name="description_add_task">Добавить задачу</string>
@@ -50,7 +49,7 @@
     <string name="action_task_deleted">Задача удалена</string>
     <string name="action_tasks_deleted">Задачи удалены</string>
 
-    <!--    Note items-->
+    <!--    Note item's-->
     <string name="action_search_by_notes">Поиск заметок</string>
     <string name="description_add_note">Добавить Заметку</string>
     <string name="hint_enter_note_title">Название</string>
@@ -68,6 +67,17 @@
     <string name="action_delete_all_notes">Удалить все заметки</string>
     <string name="action_note_deleted">Заметка удалена</string>
     <string name="action_notes_deleted">Заметки удалены</string>
+
+    <!--   Word categories-->
+    <string name="max_word_category_name_characters">%1$d/100</string>
+    <string name="toast_achieved_max_word_category_name_characters">Достигнуто макс. число 100</string>
+
+    <!--    Word item's-->
+    <string name="hint_enter_word">Введие слово…</string>
+    <string name="hint_enter_word_transcription">Введите транскрипцию…</string>
+    <string name="hint_enter_word_translate">Введите перевод…</string>
+    <string name="action_add_more_word">Добавить ещё</string>
+    <string name="action_add_word_and_close">Добавить и закрыть</string>
 
     <!--    Popup-->
     <string name="popup_change">Изменить</string>
