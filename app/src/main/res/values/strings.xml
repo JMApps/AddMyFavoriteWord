@@ -73,11 +73,20 @@
     <string name="toast_achieved_max_word_category_name_characters">Достигнуто макс. число 100</string>
 
     <!--    Word item's-->
+    <string name="action_search_by_word">Поиск слов</string>
+    <string name="description_add_first_word">Добавьте первое слово в категорию:\n%1$s</string>
+    <string name="action_add_word">Добавить слово</string>
     <string name="hint_enter_word">Введие слово…</string>
     <string name="hint_enter_word_transcription">Введите транскрипцию…</string>
     <string name="hint_enter_word_translate">Введите перевод…</string>
     <string name="action_add_more_word">Добавить ещё</string>
     <string name="action_add_word_and_close">Добавить и закрыть</string>
+    <string name="toast_word_added">Слово добавлено</string>
+    <string name="description_change_word">Изменить слово</string>
+    <string name="toast_word_changed">Слово изменено</string>
+    <string name="action_delete_all_words">Удалить все слова категории</string>
+    <string name="action_word_deleted">Слово удалено</string>
+    <string name="action_words_deleted">Слова удалены</string>
 
     <!--    Popup-->
     <string name="popup_change">Изменить</string>
@@ -89,6 +98,7 @@
     <string name="order_categories">Сортировать категории:</string>
     <string name="order_tasks">Сортировать задачи:</string>
     <string name="order_notes">Сортировать заметки:</string>
+    <string name="order_words">Сортировать слова:</string>
     <string name="order_by_add_time">По дате добавления</string>
     <string name="order_by_change_time">По дате изменения</string>
     <string name="order_by_executions">По дате выполнения</string>
