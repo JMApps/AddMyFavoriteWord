@@ -43,12 +43,17 @@
                 android:icon="@drawable/ic_by_alphabet"
                 android:orderInCategory="40"
                 android:title="@string/order_by_alphabet" />
+            <item
+                android:id="@+id/item_order_by_priority"
+                android:icon="@drawable/ic_by_priority"
+                android:orderInCategory="50"
+                android:title="@string/order_by_priority" />
         </menu>
     </item>
 
     <item
         android:id="@+id/action_delete_all_categories"
-        android:orderInCategory="40"
+        android:orderInCategory="60"
         android:title="@string/action_delete_all_categories"
         app:showAsAction="never" />
 </menu>

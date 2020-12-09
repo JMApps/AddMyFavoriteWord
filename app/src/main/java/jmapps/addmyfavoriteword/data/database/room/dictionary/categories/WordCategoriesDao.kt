@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface WordCategoriesDao {
-    @Query("SELECT * FROM Table_of_word_categories ORDER BY CASE :orderBy WHEN 'addDateTime' THEN addDateTime WHEN 'changeDateTie' THEN changeDateTime WHEN 'color' THEN wordCategoryColor WHEN 'alphabet' THEN wordCategoryTitle END ASC")
+    @Query("SELECT * FROM Table_of_word_categories ORDER BY CASE :orderBy WHEN 'addDateTime' THEN addDateTime WHEN 'changeDateTie' THEN changeDateTime WHEN 'color' THEN wordCategoryColor WHEN 'alphabet' THEN wordCategoryTitle END ASC, CASE :orderBy WHEN 'priority' THEN priority END DESC")
     fun getWordCategoriesList(orderBy: String): LiveData<MutableList<WordCategories>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

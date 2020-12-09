@@ -124,6 +124,9 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
             R.id.item_order_by_alphabet -> {
                 changeOrderList(defaultOrderIndex = 4)
             }
+            R.id.item_order_by_priority -> {
+                changeOrderList(defaultOrderIndex = 5)
+            }
             R.id.action_delete_all_categories -> {
                 deleteAlertDialog.showAlertDialog(getString(R.string.dialog_message_are_sure_you_want_word_categories), 0, 0, getString(R.string.action_categories_deleted))
             }
