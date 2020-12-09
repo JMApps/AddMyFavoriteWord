@@ -14,8 +14,8 @@ interface WordCategoriesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWordCategory(wordCategories: WordCategories)
 
-    @Query("UPDATE Table_of_word_categories SET wordCategoryTitle = :newTitle, wordCategoryColor = :newColor, changeDateTime = :newDateTime WHERE _id = :wordCategoryId")
-    suspend fun updateWordCategory(newTitle: String, newColor: String, newDateTime: String, wordCategoryId: Long)
+    @Query("UPDATE Table_of_word_categories SET wordCategoryTitle = :newTitle, wordCategoryColor = :newColor, changeDateTime = :newDateTime, priority = :newPriority WHERE _id = :wordCategoryId")
+    suspend fun updateWordCategory(newTitle: String, newColor: String, newDateTime: String, newPriority: Long, wordCategoryId: Long)
 
     @Query("UPDATE Table_of_words SET wordItemColor = :newColor WHERE _id = :wordCategoryId")
     suspend fun updateWordItemColor(newColor: String, wordCategoryId: Long)

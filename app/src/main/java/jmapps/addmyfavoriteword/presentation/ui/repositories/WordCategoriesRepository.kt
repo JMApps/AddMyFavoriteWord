@@ -13,8 +13,8 @@ class WordCategoriesRepository(private val wordCategoriesDao: WordCategoriesDao)
         wordCategoriesDao.insertWordCategory(wordCategories)
     }
 
-    suspend fun updateWordCategory(newTitle: String, newColor: String, newDateTime: String, wordCategoryId: Long) {
-        wordCategoriesDao.updateWordCategory(newTitle, newColor, newDateTime, wordCategoryId)
+    suspend fun updateWordCategory(newTitle: String, newColor: String, newDateTime: String, newPriority: Long, wordCategoryId: Long) {
+        wordCategoriesDao.updateWordCategory(newTitle, newColor, newDateTime, newPriority, wordCategoryId)
     }
 
     suspend fun updateWordItemColor(newColor: String, wordCategoryId: Long) {

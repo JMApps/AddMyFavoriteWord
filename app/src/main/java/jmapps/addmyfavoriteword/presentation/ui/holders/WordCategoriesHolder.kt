@@ -9,7 +9,8 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordCategoriesAdapter
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsTaskCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.KEY_WORD_CATEGORY_ADD_DATE_TIME
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.KEY_WORD_CATEGORY_CHANGE_DATE_TIME
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCategory),
@@ -42,19 +43,20 @@ class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
 
     fun findLongItemClick(
         onLongClickWordCategory: WordCategoriesAdapter.OnLongClickWordCategory,
-        taskCategoryId: Long,
-        taskCategoryTitle: String,
-        taskCategoryColor: String) {
+        wordCategoryId: Long,
+        wordCategoryTitle: String,
+        wordCategoryColor: String,
+        wordCategoryPriority: Long) {
         itemView.setOnLongClickListener {
             val pop = PopupMenu(itemView.context, tvWordCategoryTitle)
             pop.inflate(R.menu.menu_change_item_popup)
             pop.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.popup_change_item -> {
-                        onLongClickWordCategory.itemClickRenameCategory(taskCategoryId, taskCategoryTitle, taskCategoryColor)
+                        onLongClickWordCategory.itemClickRenameCategory(wordCategoryId, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
                     }
                     R.id.popup_delete_item -> {
-                        onLongClickWordCategory.itemClickDeleteCategory(taskCategoryId, taskCategoryTitle)
+                        onLongClickWordCategory.itemClickDeleteCategory(wordCategoryId, wordCategoryTitle)
                     }
                 }
                 true
@@ -69,9 +71,8 @@ class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     }
 
     private fun setShowAddChangeDateTime() {
-        val addShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskCategoryBottomSheet.KEY_TASK_CATEGORY_ADD_DATE_TIME, false)
-        val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(
-            ToolsTaskCategoryBottomSheet.KEY_TASK_CATEGORY_CHANGE_DATE_TIME, false)
+        val addShowingDateTime = sharedLocalPreferences.getBooleanValue(KEY_WORD_CATEGORY_ADD_DATE_TIME, false)
+        val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(KEY_WORD_CATEGORY_CHANGE_DATE_TIME, false)
 
         if (!addShowingDateTime!!) {
             tvWordCategoryAddDateTime.visibility = View.GONE

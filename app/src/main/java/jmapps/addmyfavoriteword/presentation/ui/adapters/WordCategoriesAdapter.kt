@@ -38,7 +38,8 @@ class WordCategoriesAdapter(
         fun itemClickRenameCategory(
             wordCategoryId: Long,
             wordCategoryTitle: String,
-            wordCategoryColor: String
+            wordCategoryColor: String,
+            wordCategoryPriority: Long
         )
 
         fun itemClickDeleteCategory(wordCategoryId: Long, wordCategoryTitle: String)
@@ -75,7 +76,8 @@ class WordCategoriesAdapter(
             onLongClickWordCategory,
             current._id,
             current.wordCategoryTitle,
-            current.wordCategoryColor
+            current.wordCategoryColor,
+            current.priority
         )
     }
 

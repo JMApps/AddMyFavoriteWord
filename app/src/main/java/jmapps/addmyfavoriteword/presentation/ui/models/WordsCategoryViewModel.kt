@@ -23,8 +23,8 @@ class WordsCategoryViewModel(application: Application) : AndroidViewModel(applic
         wordCategoriesRepository.insertWordCategory(wordCategories)
     }
 
-    fun updateWordCategory(newTitle: String, newColor: String, newDateTime: String, wordCategoryId: Long) = viewModelScope.launch {
-        wordCategoriesRepository.updateWordCategory(newTitle, newColor, newDateTime, wordCategoryId)
+    fun updateWordCategory(newTitle: String, newColor: String, newDateTime: String, newPriority: Long, wordCategoryId: Long) = viewModelScope.launch {
+        wordCategoriesRepository.updateWordCategory(newTitle, newColor, newDateTime, newPriority, wordCategoryId)
     }
 
     fun updateWordItemColor(newColor: String, wordCategoryId: Long) = viewModelScope.launch {
