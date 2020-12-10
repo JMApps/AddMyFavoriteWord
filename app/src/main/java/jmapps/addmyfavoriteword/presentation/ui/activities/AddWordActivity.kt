@@ -11,18 +11,24 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.ActivityAddWordBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.OtherActivityPresenter
+import jmapps.addmyfavoriteword.presentation.ui.adapters.WordItemsAdapter
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet.Companion.ARG_ADD_WORD_ITEM_BS
 import jmapps.addmyfavoriteword.presentation.ui.models.WordsItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
-    DeleteAlertUtil.OnClickDelete, View.OnClickListener, SearchView.OnQueryTextListener {
+    DeleteAlertUtil.OnClickDelete, View.OnClickListener, SearchView.OnQueryTextListener,
+    WordItemsAdapter.OnLongWordItemClick {
 
     private lateinit var binding: ActivityAddWordBinding
     private lateinit var wordsItemViewModel: WordsItemViewModel
@@ -51,6 +57,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        wordsItemViewModel = ViewModelProvider(this).get(WordsItemViewModel::class.java)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_word)
         setSupportActionBar(binding.toolbar)
@@ -81,7 +88,16 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun initView(displayBy: Long, orderBy: String) {
-        TODO("Not yet implemented")
+        wordsItemViewModel.getAllWordsList(displayBy, orderBy).observe(this, {
+            it.let {
+                val verticalLayout = LinearLayoutManager(this)
+                binding.addWordItemContent.rvWordItems.layoutManager = verticalLayout
+                wordItemsAdapter = WordItemsAdapter(this, it, this)
+                binding.addWordItemContent.rvWordItems.adapter = wordItemsAdapter
+                otherActivityPresenter.updateState(it)
+                otherActivityPresenter.defaultState()
+            }
+        })
     }
 
     override fun defaultState() {
@@ -145,12 +161,12 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     override fun onClick(v: View?) {
         val addWordItem = AddWordItemBottomSheet.toInstance(wordCategoryId!!, wordCategoryColor!!, wordCategoryPriority!!)
-        addWordItem.show(supportFragmentManager, AddWordItemBottomSheet.ARG_ADD_WORD_ITEM_BS)
+        addWordItem.show(supportFragmentManager, ARG_ADD_WORD_ITEM_BS)
     }
 
     override fun itemClickRenameItem(wordItemId: Long, word: String, wordTranscription: String, wordTranslate: String) {
-        val renameWordItem = RenameWordItemBottomSheet.toInstance(wordItemId, word, wordTranscription, wordTranslate)
-        renameWordItem.show(supportFragmentManager, RenameWordItemBottomSheet.ARG_RENAME_WORD_ITEM_BS)
+//        val renameWordItem = RenameWordItemBottomSheet.toInstance(wordItemId, word, wordTranscription, wordTranslate)
+//        renameWordItem.show(supportFragmentManager, RenameWordItemBottomSheet.ARG_RENAME_WORD_ITEM_BS)
     }
 
     override fun itemClickDeleteItem(wordItemId: Long) {
