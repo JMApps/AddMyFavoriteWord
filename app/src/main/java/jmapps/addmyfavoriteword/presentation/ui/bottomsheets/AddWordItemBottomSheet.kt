@@ -15,6 +15,7 @@ import jmapps.addmyfavoriteword.presentation.ui.models.WordsItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
 
 class AddWordItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
+
     override fun getTheme() = R.style.BottomSheetStyleFull
 
     private lateinit var wordItemViewModel: WordsItemViewModel
@@ -73,7 +74,6 @@ class AddWordItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
             R.id.button_add_word_and_close -> {
                 if (checkWord() && checkWordTranslate()) {
                     addWordItem()
-                    dialog?.dismiss()
                 }
             }
         }
@@ -86,10 +86,6 @@ class AddWordItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
             binding.editAddWord.error = getString(R.string.hint_enter_word)
             false
         }
-    }
-
-    private fun checkWordTranscription(): Boolean {
-        return binding.editAddWordTranscription.text.toString().isNotEmpty()
     }
 
     private fun checkWordTranslate(): Boolean {
@@ -122,5 +118,6 @@ class AddWordItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
         )
         Toast.makeText(requireContext(), getString(R.string.toast_word_added), Toast.LENGTH_SHORT).show()
         wordItemViewModel.insertWordItem(addWordItems)
+        dialog?.dismiss()
     }
 }

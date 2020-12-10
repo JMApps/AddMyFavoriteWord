@@ -2,7 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <corners android:bottomRightRadius="@dimen/color_start_line_view_corner" android:topRightRadius="@dimen/color_start_line_view_corner" />
+            <corners android:bottomRightRadius="@dimen/item_small_card_corner" android:topRightRadius="@dimen/item_small_card_corner" />
+            <solid android:color="@color/red_300" />
         </shape>
     </item>
 </selector>

@@ -131,7 +131,7 @@ class RenameWordCategoryBottomSheet : BottomSheetDialogFragment(), TextWatcher,
             }
             binding.editRenameWordCategory.text.toString().isNotEmpty() &&
                     binding.editRenameWordCategory.text.toString() != categoryTitle ||
-                    categoryColor != newCategoryColor -> {
+                    categoryColor != newCategoryColor || categoryPriority != binding.spinnerWordPriority.selectedItemId -> {
                 renameWordCategory()
                 Toast.makeText(requireContext(), getString(R.string.toast_category_changed), Toast.LENGTH_SHORT).show()
             }

@@ -4,8 +4,9 @@
     <item>
         <shape android:shape="rectangle">
             <corners
-                android:bottomLeftRadius="@dimen/color_choose_view_corner"
-                android:topLeftRadius="@dimen/color_choose_view_corner" />
+                android:bottomLeftRadius="@dimen/item_small_card_corner"
+                android:topLeftRadius="@dimen/item_small_card_corner" />
+            <solid android:color="@color/red_300" />
         </shape>
     </item>
 </ripple>

@@ -13,7 +13,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.ActivityAddWordBinding
@@ -90,8 +90,8 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     override fun initView(displayBy: Long, orderBy: String) {
         wordsItemViewModel.getAllWordsList(displayBy, orderBy).observe(this, {
             it.let {
-                val verticalLayout = LinearLayoutManager(this)
-                binding.addWordItemContent.rvWordItems.layoutManager = verticalLayout
+                val gridLayout = GridLayoutManager(this, 3)
+                binding.addWordItemContent.rvWordItems.layoutManager = gridLayout
                 wordItemsAdapter = WordItemsAdapter(this, it, this)
                 binding.addWordItemContent.rvWordItems.adapter = wordItemsAdapter
                 otherActivityPresenter.updateState(it)
@@ -133,6 +133,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
                 changeOrderList(defaultOrderIndex = 0)
             }
             R.id.item_order_by_execution -> {
+                // Проверить дату изменения
                 changeOrderList(defaultOrderIndex = 1)
             }
             R.id.item_order_by_alphabet -> {
