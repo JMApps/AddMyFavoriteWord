@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.data.database.room.dictionary.words.WordItems
@@ -45,15 +44,9 @@ class WordItemsAdapter(
         holder.tvWordTranscription.text = current.wordTranscription
         holder.tvWordTranslate.text = current.wordTranslate
 
-        val priorityName = arrayListOf("#C5C5C5", "#F4FF81", "#00C853", "#FF3D00")
-        DrawableCompat.setTint(holder.tvWordPriority.background, Color.parseColor(priorityName[current.priority.toInt()]))
-        holder.tvWordPriority.text = (position + 1).toString()
-
+        // Пока оставить
         val wordAddDateTime = context.getString(R.string.action_add_time_item_word, "\n${current.addDateTime}")
         val wordChangeDateTime = context.getString(R.string.action_change_time_item_word, "\n${current.changeDateTime}")
-
-        holder.tvWordAddDateTime.text = wordAddDateTime
-        holder.tvWordChangeDateTime.text = wordChangeDateTime
 
         holder.findOnLongWordItemClick(onLongWordItemClick, current._id, current.word, current.wordTranscription, current.wordTranslate)
     }

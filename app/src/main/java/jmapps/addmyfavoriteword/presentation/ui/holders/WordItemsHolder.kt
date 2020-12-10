@@ -19,16 +19,12 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
     val tvWord: TextView = wordView.findViewById(R.id.text_word)
     val tvWordTranscription: TextView = wordView.findViewById(R.id.text_word_transcription)
     val tvWordTranslate: TextView = wordView.findViewById(R.id.text_word_translate)
-    val tvWordPriority: TextView = wordView.findViewById(R.id.text_word_priority)
-    val tvWordAddDateTime: TextView = wordView.findViewById(R.id.text_word_add_date_time)
-    val tvWordChangeDateTime: TextView = wordView.findViewById(R.id.text_word_change_date_time)
 
     init {
         sharedLocalPreferences = SharedLocalProperties(preferences)
         PreferenceManager.getDefaultSharedPreferences(itemView.context)
             .registerOnSharedPreferenceChangeListener(this)
 //        setTextSize()
-//        setShowAddChangeDateTime()
     }
 
     fun findOnLongWordItemClick(onLongWordItemClick: WordItemsAdapter.OnLongWordItemClick, wordItemId: Long, word: String, wordTranscription: String, wordTranslate: String) {
@@ -61,22 +57,5 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
 //        tvWord.textSize = textSize!!.toFloat()
 //        tvWordTranscription.textSize = textSize.toFloat()
 //        tvWordTranslate.textSize = textSize.toFloat()
-//    }
-//
-//    private fun setShowAddChangeDateTime() {
-//        val addShowingDateTime = sharedLocalPreferences.getBooleanValue(KEY_WORD_ITEM_ADD_DATE_TIME, false)
-//        val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(KEY_WORD_ITEM_CHANGE_DATE_TIME, false)
-//
-//        if (!addShowingDateTime!!) {
-//            tvWordAddDateTime.visibility = View.GONE
-//        } else {
-//            tvWordAddDateTime.visibility = View.VISIBLE
-//        }
-//
-//        if (!changeShowingDateTime!!) {
-//            tvWordChangeDateTime.visibility = View.GONE
-//        } else {
-//            tvWordChangeDateTime.visibility = View.VISIBLE
-//        }
 //    }
 }

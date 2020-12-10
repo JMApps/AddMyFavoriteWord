@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?android:selectableItemBackgroundBorderless">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_word_color"
@@ -28,6 +29,8 @@
             android:layout_marginStart="@dimen/main_margin_mini"
             android:layout_marginTop="@dimen/main_margin_mini"
             android:layout_marginEnd="@dimen/main_margin_mini"
+            android:textColor="@color/color_word"
+            android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_word_color"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,8 +41,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin_mini"
-            android:layout_marginTop="@dimen/main_margin_mini"
+            android:layout_marginTop="@dimen/main_margin_micro"
             android:layout_marginEnd="@dimen/main_margin_mini"
+            android:textColor="@color/color_word_transcription"
+            android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_word_color"
             app:layout_constraintTop_toBottomOf="@+id/text_word"
@@ -50,47 +55,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin_mini"
-            android:layout_marginTop="@dimen/main_margin_mini"
+            android:layout_marginTop="@dimen/main_margin_micro"
             android:layout_marginEnd="@dimen/main_margin_mini"
+            android:layout_marginBottom="@dimen/main_margin_mini"
+            android:textColor="@color/color_word_translate"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_word_color"
             app:layout_constraintTop_toBottomOf="@+id/text_word_transcription"
             tools:text="слово" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_word_priority"
-            android:layout_width="@dimen/priority_icon_size"
-            android:layout_height="@dimen/priority_icon_size"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:layout_marginTop="@dimen/main_margin_mini"
-            android:layout_marginBottom="@dimen/main_margin_mini"
-            android:background="@drawable/circular_priority_color_view"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_word_color"
-            app:layout_constraintTop_toBottomOf="@+id/text_word_translate"
-            tools:background="@drawable/circular_priority_color_view" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_word_add_date_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:textSize="@dimen/small_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/text_word_priority"
-            app:layout_constraintStart_toEndOf="@+id/text_word_priority"
-            app:layout_constraintTop_toTopOf="@+id/text_word_priority"
-            tools:text="21.12.2020 / 14:44:32" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_word_change_date_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:textSize="@dimen/small_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/text_word_priority"
-            app:layout_constraintStart_toEndOf="@+id/text_word_add_date_time"
-            app:layout_constraintTop_toTopOf="@+id/text_word_priority"
-            tools:text="21.12.2020 / 14:44:32" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
