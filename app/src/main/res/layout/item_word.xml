@@ -13,6 +13,15 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_word_color"
+            android:layout_width="@dimen/priority_icon_size"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/green_300" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_word"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -55,19 +64,12 @@
             android:layout_marginStart="@dimen/main_margin_mini"
             android:layout_marginTop="@dimen/main_margin_mini"
             android:layout_marginBottom="@dimen/main_margin_mini"
+            android:background="@drawable/circular_priority_color_view"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_word_color"
             app:layout_constraintTop_toBottomOf="@+id/text_word_translate"
             tools:background="@drawable/circular_priority_color_view" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_word_color"
-            android:layout_width="@dimen/priority_icon_size"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/green_300" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_word_add_date_time"

@@ -12,5 +12,6 @@ data class WordItems(
     val wordTranslate: String,
     val wordItemColor: String,
     val addDateTime: String,
-    val changeDateTime: String
+    val changeDateTime: String,
+    val priority: Long
 )
