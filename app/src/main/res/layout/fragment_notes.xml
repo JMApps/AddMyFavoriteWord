@@ -15,6 +15,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_note_items"
             android:layout_width="match_parent"
+            android:layoutAnimation="@anim/layout_animation_from_bottom"
             android:layout_height="match_parent"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
             android:scrollbars="vertical" />

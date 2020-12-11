@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/items_card_margin"
     android:elevation="@dimen/item_card_elevation"
+    android:maxHeight="@dimen/item_card_max_height"
     android:minHeight="@dimen/item_card_normal_height"
     app:cardCornerRadius="@dimen/item_big_card_corner">
 
@@ -13,6 +14,7 @@
         android:id="@+id/layout_note_item_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:maxHeight="@dimen/item_card_max_height"
         android:minHeight="@dimen/item_card_normal_height">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -63,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:gravity="start"
-                android:maxLines="3"
+                android:maxLines="5"
                 android:padding="@dimen/main_padding_mini"
                 android:textSize="@dimen/main_app_text_size"
                 tools:text="Content" />

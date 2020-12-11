@@ -8,13 +8,14 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.FragmentNotesBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.ContractInterface
@@ -77,10 +78,15 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
     override fun initView(orderBy: String) {
         notesItemViewModel.allNoteItems(orderBy).observe(this, {
             it.let {
-                val gridLayout = GridLayoutManager(requireContext(), 3)
-                binding.rvNoteItems.layoutManager = gridLayout
+                val staggeredGrid = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+                val animController: LayoutAnimationController = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_from_bottom)
                 noteItemsAdapter = NoteItemsAdapter(requireContext(), it, this, this)
-                binding.rvNoteItems.adapter = noteItemsAdapter
+                binding.apply {
+                    rvNoteItems.layoutManager = staggeredGrid
+                    rvNoteItems.layoutAnimation = animController
+                    rvNoteItems.scheduleLayoutAnimation()
+                    rvNoteItems.adapter = noteItemsAdapter
+                }
                 otherFragmentsPresenter.updateState(it)
                 otherFragmentsPresenter.defaultState()
             }
