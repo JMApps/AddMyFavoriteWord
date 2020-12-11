@@ -50,6 +50,7 @@
     <!--    Min heights's-->
     <dimen name="item_card_min_height">95dp</dimen>
     <dimen name="item_card_normal_height">175dp</dimen>
+    <dimen name="item_card_max_height">225dp</dimen>
 
     <!--    Min width's-->
     <dimen name="characters_min_width">40dp</dimen>
