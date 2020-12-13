@@ -42,6 +42,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     private var wordCategoryColor: String? = null
     private var wordCategoryPriority: Long? = null
     private var defaultOrderIndex: Int? = null
+    private var wordGridCount: Int? = null
 
     private lateinit var searchView: SearchView
     private lateinit var wordItemsAdapter: WordItemsAdapter
@@ -53,6 +54,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
         const val KEY_WORD_CATEGORY_TITLE = "key_word_category_title"
         const val KEY_WORD_CATEGORY_COLOR = "key_word_category_color"
         const val KEY_WORD_CATEGORY_PRIORITY = "key_word_category_priority"
+        const val KEY_WORD_GRID_COUNT = "key_word_grid_count"
         private const val KEY_ORDER_WORD_INDEX = "key_order_word_index"
     }
 
@@ -77,6 +79,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         sharedLocalPreferences = SharedLocalProperties(preferences)
         defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_WORD_INDEX, 0)!!
+        wordGridCount = sharedLocalPreferences.getIntValue(KEY_WORD_GRID_COUNT, 1)
 
         otherActivityPresenter = OtherActivityPresenter(this)
         otherActivityPresenter.initView(wordCategoryId!!, defaultOrderIndex!!)
@@ -90,7 +93,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     override fun initView(displayBy: Long, orderBy: String) {
         wordsItemViewModel.getAllWordsList(displayBy, orderBy).observe(this, {
             it.let {
-                val gridLayout = GridLayoutManager(this, 3)
+                val gridLayout = GridLayoutManager(this, wordGridCount!!)
                 binding.addWordItemContent.rvWordItems.layoutManager = gridLayout
                 wordItemsAdapter = WordItemsAdapter(this, it, this)
                 binding.addWordItemContent.rvWordItems.adapter = wordItemsAdapter
