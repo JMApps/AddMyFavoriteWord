@@ -24,13 +24,14 @@ import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSh
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet.Companion.ARG_ADD_WORD_ITEM_BS
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_TOOLS_WORD_ITEM_BS
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORD_GRID_COUNT
 import jmapps.addmyfavoriteword.presentation.ui.models.WordsItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     DeleteAlertUtil.OnClickDelete, View.OnClickListener, SearchView.OnQueryTextListener,
-    WordItemsAdapter.OnLongWordItemClick {
+    WordItemsAdapter.OnLongWordItemClick, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private lateinit var binding: ActivityAddWordBinding
     private lateinit var wordsItemViewModel: WordsItemViewModel
@@ -56,7 +57,6 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
         const val KEY_WORD_CATEGORY_TITLE = "key_word_category_title"
         const val KEY_WORD_CATEGORY_COLOR = "key_word_category_color"
         const val KEY_WORD_CATEGORY_PRIORITY = "key_word_category_priority"
-        const val KEY_WORD_GRID_COUNT = "key_word_grid_count"
         private const val KEY_ORDER_WORD_INDEX = "key_order_word_index"
     }
 
@@ -80,8 +80,10 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         sharedLocalPreferences = SharedLocalProperties(preferences)
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .registerOnSharedPreferenceChangeListener(this)
         defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_WORD_INDEX, 0)!!
-        wordGridCount = sharedLocalPreferences.getIntValue(KEY_WORD_GRID_COUNT, 1)
+        wordGridCount = sharedLocalPreferences.getIntValue(KEY_WORD_GRID_COUNT, 2)
 
         otherActivityPresenter = OtherActivityPresenter(this)
         otherActivityPresenter.initView(wordCategoryId!!, defaultOrderIndex!!)
@@ -95,7 +97,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     override fun initView(displayBy: Long, orderBy: String) {
         wordsItemViewModel.getAllWordsList(displayBy, orderBy).observe(this, {
             it.let {
-                val gridLayout = GridLayoutManager(this, wordGridCount!!)
+                val gridLayout = GridLayoutManager(this, wordGridCount!! + 1)
                 binding.addWordItemContent.rvWordItems.layoutManager = gridLayout
                 wordItemsAdapter = WordItemsAdapter(this, it, this)
                 binding.addWordItemContent.rvWordItems.adapter = wordItemsAdapter
@@ -186,6 +188,11 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     override fun onClickDeleteAll() {
         wordsItemViewModel.deleteAllWordFromCategory(wordCategoryId!!)
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        wordGridCount = sharedPreferences?.getInt(KEY_WORD_GRID_COUNT, 2)
+        otherActivityPresenter.initView(wordCategoryId!!, defaultOrderIndex!!)
     }
 
     private val onAddScroll = object : RecyclerView.OnScrollListener() {

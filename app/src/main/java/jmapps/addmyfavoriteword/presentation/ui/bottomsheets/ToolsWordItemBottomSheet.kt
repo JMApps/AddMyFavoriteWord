@@ -44,7 +44,7 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)
 
-        val lastWordGridValueProgress = sharedLocalPreferences.getIntValue(KEY_WORD_GRID_COUNT, 1)
+        val lastWordGridValueProgress = sharedLocalPreferences.getIntValue(KEY_WORD_GRID_COUNT, 2)
         val lastWordTextSizeValueProgress = sharedLocalPreferences.getIntValue(KEY_WORDS_TEXT_SIZE_PROGRESS, 1)
         val lastWordState = sharedLocalPreferences.getBooleanValue(KEY_WORD_STATE, true)
         val lastWordTranscriptionState = sharedLocalPreferences.getBooleanValue(KEY_WORD_TRANSCRIPTION_STATE, true)
@@ -52,7 +52,7 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
 
         binding.apply {
             seekBarWordGrinCount.progress = lastWordGridValueProgress!!
-            textGridCount.text = lastWordGridValueProgress.toString()
+            textGridCount.text = (lastWordGridValueProgress + 1).toString()
             seekBarWordTextSize.progress = lastWordTextSizeValueProgress!!
             textTextSizeCount.text = textSizeValues[lastWordTextSizeValueProgress].toString()
             switchShowWord.isChecked = lastWordState!!
@@ -72,7 +72,7 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         when (seekBar?.id) {
             R.id.seek_bar_word_grin_count -> {
-                binding.textGridCount.text = progress.toString()
+                binding.textGridCount.text = (progress + 1).toString()
                 sharedLocalPreferences.saveIntValue(KEY_WORD_GRID_COUNT, progress)
             }
             R.id.seek_bar_word_text_size -> {

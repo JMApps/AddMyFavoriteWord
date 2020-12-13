@@ -28,6 +28,7 @@
     <dimen name="priority_hint_stroke_width">1dp</dimen>
     <dimen name="input_view_hint_stroke_width">1dp</dimen>
     <dimen name="thumb_line_width">4dp</dimen>
+    <dimen name="item_count_min_width">30dp</dimen>
 
     <!--    Elevation's-->
     <dimen name="item_card_elevation">3dp</dimen>

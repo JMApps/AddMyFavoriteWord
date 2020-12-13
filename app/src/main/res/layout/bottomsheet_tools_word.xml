@@ -54,6 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/main_margin"
+            android:minWidth="@dimen/item_count_min_width"
+            android:textColor="@color/color_tools_count"
+            android:textSize="@dimen/main_app_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/seek_bar_word_grin_count"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/seek_bar_word_grin_count" />
@@ -87,6 +90,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/main_margin"
+            android:minWidth="@dimen/item_count_min_width"
+            android:textColor="@color/color_tools_count"
+            android:textSize="@dimen/main_app_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/seek_bar_word_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/seek_bar_word_text_size" />
@@ -128,10 +134,12 @@
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin_mini"
             android:layout_marginEnd="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/main_margin"
             android:drawableStart="@drawable/ic_word_translate"
             android:drawablePadding="@dimen/main_padding"
             android:text="@string/action_show_word_translate"
             android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch_show_word_transcription" />
