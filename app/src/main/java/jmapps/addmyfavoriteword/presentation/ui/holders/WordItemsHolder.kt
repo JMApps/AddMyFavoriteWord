@@ -8,6 +8,10 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordItemsAdapter
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORDS_TEXT_SIZE
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORD_STATE
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORD_TRANSCRIPTION_STATE
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORD_TRANSLATE_STATE
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
@@ -24,7 +28,8 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
         sharedLocalPreferences = SharedLocalProperties(preferences)
         PreferenceManager.getDefaultSharedPreferences(itemView.context)
             .registerOnSharedPreferenceChangeListener(this)
-//        setTextSize()
+        setTextSize()
+        setShowWord()
     }
 
     fun findOnLongWordItemClick(onLongWordItemClick: WordItemsAdapter.OnLongWordItemClick, wordItemId: Long, word: String, wordTranscription: String, wordTranslate: String) {
@@ -48,14 +53,24 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-//        setTextSize()
-//        setShowAddChangeDateTime()
+        setTextSize()
+        setShowWord()
     }
 
-//    private fun setTextSize() {
-//        val textSize = sharedLocalPreferences.getIntValue(KEY_WORD_ITEM_TEXT_SIZE, 18)
-//        tvWord.textSize = textSize!!.toFloat()
-//        tvWordTranscription.textSize = textSize.toFloat()
-//        tvWordTranslate.textSize = textSize.toFloat()
-//    }
+    private fun setTextSize() {
+        val textSize = sharedLocalPreferences.getIntValue(KEY_WORDS_TEXT_SIZE, 18)
+        tvWord.textSize = textSize!!.toFloat()
+        tvWordTranscription.textSize = textSize.toFloat()
+        tvWordTranslate.textSize = textSize.toFloat()
+    }
+
+    private fun setShowWord() {
+        val wordState = sharedLocalPreferences.getBooleanValue(KEY_WORD_STATE, true)
+        val wordTranscriptionState = sharedLocalPreferences.getBooleanValue(KEY_WORD_TRANSCRIPTION_STATE, true)
+        val wordTranslateState = sharedLocalPreferences.getBooleanValue(KEY_WORD_TRANSLATE_STATE, true)
+
+        if (wordState!!) tvWord.visibility = View.VISIBLE else tvWord.visibility = View.GONE
+        if (wordTranscriptionState!!) tvWordTranscription.visibility = View.VISIBLE else tvWordTranscription.visibility = View.GONE
+        if (wordTranslateState!!) tvWordTranslate.visibility = View.VISIBLE else tvWordTranslate.visibility = View.GONE
+    }
 }

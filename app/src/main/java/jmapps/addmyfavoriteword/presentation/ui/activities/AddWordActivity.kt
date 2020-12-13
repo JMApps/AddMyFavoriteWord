@@ -22,6 +22,8 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.OtherActivityPr
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet.Companion.ARG_ADD_WORD_ITEM_BS
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_TOOLS_WORD_ITEM_BS
 import jmapps.addmyfavoriteword.presentation.ui.models.WordsItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
@@ -130,7 +132,8 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
             android.R.id.home -> finish()
 
             R.id.action_tools_word_items -> {
-
+                val toolsWordItemBottomSheet = ToolsWordItemBottomSheet()
+                toolsWordItemBottomSheet.show(supportFragmentManager, ARG_TOOLS_WORD_ITEM_BS)
             }
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)
