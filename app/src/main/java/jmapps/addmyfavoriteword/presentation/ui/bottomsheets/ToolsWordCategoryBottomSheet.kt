@@ -24,7 +24,7 @@ class ToolsWordCategoryBottomSheet : BottomSheetDialogFragment(),
     private lateinit var sharedLocalPreferences: SharedLocalProperties
 
     companion object {
-        const val ARG_TOOLS_WORD_ITEM_BS = "arg_tools_word_category_bs"
+        const val ARG_TOOLS_WORD_CATEGORY_BS = "arg_tools_word_category_bs"
         const val KEY_WORD_CATEGORY_ADD_DATE_TIME = "key_word_category_add_date_time"
         const val KEY_WORD_CATEGORY_CHANGE_DATE_TIME = "key_word_category_change_date_time"
     }

@@ -28,7 +28,7 @@ import jmapps.addmyfavoriteword.presentation.ui.adapters.WordCategoriesAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameWordCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.ARG_TOOLS_WORD_ITEM_BS
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.ARG_TOOLS_WORD_CATEGORY_BS
 import jmapps.addmyfavoriteword.presentation.ui.models.WordsCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
@@ -121,7 +121,7 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
         when (item.itemId) {
             R.id.action_tools_word_categories -> {
                 val toolsWordCategoryBottomSheet = ToolsWordCategoryBottomSheet()
-                toolsWordCategoryBottomSheet.show(childFragmentManager, ARG_TOOLS_WORD_ITEM_BS)
+                toolsWordCategoryBottomSheet.show(childFragmentManager, ARG_TOOLS_WORD_CATEGORY_BS)
             }
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)
