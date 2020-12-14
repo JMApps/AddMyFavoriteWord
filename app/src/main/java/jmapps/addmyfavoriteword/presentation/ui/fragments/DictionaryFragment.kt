@@ -26,7 +26,9 @@ import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Compa
 import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_TITLE
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordCategoriesAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordCategoryBottomSheet.Companion.ARG_ADD_WORD_CATEGORY_BS
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameWordCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameWordCategoryBottomSheet.Companion.ARG_RENAME_WORD_CATEGORY_BS
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.ARG_TOOLS_WORD_CATEGORY_BS
 import jmapps.addmyfavoriteword.presentation.ui.models.WordsCategoryViewModel
@@ -160,7 +162,7 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
 
     override fun onClick(v: View?) {
         val addWordCategoryBottomSheet = AddWordCategoryBottomSheet()
-        addWordCategoryBottomSheet.show(childFragmentManager, AddWordCategoryBottomSheet.ARG_ADD_WORD_CATEGORY_BS)
+        addWordCategoryBottomSheet.show(childFragmentManager, ARG_ADD_WORD_CATEGORY_BS)
     }
 
     override fun onItemClickWordCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String, wordCategoryPriority: Long) {
@@ -169,7 +171,7 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
 
     override fun itemClickRenameCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String, wordCategoryPriority: Long) {
         val renameWordCategoryBottomSheet = RenameWordCategoryBottomSheet.toInstance(wordCategoryId, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
-        renameWordCategoryBottomSheet.show(childFragmentManager, RenameWordCategoryBottomSheet.ARG_RENAME_WORD_CATEGORY_BS)
+        renameWordCategoryBottomSheet.show(childFragmentManager, ARG_RENAME_WORD_CATEGORY_BS)
     }
 
     override fun itemClickDeleteCategory(wordCategoryId: Long, wordCategoryTitle: String) {

@@ -24,7 +24,9 @@ import jmapps.addmyfavoriteword.presentation.ui.activities.TasksActivity
 import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskCategoriesAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskCategoryBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameTaskCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameTaskCategoryBottomSheet.Companion.ARG_RENAME_TASK_CATEGORY_BS
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsTaskCategoryBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsTaskCategoryBottomSheet.Companion.ARG_TOOLS_TASK_CATEGORY_BS
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksCategoryViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
@@ -118,7 +120,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
         when (item.itemId) {
             R.id.action_tools_task_categories -> {
                 val toolsTaskCategory = ToolsTaskCategoryBottomSheet()
-                toolsTaskCategory.show(childFragmentManager, ToolsTaskCategoryBottomSheet.ARG_TOOLS_TASK_ITEM_BS)
+                toolsTaskCategory.show(childFragmentManager, ARG_TOOLS_TASK_CATEGORY_BS)
             }
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)
@@ -166,7 +168,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
     override fun itemClickRenameCategory(taskCategoryId: Long, taskCategoryTitle: String, taskCategoryColor: String) {
         val renameTaskCategory = RenameTaskCategoryBottomSheet.toInstance(taskCategoryId, taskCategoryTitle, taskCategoryColor)
-        renameTaskCategory.show(childFragmentManager, RenameTaskCategoryBottomSheet.ARG_RENAME_TASK_CATEGORY_BS)
+        renameTaskCategory.show(childFragmentManager, ARG_RENAME_TASK_CATEGORY_BS)
     }
 
     override fun itemClickDeleteCategory(taskCategoryId: Long, taskCategoryTitle: String) {

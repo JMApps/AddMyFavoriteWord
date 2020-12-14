@@ -74,6 +74,7 @@ class AddWordItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
             R.id.button_add_word_and_close -> {
                 if (checkWord() && checkWordTranslate()) {
                     addWordItem()
+                    dialog?.dismiss()
                 }
             }
         }
@@ -118,6 +119,5 @@ class AddWordItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
         )
         Toast.makeText(requireContext(), getString(R.string.toast_word_added), Toast.LENGTH_SHORT).show()
         wordItemViewModel.insertWordItem(addWordItems)
-        dialog?.dismiss()
     }
 }

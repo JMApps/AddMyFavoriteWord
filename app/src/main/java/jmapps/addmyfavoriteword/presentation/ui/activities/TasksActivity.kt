@@ -23,6 +23,7 @@ import jmapps.addmyfavoriteword.presentation.ui.adapters.TaskItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddTaskItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameTaskItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsTaskItemBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsTaskItemBottomSheet.Companion.ARG_TOOLS_TASK_ITEM_BS
 import jmapps.addmyfavoriteword.presentation.ui.models.TasksItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.other.MainOther
@@ -125,7 +126,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
             R.id.action_tools_task_items -> {
                 val toolsTaskItem = ToolsTaskItemBottomSheet()
-                toolsTaskItem.show(supportFragmentManager, ToolsTaskItemBottomSheet.ARG_TOOLS_TASK_ITEM_BS)
+                toolsTaskItem.show(supportFragmentManager, ARG_TOOLS_TASK_ITEM_BS)
             }
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)

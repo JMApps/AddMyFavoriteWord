@@ -24,7 +24,7 @@ class ToolsTaskCategoryBottomSheet : BottomSheetDialogFragment(),
     private lateinit var sharedLocalPreferences: SharedLocalProperties
 
     companion object {
-        const val ARG_TOOLS_TASK_ITEM_BS = "arg_tools_task_category_bs"
+        const val ARG_TOOLS_TASK_CATEGORY_BS = "arg_tools_task_category_bs"
         const val KEY_TASK_CATEGORY_ADD_DATE_TIME = "key_task_category_add_date_time"
         const val KEY_TASK_CATEGORY_CHANGE_DATE_TIME = "key_task_category_change_date_time"
     }
