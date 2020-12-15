@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
@@ -42,11 +41,7 @@ class WordItemsAdapter(
         holder.tvWordColor.setBackgroundColor(Color.parseColor(current.wordItemColor))
 
         holder.tvWord.text = current.word
-        if (current.wordTranscription.isNotEmpty()) {
-            holder.tvWordTranscription.text = current.wordTranscription
-        } else {
-            holder.tvWordTranscription.visibility = View.GONE
-        }
+        holder.wordTranscriptionState(current.wordTranscription)
         holder.tvWordTranslate.text = current.wordTranslate
 
         // Пока оставить
