@@ -8,66 +8,49 @@
     app:cardCornerRadius="@dimen/color_card_radius"
     app:cardElevation="@dimen/item_card_elevation">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:selectableItemBackgroundBorderless">
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_word_color"
             android:layout_width="@dimen/priority_icon_size"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="match_parent"
             tools:background="@color/green_300" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_word"
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:layout_marginTop="@dimen/main_margin_mini"
-            android:layout_marginEnd="@dimen/main_margin_mini"
-            android:layout_marginBottom="@dimen/main_margin_mini"
-            android:textColor="@color/color_word"
-            android:textSize="@dimen/main_app_text_size"
-            app:layout_constraintBottom_toTopOf="@+id/text_word_transcription"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_word_color"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="word" />
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_word_transcription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:layout_marginTop="@dimen/main_margin_micro"
-            android:layout_marginEnd="@dimen/main_margin_mini"
-            android:layout_marginBottom="@dimen/main_margin_mini"
-            android:textColor="@color/color_word_transcription"
-            android:textSize="@dimen/main_app_text_size"
-            app:layout_constraintBottom_toTopOf="@+id/text_word_translate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_word_color"
-            app:layout_constraintTop_toBottomOf="@+id/text_word"
-            tools:text="ворд" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/main_padding_micro"
+                android:textColor="@color/color_word"
+                android:textSize="@dimen/main_app_text_size"
+                tools:text="word" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_word_translate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:layout_marginTop="@dimen/main_margin_micro"
-            android:layout_marginEnd="@dimen/main_margin_mini"
-            android:layout_marginBottom="@dimen/main_margin_mini"
-            android:textColor="@color/color_word_translate"
-            android:textSize="@dimen/main_app_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_word_color"
-            app:layout_constraintTop_toBottomOf="@+id/text_word_transcription"
-            tools:text="слово" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_word_transcription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/main_padding_micro"
+                android:textColor="@color/color_word_transcription"
+                android:textSize="@dimen/main_app_text_size"
+                tools:text="ворд" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_word_translate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/main_padding_micro"
+                android:textColor="@color/color_word_translate"
+                android:textSize="@dimen/main_app_text_size"
+                tools:text="слово" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>

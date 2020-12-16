@@ -142,8 +142,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)
             }
-            R.id.item_order_by_execution -> {
-                // Проверить дату изменения
+            R.id.item_order_by_change_date_time -> {
                 changeOrderList(defaultOrderIndex = 1)
             }
             R.id.item_order_by_alphabet -> {
