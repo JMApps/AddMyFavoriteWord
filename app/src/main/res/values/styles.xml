@@ -21,7 +21,7 @@
     <!--    Bottom Sheet dialog styles-->
     <style name="BottomSheetStyleFull" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/color_accent</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:colorBackground">@color/bottom_sheet_background</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
