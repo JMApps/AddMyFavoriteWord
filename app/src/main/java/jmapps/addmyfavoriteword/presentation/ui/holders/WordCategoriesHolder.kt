@@ -9,8 +9,8 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordCategoriesAdapter
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.KEY_WORD_CATEGORY_ADD_DATE_TIME
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.KEY_WORD_CATEGORY_CHANGE_DATE_TIME
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.ARG_WORD_CATEGORY_ADD_DATE_TIME
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordCategoryBottomSheet.Companion.ARG_WORD_CATEGORY_CHANGE_DATE_TIME
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCategory),
@@ -72,8 +72,8 @@ class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     }
 
     private fun setShowAddChangeDateTime() {
-        val addShowingDateTime = sharedLocalPreferences.getBooleanValue(KEY_WORD_CATEGORY_ADD_DATE_TIME, false)
-        val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(KEY_WORD_CATEGORY_CHANGE_DATE_TIME, false)
+        val addShowingDateTime = sharedLocalPreferences.getBooleanValue(ARG_WORD_CATEGORY_ADD_DATE_TIME, false)
+        val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ARG_WORD_CATEGORY_CHANGE_DATE_TIME, false)
 
         if (!addShowingDateTime!!) {
             tvWordCategoryAddDateTime.visibility = View.GONE

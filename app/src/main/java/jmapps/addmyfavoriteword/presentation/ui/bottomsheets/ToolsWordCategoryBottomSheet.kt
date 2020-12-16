@@ -25,8 +25,8 @@ class ToolsWordCategoryBottomSheet : BottomSheetDialogFragment(),
 
     companion object {
         const val ARG_TOOLS_WORD_CATEGORY_BS = "arg_tools_word_category_bs"
-        const val KEY_WORD_CATEGORY_ADD_DATE_TIME = "key_word_category_add_date_time"
-        const val KEY_WORD_CATEGORY_CHANGE_DATE_TIME = "key_word_category_change_date_time"
+        const val ARG_WORD_CATEGORY_ADD_DATE_TIME = "arg_word_category_add_date_time"
+        const val ARG_WORD_CATEGORY_CHANGE_DATE_TIME = "arg_word_category_change_date_time"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -37,8 +37,8 @@ class ToolsWordCategoryBottomSheet : BottomSheetDialogFragment(),
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)
 
-        val lastWordCategoryAddDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_WORD_CATEGORY_ADD_DATE_TIME, false)
-        val lastWordCategoryChangeDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_WORD_CATEGORY_CHANGE_DATE_TIME, false)
+        val lastWordCategoryAddDateTimeSwitch = sharedLocalPreferences.getBooleanValue(ARG_WORD_CATEGORY_ADD_DATE_TIME, false)
+        val lastWordCategoryChangeDateTimeSwitch = sharedLocalPreferences.getBooleanValue(ARG_WORD_CATEGORY_CHANGE_DATE_TIME, false)
 
         binding.apply {
             switchAddWordCategoryTime.isChecked = lastWordCategoryAddDateTimeSwitch!!
@@ -54,10 +54,10 @@ class ToolsWordCategoryBottomSheet : BottomSheetDialogFragment(),
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         when (buttonView?.id) {
             R.id.switch_add_word_category_time -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_WORD_CATEGORY_ADD_DATE_TIME, isChecked)
+                sharedLocalPreferences.saveBooleanValue(ARG_WORD_CATEGORY_ADD_DATE_TIME, isChecked)
             }
             R.id.switch_change_word_category_time -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_WORD_CATEGORY_CHANGE_DATE_TIME, isChecked)
+                sharedLocalPreferences.saveBooleanValue(ARG_WORD_CATEGORY_CHANGE_DATE_TIME, isChecked)
             }
         }
     }

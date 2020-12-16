@@ -28,12 +28,12 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
 
     companion object {
         const val ARG_TOOLS_WORD_ITEM_BS = "arg_tools_word_item_bs"
-        const val KEY_WORD_GRID_COUNT = "key_word_grid_count"
-        const val KEY_WORDS_TEXT_SIZE = "key_words_text_size"
-        const val KEY_WORDS_TEXT_SIZE_PROGRESS = "key_words_text_size_progress"
-        const val KEY_WORD_STATE = "key_word_state"
-        const val KEY_WORD_TRANSCRIPTION_STATE = "key_word_transcription_state"
-        const val KEY_WORD_TRANSLATE_STATE = "key_word_translate_state"
+        const val ARG_WORD_GRID_COUNT = "arg_word_grid_count"
+        const val ARG_WORDS_TEXT_SIZE = "arg_words_text_size"
+        const val ARG_WORDS_TEXT_SIZE_PROGRESS = "arg_words_text_size_progress"
+        const val ARG_WORD_STATE = "arg_word_state"
+        const val ARG_WORD_TRANSCRIPTION_STATE = "arg_word_transcription_state"
+        const val ARG_WORD_TRANSLATE_STATE = "arg_word_translate_state"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,11 +44,11 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)
 
-        val lastWordGridValueProgress = sharedLocalPreferences.getIntValue(KEY_WORD_GRID_COUNT, 2)
-        val lastWordTextSizeValueProgress = sharedLocalPreferences.getIntValue(KEY_WORDS_TEXT_SIZE_PROGRESS, 1)
-        val lastWordState = sharedLocalPreferences.getBooleanValue(KEY_WORD_STATE, true)
-        val lastWordTranscriptionState = sharedLocalPreferences.getBooleanValue(KEY_WORD_TRANSCRIPTION_STATE, true)
-        val lastWordTranslateState = sharedLocalPreferences.getBooleanValue(KEY_WORD_TRANSLATE_STATE, true)
+        val lastWordGridValueProgress = sharedLocalPreferences.getIntValue(ARG_WORD_GRID_COUNT, 2)
+        val lastWordTextSizeValueProgress = sharedLocalPreferences.getIntValue(ARG_WORDS_TEXT_SIZE_PROGRESS, 1)
+        val lastWordState = sharedLocalPreferences.getBooleanValue(ARG_WORD_STATE, true)
+        val lastWordTranscriptionState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSCRIPTION_STATE, true)
+        val lastWordTranslateState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSLATE_STATE, true)
 
         binding.apply {
             seekBarWordGrinCount.progress = lastWordGridValueProgress!!
@@ -73,12 +73,12 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         when (seekBar?.id) {
             R.id.seek_bar_word_grin_count -> {
                 binding.textGridCount.text = (progress + 1).toString()
-                sharedLocalPreferences.saveIntValue(KEY_WORD_GRID_COUNT, progress)
+                sharedLocalPreferences.saveIntValue(ARG_WORD_GRID_COUNT, progress)
             }
             R.id.seek_bar_word_text_size -> {
                 binding.textTextSizeCount.text = textSizeValues[progress].toString()
-                sharedLocalPreferences.saveIntValue(KEY_WORDS_TEXT_SIZE_PROGRESS, progress)
-                sharedLocalPreferences.saveIntValue(KEY_WORDS_TEXT_SIZE, textSizeValues[progress])
+                sharedLocalPreferences.saveIntValue(ARG_WORDS_TEXT_SIZE_PROGRESS, progress)
+                sharedLocalPreferences.saveIntValue(ARG_WORDS_TEXT_SIZE, textSizeValues[progress])
             }
         }
     }
@@ -90,7 +90,7 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         when (buttonView?.id) {
             R.id.switch_show_word -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_WORD_STATE, isChecked)
+                sharedLocalPreferences.saveBooleanValue(ARG_WORD_STATE, isChecked)
                 if (!isChecked) {
                     if (!binding.switchShowWordTranslate.isChecked) {
                         binding.switchShowWordTranslate.isChecked = true
@@ -98,10 +98,10 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
                 }
             }
             R.id.switch_show_word_transcription -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_WORD_TRANSCRIPTION_STATE, isChecked)
+                sharedLocalPreferences.saveBooleanValue(ARG_WORD_TRANSCRIPTION_STATE, isChecked)
             }
             R.id.switch_show_word_translate -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_WORD_TRANSLATE_STATE, isChecked)
+                sharedLocalPreferences.saveBooleanValue(ARG_WORD_TRANSLATE_STATE, isChecked)
                 if (!isChecked) {
                     if (!binding.switchShowWord.isChecked) {
                         binding.switchShowWord.isChecked = true

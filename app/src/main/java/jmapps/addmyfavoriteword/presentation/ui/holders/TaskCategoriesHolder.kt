@@ -68,8 +68,8 @@ class TaskCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     }
 
     private fun setShowAddChangeDateTime() {
-        val addShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskCategoryBottomSheet.KEY_TASK_CATEGORY_ADD_DATE_TIME, false)
-        val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskCategoryBottomSheet.KEY_TASK_CATEGORY_CHANGE_DATE_TIME, false)
+        val addShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskCategoryBottomSheet.ARG_TASK_CATEGORY_ADD_DATE_TIME, false)
+        val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskCategoryBottomSheet.ARG_TASK_CATEGORY_CHANGE_DATE_TIME, false)
 
         if (!addShowingDateTime!!) {
             tvTaskCategoryAddDateTime.visibility = View.GONE

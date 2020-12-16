@@ -24,7 +24,7 @@ import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSh
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet.Companion.ARG_ADD_WORD_ITEM_BS
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_TOOLS_WORD_ITEM_BS
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORD_GRID_COUNT
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_GRID_COUNT
 import jmapps.addmyfavoriteword.presentation.ui.models.WordsItemViewModel
 import jmapps.addmyfavoriteword.presentation.ui.other.DeleteAlertUtil
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
@@ -83,7 +83,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
         PreferenceManager.getDefaultSharedPreferences(this)
             .registerOnSharedPreferenceChangeListener(this)
         defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_WORD_INDEX, 0)!!
-        wordGridCount = sharedLocalPreferences.getIntValue(KEY_WORD_GRID_COUNT, 2)
+        wordGridCount = sharedLocalPreferences.getIntValue(ARG_WORD_GRID_COUNT, 2)
 
         otherActivityPresenter = OtherActivityPresenter(this)
         otherActivityPresenter.initView(wordCategoryId!!, defaultOrderIndex!!)
@@ -191,7 +191,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        wordGridCount = sharedPreferences?.getInt(KEY_WORD_GRID_COUNT, 2)
+        wordGridCount = sharedPreferences?.getInt(ARG_WORD_GRID_COUNT, 2)
         otherActivityPresenter.initView(wordCategoryId!!, defaultOrderIndex!!)
     }
 

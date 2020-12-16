@@ -8,10 +8,10 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordItemsAdapter
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORDS_TEXT_SIZE
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORD_STATE
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORD_TRANSCRIPTION_STATE
-import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.KEY_WORD_TRANSLATE_STATE
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORDS_TEXT_SIZE
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_STATE
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_TRANSCRIPTION_STATE
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_TRANSLATE_STATE
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
@@ -57,15 +57,15 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
     }
 
     private fun setTextSize() {
-        val textSize = sharedLocalPreferences.getIntValue(KEY_WORDS_TEXT_SIZE, 18)
+        val textSize = sharedLocalPreferences.getIntValue(ARG_WORDS_TEXT_SIZE, 18)
         tvWord.textSize = textSize!!.toFloat()
         tvWordTranscription.textSize = textSize.toFloat()
         tvWordTranslate.textSize = textSize.toFloat()
     }
 
     private fun setShowWord() {
-        val wordState = sharedLocalPreferences.getBooleanValue(KEY_WORD_STATE, true)
-        val wordTranslateState = sharedLocalPreferences.getBooleanValue(KEY_WORD_TRANSLATE_STATE, true)
+        val wordState = sharedLocalPreferences.getBooleanValue(ARG_WORD_STATE, true)
+        val wordTranslateState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSLATE_STATE, true)
 
         if (wordState!!) tvWord.visibility = View.VISIBLE else tvWord.visibility = View.GONE
         if (wordTranslateState!!) tvWordTranslate.visibility = View.VISIBLE else tvWordTranslate.visibility = View.GONE
@@ -73,7 +73,7 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
 
     // Доработать
     fun wordTranscriptionState(strWordTranscription: String) {
-        val wordTranscriptionState = sharedLocalPreferences.getBooleanValue(KEY_WORD_TRANSCRIPTION_STATE, true)
+        val wordTranscriptionState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSCRIPTION_STATE, true)
         if (strWordTranscription.isNotEmpty()) {
             if (wordTranscriptionState!!) tvWordTranscription.visibility = View.VISIBLE else tvWordTranscription.visibility = View.GONE
             tvWordTranscription.text = strWordTranscription

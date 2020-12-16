@@ -28,11 +28,11 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
 
     companion object {
         const val ARG_TOOLS_TASK_ITEM_BS = "arg_tools_task_item_bs"
-        const val KEY_TASK_ITEM_TEXT_SIZE_PROGRESS = "key_task_item_text_size_progress"
-        const val KEY_TASK_ITEM_TEXT_SIZE = "key_task_item_text_size"
-        const val KEY_TASK_ITEM_ADD_DATE_TIME = "key_task_item_add_date_time"
-        const val KEY_TASK_ITEM_CHANGE_DATE_TIME = "key_task_item_change_date_time"
-        const val KEY_TASK_ITEM_EXECUTION_DATE_TIME = "key_task_item_execution_date_time"
+        const val ARG_TASK_ITEM_TEXT_SIZE_PROGRESS = "arg_task_item_text_size_progress"
+        const val ARG_TASK_ITEM_TEXT_SIZE = "arg_task_item_text_size"
+        const val ARG_TASK_ITEM_ADD_DATE_TIME = "arg_task_item_add_date_time"
+        const val ARG_TASK_ITEM_CHANGE_DATE_TIME = "arg_task_item_change_date_time"
+        const val ARG_TASK_ITEM_EXECUTION_DATE_TIME = "arg_task_item_execution_date_time"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,11 +43,11 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         sharedLocalPreferences = SharedLocalProperties(preferences)
 
-        val lastTaskTextSizeProgress = sharedLocalPreferences.getIntValue(KEY_TASK_ITEM_TEXT_SIZE_PROGRESS, 1)
-        val lastTaskTextSize = sharedLocalPreferences.getIntValue(KEY_TASK_ITEM_TEXT_SIZE, 18)
-        val lastTaskAddDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_ADD_DATE_TIME, false)
-        val lastTaskChangeDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_CHANGE_DATE_TIME, false)
-        val lastTaskExecutionDateTimeSwitch = sharedLocalPreferences.getBooleanValue(KEY_TASK_ITEM_EXECUTION_DATE_TIME, false)
+        val lastTaskTextSizeProgress = sharedLocalPreferences.getIntValue(ARG_TASK_ITEM_TEXT_SIZE_PROGRESS, 1)
+        val lastTaskTextSize = sharedLocalPreferences.getIntValue(ARG_TASK_ITEM_TEXT_SIZE, 18)
+        val lastTaskAddDateTimeSwitch = sharedLocalPreferences.getBooleanValue(ARG_TASK_ITEM_ADD_DATE_TIME, false)
+        val lastTaskChangeDateTimeSwitch = sharedLocalPreferences.getBooleanValue(ARG_TASK_ITEM_CHANGE_DATE_TIME, false)
+        val lastTaskExecutionDateTimeSwitch = sharedLocalPreferences.getBooleanValue(ARG_TASK_ITEM_EXECUTION_DATE_TIME, false)
 
         binding.apply {
             seekBarTaskTextSize.progress = lastTaskTextSizeProgress!!
@@ -68,8 +68,8 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         when (seekBar?.id) {
             R.id.seek_bar_task_text_size -> {
-                sharedLocalPreferences.saveIntValue(KEY_TASK_ITEM_TEXT_SIZE_PROGRESS, progress)
-                sharedLocalPreferences.saveIntValue(KEY_TASK_ITEM_TEXT_SIZE, textSizeValues[progress])
+                sharedLocalPreferences.saveIntValue(ARG_TASK_ITEM_TEXT_SIZE_PROGRESS, progress)
+                sharedLocalPreferences.saveIntValue(ARG_TASK_ITEM_TEXT_SIZE, textSizeValues[progress])
                 binding.textViewTaskTextSizeCount.text = textSizeValues[progress].toString()
             }
         }
@@ -82,13 +82,13 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         when (buttonView?.id) {
             R.id.switch_add_task_time -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_TASK_ITEM_ADD_DATE_TIME, isChecked)
+                sharedLocalPreferences.saveBooleanValue(ARG_TASK_ITEM_ADD_DATE_TIME, isChecked)
             }
             R.id.switch_change_task_time -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_TASK_ITEM_CHANGE_DATE_TIME, isChecked)
+                sharedLocalPreferences.saveBooleanValue(ARG_TASK_ITEM_CHANGE_DATE_TIME, isChecked)
             }
             R.id.switch_execution_task_time -> {
-                sharedLocalPreferences.saveBooleanValue(KEY_TASK_ITEM_EXECUTION_DATE_TIME, isChecked)
+                sharedLocalPreferences.saveBooleanValue(ARG_TASK_ITEM_EXECUTION_DATE_TIME, isChecked)
             }
         }
     }
