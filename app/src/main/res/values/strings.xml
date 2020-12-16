@@ -76,9 +76,13 @@
     <string name="action_search_by_word">Поиск слов</string>
     <string name="description_add_first_word">Добавьте первое слово в категорию:\n%1$s</string>
     <string name="action_add_word">Добавить слово</string>
+    <string name="action_change_word">Изменить слово</string>
     <string name="hint_enter_word">Введие слово…</string>
     <string name="hint_enter_word_transcription">Введите транскрипцию…</string>
     <string name="hint_enter_word_translate">Введите перевод…</string>
+    <string name="hint_enter_new_word">Введите новое слово…</string>
+    <string name="hint_enter_word_new_transcription">Введите новое слово транскрипцию…</string>
+    <string name="hint_enter_word_new_translate">Введите новое слово перевод…</string>
     <string name="action_add_more_word">Добавить ещё</string>
     <string name="action_add_word_and_close">Добавить и закрыть</string>
     <string name="toast_word_added">Слово добавлено</string>

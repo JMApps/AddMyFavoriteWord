@@ -22,6 +22,8 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.OtherActivityPr
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet.Companion.ARG_ADD_WORD_ITEM_BS
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameWordItemBottomSheet
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.RenameWordItemBottomSheet.Companion.ARG_RENAME_WORD_ITEM_BS
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_TOOLS_WORD_ITEM_BS
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_GRID_COUNT
@@ -174,8 +176,8 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun itemClickRenameItem(wordItemId: Long, word: String, wordTranscription: String, wordTranslate: String) {
-//        val renameWordItem = RenameWordItemBottomSheet.toInstance(wordItemId, word, wordTranscription, wordTranslate)
-//        renameWordItem.show(supportFragmentManager, RenameWordItemBottomSheet.ARG_RENAME_WORD_ITEM_BS)
+        val renameWordItem = RenameWordItemBottomSheet.toInstance(wordItemId, word, wordTranscription, wordTranslate)
+        renameWordItem.show(supportFragmentManager, ARG_RENAME_WORD_ITEM_BS)
     }
 
     override fun itemClickDeleteItem(wordItemId: Long) {
