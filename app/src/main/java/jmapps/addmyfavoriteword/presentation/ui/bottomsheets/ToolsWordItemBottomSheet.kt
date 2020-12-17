@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import android.widget.RadioGroup
 import android.widget.SeekBar
 import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceManager
@@ -15,7 +16,7 @@ import jmapps.addmyfavoriteword.databinding.BottomsheetToolsWordBinding
 import jmapps.addmyfavoriteword.presentation.ui.preferences.SharedLocalProperties
 
 class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarChangeListener,
-    CompoundButton.OnCheckedChangeListener {
+    CompoundButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener {
 
     override fun getTheme() = R.style.BottomSheetStyleFull
 
@@ -31,6 +32,9 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         const val ARG_WORD_GRID_COUNT = "arg_word_grid_count"
         const val ARG_WORDS_TEXT_SIZE = "arg_words_text_size"
         const val ARG_WORDS_TEXT_SIZE_PROGRESS = "arg_words_text_size_progress"
+        const val ARG_WORD_LEFT_ALIGN = "arg_word_left_align"
+        const val ARG_WORD_CENTER_ALIGN = "arg_word_center_align"
+        const val ARG_WORD_RIGHT_ALIGN = "arg_word_right_align"
         const val ARG_WORD_STATE = "arg_word_state"
         const val ARG_WORD_TRANSCRIPTION_STATE = "arg_word_transcription_state"
         const val ARG_WORD_TRANSLATE_STATE = "arg_word_translate_state"
@@ -46,6 +50,9 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
 
         val lastWordGridValueProgress = sharedLocalPreferences.getIntValue(ARG_WORD_GRID_COUNT, 2)
         val lastWordTextSizeValueProgress = sharedLocalPreferences.getIntValue(ARG_WORDS_TEXT_SIZE_PROGRESS, 1)
+        val lastLeftAlignState = sharedLocalPreferences.getBooleanValue(ARG_WORD_LEFT_ALIGN, true)
+        val lastCenterAlignState = sharedLocalPreferences.getBooleanValue(ARG_WORD_CENTER_ALIGN, false)
+        val lastRightAlignState = sharedLocalPreferences.getBooleanValue(ARG_WORD_RIGHT_ALIGN, false)
         val lastWordState = sharedLocalPreferences.getBooleanValue(ARG_WORD_STATE, true)
         val lastWordTranscriptionState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSCRIPTION_STATE, true)
         val lastWordTranslateState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSLATE_STATE, true)
@@ -55,6 +62,9 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
             textGridCount.text = (lastWordGridValueProgress + 1).toString()
             seekBarWordTextSize.progress = lastWordTextSizeValueProgress!!
             textTextSizeCount.text = textSizeValues[lastWordTextSizeValueProgress].toString()
+            radioButtonAlignTextLeft.isChecked = lastLeftAlignState!!
+            radioButtonAlignTextCenter.isChecked = lastCenterAlignState!!
+            radioButtonAlignTextRight.isChecked = lastRightAlignState!!
             switchShowWord.isChecked = lastWordState!!
             switchShowWordTranscription.isChecked = lastWordTranscriptionState!!
             switchShowWordTranslate.isChecked = lastWordTranslateState!!
@@ -62,6 +72,7 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
 
         binding.seekBarWordGrinCount.setOnSeekBarChangeListener(this)
         binding.seekBarWordTextSize.setOnSeekBarChangeListener(this)
+        binding.radioGroupAlignWordText.setOnCheckedChangeListener(this)
         binding.switchShowWord.setOnCheckedChangeListener(this)
         binding.switchShowWordTranscription.setOnCheckedChangeListener(this)
         binding.switchShowWordTranslate.setOnCheckedChangeListener(this)
@@ -79,6 +90,18 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
                 binding.textTextSizeCount.text = textSizeValues[progress].toString()
                 sharedLocalPreferences.saveIntValue(ARG_WORDS_TEXT_SIZE_PROGRESS, progress)
                 sharedLocalPreferences.saveIntValue(ARG_WORDS_TEXT_SIZE, textSizeValues[progress])
+            }
+        }
+    }
+
+    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+        when (group?.id) {
+            R.id.radio_group_align_word_text -> {
+                binding.apply {
+                    sharedLocalPreferences.saveBooleanValue(ARG_WORD_LEFT_ALIGN, radioButtonAlignTextLeft.isChecked)
+                    sharedLocalPreferences.saveBooleanValue(ARG_WORD_CENTER_ALIGN, radioButtonAlignTextCenter.isChecked)
+                    sharedLocalPreferences.saveBooleanValue(ARG_WORD_RIGHT_ALIGN, radioButtonAlignTextRight.isChecked)
+                }
             }
         }
     }

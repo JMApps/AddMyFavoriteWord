@@ -1,6 +1,7 @@
 package jmapps.addmyfavoriteword.presentation.ui.holders
 
 import android.content.SharedPreferences
+import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORDS_TEXT_SIZE
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_CENTER_ALIGN
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_LEFT_ALIGN
+import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_RIGHT_ALIGN
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_STATE
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_TRANSCRIPTION_STATE
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.ToolsWordItemBottomSheet.Companion.ARG_WORD_TRANSLATE_STATE
@@ -30,6 +34,7 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
             .registerOnSharedPreferenceChangeListener(this)
         setTextSize()
         setShowWord()
+        setAlignWord()
     }
 
     fun findOnLongWordItemClick(onLongWordItemClick: WordItemsAdapter.OnLongWordItemClick, wordItemId: Long, word: String, wordTranscription: String, wordTranslate: String) {
@@ -54,6 +59,7 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         setTextSize()
         setShowWord()
+        setAlignWord()
     }
 
     private fun setTextSize() {
@@ -71,7 +77,30 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
         if (wordTranslateState!!) tvWordTranslate.visibility = View.VISIBLE else tvWordTranslate.visibility = View.GONE
     }
 
-    // Доработать
+    private fun setAlignWord() {
+        val leftAlignState = sharedLocalPreferences.getBooleanValue(ARG_WORD_LEFT_ALIGN, true)
+        val centerAlignState = sharedLocalPreferences.getBooleanValue(ARG_WORD_CENTER_ALIGN, false)
+        val rightAlignState = sharedLocalPreferences.getBooleanValue(ARG_WORD_RIGHT_ALIGN, false)
+
+        when (true) {
+            leftAlignState -> {
+                tvWord.gravity = Gravity.START
+                tvWordTranscription.gravity = Gravity.START
+                tvWordTranslate.gravity = Gravity.START
+            }
+            centerAlignState -> {
+                tvWord.gravity = Gravity.CENTER
+                tvWordTranscription.gravity = Gravity.CENTER
+                tvWordTranslate.gravity = Gravity.CENTER
+            }
+            rightAlignState -> {
+                tvWord.gravity = Gravity.END
+                tvWordTranscription.gravity = Gravity.END
+                tvWordTranslate.gravity = Gravity.END
+            }
+        }
+    }
+
     fun wordTranscriptionState(strWordTranscription: String) {
         val wordTranscriptionState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSCRIPTION_STATE, true)
         if (strWordTranscription.isNotEmpty()) {

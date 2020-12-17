@@ -152,6 +152,7 @@
     <string name="action_change">Изменить</string>
     <string name="action_ready">Готово</string>
     <string name="action_grid_count">Количество столбцов</string>
+    <string name="action_align_text">Расположение текста</string>
     <string name="action_show_word">Отображать слово</string>
     <string name="action_show_word_transcription">Отображать транскрипцию</string>
     <string name="action_show_word_translate">Отображать перевод</string>
