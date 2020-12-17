@@ -23,33 +23,28 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/main_padding_mini">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_word"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/main_padding_micro"
                 android:textColor="@color/color_word"
-                android:textSize="@dimen/main_app_text_size"
                 tools:text="word" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_word_transcription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/main_padding_micro"
                 android:textColor="@color/color_word_transcription"
-                android:textSize="@dimen/main_app_text_size"
                 tools:text="ворд" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_word_translate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/main_padding_micro"
                 android:textColor="@color/color_word_translate"
-                android:textSize="@dimen/main_app_text_size"
                 tools:text="слово" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
