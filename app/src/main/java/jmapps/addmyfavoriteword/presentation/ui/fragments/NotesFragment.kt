@@ -53,7 +53,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
         notesItemViewModel = ViewModelProvider(this).get(NotesItemViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notes, container, false)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -64,7 +64,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
 
         deleteAlertDialog = DeleteAlertUtil(requireContext(), this)
 
-        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_NOTE_ITEM_INDEX, 0)!!
+        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_NOTE_ITEM_INDEX, 0)
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.initView(defaultOrderIndex)
@@ -94,7 +94,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
     }
 
     override fun defaultState() {
-        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show);
+        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show)
         binding.fabAddNote.startAnimation(show)
 
         binding.rvNoteItems.visibility = otherFragmentsPresenter.recyclerCategory()

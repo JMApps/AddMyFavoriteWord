@@ -41,8 +41,8 @@ class ToolsWordCategoryBottomSheet : BottomSheetDialogFragment(),
         val lastWordCategoryChangeDateTimeSwitch = sharedLocalPreferences.getBooleanValue(ARG_WORD_CATEGORY_CHANGE_DATE_TIME, false)
 
         binding.apply {
-            switchAddWordCategoryTime.isChecked = lastWordCategoryAddDateTimeSwitch!!
-            switchChangeWordCategoryTime.isChecked = lastWordCategoryChangeDateTimeSwitch!!
+            switchAddWordCategoryTime.isChecked = lastWordCategoryAddDateTimeSwitch
+            switchChangeWordCategoryTime.isChecked = lastWordCategoryChangeDateTimeSwitch
         }
 
         binding.switchAddWordCategoryTime.setOnCheckedChangeListener(this)

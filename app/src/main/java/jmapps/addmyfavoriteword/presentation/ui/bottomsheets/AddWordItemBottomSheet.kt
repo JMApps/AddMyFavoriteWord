@@ -52,7 +52,7 @@ class AddWordItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
         categoryPriority = arguments?.getLong(ARG_ADD_WORD_CATEGORY_PRIORITY)!!
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_word, container, false)
 
         retainInstance = true

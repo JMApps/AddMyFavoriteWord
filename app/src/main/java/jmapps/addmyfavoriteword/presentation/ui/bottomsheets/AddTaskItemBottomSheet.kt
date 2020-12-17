@@ -50,7 +50,7 @@ class AddTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListener
         categoryColor = arguments?.getString(ARG_ADD_TASK_CATEGORY_COLOR)!!
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_add_task_item, container, false)
 
         retainInstance = true

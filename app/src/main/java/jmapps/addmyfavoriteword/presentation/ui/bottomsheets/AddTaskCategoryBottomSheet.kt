@@ -52,7 +52,6 @@ class AddTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickList
         binding.textAddTaskCategoryColor.setOnClickListener(this)
         binding.buttonAddTaskCategory.setOnClickListener(this)
 
-
         return binding.root
     }
 

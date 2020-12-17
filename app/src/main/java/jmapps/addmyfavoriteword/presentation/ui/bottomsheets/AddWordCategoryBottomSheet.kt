@@ -51,7 +51,6 @@ class AddWordCategoryBottomSheet : BottomSheetDialogFragment(), TextWatcher, Vie
         binding.textAddWordCategoryColor.setOnClickListener(this)
         binding.buttonAddWordCategory.setOnClickListener(this)
 
-
         return binding.root
     }
 

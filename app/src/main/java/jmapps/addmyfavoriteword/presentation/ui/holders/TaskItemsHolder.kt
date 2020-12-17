@@ -68,7 +68,7 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
 
     private fun setTextSize() {
         val textSize = sharedLocalPreferences.getIntValue(ToolsTaskItemBottomSheet.ARG_TASK_ITEM_TEXT_SIZE, 18)
-        tvTaskItemTitle.textSize = textSize!!.toFloat()
+        tvTaskItemTitle.textSize = textSize.toFloat()
     }
 
     private fun setShowAddChangeDateTime() {
@@ -76,19 +76,19 @@ class TaskItemsHolder(taskView: View) : RecyclerView.ViewHolder(taskView),
         val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.ARG_TASK_ITEM_CHANGE_DATE_TIME, false)
         val executionShowingDateTime = sharedLocalPreferences.getBooleanValue(ToolsTaskItemBottomSheet.ARG_TASK_ITEM_EXECUTION_DATE_TIME, false)
 
-        if (!addShowingDateTime!!) {
+        if (!addShowingDateTime) {
             tvTaskItemAddDateTime.visibility = View.GONE
         } else {
             tvTaskItemAddDateTime.visibility = View.VISIBLE
         }
 
-        if (!changeShowingDateTime!!) {
+        if (!changeShowingDateTime) {
             tvTaskItemChangeDateTime.visibility = View.GONE
         } else {
             tvTaskItemChangeDateTime.visibility = View.VISIBLE
         }
 
-        if (!executionShowingDateTime!!) {
+        if (!executionShowingDateTime) {
             tvTaskItemExecutionDateTime.visibility = View.GONE
         } else {
             tvTaskItemExecutionDateTime.visibility = View.VISIBLE

@@ -72,7 +72,7 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
 
         deleteAlertDialog = DeleteAlertUtil(requireContext(), this)
 
-        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_WORD_CATEGORY_INDEX, 0)!!
+        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_WORD_CATEGORY_INDEX, 0)
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.initView(defaultOrderIndex)

@@ -15,7 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Database(entities = [WordCategories::class, WordItems::class], version = 5, exportSchema = false)
-abstract class WordDataBaseHelper() : RoomDatabase() {
+abstract class WordDataBaseHelper : RoomDatabase() {
 
     abstract fun wordCategoriesDao(): WordCategoriesDao
     abstract fun wordItemsDao(): WordItemsDao

@@ -110,7 +110,6 @@ class RenameTaskCategoryBottomSheet : BottomSheetDialogFragment(), View.OnClickL
                     }
                     .show()
             }
-
             R.id.button_rename_task_category -> {
                 checkName()
             }

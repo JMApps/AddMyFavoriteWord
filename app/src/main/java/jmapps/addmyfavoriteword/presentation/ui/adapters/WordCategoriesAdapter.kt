@@ -16,8 +16,8 @@ import jmapps.addmyfavoriteword.presentation.ui.holders.WordCategoriesHolder
 class WordCategoriesAdapter(
     private val context: Context,
     private var wordCategoryList: MutableList<WordCategories>,
-    private val onItemClickWordCategory: WordCategoriesAdapter.OnItemClickWordCategory,
-    private val onLongClickWordCategory: WordCategoriesAdapter.OnLongClickWordCategory) : RecyclerView.Adapter<WordCategoriesHolder>(), Filterable {
+    private val onItemClickWordCategory: OnItemClickWordCategory,
+    private val onLongClickWordCategory: OnLongClickWordCategory) : RecyclerView.Adapter<WordCategoriesHolder>(), Filterable {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var firstWordCategoryList: MutableList<WordCategories>? = null
@@ -96,8 +96,7 @@ class WordCategoriesAdapter(
                     val filteredList = ArrayList<WordCategories>()
                     for (row in firstWordCategoryList!!) {
                         if (row._id.toString().contains(charSequence) ||
-                            row.wordCategoryTitle.toLowerCase().contains(charString.toLowerCase())
-                        ) {
+                            row.wordCategoryTitle.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row)
                         }
                     }

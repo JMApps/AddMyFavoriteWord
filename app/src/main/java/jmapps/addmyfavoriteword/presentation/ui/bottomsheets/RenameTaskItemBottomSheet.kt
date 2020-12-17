@@ -56,7 +56,7 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
         taskPriority = arguments?.getLong(ARG_RENAME_TASK_ITEM_PRIORITY)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_rename_task_item, container, false)
 
         retainInstance = true
@@ -73,7 +73,6 @@ class RenameTaskItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
 
         return binding.root
     }
-
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 

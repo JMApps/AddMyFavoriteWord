@@ -69,7 +69,7 @@ class TasksActivity : AppCompatActivity(), ContractInterface.OtherView,
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         sharedLocalPreferences = SharedLocalProperties(preferences)
-        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_TASK_INDEX, 0)!!
+        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_TASK_INDEX, 0)
 
         otherActivityPresenter = OtherActivityPresenter(this)
         otherActivityPresenter.initView(taskCategoryId!!, defaultOrderIndex!!)

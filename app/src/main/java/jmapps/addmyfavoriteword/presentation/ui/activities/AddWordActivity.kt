@@ -84,7 +84,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
         sharedLocalPreferences = SharedLocalProperties(preferences)
         PreferenceManager.getDefaultSharedPreferences(this)
             .registerOnSharedPreferenceChangeListener(this)
-        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_WORD_INDEX, 0)!!
+        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_WORD_INDEX, 0)
         wordGridCount = sharedLocalPreferences.getIntValue(ARG_WORD_GRID_COUNT, 2)
 
         otherActivityPresenter = OtherActivityPresenter(this)

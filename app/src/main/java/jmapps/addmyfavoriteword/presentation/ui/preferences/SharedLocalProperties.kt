@@ -8,7 +8,7 @@ data class SharedLocalProperties(val preferences: SharedPreferences) {
         preferences.edit().putInt(key, currentValue).apply()
     }
 
-    fun getIntValue(key: String, defaultValue: Int) : Int? {
+    fun getIntValue(key: String, defaultValue: Int) : Int {
         return preferences.getInt(key, defaultValue)
     }
 
@@ -24,7 +24,7 @@ data class SharedLocalProperties(val preferences: SharedPreferences) {
         preferences.edit().putBoolean(key, currentValue).apply()
     }
 
-    fun getBooleanValue(key: String, defaultValue: Boolean): Boolean? {
+    fun getBooleanValue(key: String, defaultValue: Boolean): Boolean {
         return preferences.getBoolean(key, defaultValue)
     }
 }

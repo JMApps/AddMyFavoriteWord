@@ -40,7 +40,7 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         const val ARG_WORD_TRANSLATE_STATE = "arg_word_translate_state"
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_tools_word, container, false)
 
         retainInstance = true
@@ -58,16 +58,16 @@ class ToolsWordItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         val lastWordTranslateState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSLATE_STATE, true)
 
         binding.apply {
-            seekBarWordGrinCount.progress = lastWordGridValueProgress!!
+            seekBarWordGrinCount.progress = lastWordGridValueProgress
             textGridCount.text = (lastWordGridValueProgress + 1).toString()
-            seekBarWordTextSize.progress = lastWordTextSizeValueProgress!!
+            seekBarWordTextSize.progress = lastWordTextSizeValueProgress
             textTextSizeCount.text = textSizeValues[lastWordTextSizeValueProgress].toString()
-            radioButtonAlignTextLeft.isChecked = lastLeftAlignState!!
-            radioButtonAlignTextCenter.isChecked = lastCenterAlignState!!
-            radioButtonAlignTextRight.isChecked = lastRightAlignState!!
-            switchShowWord.isChecked = lastWordState!!
-            switchShowWordTranscription.isChecked = lastWordTranscriptionState!!
-            switchShowWordTranslate.isChecked = lastWordTranslateState!!
+            radioButtonAlignTextLeft.isChecked = lastLeftAlignState
+            radioButtonAlignTextCenter.isChecked = lastCenterAlignState
+            radioButtonAlignTextRight.isChecked = lastRightAlignState
+            switchShowWord.isChecked = lastWordState
+            switchShowWordTranscription.isChecked = lastWordTranscriptionState
+            switchShowWordTranslate.isChecked = lastWordTranslateState
         }
 
         binding.seekBarWordGrinCount.setOnSeekBarChangeListener(this)

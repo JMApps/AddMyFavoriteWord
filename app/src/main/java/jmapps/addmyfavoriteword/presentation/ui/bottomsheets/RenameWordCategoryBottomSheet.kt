@@ -117,7 +117,6 @@ class RenameWordCategoryBottomSheet : BottomSheetDialogFragment(), TextWatcher,
                     }
                     .show()
             }
-
             R.id.button_rename_word_category -> {
                 checkName()
             }

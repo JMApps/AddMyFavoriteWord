@@ -64,7 +64,7 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
 
     private fun setTextSize() {
         val textSize = sharedLocalPreferences.getIntValue(ARG_WORDS_TEXT_SIZE, 18)
-        tvWord.textSize = textSize!!.toFloat()
+        tvWord.textSize = textSize.toFloat()
         tvWordTranscription.textSize = textSize.toFloat()
         tvWordTranslate.textSize = textSize.toFloat()
     }
@@ -73,8 +73,8 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
         val wordState = sharedLocalPreferences.getBooleanValue(ARG_WORD_STATE, true)
         val wordTranslateState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSLATE_STATE, true)
 
-        if (wordState!!) tvWord.visibility = View.VISIBLE else tvWord.visibility = View.GONE
-        if (wordTranslateState!!) tvWordTranslate.visibility = View.VISIBLE else tvWordTranslate.visibility = View.GONE
+        if (wordState) tvWord.visibility = View.VISIBLE else tvWord.visibility = View.GONE
+        if (wordTranslateState) tvWordTranslate.visibility = View.VISIBLE else tvWordTranslate.visibility = View.GONE
     }
 
     private fun setAlignWord() {
@@ -104,7 +104,7 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
     fun wordTranscriptionState(strWordTranscription: String) {
         val wordTranscriptionState = sharedLocalPreferences.getBooleanValue(ARG_WORD_TRANSCRIPTION_STATE, true)
         if (strWordTranscription.isNotEmpty()) {
-            if (wordTranscriptionState!!) tvWordTranscription.visibility = View.VISIBLE else tvWordTranscription.visibility = View.GONE
+            if (wordTranscriptionState) tvWordTranscription.visibility = View.VISIBLE else tvWordTranscription.visibility = View.GONE
             tvWordTranscription.text = strWordTranscription
         } else {
             tvWordTranscription.visibility = View.GONE

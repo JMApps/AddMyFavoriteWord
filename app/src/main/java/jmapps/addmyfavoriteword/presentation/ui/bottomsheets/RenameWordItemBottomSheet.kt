@@ -59,7 +59,7 @@ class RenameWordItemBottomSheet : BottomSheetDialogFragment(), View.OnClickListe
         wordTranslate = arguments?.getString(ARG_RENAME_WORD_TRANSLATE)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_rename_word, container, false)
 
         binding.editChangeWord.setText(word!!)

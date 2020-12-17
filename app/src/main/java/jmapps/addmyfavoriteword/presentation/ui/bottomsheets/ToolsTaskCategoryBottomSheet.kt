@@ -29,7 +29,7 @@ class ToolsTaskCategoryBottomSheet : BottomSheetDialogFragment(),
         const val ARG_TASK_CATEGORY_CHANGE_DATE_TIME = "arg_task_category_change_date_time"
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_tools_task_category, container, false)
 
         retainInstance = true
@@ -41,8 +41,8 @@ class ToolsTaskCategoryBottomSheet : BottomSheetDialogFragment(),
         val lastTaskCategoryChangeDateTimeSwitch = sharedLocalPreferences.getBooleanValue(ARG_TASK_CATEGORY_CHANGE_DATE_TIME, false)
 
         binding.apply {
-            switchAddTaskCategoryTime.isChecked = lastTaskCategoryAddDateTimeSwitch!!
-            switchChangeTaskCategoryTime.isChecked = lastTaskCategoryChangeDateTimeSwitch!!
+            switchAddTaskCategoryTime.isChecked = lastTaskCategoryAddDateTimeSwitch
+            switchChangeTaskCategoryTime.isChecked = lastTaskCategoryChangeDateTimeSwitch
         }
 
         binding.switchAddTaskCategoryTime.setOnCheckedChangeListener(this)

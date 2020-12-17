@@ -75,13 +75,13 @@ class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
         val addShowingDateTime = sharedLocalPreferences.getBooleanValue(ARG_WORD_CATEGORY_ADD_DATE_TIME, false)
         val changeShowingDateTime = sharedLocalPreferences.getBooleanValue(ARG_WORD_CATEGORY_CHANGE_DATE_TIME, false)
 
-        if (!addShowingDateTime!!) {
+        if (!addShowingDateTime) {
             tvWordCategoryAddDateTime.visibility = View.GONE
         } else {
             tvWordCategoryAddDateTime.visibility = View.VISIBLE
         }
 
-        if (!changeShowingDateTime!!) {
+        if (!changeShowingDateTime) {
             tvWordCategoryChangeDateTime.visibility = View.GONE
         } else {
             tvWordCategoryChangeDateTime.visibility = View.VISIBLE

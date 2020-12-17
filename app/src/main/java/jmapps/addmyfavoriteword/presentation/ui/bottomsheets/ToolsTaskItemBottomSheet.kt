@@ -35,7 +35,7 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         const val ARG_TASK_ITEM_EXECUTION_DATE_TIME = "arg_task_item_execution_date_time"
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_tools_task, container, false)
 
         retainInstance = true
@@ -50,11 +50,11 @@ class ToolsTaskItemBottomSheet : BottomSheetDialogFragment(), SeekBar.OnSeekBarC
         val lastTaskExecutionDateTimeSwitch = sharedLocalPreferences.getBooleanValue(ARG_TASK_ITEM_EXECUTION_DATE_TIME, false)
 
         binding.apply {
-            seekBarTaskTextSize.progress = lastTaskTextSizeProgress!!
-            textViewTaskTextSizeCount.text = lastTaskTextSize!!.toString()
-            switchAddTaskTime.isChecked = lastTaskAddDateTimeSwitch!!
-            switchChangeTaskTime.isChecked = lastTaskChangeDateTimeSwitch!!
-            switchExecutionTaskTime.isChecked = lastTaskExecutionDateTimeSwitch!!
+            seekBarTaskTextSize.progress = lastTaskTextSizeProgress
+            textViewTaskTextSizeCount.text = lastTaskTextSize.toString()
+            switchAddTaskTime.isChecked = lastTaskAddDateTimeSwitch
+            switchChangeTaskTime.isChecked = lastTaskChangeDateTimeSwitch
+            switchExecutionTaskTime.isChecked = lastTaskExecutionDateTimeSwitch
         }
 
         binding.seekBarTaskTextSize.setOnSeekBarChangeListener(this)

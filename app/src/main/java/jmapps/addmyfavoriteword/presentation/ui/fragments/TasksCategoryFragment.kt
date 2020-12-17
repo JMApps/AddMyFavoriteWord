@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -69,7 +68,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
 
         deleteAlertDialog = DeleteAlertUtil(requireContext(), this)
 
-        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_TASK_CATEGORY_INDEX, 0)!!
+        defaultOrderIndex = sharedLocalPreferences.getIntValue(KEY_ORDER_TASK_CATEGORY_INDEX, 0)
 
         otherFragmentsPresenter = OtherFragmentsPresenter(this)
         otherFragmentsPresenter.initView(defaultOrderIndex)
@@ -81,7 +80,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun initView(orderBy: String) {
-        tasksCategoryViewModel.allTaskCategories(orderBy).observe(this, Observer {
+        tasksCategoryViewModel.allTaskCategories(orderBy).observe(this, {
             it.let {
                 val verticalLayout = LinearLayoutManager(requireContext())
                 binding.rvTaskCategories.layoutManager = verticalLayout
@@ -94,7 +93,7 @@ class TasksCategoryFragment : Fragment(), ContractInterface.OtherView,
     }
 
     override fun defaultState() {
-        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show);
+        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show)
         binding.fabAddTaskCategory.startAnimation(show)
 
         binding.rvTaskCategories.visibility = otherFragmentsPresenter.recyclerCategory()
