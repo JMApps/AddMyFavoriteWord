@@ -5,11 +5,11 @@
         <item name="colorPrimaryDark">@color/color_toolbar</item>
         <item name="colorAccent">@color/color_accent</item>
         <item name="fontFamily">@font/gilroy_medium</item>
+        <item name="android:windowBackground">@color/main_background</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
     </style>
 
     <style name="SplashTheme">
-        <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="android:fontFamily">@font/gilroy_medium</item>
     </style>
