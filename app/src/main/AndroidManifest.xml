@@ -40,6 +40,10 @@
             android:name=".presentation.ui.activities.AddWordActivity"
             android:label="@string/add_word"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".presentation.ui.activities.FlipModeActivity"
+            android:label="@string/flip_mode"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

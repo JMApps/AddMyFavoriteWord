@@ -3,6 +3,7 @@
     <string name="add_note">Добавить заметку</string>
     <string name="change_note">Изменить заметку</string>
     <string name="add_word">Добавить слово</string>
+    <string name="flip_mode">Режим карточек</string>
 
     <!--    Main screen-->
     <string name="bottom_navigation_title_tasks">Задачи</string>

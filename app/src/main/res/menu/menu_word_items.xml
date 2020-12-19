@@ -17,9 +17,16 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_flip_word_items"
+        android:icon="@drawable/ic_flip"
+        android:orderInCategory="30"
+        android:title="@string/flip_mode"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_order_words"
         android:icon="@drawable/ic_sort"
-        android:orderInCategory="30"
+        android:orderInCategory="40"
         android:title="@string/order_words"
         app:showAsAction="ifRoom">
         <menu>
@@ -44,7 +51,7 @@
     <item
         android:id="@+id/action_delete_all_word_items"
         android:icon="@drawable/ic_delete"
-        android:orderInCategory="40"
+        android:orderInCategory="50"
         android:title="@string/action_delete_all_words"
         app:showAsAction="ifRoom" />
 </menu>
