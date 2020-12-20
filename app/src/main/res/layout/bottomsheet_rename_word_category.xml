@@ -39,6 +39,8 @@
             android:maxLength="100"
             android:padding="@dimen/main_padding"
             android:singleLine="true"
+            android:textColor="@color/main"
+            android:textColorHint="@color/grey"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toStartOf="@+id/text_new_word_category_color"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,17 +61,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edit_rename_word_category" />
 
-        <TextView
-            android:id="@+id/text_length_change_word_category_characters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:gravity="center"
-            android:minWidth="@dimen/characters_min_width"
-            app:layout_constraintBottom_toBottomOf="@+id/button_rename_word_category"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_rename_word_category" />
-
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner_word_priority"
             android:layout_width="0dp"
@@ -83,6 +74,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_rename_word_category" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_length_change_word_category_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin_mini"
+            android:gravity="center"
+            android:minWidth="@dimen/characters_min_width"
+            android:textColor="@color/color_tools_count"
+            app:layout_constraintBottom_toBottomOf="@+id/button_rename_word_category"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_rename_word_category" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_rename_word_category"

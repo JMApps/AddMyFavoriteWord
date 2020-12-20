@@ -42,11 +42,14 @@
             android:background="@android:color/transparent"
             android:ellipsize="end"
             android:hint="@string/hint_enter_note_title"
+            android:imeOptions="actionNext"
             android:inputType="textCapSentences"
             android:maxLength="200"
             android:maxLines="1"
             android:paddingLeft="@dimen/main_padding"
             android:paddingRight="@dimen/main_padding"
+            android:textColor="@color/main"
+            android:textColorHint="@color/grey"
             android:textSize="@dimen/main_app_big_text_size"
             app:fontFamily="@font/gilroy_extra_bold"
             app:layout_constraintEnd_toStartOf="@+id/text_length_change_note_characters"
@@ -58,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/main_margin"
+            android:textColor="@color/color_tools_count"
             app:layout_constraintBottom_toBottomOf="@+id/edit_change_note_item_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edit_change_note_item_title" />
@@ -65,7 +69,6 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/main_margin"
             android:fillViewport="true"
             android:overScrollMode="never"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
@@ -84,6 +87,8 @@
                 android:hint="@string/hint_enter_note_content"
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="@dimen/main_padding"
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey"
                 android:textSize="@dimen/main_app_text_size"
                 app:fontFamily="@font/gilroy_light" />
         </ScrollView>

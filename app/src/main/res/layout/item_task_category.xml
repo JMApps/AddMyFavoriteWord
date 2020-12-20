@@ -7,6 +7,7 @@
     android:layout_margin="@dimen/items_card_margin"
     android:elevation="@dimen/item_card_elevation"
     android:minHeight="@dimen/item_card_min_height"
+    app:cardBackgroundColor="@color/item_card_background"
     app:cardCornerRadius="@dimen/item_small_card_corner">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -39,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|center_vertical"
+                android:textColor="@color/main"
                 android:textSize="@dimen/main_app_text_size"
                 android:textStyle="bold"
                 tools:text="На сегодня" />
@@ -56,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/main_margin_mini"
                     android:gravity="start"
+                    android:textColor="@color/grey"
                     android:textSize="@dimen/small_text_size" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -63,6 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
+                    android:textColor="@color/grey"
                     android:textSize="@dimen/small_text_size" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>

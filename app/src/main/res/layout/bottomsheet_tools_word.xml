@@ -32,6 +32,7 @@
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:text="@string/action_grid_count"
+            android:textColor="@color/grey"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_settings_word_description" />
@@ -68,6 +69,7 @@
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:text="@string/description_text_size"
+            android:textColor="@color/grey"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seek_bar_word_grin_count" />
@@ -86,12 +88,25 @@
             app:layout_constraintTop_toBottomOf="@+id/text_view_word_text_size_description" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_text_size_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:minWidth="@dimen/item_count_min_width"
+            android:textColor="@color/color_tools_count"
+            android:textSize="@dimen/main_app_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/seek_bar_word_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/seek_bar_word_text_size" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_word_text_align_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:text="@string/action_align_text"
+            android:textColor="@color/grey"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seek_bar_word_text_size" />
@@ -132,18 +147,6 @@
                 android:button="@drawable/ic_align_to_right" />
         </RadioGroup>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_text_size_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:minWidth="@dimen/item_count_min_width"
-            android:textColor="@color/color_tools_count"
-            android:textSize="@dimen/main_app_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/seek_bar_word_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/seek_bar_word_text_size" />
-
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_show_word"
             android:layout_width="0dp"
@@ -154,6 +157,7 @@
             android:drawableStart="@drawable/ic_word_simple"
             android:drawablePadding="@dimen/main_padding"
             android:text="@string/action_show_word"
+            android:textColor="@color/main"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -170,6 +174,7 @@
             android:drawableStart="@drawable/ic_word_transcription"
             android:drawablePadding="@dimen/main_padding"
             android:text="@string/action_show_word_transcription"
+            android:textColor="@color/main"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -186,6 +191,7 @@
             android:drawableStart="@drawable/ic_word_translate"
             android:drawablePadding="@dimen/main_padding"
             android:text="@string/action_show_word_translate"
+            android:textColor="@color/main"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -42,6 +42,8 @@
             android:layout_gravity="bottom"
             android:background="?android:attr/windowBackground"
             android:overScrollMode="never"
+            app:itemIconTint="@color/bottom_navigation_item_icon_colors"
+            app:itemTextColor="@color/bottom_navigation_item_icon_colors"
             app:menu="@menu/bottom_navigation_menu" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -8,6 +8,7 @@
     android:elevation="@dimen/item_card_elevation"
     android:maxHeight="@dimen/item_card_max_height"
     android:minHeight="@dimen/item_card_normal_height"
+    app:cardBackgroundColor="@color/item_card_background"
     app:cardCornerRadius="@dimen/item_big_card_corner">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -30,6 +31,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="@dimen/main_padding_mini"
+                android:textColor="@color/black"
                 android:textSize="@dimen/main_app_text_size"
                 app:fontFamily="@font/gilroy_extra_bold"
                 tools:text="На сегодня" />
@@ -55,6 +57,7 @@
                     android:layout_marginStart="@dimen/main_margin_mini"
                     android:layout_marginEnd="@dimen/main_margin_mini"
                     android:gravity="start"
+                    android:textColor="@color/color_accent"
                     android:textSize="@dimen/small_text_size"
                     tools:text="29.11.2020 / 11:54" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -67,6 +70,7 @@
                 android:gravity="start"
                 android:maxLines="5"
                 android:padding="@dimen/main_padding_mini"
+                android:textColor="@color/black"
                 android:textSize="@dimen/main_app_text_size"
                 tools:text="Content" />
         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -48,6 +48,9 @@
             android:maxLines="1"
             android:paddingLeft="@dimen/main_padding"
             android:paddingRight="@dimen/main_padding"
+            android:textColor="@color/main"
+            android:textColorHint="@color/grey"
+            android:textSize="@dimen/main_app_big_text_size"
             app:fontFamily="@font/gilroy_extra_bold"
             app:layout_constraintEnd_toStartOf="@+id/text_length_add_note_characters"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/main_margin"
+            android:textColor="@color/color_tools_count"
             app:layout_constraintBottom_toBottomOf="@+id/edit_add_note_item_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edit_add_note_item_title" />
@@ -65,17 +69,14 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:fillViewport="true"
             android:overScrollMode="never"
             android:scrollbarThumbVertical="@drawable/thumb_line_background"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_add_note_item_title"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/edit_add_note_item_title">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edit_add_note_item_content"
@@ -84,9 +85,10 @@
                 android:background="@android:color/transparent"
                 android:gravity="start"
                 android:hint="@string/hint_enter_note_content"
-                android:imeOptions="actionGo"
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="@dimen/main_padding"
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey"
                 app:fontFamily="@font/gilroy_light">
 
                 <requestFocus />

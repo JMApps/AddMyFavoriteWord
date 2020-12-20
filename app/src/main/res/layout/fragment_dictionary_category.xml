@@ -31,6 +31,7 @@
             android:gravity="center"
             android:text="@string/description_add_dictionary_first_category"
             android:textAlignment="center"
+            android:textColor="@color/grey"
             android:textSize="@dimen/main_description_big_text_size"
             android:visibility="gone"
             app:drawableTopCompat="@drawable/ic_main_dictionary_big"

@@ -26,20 +26,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spinner_task_new_priority"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin_mini"
-            android:layout_marginTop="@dimen/main_margin_mini"
-            android:layout_marginEnd="@dimen/main_margin_mini"
-            android:background="@drawable/priority_stroke_circular_color_view"
-            android:entries="@array/priorities"
-            android:padding="@dimen/main_padding_mini"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_rename_task_item" />
-
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edit_rename_task_item"
             android:layout_width="0dp"
@@ -53,6 +39,8 @@
             android:maxLength="100"
             android:padding="@dimen/main_padding"
             android:singleLine="true"
+            android:textColor="@color/main"
+            android:textColorHint="@color/grey"
             android:textSize="@dimen/main_app_text_size"
             app:layout_constraintEnd_toStartOf="@+id/text_length_change_task_item_characters"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,16 +49,31 @@
             <requestFocus />
         </androidx.appcompat.widget.AppCompatEditText>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_length_change_task_item_characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/main_margin_mini"
             android:gravity="center"
             android:minWidth="@dimen/characters_min_width"
+            android:textColor="@color/color_tools_count"
             app:layout_constraintBottom_toBottomOf="@+id/edit_rename_task_item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edit_rename_task_item" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_task_new_priority"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin_mini"
+            android:layout_marginTop="@dimen/main_margin_mini"
+            android:layout_marginEnd="@dimen/main_margin_mini"
+            android:background="@drawable/priority_stroke_circular_color_view"
+            android:entries="@array/priorities"
+            android:padding="@dimen/main_padding_mini"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_rename_task_item" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_rename_task_item"

@@ -7,6 +7,7 @@
     android:layout_margin="@dimen/items_card_margin"
     android:elevation="@dimen/item_card_elevation"
     android:minHeight="@dimen/item_card_min_height"
+    app:cardBackgroundColor="@color/item_card_background"
     app:cardCornerRadius="@dimen/item_small_card_corner">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -35,6 +36,7 @@
             android:layout_marginEnd="@dimen/main_margin_mini"
             android:layout_weight="1"
             android:padding="@dimen/main_padding_mini"
+            android:textColor="@color/main"
             android:textSize="@dimen/main_app_text_size"
             tools:text="На сегодня" />
     </androidx.appcompat.widget.LinearLayoutCompat>

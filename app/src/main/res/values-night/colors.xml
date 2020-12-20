@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_toolbar">#37474F</color>
+    <color name="color_appbar">#37474F</color>
+    <color name="color_accent">#43A047</color>
+
+    <color name="white">#F1F1F1</color>
+    <color name="black">#2E2E2E</color>
+    <color name="grey">#A7A7A7</color>
+    <color name="main">#F1F1F1</color>
+
+    <color name="main_background">#263238</color>
+    <color name="bottom_sheet_background">#263238</color>
+    <color name="item_card_background">#37474F</color>
+    <color name="color_warning">#EF5350</color>
+    <color name="color_active_bottom_navigation_icon">#43A047</color>
+    <color name="color_passive_bottom_navigation_icon">#FFFFFF</color>
+    <color name="color_item_icon_active">#43A047</color>
+    <color name="color_item_icon_passive">#00BCD4</color>
+    <color name="color_big_main_icon_one">#43A047</color>
+    <color name="color_big_main_icon_two">#00BCD4</color>
+    <color name="color_edit_text_active_hint_line">#00BCD4</color>
+    <color name="color_edit_text_not_active_hint_line">#43A047</color>
+    <color name="color_add_button">#43A047</color>
+    <color name="color_add_button_ripple">#2F7432</color>
+    <color name="color_choose_color_ripple">#7B7B7B</color>
+    <color name="color_scroll_progress_line">#7B7B7B</color>
+    <color name="color_tools_count">#00BCD4</color>
+    <color name="color_priority_circular">#00BCD4</color>
+    <color name="color_word">#43A047</color>
+    <color name="color_word_transcription">#00BCD4</color>
+    <color name="color_word_translate">#CECECE</color>
+</resources>
