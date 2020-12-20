@@ -94,7 +94,7 @@ class NotesFragment : Fragment(), ContractInterface.OtherView, View.OnClickListe
     }
 
     override fun defaultState() {
-        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show)
+        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.fab_show)
         binding.fabAddNote.startAnimation(show)
 
         binding.rvNoteItems.visibility = otherFragmentsPresenter.recyclerCategory()

@@ -97,7 +97,7 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
     }
 
     override fun defaultState() {
-        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.show)
+        val show = AnimationUtils.loadAnimation(requireContext(), R.anim.fab_show)
         binding.fabAddWordCategory.startAnimation(show)
 
         binding.rvWordCategories.visibility = otherFragmentsPresenter.recyclerCategory()
