@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
@@ -71,8 +72,13 @@ class TaskItemsAdapter(
             holder.tvTaskItemExecutionDateTime.text = context.getString(R.string.action_state_item_task)
         }
 
-        val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
-        holder.llTaskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+        if (AppCompatDelegate.isCompatVectorFromResourcesEnabled()) {
+            val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
+            holder.llTaskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+        } else {
+            val priorityName = arrayListOf("#37474F", "#40827717", "#401B5E20", "#40E65100")
+            holder.llTaskItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+        }
 
         holder.findCheckboxChecked(onTaskCheckboxState, current._id)
         holder.findOnItemClick(onLongClickTaskItem, current._id, current.taskItemTitle, current.priority)
