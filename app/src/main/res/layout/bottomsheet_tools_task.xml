@@ -33,6 +33,8 @@
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginEnd="@dimen/main_margin"
+            android:drawableStart="@drawable/ic_tools_text_size"
+            android:drawablePadding="@dimen/main_padding"
             android:text="@string/description_text_size"
             android:textColor="@color/grey"
             android:textSize="@dimen/main_app_text_size"
