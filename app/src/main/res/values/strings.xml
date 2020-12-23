@@ -157,4 +157,5 @@
     <string name="action_show_word">Отображать слово</string>
     <string name="action_show_word_transcription">Отображать транскрипцию</string>
     <string name="action_show_word_translate">Отображать перевод</string>
+    <string name="action_night_mode">Ночной режим</string>
 </resources>
