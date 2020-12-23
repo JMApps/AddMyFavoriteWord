@@ -2,12 +2,12 @@ package jmapps.addmyfavoriteword.presentation.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import jmapps.addmyfavoriteword.R
@@ -59,12 +59,15 @@ class WordCategoriesAdapter(
         holder.tvWordCategoryColor.text = (position + 1).toString()
         holder.tvWordCategoryTitle.text = current.wordCategoryTitle
 
-        if (AppCompatDelegate.isCompatVectorFromResourcesEnabled()) {
-            val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
-            holder.llWordCategoryItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
-        } else {
-            val priorityName = arrayListOf("#37474F", "#40827717", "#401B5E20", "#40E65100")
-            holder.llWordCategoryItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                val priorityName = arrayListOf("#FFFFFF", "#FFF8E1", "#E8F5E9", "#FFEBEE")
+                holder.llWordCategoryItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                val priorityName = arrayListOf("#37474F", "#40827717", "#401B5E20", "#40E65100")
+                holder.llWordCategoryItemPriority.setBackgroundColor(Color.parseColor(priorityName[current.priority.toInt()]))
+            }
         }
 
         val wordCategoryAddDateTime = context.getString(R.string.action_add_time_item_word, "\n${current.addDateTime}")
