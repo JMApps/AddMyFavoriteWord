@@ -41,10 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.navigator_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_tasks, R.id.navigation_dictionary, R.id.navigation_notes
-            )
-        )
+            setOf(R.id.navigation_tasks, R.id.navigation_dictionary, R.id.navigation_notes))
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -75,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         if (state) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         }
     }
 }
