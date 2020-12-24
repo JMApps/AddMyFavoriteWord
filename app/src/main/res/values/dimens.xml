@@ -55,4 +55,7 @@
 
     <!--    Min width's-->
     <dimen name="characters_min_width">30dp</dimen>
+
+    <!--    Dot size-->
+    <dimen name="indicator_dot_size">5dp</dimen>
 </resources>

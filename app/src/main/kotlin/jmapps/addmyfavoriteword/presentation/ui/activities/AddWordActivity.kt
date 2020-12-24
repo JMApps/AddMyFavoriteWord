@@ -1,6 +1,7 @@
 package jmapps.addmyfavoriteword.presentation.ui.activities
 
 import android.app.SearchManager
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Html
@@ -19,6 +20,7 @@ import jmapps.addmyfavoriteword.R
 import jmapps.addmyfavoriteword.databinding.ActivityAddWordBinding
 import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.ContractInterface
 import jmapps.addmyfavoriteword.presentation.mvp.otherActivities.OtherActivityPresenter
+import jmapps.addmyfavoriteword.presentation.ui.activities.FlipModeActivity.Companion.KEY_DISPLAY_BY_FLIP_MODE
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordItemsAdapter
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet
 import jmapps.addmyfavoriteword.presentation.ui.bottomsheets.AddWordItemBottomSheet.Companion.ARG_ADD_WORD_ITEM_BS
@@ -139,6 +141,9 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
                 val toolsWordItemBottomSheet = ToolsWordItemBottomSheet()
                 toolsWordItemBottomSheet.show(supportFragmentManager, ARG_TOOLS_WORD_ITEM_BS)
             }
+            R.id.action_flip_word_items -> {
+                toFlipModeActivity()
+            }
             R.id.item_order_by_add_time -> {
                 changeOrderList(defaultOrderIndex = 0)
             }
@@ -211,5 +216,11 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
         sharedLocalPreferences.saveIntValue(KEY_ORDER_WORD_INDEX, defaultOrderIndex)
         otherActivityPresenter.initView(wordCategoryId!!, defaultOrderIndex)
         recreate()
+    }
+
+    private fun toFlipModeActivity() {
+        val toFlipMode = Intent(this, FlipModeActivity::class.java)
+        toFlipMode.putExtra(KEY_DISPLAY_BY_FLIP_MODE, wordCategoryId)
+        startActivity(toFlipMode)
     }
 }

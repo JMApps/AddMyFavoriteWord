@@ -10,7 +10,7 @@
     <color name="grey">#878787</color>
     <color name="main">#2E2E2E</color>
 
-    <color name="main_background">#FFFFFF</color>
+    <color name="main_background">#F1F1F1</color>
     <color name="bottom_sheet_background">#F1F1F1</color>
     <color name="item_card_background">#FFFFFF</color>
     <color name="color_warning">#EF5350</color>
@@ -31,4 +31,6 @@
     <color name="color_word">#EF5350</color>
     <color name="color_word_transcription">#26A69A</color>
     <color name="color_word_translate">#7B7B7B</color>
+    <color name="color_dot">#42A5F5</color>
+    <color name="color_dot_selected">#EF5350</color>
 </resources>
