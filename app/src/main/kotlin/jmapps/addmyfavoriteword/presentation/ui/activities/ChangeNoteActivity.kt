@@ -72,11 +72,7 @@ class ChangeNoteActivity : AppCompatActivity(), QuestionAlertUtil.OnClickQuestio
         binding.apply {
             DrawableCompat.setTint(changeNoteItemContent.textChangeNoteColor.background, Color.parseColor(intermediateVariableNoteColor))
             changeNoteItemContent.spinnerNoteNewPriority.setSelection(currentNotePriority!!.toInt())
-            if (!currentNoteTitle.isNullOrEmpty()) {
-                changeNoteItemContent.editChangeNoteItemTitle.setText(currentNoteTitle)
-            } else {
-                changeNoteItemContent.editChangeNoteItemTitle.hint = "Без названия"
-            }
+            changeNoteItemContent.editChangeNoteItemTitle.setText(currentNoteTitle)
             val currentNoteTitleCharacters = getString(R.string.max_note_title_characters, currentNoteTitle?.length)
             changeNoteItemContent.textLengthChangeNoteCharacters.text = currentNoteTitleCharacters
             changeNoteItemContent.editChangeNoteItemContent.setText(currentNoteContent)

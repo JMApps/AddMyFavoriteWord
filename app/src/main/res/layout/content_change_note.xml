@@ -41,7 +41,7 @@
             android:layout_marginTop="@dimen/main_margin_big"
             android:background="@android:color/transparent"
             android:ellipsize="end"
-            android:hint="@string/hint_enter_note_title"
+            android:hint="@string/hint_enter_empty_note_title"
             android:imeOptions="actionNext"
             android:inputType="textCapSentences"
             android:maxLength="200"

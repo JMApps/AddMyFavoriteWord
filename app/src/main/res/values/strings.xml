@@ -54,6 +54,7 @@
     <string name="action_search_by_notes">Поиск заметок</string>
     <string name="description_add_note">Добавить Заметку</string>
     <string name="hint_enter_note_title">Название</string>
+    <string name="hint_enter_empty_note_title">Без названия</string>
     <string name="max_note_title_characters">%1$d/200</string>
     <string name="toast_achieved_max_note_title_characters">Достигнуто макс. число 200</string>
     <string name="hint_enter_note_content">Содержимое…</string>
