@@ -46,7 +46,7 @@
                 android:layout_margin="@dimen/main_margin"
                 app:spi_dotColor="@color/color_dot"
                 app:spi_dotSelectedColor="@color/color_dot_selected"
-                app:spi_dotSize="@dimen/indicator_dot_size" />
+                app:spi_dotSelectedSize="@dimen/indicator_dot_size" />
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

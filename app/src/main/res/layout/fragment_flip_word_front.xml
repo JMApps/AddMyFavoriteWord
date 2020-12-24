@@ -32,9 +32,8 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/main_padding"
                     android:paddingBottom="@dimen/main_padding_mini"
-                    android:text="word"
                     android:textColor="@color/color_word"
-                    android:textSize="@dimen/main_app_big_text_size" />
+                    android:textSize="50sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.cardview.widget.CardView>
     </androidx.appcompat.widget.LinearLayoutCompat>

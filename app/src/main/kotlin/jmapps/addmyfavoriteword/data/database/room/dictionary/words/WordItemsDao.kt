@@ -20,6 +20,6 @@ interface WordItemsDao {
     @Query("DELETE FROM Table_of_words WHERE _id = :wordId")
     suspend fun deleteWordItem(wordId: Long)
 
-    @Query("DELETE FROM TABLE_OF_WORDS WHERE displayBy = :wordCategoryId")
+    @Query("DELETE FROM Table_of_words WHERE displayBy = :wordCategoryId")
     suspend fun deleteAllWordFromCategory(wordCategoryId: Long)
 }

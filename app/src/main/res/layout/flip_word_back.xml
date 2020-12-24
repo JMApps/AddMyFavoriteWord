@@ -18,7 +18,9 @@
         app:flipOnTouch="false"
         app:flipType="horizontal">
 
-        <include layout="@layout/fragment_flip_word_front" />
+        <include
+            android:id="@+id/flip_container_front"
+            layout="@layout/fragment_flip_word_front" />
 
         <include
             android:id="@+id/flip_container_back"

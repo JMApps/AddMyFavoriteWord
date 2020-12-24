@@ -18,7 +18,6 @@ class FlipModeActivity : AppCompatActivity() {
     private lateinit var flipWordsPagerAdapter: FlipWordsPagerAdapter
 
     private var displayBy: Long? = null
-    private var flipMode: Boolean = true
     private lateinit var flipModeItem: MenuItem
 
     companion object {
@@ -34,27 +33,12 @@ class FlipModeActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         displayBy = intent.getLongExtra(KEY_DISPLAY_BY_FLIP_MODE, 0)
 
-        initFlipWordsMode(flipMode)
-    }
-
-    private fun initFlipWordsMode(flipMode: Boolean) {
-        wordsItemViewModel.getAllWordsList(displayBy!!, "").observe(this, {
-            it.let {
-                flipWordsPagerAdapter = if (flipMode) {
-                    FlipWordsPagerAdapter(this, it.size, flipMode)
-                } else {
-                    FlipWordsPagerAdapter(this, it.size, flipMode)
-                }
-                binding.viewPagerFlipWords.adapter = flipWordsPagerAdapter
-                binding.flipWordIndicator.attachToPager(binding.viewPagerFlipWords)
-            }
-        })
+        initFlipWordsMode(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_word_flip, menu)
         flipModeItem = menu.findItem(R.id.action_change_flip_mode)
-        flipModeItem.isChecked = flipMode
         return true
     }
 
@@ -63,9 +47,31 @@ class FlipModeActivity : AppCompatActivity() {
             android.R.id.home -> finish()
 
             R.id.action_change_flip_mode -> {
-                initFlipWordsMode(!flipModeItem.isChecked)
+                if (flipModeItem.isChecked) {
+                    initFlipWordsMode(true)
+                    flipModeItem.isChecked = false
+                } else {
+                    initFlipWordsMode(false)
+                    flipModeItem.isChecked = true
+                }
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun initFlipWordsMode(flipMode: Boolean) {
+        wordsItemViewModel.getAllWordsList(displayBy!!, "").observe(this, {
+            it.let {
+                flipWordsPagerAdapter = if (flipMode) {
+                    FlipWordsPagerAdapter(this, it, flipMode, displayBy!!)
+                } else {
+                    FlipWordsPagerAdapter(this, it, flipMode, displayBy!!)
+                }
+                val lastCurrentItem = binding.viewPagerFlipWords.currentItem
+                binding.viewPagerFlipWords.adapter = flipWordsPagerAdapter
+                binding.viewPagerFlipWords.setCurrentItem(lastCurrentItem, false)
+                binding.flipWordIndicator.attachToPager(binding.viewPagerFlipWords)
+            }
+        })
     }
 }

@@ -23,7 +23,7 @@ interface WordCategoriesDao {
     @Query("DELETE FROM Table_of_word_categories WHERE _id = :wordCategoryId")
     suspend fun deleteWordCategory(wordCategoryId: Long)
 
-    @Query("DELETE FROM Table_of_words WHERE _id = :wordCategoryId")
+    @Query("DELETE FROM Table_of_words WHERE displayBy = :wordCategoryId")
     suspend fun deleteWordItem(wordCategoryId: Long)
 
     @Query("DELETE FROM Table_of_word_categories")

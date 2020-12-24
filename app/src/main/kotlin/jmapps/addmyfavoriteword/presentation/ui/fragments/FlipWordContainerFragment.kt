@@ -20,17 +20,20 @@ class FlipWordContainerFragment : Fragment() {
 
     private var sectionNumber: Int? = null
     private var flipModeState: Boolean? = null
+    private var sectionId: Long? = null
 
     companion object {
         private const val ARG_FLIP_WORD_SECTION_NUMBER = "arg_flip_word_section_number"
         private const val ARG_FLIP_WORD_MODE_STATE = "arg_flip_word_mode_state"
+        private const val ARG_FLIP_WORD_SECTION_ID = "arg_flip_word_section_id"
 
         @JvmStatic
-        fun newInstance(sectionNumber: Int, flipModeState: Boolean): FlipWordContainerFragment {
+        fun newInstance(sectionNumber: Int, flipModeState: Boolean, sectionId: Long): FlipWordContainerFragment {
             return FlipWordContainerFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_FLIP_WORD_SECTION_NUMBER, sectionNumber)
                     putBoolean(ARG_FLIP_WORD_MODE_STATE, flipModeState)
+                    putLong(ARG_FLIP_WORD_SECTION_ID, sectionId)
                 }
             }
         }
@@ -41,6 +44,7 @@ class FlipWordContainerFragment : Fragment() {
         wordsItemViewModel = ViewModelProvider(this).get(WordsItemViewModel::class.java)
         sectionNumber = arguments?.getInt(ARG_FLIP_WORD_SECTION_NUMBER)
         flipModeState = arguments?.getBoolean(ARG_FLIP_WORD_MODE_STATE)
+        sectionId = arguments?.getLong(ARG_FLIP_WORD_SECTION_ID)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -65,14 +69,20 @@ class FlipWordContainerFragment : Fragment() {
     }
 
     private fun initFlipFront() {
-        wordsItemViewModel.getAllWordsList(sectionNumber!!.toLong(), "").observe(viewLifecycleOwner, {
-
+        wordsItemViewModel.getAllWordsList(sectionId!!, "").observe(viewLifecycleOwner, {
+            val current = it[sectionNumber!! - 1]
+            bindingFront.flipContainerFront.textFlipWord.text = current.word
+            bindingFront.flipContainerBack.textFlipWordTranscription.text = current.wordTranscription
+            bindingFront.flipContainerBack.textFlipWordTranslate.text = current.wordTranslate
         })
     }
 
     private fun initFlipBack() {
-        wordsItemViewModel.getAllWordsList(sectionNumber!!.toLong(), "").observe(viewLifecycleOwner, {
-
+        wordsItemViewModel.getAllWordsList(sectionId!!, "").observe(viewLifecycleOwner, {
+            val current = it[sectionNumber!! - 1]
+            bindingBack.flipContainerFront.textFlipWord.text = current.word
+            bindingBack.flipContainerBack.textFlipWordTranscription.text = current.wordTranscription
+            bindingBack.flipContainerBack.textFlipWordTranslate.text = current.wordTranslate
         })
     }
 }
