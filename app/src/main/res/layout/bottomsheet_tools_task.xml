@@ -74,6 +74,8 @@
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginEnd="@dimen/main_margin"
+            android:drawableStart="@drawable/ic_tools_visibility"
+            android:drawablePadding="@dimen/main_padding"
             android:text="@string/action_showing_dates"
             android:textColor="@color/grey"
             android:textSize="@dimen/main_app_text_size"

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
-            android:drawableStart="@drawable/ic_columns"
+            android:drawableStart="@drawable/ic_tools_columns"
             android:drawablePadding="@dimen/main_padding"
             android:text="@string/action_grid_count"
             android:textColor="@color/grey"
