@@ -58,10 +58,11 @@ abstract class WordDataBaseHelper : RoomDatabase() {
                 database.execSQL("INSERT INTO word_categories_new (_id, wordCategoryTitle) SELECT categoryId, categoryName FROM Table_of_categories")
                 database.execSQL("DROP TABLE Table_of_categories")
                 database.execSQL("ALTER TABLE words_categories_new RENAME TO Table_of_word_categories")
-                database.execSQL("CREATE TABLE words_new (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, displayBy INTEGER NOT NULL DEFAULT null, word TEXT NOT NULL DEFAULT null, wordTranscription TEXT NOT NULL DEFAULT null, wordTranslate TEXT NOT NULL DEFAULT null, wordItemColor TEXT NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null)")
+                database.execSQL("CREATE TABLE words_new (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, displayBy INTEGER NOT NULL DEFAULT null, word TEXT NOT NULL DEFAULT null, wordTranscription TEXT NOT NULL DEFAULT null, wordTranslate TEXT NOT NULL DEFAULT null, wordItemColor TEXT NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null, priority NOT NULL DEFAULT null)")
                 database.execSQL("INSERT INTO words_new (_id, displayBy, word, wordTranslate, addDateTime, changeDateTime) SELECT wordId, displayBy, word, wordTranslate, addDateTime, changeDateTime")
                 database.execSQL("DROP TABLE Table_of_words")
                 database.execSQL("ALTER TABLE words_new RENAME TO Table_of_words")
+                database.execSQL("UPDATE Table_of_words SET priority = 0")
             }
         }
 
