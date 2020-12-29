@@ -95,6 +95,7 @@
     <string name="action_delete_all_words">Удалить все слова категории</string>
     <string name="action_word_deleted">Слово удалено</string>
     <string name="action_words_deleted">Слова удалены</string>
+    <string name="description_not_added_words">Нет добавленных слов</string>
 
     <!--    Popup-->
     <string name="popup_change">Изменить</string>

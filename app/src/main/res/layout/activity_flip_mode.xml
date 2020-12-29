@@ -29,6 +29,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -37,6 +38,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_word_card_mode_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="@dimen/main_padding"
+                android:gravity="center"
+                android:text="@string/description_not_added_words"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/main_description_big_text_size"
+                android:visibility="gone"
+                app:drawableTopCompat="@drawable/ic_change_language_big" />
 
             <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
                 android:id="@+id/flip_word_indicator"

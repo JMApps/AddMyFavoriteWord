@@ -3,6 +3,7 @@ package jmapps.addmyfavoriteword.presentation.ui.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -62,15 +63,22 @@ class FlipModeActivity : AppCompatActivity() {
     private fun initFlipWordsMode(flipMode: Boolean) {
         wordsItemViewModel.getAllWordsList(displayBy!!, "").observe(this, {
             it.let {
-                flipWordsPagerAdapter = if (flipMode) {
-                    FlipWordsPagerAdapter(this, it, flipMode, displayBy!!)
+                if (it.isNotEmpty()) {
+                    binding.viewPagerFlipWords.visibility = View.VISIBLE
+                    binding.textWordCardModeDescription.visibility = View.GONE
+                    flipWordsPagerAdapter = if (flipMode) {
+                        FlipWordsPagerAdapter(this, it, flipMode, displayBy!!)
+                    } else {
+                        FlipWordsPagerAdapter(this, it, flipMode, displayBy!!)
+                    }
+                    val lastCurrentItem = binding.viewPagerFlipWords.currentItem
+                    binding.viewPagerFlipWords.adapter = flipWordsPagerAdapter
+                    binding.viewPagerFlipWords.setCurrentItem(lastCurrentItem, false)
+                    binding.flipWordIndicator.attachToPager(binding.viewPagerFlipWords)
                 } else {
-                    FlipWordsPagerAdapter(this, it, flipMode, displayBy!!)
+                    binding.viewPagerFlipWords.visibility = View.GONE
+                    binding.textWordCardModeDescription.visibility = View.VISIBLE
                 }
-                val lastCurrentItem = binding.viewPagerFlipWords.currentItem
-                binding.viewPagerFlipWords.adapter = flipWordsPagerAdapter
-                binding.viewPagerFlipWords.setCurrentItem(lastCurrentItem, false)
-                binding.flipWordIndicator.attachToPager(binding.viewPagerFlipWords)
             }
         })
     }
