@@ -54,15 +54,15 @@ abstract class WordDataBaseHelper : RoomDatabase() {
 
         private val MIGRATION_4_5: Migration = object : Migration(4, 5) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("CREATE TABLE word_categories_new (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, wordCategoryTitle TEXT NOT NULL DEFAULT null, wordCategoryColor TEXT NOT NULL DEFAULT null, priority INTEGER NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null)")
-                database.execSQL("INSERT INTO word_categories_new (_id, wordCategoryTitle, wordCategoryColor, priority, addDateTime, changeDateTime) SELECT categoryId, categoryName, '#e57373', 0, '99/99/9999 99:99:99', '99/99/9999 99:99:99' FROM Table_of_categories")
+                database.execSQL("CREATE TABLE word_cat (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, wordCategoryTitle TEXT NOT NULL DEFAULT null, wordCategoryColor TEXT NOT NULL DEFAULT null, priority INTEGER NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null)")
+                database.execSQL("INSERT INTO word_cat (_id, wordCategoryTitle, wordCategoryColor, priority, addDateTime, changeDateTime) SELECT categoryId, categoryName, '#e57373', '0', '99/99/9999 99:99:99', '99/99/9999 99:99:99' FROM Table_of_categories")
                 database.execSQL("DROP TABLE Table_of_categories")
-                database.execSQL("ALTER TABLE words_categories_new RENAME TO Table_of_word_categories")
+                database.execSQL("ALTER TABLE word_cat RENAME TO Table_of_word_categories")
 
-                database.execSQL("CREATE TABLE words_new (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, displayBy INTEGER NOT NULL DEFAULT null, word TEXT NOT NULL DEFAULT null, wordTranscription TEXT NOT NULL DEFAULT null, wordTranslate TEXT NOT NULL DEFAULT null, wordItemColor TEXT NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null, priority INTEGER NOT NULL DEFAULT null)")
-                database.execSQL("INSERT INTO words_new (_id, displayBy, word, wordTranscription, wordTranslate, wordItemColor, addDateTime, changeDateTime, priority) SELECT wordId, displayBy, word, 'Empty', wordTranslate, '#e57373', addDateTime, changeDateTime, 0 FROM Table_of_words")
+                database.execSQL("CREATE TABLE words_n (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, displayBy INTEGER NOT NULL DEFAULT null, word TEXT NOT NULL DEFAULT null, wordTranscription TEXT NOT NULL DEFAULT null, wordTranslate TEXT NOT NULL DEFAULT null, wordItemColor TEXT NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null, priority INTEGER NOT NULL DEFAULT null)")
+                database.execSQL("INSERT INTO words_n (_id, word, wordTranslate, displayBy, addDateTime, changeDateTime, wordTranscription, wordItemColor, priority) SELECT wordId, word, wordTranslate, displayBy, addDateTime, changeDateTime, 'Empty', '#e57373', '0' FROM Table_of_words")
                 database.execSQL("DROP TABLE Table_of_words")
-                database.execSQL("ALTER TABLE words_new RENAME TO Table_of_words")
+                database.execSQL("ALTER TABLE words_n RENAME TO Table_of_words")
             }
         }
 

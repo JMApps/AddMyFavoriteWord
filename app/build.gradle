@@ -11,8 +11,8 @@ android {
         applicationId "jmapps.addmyfavoriteword"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 12
-        versionName "2.0.0 - big release"
+        versionCode 18
+        versionName "2.1.0 - big release"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
