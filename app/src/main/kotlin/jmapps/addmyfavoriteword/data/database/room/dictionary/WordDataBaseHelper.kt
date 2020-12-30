@@ -55,14 +55,14 @@ abstract class WordDataBaseHelper : RoomDatabase() {
         private val MIGRATION_4_5: Migration = object : Migration(4, 5) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("CREATE TABLE word_categories_new (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, wordCategoryTitle TEXT NOT NULL DEFAULT null, wordCategoryColor TEXT NOT NULL DEFAULT null, priority INTEGER NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null)")
-                database.execSQL("INSERT INTO word_categories_new (_id, wordCategoryTitle) SELECT categoryId, categoryName FROM Table_of_categories")
+                database.execSQL("INSERT INTO word_categories_new (_id, wordCategoryTitle, wordCategoryColor, priority, addDateTime, changeDateTime) SELECT categoryId, categoryName, '#e57373', 0, '99/99/9999 99:99:99', '99/99/9999 99:99:99' FROM Table_of_categories")
                 database.execSQL("DROP TABLE Table_of_categories")
                 database.execSQL("ALTER TABLE words_categories_new RENAME TO Table_of_word_categories")
-                database.execSQL("CREATE TABLE words_new (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, displayBy INTEGER NOT NULL DEFAULT null, word TEXT NOT NULL DEFAULT null, wordTranscription TEXT NOT NULL DEFAULT null, wordTranslate TEXT NOT NULL DEFAULT null, wordItemColor TEXT NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null, priority NOT NULL DEFAULT null)")
-                database.execSQL("INSERT INTO words_new (_id, displayBy, word, wordTranslate, addDateTime, changeDateTime) SELECT wordId, displayBy, word, wordTranslate, addDateTime, changeDateTime")
+
+                database.execSQL("CREATE TABLE words_new (_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, displayBy INTEGER NOT NULL DEFAULT null, word TEXT NOT NULL DEFAULT null, wordTranscription TEXT NOT NULL DEFAULT null, wordTranslate TEXT NOT NULL DEFAULT null, wordItemColor TEXT NOT NULL DEFAULT null, addDateTime TEXT NOT NULL DEFAULT null, changeDateTime TEXT NOT NULL DEFAULT null, priority INTEGER NOT NULL DEFAULT null)")
+                database.execSQL("INSERT INTO words_new (_id, displayBy, word, wordTranscription, wordTranslate, wordItemColor, addDateTime, changeDateTime, priority) SELECT wordId, displayBy, word, 'Empty', wordTranslate, '#e57373', addDateTime, changeDateTime, 0 FROM Table_of_words")
                 database.execSQL("DROP TABLE Table_of_words")
                 database.execSQL("ALTER TABLE words_new RENAME TO Table_of_words")
-                database.execSQL("UPDATE Table_of_words SET priority = 0")
             }
         }
 
@@ -71,7 +71,8 @@ abstract class WordDataBaseHelper : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     WordDataBaseHelper::class.java,
-                    "WordsDatabase")
+                    "WordsDatabase"
+                )
                     .addCallback(WordsDatabaseCallback(scope))
                     .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
                     .build()
