@@ -1,0 +1,164 @@
+<resources>
+    <string name="app_name_title">My notebook PRO</string>
+    <string name="add_note">Add note</string>
+    <string name="change_note">Change note</string>
+    <string name="add_word">Add word</string>
+    <string name="flip_mode">Card mode</string>
+    <string name="action_night_mode">Night mode</string>
+    <string name="action_change_mode">Change mode</string>
+
+    <!--    Main screen-->
+    <string name="bottom_navigation_title_tasks">Task\'s</string>
+    <string name="bottom_navigation_title_dictionary">Dictionary</string>
+    <string name="bottom_navigation_title_notes">Notes</string>
+
+    <!--    Main container description's-->
+    <string name="description_add_task_first_category">Add the first <b>task</b> category</string>
+    <string name="description_add_dictionary_first_category">Add the first <b>dictionary</b> category</string>
+    <string name="description_add_first_note">Add first <b>note</b></string>
+
+    <!--    Task Categories-->
+    <string name="action_search_by_categories">Search by category</string>
+    <string name="description_add_category">Add category</string>
+    <string name="hint_enter_category_name">Enter name category</string>
+    <string name="description_choose_color">Choose color</string>
+    <string name="max_task_category_name_characters">%1$d/100</string>
+    <string name="toast_achieved_max_task_category_name_characters">Achieved max. number 100</string>
+    <string name="action_add_category">Add</string>
+    <string name="toast_category_added">Category added</string>
+    <string name="description_change_category">Change category</string>
+    <string name="hint_enter_new_category_name">Enter new category name</string>
+    <string name="action_change_category">Change</string>
+    <string name="toast_category_changed">Category changed</string>
+    <string name="action_delete_all_categories">Delete all categories</string>
+    <string name="action_category_deleted">Category deleted</string>
+    <string name="action_categories_deleted">Categories deleted</string>
+
+    <!--    Task item's-->
+    <string name="action_search_by_tasks">Search by task\'s</string>
+    <string name="description_add_first_task">Add the first task in category:\n%1$s</string>
+    <string name="description_add_task">Add task</string>
+    <string name="hint_enter_task_name">Enter task name</string>
+    <string name="max_task_item_name_characters">%1$d/100</string>
+    <string name="toast_achieved_max_task_item_name_characters">Achieved max. number 100</string>
+    <string name="description_task_priory">Priority:</string>
+    <string name="action_add_task">Add</string>
+    <string name="toast_task_added">Task added</string>
+    <string name="description_change_task">Change task</string>
+    <string name="hint_enter_new_task_name">Enter new task name</string>
+    <string name="action_change_task">Change</string>
+    <string name="toast_task_changed">Task changed</string>
+    <string name="action_delete_all_tasks">Delete all task\'s in category</string>
+    <string name="action_task_deleted">Task deleted</string>
+    <string name="action_tasks_deleted">Task\'s deleted</string>
+
+    <!--    Note item's-->
+    <string name="action_search_by_notes">Search by notes</string>
+    <string name="description_add_note">Add Note</string>
+    <string name="hint_enter_note_title">Name</string>
+    <string name="hint_enter_empty_note_title">Untitled</string>
+    <string name="max_note_title_characters">%1$d/200</string>
+    <string name="toast_achieved_max_note_title_characters">Achieved max. number 200</string>
+    <string name="hint_enter_note_content">Content…</string>
+    <string name="description_note_priory">Priority:</string>
+    <string name="action_add_note">Add</string>
+    <string name="toast_note_added">Note added</string>
+    <string name="action_canceled">Action canceled</string>
+    <string name="description_change_note">Change note</string>
+    <string name="hint_enter_new_note_name">Enter new title name</string>
+    <string name="action_change_note">Change</string>
+    <string name="toast_note_changed">Note changed</string>
+    <string name="action_delete_all_notes">Delete all notes</string>
+    <string name="action_note_deleted">Note deleted</string>
+    <string name="action_notes_deleted">Notes deleted</string>
+
+    <!--   Word categories-->
+    <string name="max_word_category_name_characters">%1$d/100</string>
+    <string name="toast_achieved_max_word_category_name_characters">Achieved max. number 100</string>
+
+    <!--    Word item's-->
+    <string name="action_search_by_word">Search by word\'s</string>
+    <string name="description_add_first_word">Add the first word in category:\n%1$s</string>
+    <string name="action_add_word">Add word</string>
+    <string name="action_change_word">Change word</string>
+    <string name="hint_enter_word">Enter word…</string>
+    <string name="hint_enter_word_transcription">Enter transcription…</string>
+    <string name="hint_enter_word_translate">Enter translate…</string>
+    <string name="hint_enter_new_word">Enter new word…</string>
+    <string name="hint_enter_word_new_transcription">Enter new transcription word…</string>
+    <string name="hint_enter_word_new_translate">Enter new translation word…</string>
+    <string name="action_add_more_word">Add mote</string>
+    <string name="action_add_word_and_close">Add and close</string>
+    <string name="toast_word_added">Word added</string>
+    <string name="description_change_word">Change word</string>
+    <string name="toast_word_changed">Word changed</string>
+    <string name="action_delete_all_words">Delete all word\'s from category</string>
+    <string name="action_word_deleted">Word deleted</string>
+    <string name="action_words_deleted">Word\'s deleted</string>
+    <string name="description_not_added_words">No added words</string>
+
+    <!--    Popup-->
+    <string name="popup_change">Change</string>
+    <string name="popup_delete">Delete</string>
+    <string name="toast_deleted">Deleted</string>
+    <string name="toast_canceled">Canceled</string>
+
+    <!--    Order by-->
+    <string name="order_categories">Sort categories:</string>
+    <string name="order_tasks">Sort task\'s:</string>
+    <string name="order_notes">Sort notes:</string>
+    <string name="order_words">Sort word\'s:</string>
+    <string name="order_by_add_time">By date added</string>
+    <string name="order_by_change_time">By date changed</string>
+    <string name="order_by_executions">By due date</string>
+    <string name="order_by_color">By color</string>
+    <string name="order_by_alphabet">By alphabet</string>
+    <string name="order_by_priority">By priority</string>
+
+    <!--    Alert dialogs-->
+    <string name="dialog_message_are_sure_you_want_task_categories">Are you sure you want to delete all categories of tasks along with their contents?</string>
+    <string name="dialog_message_are_sure_you_want_task_category">Are you sure you want to delete the %1$s category along with its contents?</string>
+    <string name="dialog_message_are_sure_you_want_items_task">Are you sure you want to remove all tasks from the category: %1$s?</string>
+    <string name="dialog_message_are_sure_you_want_item_task">Are you sure you want to delete the task?</string>
+    <string name="dialog_message_are_sure_you_want_item_notes">Are you sure you want to delete all notes?</string>
+    <string name="dialog_message_are_sure_you_want_item_note">Are you sure you want to delete the note?</string>
+    <string name="dialog_message_are_sure_you_want_word_categories">Are you sure you want to delete all categories of the dictionary along with their contents?</string>
+    <string name="dialog_message_are_sure_you_want_word_category">Are you sure you want to delete the %1$s category along with its contents?</string>
+    <string name="dialog_message_are_sure_you_want_items_word">Are you sure you want to remove all words from the category: %1$s?</string>
+    <string name="dialog_message_are_sure_you_want_item_word">Are you sure you want to delete the word?</string>
+    <string name="dialog_message_are_sure_you_want_add_item_note_without_save">Save a note before leaving?</string>
+    <string name="dialog_message_are_sure_you_want_change_item_note_without_save">Apply changes before exiting?</string>
+    <string name="dialog_message_are_sure_you_deleted_current_note">Delete the current note?</string>
+    <string name="toast_list_cleared">The list is completely cleared</string>
+
+    <string name="action_warning">Confirmation</string>
+    <string name="alert_ok">Yes</string>
+    <string name="alert_save">Save</string>
+    <string name="alert_delete">Delete</string>
+    <string name="alert_apply">Apply</string>
+    <string name="alert_not_apply">Do not apply</string>
+    <string name="alert_cancel">Cancel</string>
+
+    <!--    Settings-->
+    <string name="action_settings">Settings</string>
+    <string name="description_text_size">Text size:</string>
+    <string name="action_showing_dates">Display:</string>
+    <string name="action_add_date_time">Date added</string>
+    <string name="action_change_date_time">Date changed</string>
+    <string name="action_execution_date_time">Date of completion</string>
+    <string name="action_priority">Priority</string>
+    <string name="action_add_time_item_task">Added: %1$s</string>
+    <string name="action_add_time_item_word">Added: %1$s</string>
+    <string name="action_state_item_task">State:\nNot done</string>
+    <string name="action_change_time_item_task">Changed: %1$s</string>
+    <string name="action_change_time_item_word">Changed: %1$s</string>
+    <string name="action_execution_time_item_task">Performed: %1$s</string>
+    <string name="action_priority_item_task">Priority: %1$s</string>
+    <string name="action_change">Change</string>
+    <string name="action_ready">Ready</string>
+    <string name="action_grid_count">Number of columns</string>
+    <string name="action_align_text">Positioning the text</string>
+    <string name="action_show_word">Display word</string>
+    <string name="action_show_word_transcription">Display transcription</string>
+    <string name="action_show_word_translate">Display translation</string>
+</resources>
