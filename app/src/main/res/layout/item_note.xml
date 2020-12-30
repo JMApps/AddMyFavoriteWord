@@ -57,7 +57,7 @@
                     android:layout_marginStart="@dimen/main_margin_mini"
                     android:layout_marginEnd="@dimen/main_margin_mini"
                     android:gravity="start"
-                    android:textColor="@color/color_accent"
+                    android:textColor="@color/main"
                     android:textSize="@dimen/small_text_size"
                     tools:text="29.11.2020 / 11:54" />
             </androidx.appcompat.widget.LinearLayoutCompat>

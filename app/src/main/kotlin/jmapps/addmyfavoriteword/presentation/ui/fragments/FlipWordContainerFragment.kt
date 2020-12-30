@@ -72,7 +72,11 @@ class FlipWordContainerFragment : Fragment() {
         wordsItemViewModel.getAllWordsList(sectionId!!, "").observe(viewLifecycleOwner, {
             val current = it[sectionNumber!! - 1]
             bindingFront.flipContainerFront.textFlipWord.text = current.word
-            bindingFront.flipContainerBack.textFlipWordTranscription.text = current.wordTranscription
+            if (current.wordTranscription.isNotEmpty()) {
+                bindingFront.flipContainerBack.textFlipWordTranscription.text = current.wordTranscription
+            } else {
+                bindingFront.flipContainerBack.textFlipWordTranscription.visibility = View.GONE
+            }
             bindingFront.flipContainerBack.textFlipWordTranslate.text = current.wordTranslate
         })
     }
@@ -81,7 +85,11 @@ class FlipWordContainerFragment : Fragment() {
         wordsItemViewModel.getAllWordsList(sectionId!!, "").observe(viewLifecycleOwner, {
             val current = it[sectionNumber!! - 1]
             bindingBack.flipContainerFront.textFlipWord.text = current.word
-            bindingBack.flipContainerBack.textFlipWordTranscription.text = current.wordTranscription
+            if (current.wordTranscription.isNotEmpty()) {
+                bindingBack.flipContainerBack.textFlipWordTranscription.text = current.wordTranscription
+            } else {
+                bindingBack.flipContainerBack.textFlipWordTranscription.visibility = View.GONE
+            }
             bindingBack.flipContainerBack.textFlipWordTranslate.text = current.wordTranslate
         })
     }
