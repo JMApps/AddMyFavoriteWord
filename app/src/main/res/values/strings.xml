@@ -87,6 +87,7 @@
     <string name="hint_enter_new_word">Введите новое слово…</string>
     <string name="hint_enter_word_new_transcription">Введите новое слово транскрипцию…</string>
     <string name="hint_enter_word_new_translate">Введите новое слово перевод…</string>
+    <string name="action_change_word_category">Изменить категорию</string>
     <string name="action_add_more_word">Добавить ещё</string>
     <string name="action_add_word_and_close">Добавить и закрыть</string>
     <string name="toast_word_added">Слово добавлено</string>

@@ -30,6 +30,7 @@ class WordCategoriesAdapter(
     interface OnItemClickWordCategory {
         fun onItemClickWordCategory(
             wordCategoryId: Long,
+            wordCategoryPosition: Int,
             wordCategoryTitle: String,
             wordCategoryColor: String,
             wordCategoryPriority: Long
@@ -79,6 +80,7 @@ class WordCategoriesAdapter(
         holder.findItemClick(
             onItemClickWordCategory,
             current._id,
+            position,
             current.wordCategoryTitle,
             current.wordCategoryColor,
             current.priority

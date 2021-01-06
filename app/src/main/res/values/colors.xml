@@ -33,4 +33,5 @@
     <color name="color_word_translate">#7B7B7B</color>
     <color name="color_dot">#42A5F5</color>
     <color name="color_dot_selected">#EF5350</color>
+    <color name="color_category_id">#EF5350</color>
 </resources>

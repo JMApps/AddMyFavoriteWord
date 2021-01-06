@@ -23,8 +23,8 @@ class WordsItemViewModel(application: Application) : AndroidViewModel(applicatio
         wordItemsRepository.insertWordItem(wordItems)
     }
 
-    fun updateWordItem(newWord: String, newWordTranscription: String, newWordTranslate: String, newDateTime: String, wordId: Long) = viewModelScope.launch {
-        wordItemsRepository.updateWordItem(newWord, newWordTranscription, newWordTranslate, newDateTime, wordId)
+    fun updateWordItem(newWord: String, newWordTranscription: String, newWordTranslate: String, newDisplayBy: Long, newDateTime: String, wordId: Long) = viewModelScope.launch {
+        wordItemsRepository.updateWordItem(newWord, newWordTranscription, newWordTranslate, newDisplayBy, newDateTime, wordId)
     }
 
     fun deleteWordItem(wordId: Long) = viewModelScope.launch {

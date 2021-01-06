@@ -34,11 +34,12 @@ class WordCategoriesHolder(viewCategory: View) : RecyclerView.ViewHolder(viewCat
     fun findItemClick(
         onItemClickWordCategory: WordCategoriesAdapter.OnItemClickWordCategory,
         wordCategoryId: Long,
+        wordCategoryPosition: Int,
         wordCategoryTitle: String,
         wordCategoryColor: String,
         wordCategoryPriority: Long) {
         itemView.setOnClickListener {
-            onItemClickWordCategory.onItemClickWordCategory(wordCategoryId, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
+            onItemClickWordCategory.onItemClickWordCategory(wordCategoryId, wordCategoryPosition, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
         }
     }
 

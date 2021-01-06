@@ -13,8 +13,8 @@ class WordItemsRepository(private val wordItemsDao: WordItemsDao) {
         wordItemsDao.insertWordItem(wordItems)
     }
 
-    suspend fun updateWordItem(newWord: String, newWordTranscription: String, newWordTranslate: String, newDateTime: String, wordId: Long) {
-        wordItemsDao.updateWordItem(newWord, newWordTranscription, newWordTranslate, newDateTime, wordId)
+    suspend fun updateWordItem(newWord: String, newWordTranscription: String, newWordTranslate: String, newDisplayBy: Long, newDateTime: String, wordId: Long) {
+        wordItemsDao.updateWordItem(newWord, newWordTranscription, newWordTranslate, newDisplayBy, newDateTime, wordId)
     }
 
     suspend fun deleteWordItem(wordId: Long) {

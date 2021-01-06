@@ -14,8 +14,8 @@ interface WordItemsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWordItem(wordItems: WordItems?)
 
-    @Query("UPDATE Table_of_words SET word = :newWord, wordTranscription = :newWordTranscription, wordTranslate = :newWordTranslate, changeDateTime = :newDateTime WHERE _id = :wordId")
-    suspend fun updateWordItem(newWord: String, newWordTranscription: String, newWordTranslate: String, newDateTime: String, wordId: Long)
+    @Query("UPDATE Table_of_words SET word = :newWord, wordTranscription = :newWordTranscription, wordTranslate = :newWordTranslate, displayBy = :newDisplayBy, changeDateTime = :newDateTime WHERE _id = :wordId")
+    suspend fun updateWordItem(newWord: String, newWordTranscription: String, newWordTranslate: String, newDisplayBy: Long, newDateTime: String, wordId: Long)
 
     @Query("DELETE FROM Table_of_words WHERE _id = :wordId")
     suspend fun deleteWordItem(wordId: Long)

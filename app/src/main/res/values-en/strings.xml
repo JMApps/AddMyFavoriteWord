@@ -87,6 +87,7 @@
     <string name="hint_enter_new_word">Enter new word…</string>
     <string name="hint_enter_word_new_transcription">Enter new transcription word…</string>
     <string name="hint_enter_word_new_translate">Enter new translation word…</string>
+    <string name="action_change_word_category">Change category</string>
     <string name="action_add_more_word">Add mote</string>
     <string name="action_add_word_and_close">Add and close</string>
     <string name="toast_word_added">Word added</string>

@@ -22,6 +22,7 @@ import jmapps.addmyfavoriteword.presentation.mvp.otherFragments.OtherFragmentsPr
 import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity
 import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_COLOR
 import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_ID
+import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_POSITION
 import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_PRIORITY
 import jmapps.addmyfavoriteword.presentation.ui.activities.AddWordActivity.Companion.KEY_WORD_CATEGORY_TITLE
 import jmapps.addmyfavoriteword.presentation.ui.adapters.WordCategoriesAdapter
@@ -165,8 +166,8 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
         addWordCategoryBottomSheet.show(childFragmentManager, ARG_ADD_WORD_CATEGORY_BS)
     }
 
-    override fun onItemClickWordCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String, wordCategoryPriority: Long) {
-        toWordActivity(wordCategoryId, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
+    override fun onItemClickWordCategory(wordCategoryId: Long, wordCategoryPosition: Int, wordCategoryTitle: String, wordCategoryColor: String, wordCategoryPriority: Long) {
+        toWordActivity(wordCategoryId, wordCategoryPosition, wordCategoryTitle, wordCategoryColor, wordCategoryPriority)
     }
 
     override fun itemClickRenameCategory(wordCategoryId: Long, wordCategoryTitle: String, wordCategoryColor: String, wordCategoryPriority: Long) {
@@ -205,9 +206,10 @@ class DictionaryFragment : Fragment(), ContractInterface.OtherView, SearchView.O
         sharedLocalPreferences.saveIntValue(KEY_ORDER_WORD_CATEGORY_INDEX, defaultOrderIndex)
     }
 
-    private fun toWordActivity(_id: Long, categoryTitle: String, categoryColor: String, categoryPriority: Long) {
+    private fun toWordActivity(_id: Long, position: Int, categoryTitle: String, categoryColor: String, categoryPriority: Long) {
         val toAddWordActivity = Intent(requireContext(), AddWordActivity::class.java)
         toAddWordActivity.putExtra(KEY_WORD_CATEGORY_ID, _id)
+        toAddWordActivity.putExtra(KEY_WORD_CATEGORY_POSITION, position)
         toAddWordActivity.putExtra(KEY_WORD_CATEGORY_TITLE, categoryTitle)
         toAddWordActivity.putExtra(KEY_WORD_CATEGORY_COLOR, categoryColor)
         toAddWordActivity.putExtra(KEY_WORD_CATEGORY_PRIORITY, categoryPriority)

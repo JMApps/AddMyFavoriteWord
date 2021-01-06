@@ -32,4 +32,5 @@
     <color name="color_word_translate">#CECECE</color>
     <color name="color_dot">#43A047</color>
     <color name="color_dot_selected">#00BCD4</color>
+    <color name="color_category_id">#00BCD4</color>
 </resources>

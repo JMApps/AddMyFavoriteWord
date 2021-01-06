@@ -45,6 +45,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     private lateinit var otherActivityPresenter: OtherActivityPresenter
 
     private var wordCategoryId: Long? = null
+    private var wordCategoryPosition: Int? = null
     private var wordCategoryTitle: String? = null
     private var wordCategoryColor: String? = null
     private var wordCategoryPriority: Long? = null
@@ -58,6 +59,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
 
     companion object {
         const val KEY_WORD_CATEGORY_ID = "key_word_category_id"
+        const val KEY_WORD_CATEGORY_POSITION = "key_word_category_position"
         const val KEY_WORD_CATEGORY_TITLE = "key_word_category_title"
         const val KEY_WORD_CATEGORY_COLOR = "key_word_category_color"
         const val KEY_WORD_CATEGORY_PRIORITY = "key_word_category_priority"
@@ -73,6 +75,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         wordCategoryId = intent.getLongExtra(KEY_WORD_CATEGORY_ID, 0)
+        wordCategoryPosition = intent.getIntExtra(KEY_WORD_CATEGORY_POSITION, 0)
         wordCategoryTitle = intent.getStringExtra(KEY_WORD_CATEGORY_TITLE)
         wordCategoryColor = intent.getStringExtra(KEY_WORD_CATEGORY_COLOR)
         wordCategoryPriority = intent.getLongExtra(KEY_WORD_CATEGORY_PRIORITY, 0)
@@ -180,7 +183,7 @@ class AddWordActivity : AppCompatActivity(), ContractInterface.OtherView,
     }
 
     override fun itemClickRenameItem(wordItemId: Long, word: String, wordTranscription: String, wordTranslate: String) {
-        val renameWordItem = RenameWordItemBottomSheet.toInstance(wordItemId, word, wordTranscription, wordTranslate)
+        val renameWordItem = RenameWordItemBottomSheet.toInstance(wordItemId, word, wordTranscription, wordTranslate, wordCategoryId!!, wordCategoryPosition!!)
         renameWordItem.show(supportFragmentManager, ARG_RENAME_WORD_ITEM_BS)
     }
 
