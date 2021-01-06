@@ -1,5 +1,6 @@
 package jmapps.addmyfavoriteword.presentation.ui.holders
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.view.Gravity
 import android.view.View
@@ -45,6 +46,13 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
                 when (item.itemId) {
                     R.id.popup_change_item -> {
                         onLongWordItemClick.itemClickRenameItem(wordItemId, word, wordTranscription, wordTranslate)
+                    }
+                    R.id.popup_share_item -> {
+                        if (wordTranscription.isNotEmpty()) {
+                            shareWord("$word\n$wordTranscription\n$wordTranslate")
+                        } else {
+                            shareWord("$word\n$wordTranslate")
+                        }
                     }
                     R.id.popup_delete_item -> {
                         onLongWordItemClick.itemClickDeleteItem(wordItemId)
@@ -109,5 +117,13 @@ class WordItemsHolder(wordView: View) : RecyclerView.ViewHolder(wordView),
         } else {
             tvWordTranscription.visibility = View.GONE
         }
+    }
+
+    private fun shareWord(words: String) {
+        val shareWord = Intent(Intent.ACTION_SEND)
+        shareWord.type = "text/plain"
+        shareWord.putExtra(Intent.EXTRA_TEXT, "$words")
+        itemView.context?.startActivity(shareWord)
+
     }
 }

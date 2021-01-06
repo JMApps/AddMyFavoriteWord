@@ -100,6 +100,7 @@
 
     <!--    Popup-->
     <string name="popup_change">Change</string>
+    <string name="popup_share">Share</string>
     <string name="popup_delete">Delete</string>
     <string name="toast_deleted">Deleted</string>
     <string name="toast_canceled">Canceled</string>
